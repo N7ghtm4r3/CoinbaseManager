@@ -2,13 +2,7 @@ package com.tecknobit.coinbasemanager.Managers;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
 import java.util.HashMap;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.util.Base64.getEncoder;
 
 public class CoinbaseManager {
 
@@ -23,7 +17,6 @@ public class CoinbaseManager {
     protected final APIRequest apiRequest;
     private final String passphrase;
     private final String apiSecret;
-    private final String base64apiSecret;
     private final String apiKey;
     private boolean keysInserted;
 
@@ -31,7 +24,6 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        base64apiSecret = new String(Base64.getDecoder().decode(apiSecret.getBytes()));
         headers = new HashMap<>();
         keysInserted = false;
         apiRequest = new APIRequest(defaultErrorMessage, timeout);
@@ -41,7 +33,6 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        base64apiSecret = new String(Base64.getDecoder().decode(apiSecret.getBytes()));
         headers = new HashMap<>();
         keysInserted = false;
         apiRequest = new APIRequest(timeout);
@@ -51,7 +42,6 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        base64apiSecret = new String(Base64.getDecoder().decode(apiSecret.getBytes()));
         headers = new HashMap<>();
         keysInserted = false;
         apiRequest = new APIRequest(defaultErrorMessage);
@@ -61,7 +51,6 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.passphrase = passphrase;
         this.apiSecret = apiSecret;
-        base64apiSecret = new String(Base64.getDecoder().decode(apiSecret.getBytes()));
         headers = new HashMap<>();
         keysInserted = false;
         apiRequest = new APIRequest();
@@ -81,14 +70,8 @@ public class CoinbaseManager {
             headers.put(CB_ACCESS_PASSPHRASE, passphrase);
             keysInserted = true;
         }
-        headers.put(CB_ACCESS_SIGN, getBase64Signature(timestamp + method + endpoint + params));
+        headers.put(CB_ACCESS_SIGN, apiRequest.getSignature(apiSecret, timestamp + method + endpoint + params));
         headers.put(CB_ACCESS_TIMESTAMP, timestamp);
-    }
-
-    private String getBase64Signature(String data) throws Exception {
-        Mac sha256 = Mac.getInstance("HmacSHA256");
-        sha256.init(new SecretKeySpec(base64apiSecret.getBytes(), "HmacSHA256"));
-        return getEncoder().encodeToString(sha256.doFinal(data.replace("?","").getBytes(UTF_8)));
     }
 
     public String getErrorResponse(){
