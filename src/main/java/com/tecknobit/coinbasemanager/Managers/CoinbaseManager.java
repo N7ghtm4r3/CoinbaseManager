@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.Managers;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class CoinbaseManager {
@@ -13,6 +14,7 @@ public class CoinbaseManager {
     protected static final String CB_ACCESS_SIGN = "CB-ACCESS-SIGN";
     protected static final String CB_ACCESS_TIMESTAMP = "CB-ACCESS-TIMESTAMP";
     protected static final String CB_ACCESS_PASSPHRASE = "CB-ACCESS-PASSPHRASE";
+    protected static final String CB_VERSION = "CB-VERSION";
     protected final HashMap<String, String> headers;
     protected final APIRequest apiRequest;
     private final String passphrase;
@@ -72,6 +74,7 @@ public class CoinbaseManager {
         }
         headers.put(CB_ACCESS_SIGN, apiRequest.getSignature(apiSecret, timestamp + method + endpoint + params));
         headers.put(CB_ACCESS_TIMESTAMP, timestamp);
+        headers.put(CB_VERSION, LocalDate.now().toString());
     }
 
     public String getErrorResponse(){
