@@ -12,4 +12,5 @@ public class Hold extends AccountDetails{
     public String getRef() {
         return ref;
     }
+
 }

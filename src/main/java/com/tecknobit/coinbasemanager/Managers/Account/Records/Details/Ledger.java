@@ -12,7 +12,8 @@ public class Ledger extends AccountDetails{
         this.balance = balance;
         this.details = new Details(details.getString("to"),
                 details.getString("from"),
-                details.getString("profile_transfer_id"));
+                details.getString("profile_transfer_id")
+        );
     }
 
     public double getBalance() {
