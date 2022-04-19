@@ -1,11 +1,13 @@
 package com.tecknobit.coinbasemanager.Managers.Account;
 
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Account;
+import com.tecknobit.coinbasemanager.Managers.Account.Records.CoinbaseAccount;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Hold;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Ledger;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ACCOUNT_ENDPOINT;
+import static com.tecknobit.coinbasemanager.Constants.EndpointsList.COINBASE_ACCOUNT_ENDPOINT;
 
 public class CoinbaseAccountManager extends CoinbaseManager {
 
@@ -184,6 +187,40 @@ public class CoinbaseAccountManager extends CoinbaseManager {
             ));
         }
         return transfers;
+    }
+
+    public String getCoinbaseWallets() throws Exception {
+        return sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT,GET_METHOD);
+    }
+
+    public JSONArray getJSONCoinbaseWallets() throws Exception {
+        return new JSONArray(getCoinbaseWallets());
+    }
+
+    public ArrayList<CoinbaseAccount> getCoinbaseWalletsList() throws Exception {
+        jsonArray = new JSONArray(getJSONCoinbaseWallets());
+        ArrayList<CoinbaseAccount> coinbaseAccounts = new ArrayList<>();
+        for (int j=0; j < jsonArray.length(); j++){
+            JSONObject coinbaseAccount = jsonArray.getJSONObject(j);
+            try {
+                jsonObject = coinbaseAccount.getJSONObject("sepa_deposit_information");
+            }catch (JSONException e){
+                jsonObject = null;
+            }
+            coinbaseAccounts.add(new CoinbaseAccount(coinbaseAccount.getDouble("balance"),
+                    coinbaseAccount.getBoolean("available_on_consumer"),
+                    coinbaseAccount.getString("name"),
+                    coinbaseAccount.getBoolean("active"),
+                    coinbaseAccount.getString("currency"),
+                    coinbaseAccount.getString("id"),
+                    coinbaseAccount.getString("type"),
+                    coinbaseAccount.getBoolean("primary"),
+                    coinbaseAccount.getDouble("hold_balance"),
+                    coinbaseAccount.getString("hold_currency"),
+                    jsonObject
+            ));
+        }
+        return coinbaseAccounts;
     }
 
 }
