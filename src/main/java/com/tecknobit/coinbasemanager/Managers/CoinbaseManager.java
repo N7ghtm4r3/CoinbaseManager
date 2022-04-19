@@ -113,4 +113,8 @@ public class CoinbaseManager {
         return Base64.getEncoder().encodeToString(mac.doFinal(data.getBytes()));
     }
 
+    protected String assembleQueryParams(HashMap<String, Object> extraParams){
+        return apiRequest.assembleAdditionalParams("?", extraParams).replaceFirst("&","");
+    }
+
 }
