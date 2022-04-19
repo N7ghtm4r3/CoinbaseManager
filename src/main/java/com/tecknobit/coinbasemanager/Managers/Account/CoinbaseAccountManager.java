@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.Account;
 
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Account;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.CoinbaseAccount;
+import com.tecknobit.coinbasemanager.Managers.Account.Records.CryptoAddress;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Hold;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Ledger;
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ACCOUNT_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.COINBASE_ACCOUNT_ENDPOINT;
 
@@ -221,6 +223,33 @@ public class CoinbaseAccountManager extends CoinbaseManager {
             ));
         }
         return coinbaseAccounts;
+    }
+
+    public String generateCryptoAddress(String accountId) throws Exception {
+        System.out.println(COINBASE_ACCOUNT_ENDPOINT+"/"+ accountId+"/addresses");
+        return sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT+"/"+ accountId +"/addresses",POST_METHOD);
+    }
+
+    public JSONObject generateJSONCryptoAddress(String accountId) throws Exception {
+        return new JSONObject(generateCryptoAddress(accountId));
+    }
+
+    public CryptoAddress generateObjectCryptoAddress(String accountId) throws Exception {
+        jsonObject = new JSONObject(generateCryptoAddress(accountId));
+        return new CryptoAddress(jsonObject.getString("id"),
+                jsonObject.getString("address"),
+                jsonObject.getJSONObject("address_info"),
+                jsonObject.getString("name"),
+                jsonObject.getString("created_at"),
+                jsonObject.getString("updated_at"),
+                jsonObject.getString("network"),
+                jsonObject.getString("uri_scheme"),
+                jsonObject.getString("resource"),
+                jsonObject.getString("resource_path"),
+                jsonObject.getString("deposit_uri"),
+                jsonObject.getBoolean("exchange_deposit_address"),
+                jsonObject.getJSONArray("warnings")
+        );
     }
 
 }

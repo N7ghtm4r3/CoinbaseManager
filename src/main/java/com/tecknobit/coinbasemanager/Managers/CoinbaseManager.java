@@ -9,6 +9,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.HashMap;
 
+import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
+
 public class CoinbaseManager {
 
     //https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts
@@ -74,9 +76,9 @@ public class CoinbaseManager {
         return apiRequest.getResponse();
     }
 
-    public String sendPostAPIRequest(String endpoint, String method, String bodyParams) throws Exception {
-        setRequestHeaders(method, endpoint, bodyParams);
-        apiRequest.sendAPIRequest(BASE_ENDPOINT+endpoint, method, headers);
+    public String sendPostAPIRequest(String endpoint, String bodyParams) throws Exception {
+        setRequestHeaders(POST_METHOD, endpoint, bodyParams);
+        apiRequest.sendAPIRequest(BASE_ENDPOINT+endpoint, POST_METHOD, headers);
         return apiRequest.getResponse();
     }
 
