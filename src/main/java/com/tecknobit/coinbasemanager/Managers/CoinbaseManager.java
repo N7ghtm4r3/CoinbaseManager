@@ -4,32 +4,39 @@ import com.tecknobit.apimanager.Manager.APIRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
 import java.util.HashMap;
 
-import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
+import static com.tecknobit.apimanager.Manager.APIRequest.*;
+
+/**
+ *  The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
+ *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/docs
+ *  @author N7ghtm4r3 - Tecknobit
+ * **/
 
 public class CoinbaseManager {
-
-    //https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts
 
     public static final String BASE_ENDPOINT = "https://api.exchange.coinbase.com";
     protected static final String CB_ACCESS_KEY = "cb-access-key";
     protected static final String CB_ACCESS_SIGN = "cb-access-sign";
     protected static final String CB_ACCESS_TIMESTAMP = "cb-access-timestamp";
     protected static final String CB_ACCESS_PASSPHRASE = "cb-access-passphrase";
-    protected JSONArray jsonArray;
-    protected JSONObject jsonObject;
     protected final HashMap<String, String> headers;
     protected final APIRequest apiRequest;
-    private final byte[] signatureKey;
-    private final String passphrase;
     private final String apiSecret;
+    private final String passphrase;
     private final String apiKey;
+    protected JSONObject jsonObject;
+    protected JSONArray jsonArray;
     private boolean keysInserted;
 
+    /** Constructor to init a Coinbase manager
+     * @param #apiKey your Coinbase api key
+     * @param #apiSecret your Coinbase api secret
+     * @param #passphrase your Coinbase api passphrase
+     * @param #defaultErrorMessage custom error to show when is not a request error
+     * @param #timeout custom timeout for request
+     * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         apiRequest = new APIRequest(defaultErrorMessage, timeout);
         this.apiKey = apiKey;
@@ -37,9 +44,14 @@ public class CoinbaseManager {
         this.passphrase = passphrase;
         headers = new HashMap<>();
         keysInserted = false;
-        signatureKey = Base64.getDecoder().decode(apiSecret);
     }
 
+    /** Constructor to init a Coinbase manager
+     * @param #apiKey your Coinbase api key
+     * @param #apiSecret your Coinbase api secret
+     * @param #passphrase your Coinbase api passphrase
+     * @param #timeout custom timeout for request
+     * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         apiRequest = new APIRequest(timeout);
         this.apiKey = apiKey;
@@ -47,9 +59,14 @@ public class CoinbaseManager {
         this.passphrase = passphrase;
         headers = new HashMap<>();
         keysInserted = false;
-        signatureKey = Base64.getDecoder().decode(apiSecret);
     }
 
+    /** Constructor to init a Coinbase manager
+     * @param #apiKey your Coinbase api key
+     * @param #apiSecret your Coinbase api secret
+     * @param #passphrase your Coinbase api passphrase
+     * @param #defaultErrorMessage custom error to show when is not a request error
+     * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         apiRequest = new APIRequest(defaultErrorMessage);
         this.apiKey = apiKey;
@@ -57,9 +74,13 @@ public class CoinbaseManager {
         this.passphrase = passphrase;
         headers = new HashMap<>();
         keysInserted = false;
-        signatureKey = Base64.getDecoder().decode(apiSecret);
     }
 
+    /** Constructor to init a Coinbase manager
+     * @param #apiKey your Coinbase api key
+     * @param #apiSecret your Coinbase api secret
+     * @param #passphrase your Coinbase api passphrase
+     * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase) {
         apiRequest = new APIRequest();
         this.apiKey = apiKey;
@@ -67,21 +88,36 @@ public class CoinbaseManager {
         this.apiSecret = apiSecret;
         headers = new HashMap<>();
         keysInserted = false;
-        signatureKey = Base64.getDecoder().decode(apiSecret);
     }
 
+    /** Method to execute and get response of a request
+     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param #method: method HTTP for the request
+     * @return response as {@link String}
+     * **/
     public String sendAPIRequest(String endpoint, String method) throws Exception {
         setRequestHeaders(method, endpoint, null);
         apiRequest.sendAPIRequest(BASE_ENDPOINT+endpoint, method, headers);
         return apiRequest.getResponse();
     }
 
-    public String sendPostAPIRequest(String endpoint, String bodyParams) throws Exception {
-        setRequestHeaders(POST_METHOD, endpoint, bodyParams);
-        apiRequest.sendAPIRequest(BASE_ENDPOINT+endpoint, POST_METHOD, headers);
+    /** Method to execute and get response of a POST http request
+     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param #bodyParams: params to insert in the http body post request
+     * @return response as {@link String}
+     * **/
+    public String sendPostAPIRequest(String endpoint, HashMap<String, Object> bodyParams) throws Exception {
+        setRequestHeaders(POST_METHOD, endpoint, apiRequest.assembleBodyParams(bodyParams));
+        apiRequest.sendPostAPIRequest(BASE_ENDPOINT+endpoint,bodyParams);
         return apiRequest.getResponse();
     }
 
+    /** Method to set Coinbase request headers
+     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param #method: method HTTP for the request
+     * @param #body: only if request has a body params (generally POST request)
+     * any return
+     * **/
     private void setRequestHeaders(String method, String endpoint, String body) throws Exception {
         String timestamp = "" + System.currentTimeMillis()/1000;
         String stringToSign = timestamp + method + endpoint;
@@ -93,30 +129,56 @@ public class CoinbaseManager {
             headers.put(CB_ACCESS_PASSPHRASE, passphrase);
             keysInserted = true;
         }
-        headers.put(CB_ACCESS_SIGN, getCoinbaseSign(stringToSign));
+        headers.put(CB_ACCESS_SIGN, apiRequest.getBase64Signature(apiSecret, stringToSign));
         headers.put(CB_ACCESS_TIMESTAMP, timestamp);
     }
 
+    /** Method to assemble query params for a Coinbase request
+     * @param #extraParams: value and key of query params to assemble
+     * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
+     * **/
+    protected String assembleQueryParams(HashMap<String, Object> extraParams){
+        return apiRequest.assembleAdditionalParams("?",extraParams);
+    }
+
+    /** Method to get error response of request
+     * any params required
+     * @return error of the response as {@link String}
+     * **/
     public String getErrorResponse(){
         return apiRequest.getErrorResponse();
     }
 
+    /** Method to get status code of request response
+     * any params required
+     * @return status code of request response
+     * **/
+    public int getStatusResponse(){
+        return apiRequest.getResponseStatusCode();
+    }
+
+    /** Method to get Coinbase api key
+     * any params required
+     * @return api key as {@link String}
+     * **/
     public String getApiKey() {
         return apiKey;
     }
 
+    /** Method to get Coinbase api secret
+     * any params required
+     * @return api secret as {@link String}
+     * **/
     public String getApiSecret() {
         return apiSecret;
     }
 
-    private String getCoinbaseSign(String data) throws Exception {
-        Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(signatureKey, "HmacSHA256"));
-        return Base64.getEncoder().encodeToString(mac.doFinal(data.getBytes()));
-    }
-
-    protected String assembleQueryParams(HashMap<String, Object> extraParams){
-        return apiRequest.assembleAdditionalParams("?", extraParams).replaceFirst("&","");
+    /** Method to get Coinbase api passphrase
+     * any params required
+     * @return api passphrase as {@link String}
+     * **/
+    public String getPassphrase() {
+        return passphrase;
     }
 
 }

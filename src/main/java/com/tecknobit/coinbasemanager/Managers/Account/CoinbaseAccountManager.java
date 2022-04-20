@@ -226,7 +226,6 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     public String generateCryptoAddress(String accountId) throws Exception {
-        System.out.println(COINBASE_ACCOUNT_ENDPOINT+"/"+ accountId+"/addresses");
         return sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT+"/"+ accountId +"/addresses",POST_METHOD);
     }
 
