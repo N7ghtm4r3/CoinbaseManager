@@ -1,5 +1,11 @@
 package com.tecknobit.coinbasemanager.Managers.Account.Records;
 
+/**
+ * The {@code Account} class is useful to format Account object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Account {
 
     private final String id;
@@ -10,7 +16,8 @@ public class Account {
     private final String profileId;
     private final boolean tradingEnable;
 
-    public Account(String id, String currency, double balance, double available, double hold, String profileId, boolean tradingEnable) {
+    public Account(String id, String currency, double balance, double available, double hold, String profileId,
+                   boolean tradingEnable) {
         this.id = id;
         this.currency = currency;
         this.balance = balance;

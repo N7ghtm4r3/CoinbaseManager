@@ -2,6 +2,12 @@ package com.tecknobit.coinbasemanager.Managers.Account.Records.Details;
 
 import org.json.JSONObject;
 
+/**
+ * The {@code Transfer} class is useful to format Transfer object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Transfer extends AccountDetails{
 
     private final String completedAt;
@@ -24,6 +30,10 @@ public class Transfer extends AccountDetails{
         return transferDetails;
     }
 
+    /**
+     * The {@code TransferDetails} class is useful to obtain and format TransferDetails object for Transfer
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers
+     * **/
     public static class TransferDetails{
 
         private final String coinbaseAccountId;

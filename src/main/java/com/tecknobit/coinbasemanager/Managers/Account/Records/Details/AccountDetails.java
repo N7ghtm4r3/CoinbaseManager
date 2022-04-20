@@ -1,5 +1,10 @@
 package com.tecknobit.coinbasemanager.Managers.Account.Records.Details;
 
+/**
+ * The {@code AccountDetails} class is useful to format all base data of Coinbase account objects
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class AccountDetails {
 
     private final String createdAt;

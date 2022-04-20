@@ -2,6 +2,12 @@ package com.tecknobit.coinbasemanager.Managers.Account.Records.Details;
 
 import org.json.JSONObject;
 
+/**
+ * The {@code Ledger} class is useful to format Ledger object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Ledger extends AccountDetails{
 
     private final double balance;
@@ -24,6 +30,10 @@ public class Ledger extends AccountDetails{
         return details;
     }
 
+    /**
+     * The {@code Details} class is useful to obtain and format Details object for ledger
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger
+     * **/
     public static class Details{
 
         private final String to;

@@ -2,6 +2,12 @@ package com.tecknobit.coinbasemanager.Managers.Account.Records;
 
 import org.json.JSONObject;
 
+/**
+ * The {@code CoinbaseAccount} class is useful to format CoinbaseAccount object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class CoinbaseAccount {
 
     private final double balance;
@@ -79,6 +85,10 @@ public class CoinbaseAccount {
         return depositInformation;
     }
 
+    /**
+     * The {@code DepositInformation} class is useful to obtain and format DepositInformation object for CoinbaseAccount
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts
+     * **/
     public static class DepositInformation{
 
         private final String reference;

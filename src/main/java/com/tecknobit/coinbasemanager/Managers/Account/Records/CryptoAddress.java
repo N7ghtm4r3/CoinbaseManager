@@ -5,6 +5,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * The {@code CryptoAddress} class is useful to format CryptoAddress object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class CryptoAddress {
 
     private final String id;
@@ -21,9 +27,9 @@ public class CryptoAddress {
     private final boolean exchangeDepositAddress;
     private final ArrayList<Warning> warnings;
 
-    public CryptoAddress(String id, String address, JSONObject jsonAddressInfo, String name, String createdAt, String updatedAt, String network,
-                         String uriScheme, String resource, String resourcePath, String depositUri,
-                         boolean exchangeDepositAddress, JSONArray jsonWarnings) {
+    public CryptoAddress(String id, String address, JSONObject jsonAddressInfo, String name, String createdAt,
+                         String updatedAt, String network, String uriScheme, String resource, String resourcePath,
+                         String depositUri, boolean exchangeDepositAddress, JSONArray jsonWarnings) {
         this.id = id;
         this.address = address;
         addressInfo = assembleAddressInfo(jsonAddressInfo);
@@ -39,6 +45,10 @@ public class CryptoAddress {
         this.warnings = assembleWarningList(jsonWarnings);
     }
 
+    /** Method to assemble an address info list
+     * @param #jsonAddressInfo: jsonObject obtained by response request
+     * @return address info list as {@link ArrayList} of {@link AddressInfo}
+     * **/
     private ArrayList<AddressInfo> assembleAddressInfo(JSONObject jsonAddressInfo) {
         ArrayList<AddressInfo> addressInfo = new ArrayList<>();
         for (String addressInfoLine : jsonAddressInfo.toString().split(",")) {
@@ -48,6 +58,10 @@ public class CryptoAddress {
         return addressInfo;
     }
 
+    /** Method to assemble a warnings list
+     * @param #jsonWarnings: jsonObject obtained by response request
+     * @return warnings list as {@link ArrayList} of {@link Warning}
+     * **/
     private ArrayList<Warning> assembleWarningList(JSONArray jsonWarnings){
         ArrayList<Warning> warnings = new ArrayList<>();
         for (int j=0; j < jsonWarnings.length(); j++){
@@ -112,6 +126,11 @@ public class CryptoAddress {
         return warnings;
     }
 
+    /**
+     * The {@code AddressInfo} class is useful to obtain and format AddressInfo object for CryptoAddress
+     * This class give info about crypto address used in the request
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses
+     * **/
     public static class AddressInfo{
 
         private final String titleInfo;
@@ -132,6 +151,11 @@ public class CryptoAddress {
 
     }
 
+    /**
+     * The {@code Warning} class is useful to obtain and format Warning object for CryptoAddress
+     * This class give warnings about crypto address used in the request
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses
+     * **/
     public static class Warning{
 
         private final String title;
