@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import static com.tecknobit.apimanager.Manager.APIRequest.*;
+import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 
 /**
  *  The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
