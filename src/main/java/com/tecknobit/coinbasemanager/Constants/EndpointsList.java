@@ -9,4 +9,8 @@ public class EndpointsList {
     /**Conversions endpoints**/
     public static final String CONVERSIONS_ENDPOINT = "/conversions";
 
+    /**Currencies endpoints**/
+    public static final String CURRENCIES_ENDPOINT = "/currencies";
+
+
 }
