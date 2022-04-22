@@ -2,7 +2,11 @@ package com.tecknobit.coinbasemanager.Managers.Currencies;
 
 import com.tecknobit.coinbasemanager.Constants.EndpointsList;
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
+import com.tecknobit.coinbasemanager.Managers.Currencies.Records.Currency;
 import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 
@@ -48,13 +52,29 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase);
     }
 
-    public String getAllKnowCurrencies() throws Exception {
+    public String getAllKnownCurrencies() throws Exception {
         return sendAPIRequest(EndpointsList.CURRENCIES_ENDPOINT, GET_METHOD);
     }
 
-    public JSONArray getJSONAllKnowCurrencies() throws Exception {
-        return new JSONArray(getAllKnowCurrencies());
+    public JSONArray getJSONAllKnownCurrencies() throws Exception {
+        return new JSONArray(getAllKnownCurrencies());
     }
 
+    public ArrayList<Currency> getAllKnownCurrenciesList() throws Exception {
+        ArrayList<Currency> currencies = new ArrayList<>();
+        jsonArray = new JSONArray(getAllKnownCurrencies());
+        for (int j = 0; j < jsonArray.length(); j++){
+            JSONObject currency = jsonArray.getJSONObject(j);
+            currencies.add(new Currency(currency.getString("id"),
+                    currency.getString("name"),
+                    currency.getString("status"),
+                    currency.getDouble("min_size"),
+                    currency.getDouble("max_precision"),
+                    currency.getString("message"),
+                    currency
+            ));
+        }
+        return currencies;
+    }
 
 }

@@ -14,7 +14,8 @@ public class Currency {
     private final double maxPrecision;
     private final String message;
     private final ArrayList<String> convertibleToCurrencies;
-    private final CurrencyDetails currencyDetails = null;
+    private final CurrencyDetails currencyDetails;
+    private final JSONObject jsonCurrencyDetails;
 
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
                     JSONObject jsonCurrencyDetails) {
@@ -24,11 +25,37 @@ public class Currency {
         this.minSize = minSize;
         this.maxPrecision = maxPrecision;
         this.message = message;
+        this.jsonCurrencyDetails = jsonCurrencyDetails;
         convertibleToCurrencies = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
-        /*currencyDetails = new CurrencyDetails(jsonCurrencyDetails.getString("symbol"),
-                jsonCurrencyDetails.getDouble(),
+        currencyDetails = new CurrencyDetails(getStringDetailValue("symbol"),
+                getNumberDetailValue("min_withdrawal_amount"),
+                (int) getNumberDetailValue("network_confirmations"),
+                getNumberDetailValue("max_withdrawal_amount"),
+                getStringDetailValue("crypto_address_link"),
+                getStringDetailValue("type"),
+                jsonCurrencyDetails.getInt("sort_order"),
+                getStringDetailValue("crypto_transaction_link"),
+                getStringDetailValue("display_name"),
+                getStringDetailValue("processing_time_seconds"),
+                loadDetailsList(jsonCurrencyDetails.getJSONArray("push_payment_methods")),
+                loadDetailsList(jsonCurrencyDetails.getJSONArray("group_types"))
+        );
+    }
 
-        );*/
+    private String getStringDetailValue(String key){
+        try {
+            return jsonCurrencyDetails.getString(key);
+        }catch (Exception e){
+            return null;
+        }
+    }
+    
+    private double getNumberDetailValue(String key){
+        try {
+            return jsonCurrencyDetails.getDouble(key);
+        }catch (Exception e){
+            return -1;
+        }
     }
 
     private ArrayList<String> loadDetailsList(JSONArray jsonDetails){
