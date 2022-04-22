@@ -5,6 +5,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * The {@code Currency} class is useful to format Currency object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Currency {
 
     private final String id;
@@ -25,7 +32,7 @@ public class Currency {
         this.minSize = minSize;
         this.maxPrecision = maxPrecision;
         this.message = message;
-        this.jsonCurrencyDetails = jsonCurrencyDetails;
+        this.jsonCurrencyDetails = jsonCurrencyDetails.getJSONObject("details");
         convertibleToCurrencies = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
         currencyDetails = new CurrencyDetails(getStringDetailValue("symbol"),
                 getNumberDetailValue("min_withdrawal_amount"),
@@ -33,15 +40,19 @@ public class Currency {
                 getNumberDetailValue("max_withdrawal_amount"),
                 getStringDetailValue("crypto_address_link"),
                 getStringDetailValue("type"),
-                jsonCurrencyDetails.getInt("sort_order"),
+                (int) getNumberDetailValue("sort_order"),
                 getStringDetailValue("crypto_transaction_link"),
                 getStringDetailValue("display_name"),
                 getStringDetailValue("processing_time_seconds"),
-                loadDetailsList(jsonCurrencyDetails.getJSONArray("push_payment_methods")),
-                loadDetailsList(jsonCurrencyDetails.getJSONArray("group_types"))
+                loadDetailsList(getJSONArrayList("push_payment_methods")),
+                loadDetailsList(getJSONArrayList("group_types"))
         );
     }
 
+    /** Method to get from jsonObject of currency's details a string value
+     * @param #key: key of string value to get from json
+     * @return value as {@link String}, if it is not exist will return null value
+     * **/
     private String getStringDetailValue(String key){
         try {
             return jsonCurrencyDetails.getString(key);
@@ -49,7 +60,11 @@ public class Currency {
             return null;
         }
     }
-    
+
+    /** Method to get from jsonObject of currency's details a numeric value
+     * @param #key: key of numeric value to get from json
+     * @return value as double, if it is not exist will return -1 value
+     * **/
     private double getNumberDetailValue(String key){
         try {
             return jsonCurrencyDetails.getDouble(key);
@@ -58,10 +73,27 @@ public class Currency {
         }
     }
 
+    /** Method to get from jsonObject of currency's details a list of values
+     * @param #key: key of list to get from json
+     * @return value as {@link JSONArray}, if it is not exist will return null value
+     * **/
+    private JSONArray getJSONArrayList(String key){
+        try {
+            return jsonCurrencyDetails.getJSONArray(key);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    /** Method to assemble a string value list
+     * @param #jsonDetails: jsonObject obtained by response request
+     * @return string values list as {@link ArrayList} of {@link String}
+     * **/
     private ArrayList<String> loadDetailsList(JSONArray jsonDetails){
         ArrayList<String> details = new ArrayList<>();
-        for (int j=0; j < jsonDetails.length(); j++)
-            details.add(jsonDetails.getString(j));
+        if(jsonDetails != null)
+            for (int j=0; j < jsonDetails.length(); j++)
+                details.add(jsonDetails.getString(j));
         return details;
     }
 
@@ -97,6 +129,11 @@ public class Currency {
         return currencyDetails;
     }
 
+    /**
+     * The {@code CurrencyDetails} class is useful to obtain and format CurrencyDetails object for Currency
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency
+     * **/
     public static class CurrencyDetails{
 
         private final String symbol;
