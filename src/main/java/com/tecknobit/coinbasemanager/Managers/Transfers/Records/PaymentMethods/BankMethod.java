@@ -1,11 +1,21 @@
 package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
 
+/**
+ * The {@code BankMethod} class is useful to format BankMethod object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class BankMethod extends PayMethod{
 
     public BankMethod(String name, String type) {
         super(name, type);
     }
 
+    /**
+     * The {@code BankPickerData} class is useful to obtain and format BankPickerData object for BankMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class BankPickerData extends PickerData{
 
         private final String iban;

@@ -1,5 +1,15 @@
 package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
 
+/**
+ * The {@code PayMethod} class is useful to format general PayMethod object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class PayMethod {
 
     private final String name;

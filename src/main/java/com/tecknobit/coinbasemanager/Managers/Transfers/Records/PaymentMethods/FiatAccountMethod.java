@@ -1,11 +1,21 @@
 package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
 
+/**
+ * The {@code FiatAccountMethod} class is useful to format FiatAccountMethod object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class FiatAccountMethod extends PayMethod{
 
     public FiatAccountMethod(String name, String type) {
         super(name, type);
     }
 
+    /**
+     * The {@code FiatAccountDetails} class is useful to obtain and format FiatAccountDetails object for FiatAccountMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class FiatAccountDetails {
 
         private final String id;
@@ -32,6 +42,10 @@ public class FiatAccountMethod extends PayMethod{
 
     }
 
+    /**
+     * The {@code FiatAccountPickerData} class is useful to obtain and format FiatAccountPickerData object for FiatAccountMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class FiatAccountPickerData extends PickerData{
 
         private final double amount;

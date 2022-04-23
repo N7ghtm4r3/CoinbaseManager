@@ -5,6 +5,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * The {@code PayPalMethod} class is useful to format PayPalMethod object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class PayPalMethod extends PayMethod{
 
     private final ArrayList<PayPalDetails> payPalBuys;
@@ -16,6 +22,10 @@ public class PayPalMethod extends PayMethod{
         payPalDeposits = assemblePayPalDetailsList(jsonPaypal.getJSONArray("deposit"));
     }
 
+    /** Method to assemble a PayPalDetails list
+     * @param #jsonPaypal: jsonObject obtained by response request
+     * @return PayPalDetails list as {@link ArrayList} of {@link PayPalDetails}
+     * **/
     private ArrayList<PayPalDetails> assemblePayPalDetailsList(JSONArray jsonPaypal) {
         ArrayList<PayPalDetails> payPalDetails = new ArrayList<>();
         for (int j=0; j < jsonPaypal.length(); j++) {
@@ -37,6 +47,10 @@ public class PayPalMethod extends PayMethod{
         return payPalDeposits;
     }
 
+    /**
+     * The {@code PayPalDetails} class is useful to obtain and format PayPalDetails object for PayPalMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class PayPalDetails {
 
         private final int periodInDays;
@@ -75,6 +89,10 @@ public class PayPalMethod extends PayMethod{
             return remaining;
         }
 
+        /**
+         * The {@code PayPalStatusAmount} class is useful to obtain and format PayPalStatusAmount object for PayPalDetails
+         * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+         * **/
         public static class PayPalStatusAmount {
 
             private final double amount;
@@ -97,6 +115,10 @@ public class PayPalMethod extends PayMethod{
 
     }
 
+    /**
+     * The {@code PayPalPickerData} class is useful to obtain and format PayPalPickerData object for PayPalMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class PayPalPickerData extends PickerData{
 
         private final boolean payoutOnly;

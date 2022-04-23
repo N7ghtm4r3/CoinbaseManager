@@ -3,6 +3,12 @@ package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
 import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
 import org.json.JSONObject;
 
+/**
+ * The {@code PayPalMethod} class is useful to format PaymentMethod object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class PaymentMethod extends PayMethod{
 
     public static final String PAYPAL_TYPE = "paypal";
@@ -133,6 +139,10 @@ public class PaymentMethod extends PayMethod{
         return minimumPurchaseAmount;
     }
 
+    /** Method to get PayPal limits details
+     * any params required
+     * @return PayPal limits details as {@link PayPalMethod} object, if is not a PayPal method will return null value
+     * **/
     public PayPalMethod getPayPalLimits(){
         if(payPalLimits == null)
             payPalLimits = jsonParserHelper.getJSONObject("limits");
@@ -145,6 +155,10 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get PayPal picker data details
+     * any params required
+     * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} object, if is not a PayPal method will return null value
+     * **/
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
         if(payPalPickerData == null)
             payPalPickerData = jsonParserHelper.getJSONObject("picker_data");
@@ -163,6 +177,10 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get Bank limits details
+     * any params required
+     * @return Bank limits details as {@link BankMethod} object, if is not a Bank method will return null value
+     * **/
     public BankMethod getBankLimits(){
         if(bankLimits == null)
             bankLimits = jsonParserHelper.getJSONObject("limits");
@@ -175,6 +193,10 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get Bank picker data details
+     * any params required
+     * @return Bank picker data details as {@link BankMethod.BankPickerData} object, if is not a Bank method will return null value
+     * **/
     public BankMethod.BankPickerData getBankPickerData(){
         if(bankPickerData == null)
             bankPickerData = jsonParserHelper.getJSONObject("picker_data");
@@ -192,6 +214,11 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get Fiat Account details
+     * any params required
+     * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} object,
+     * if is not a Fiat Account method will return null value
+     * **/
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
         if(fiatAccountDetails == null)
             fiatAccountDetails = jsonParserHelper.getJSONObject(FIAT_ACCOUNT_TYPE);
@@ -204,6 +231,11 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get Fiat Account limits details
+     * any params required
+     * @return Fiat Account limits details as {@link FiatAccountMethod} object,
+     * if is not a Fiat Account method will return null value
+     * **/
     public FiatAccountMethod getFiatAccountLimit(){
         if(fiatAccountLimit == null)
             fiatAccountLimit = jsonParserHelper.getJSONObject("limits");
@@ -216,6 +248,11 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get Fiat Account picker data details
+     * any params required
+     * @return  Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} object,
+     * if is not a Fiat Account will return null value
+     * **/
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
         if(fiatAccountPickerData == null)
             fiatAccountPickerData = jsonParserHelper.getJSONObject("picker_data");
@@ -232,10 +269,18 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
+    /** Method to get custom snippet of payment method details
+     * @param #key: key to get snippet of details
+     * @return snippet of details as {@link JSONObject}
+     * **/
     public JSONObject getSnippetDetail(String key){
         return jsonParserHelper.getJSONObject(key);
     }
 
+    /**
+     * The {@code MinimumPurchaseAmount} class is useful to obtain and format MinimumPurchaseAmount object for PaymentMethod
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * **/
     public static class MinimumPurchaseAmount{
 
         private final double amount;
