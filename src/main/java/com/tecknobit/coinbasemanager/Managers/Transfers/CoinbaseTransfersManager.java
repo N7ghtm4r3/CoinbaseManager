@@ -2,7 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.Transfers;
 
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.Transfers.Records.Deposit;
-import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethod;
+import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods.PaymentMethod;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
