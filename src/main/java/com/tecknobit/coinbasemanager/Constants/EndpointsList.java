@@ -12,5 +12,7 @@ public class EndpointsList {
     /**Currencies endpoints**/
     public static final String CURRENCIES_ENDPOINT = "/currencies";
 
+    /**Transfers endpoints**/
+    public static final String PAYMENT_METHOD_ENDPOINT = "/payment-method";
 
 }
