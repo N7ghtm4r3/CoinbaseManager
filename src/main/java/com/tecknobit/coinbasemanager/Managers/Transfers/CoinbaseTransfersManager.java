@@ -276,5 +276,48 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return assembleTransferActionObject(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraParams)));
     }
 
+    public String getFeeForCryptoWithdrawal(String cryptoAddress, String currency) throws Exception {
+        String queryParams = "?currency="+currency+"&crypto_address="+cryptoAddress;
+        return sendAPIRequest(FEE_WITHDRAW_TO_CRYPTO_ENDPOINT + queryParams, GET_METHOD);
+    }
+
+    public JSONObject getFeeForCryptoWithdrawalJSON(String cryptoAddress, String currency) throws Exception {
+        return new JSONObject(getFeeForCryptoWithdrawal(cryptoAddress, currency));
+    }
+
+    public double getFeeForCryptoWithdrawalValue(String cryptoAddress, String currency) throws Exception {
+        jsonObject = new JSONObject(getFeeForCryptoWithdrawal(cryptoAddress, currency));
+        return jsonObject.getDouble("fee");
+    }
+
+    public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
+                assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, null));
+    }
+
+    public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId) throws Exception {
+        return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId));
+    }
+
+    public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
+    }
+
+    public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
+                                            String profileId) throws Exception {
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
+                assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
+    }
+
+    public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId,
+                                                    String profileId) throws Exception {
+        return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId, profileId));
+    }
+
+    public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
+                                                          String profileId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId,
+                currencyId, profileId)));
+    }
 
 }
