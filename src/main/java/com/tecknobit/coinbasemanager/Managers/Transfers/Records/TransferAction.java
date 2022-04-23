@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.Transfers.Records;
 
-public class Deposit {
+public class TransferAction {
 
     private final String id;
     private final double amount;
@@ -9,7 +9,7 @@ public class Deposit {
     private final double fee;
     private final double subTotal;
 
-    public Deposit(String id, double amount, String currency, String payoutAt, double fee, double subTotal) {
+    public TransferAction(String id, double amount, String currency, String payoutAt, double fee, double subTotal) {
         this.id = id;
         this.amount = amount;
         this.currency = currency;

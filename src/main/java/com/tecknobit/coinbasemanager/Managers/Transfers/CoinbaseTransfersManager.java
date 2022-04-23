@@ -2,7 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.Transfers;
 
 import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
-import com.tecknobit.coinbasemanager.Managers.Transfers.Records.Deposit;
+import com.tecknobit.coinbasemanager.Managers.Transfers.Records.TransferAction;
 import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods.PaymentMethod;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,6 +20,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     public static final String COINBASE_ACCOUNT_METHOD = "coinbase_account_id";
     public static final String PAYMENT_METHOD = "payment_method_id";
+    public static final String CRYPTO_ADDRESS_METHOD = "crypto_address";
 
     /** Constructor to init a CoinbaseTransfers manager
      * @param #apiKey your Coinbase api key
@@ -62,22 +63,22 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     }
 
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(COINBASE_ACCOUNT_ENDPOINT, POST_METHOD,
-                assembleDepositPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
     }
 
     public JSONObject depositFromCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId) throws Exception {
         return new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId));
     }
 
-    public Deposit depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return assembleDepositObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
+    public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
     }
 
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                              String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(COINBASE_ACCOUNT_ENDPOINT, POST_METHOD,
-                assembleDepositPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
     }
 
     public JSONObject depositFromCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId,
@@ -85,29 +86,29 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId, profileId));
     }
 
-    public Deposit depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
-                                                    String profileId) throws Exception {
-        return assembleDepositObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId,
+    public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
+                                                           String profileId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId,
                 profileId)));
     }
 
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(PAYMENT_METHOD_ENDPOINT,POST_METHOD, assembleDepositPayload(amount,PAYMENT_METHOD,
-                paymentMethodId, currencyId, null));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
+                assembleTransferActionPayload(amount,PAYMENT_METHOD, paymentMethodId, currencyId, null));
     }
 
     public JSONObject depositFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId) throws Exception {
         return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId));
     }
 
-    public Deposit depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return assembleDepositObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
+    public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
     }
 
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                            String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(PAYMENT_METHOD_ENDPOINT,POST_METHOD, assembleDepositPayload(amount,PAYMENT_METHOD,
-                paymentMethodId, currencyId, profileId));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
+                assembleTransferActionPayload(amount,PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
     }
 
     public JSONObject depositFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId,
@@ -115,31 +116,10 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId, profileId));
     }
 
-    public Deposit depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
-                                                  String profileId) throws Exception {
-        return assembleDepositObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId,
+    public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
+                                                         String profileId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId,
                 profileId)));
-    }
-
-    private HashMap<String, Object> assembleDepositPayload(double amount, String keyMethodId, String valueMethodId,
-                                                           String currencyId, String profileId){
-        HashMap<String, Object> depositBodyParams = new HashMap<>();
-        depositBodyParams.put("amount",amount);
-        depositBodyParams.put(keyMethodId,valueMethodId);
-        depositBodyParams.put("currency",currencyId);
-        if(profileId != null)
-            depositBodyParams.put("profile_id",profileId);
-        return depositBodyParams;
-    }
-
-    private Deposit assembleDepositObject(JSONObject jsonDeposit){
-        return new Deposit(jsonDeposit.getString("id"),
-                jsonDeposit.getDouble("amount"),
-                jsonDeposit.getString("currency"),
-                jsonDeposit.getString("payout_at"),
-                jsonDeposit.getDouble("fee"),
-                jsonDeposit.getDouble("subtotal")
-        );
     }
 
     public String getAllPaymentMethods() throws Exception {
@@ -212,6 +192,88 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     public Transfer getSingleTransferObject(String transferId) throws Exception {
         return assembleTransferObject(new JSONObject(getSingleTransfer(transferId)));
+    }
+
+    public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
+    }
+
+    public JSONObject withdrawToCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId) throws Exception {
+        return new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId));
+    }
+
+    public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
+    }
+
+    public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
+                                            String profileId) throws Exception {
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD, assembleTransferActionPayload(amount,
+                COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
+    }
+
+    public JSONObject withdrawToCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId,
+                                                    String profileId) throws Exception {
+        return new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId, profileId));
+    }
+
+    public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
+                                                          String profileId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId,
+                currencyId, profileId)));
+    }
+
+    private HashMap<String, Object> assembleTransferActionPayload(double amount, String keyMethodId, String valueMethodId,
+                                                                  String currencyId, String profileId){
+        HashMap<String, Object> depositBodyParams = new HashMap<>();
+        depositBodyParams.put("amount",amount);
+        depositBodyParams.put(keyMethodId,valueMethodId);
+        depositBodyParams.put("currency",currencyId);
+        if(profileId != null)
+            depositBodyParams.put("profile_id",profileId);
+        return depositBodyParams;
+    }
+
+    private TransferAction assembleTransferActionObject(JSONObject jsonDeposit){
+        return new TransferAction(jsonDeposit.getString("id"),
+                jsonDeposit.getDouble("amount"),
+                jsonDeposit.getString("currency"),
+                jsonDeposit.getString("payout_at"),
+                jsonDeposit.getDouble("fee"),
+                jsonDeposit.getDouble("subtotal")
+        );
+    }
+
+    public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId) throws Exception {
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD, cryptoAddress, currencyId, null));
+    }
+
+    public JSONObject withdrawToCryptoJSON(double amount, String cryptoAddress, String currencyId) throws Exception {
+        return new JSONObject(withdrawToCoinbaseAccount(amount, cryptoAddress, currencyId));
+    }
+
+    public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId) throws Exception {
+        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, cryptoAddress, currencyId)));
+    }
+
+    public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
+                                   HashMap<String, Object> extraParams) throws Exception {
+        HashMap<String, Object> mandatoryBodyParams = assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD,
+                cryptoAddress, currencyId, null);
+        mandatoryBodyParams.putAll(extraParams);
+        return sendBodyParamsAPIRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD, mandatoryBodyParams);
+    }
+
+    public JSONObject withdrawToCryptoJSON(double amount, String cryptoAddress, String currencyId,
+                                           HashMap<String, Object> extraParams) throws Exception {
+        return new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraParams));
+    }
+
+    public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId,
+                                                 HashMap<String, Object> extraParams) throws Exception {
+        return assembleTransferActionObject(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraParams)));
     }
 
 }
