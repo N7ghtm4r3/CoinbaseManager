@@ -1,10 +1,15 @@
 package com.tecknobit.coinbasemanager.Managers.Account.Records.Details;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * The {@code Transfer} class is useful to format Transfer object
  * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -19,6 +24,31 @@ public class Transfer extends AccountDetails{
         transferDetails = new TransferDetails(details.getString("coinbase_account_id"),
                 details.getString("coinbase_transaction_id"),
                 details.getString("coinbase_payment_method_id")
+        );
+    }
+
+    /** Method to assemble a transfer list
+     * @param #jsonTransfers: jsonArray obtained by response request
+     * @return transfer list as {@link ArrayList} of {@link Transfer}
+     * **/
+    public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers){
+        ArrayList<Transfer> transfers = new ArrayList<>();
+        for (int j=0; j < jsonTransfers.length(); j++)
+            transfers.add(assembleTransferObject(jsonTransfers.getJSONObject(j)));
+        return transfers;
+    }
+
+    /** Method to assemble a transfer object
+     * @param #jsonTransfer: jsonObject obtained by response request
+     * @return transfer as {@link Transfer} object
+     * **/
+    public static Transfer assembleTransferObject(JSONObject jsonTransfer){
+        return new Transfer(jsonTransfer.getString("created_at"),
+                jsonTransfer.getString("id"),
+                jsonTransfer.getDouble("amount"),
+                jsonTransfer.getString("type"),
+                jsonTransfer.getString("completed_at"),
+                jsonTransfer
         );
     }
 

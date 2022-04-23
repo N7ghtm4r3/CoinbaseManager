@@ -18,6 +18,7 @@ import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ACCOUNT_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.COINBASE_ACCOUNT_ENDPOINT;
+import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransfersList;
 
 /**
  *  The {@code CoinbaseAccountManager} class is useful to manage all Coinbase account endpoints
@@ -355,25 +356,6 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * **/
     public ArrayList<Transfer> getAccountProfileTransfersList(String accountId, HashMap<String, Object> queryParams) throws Exception {
         return assembleTransfersList(new JSONArray(getAccountTransfers(accountId, queryParams)));
-    }
-
-    /** Method to assemble a transfer list
-     * @param #jsonTransfers: jsonObject obtained by response request
-     * @return transfer list as {@link ArrayList} of {@link Transfer}
-     * **/
-    private ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers){
-        ArrayList<Transfer> transfers = new ArrayList<>();
-        for (int j=0; j < jsonTransfers.length(); j++){
-            JSONObject transfer = jsonTransfers.getJSONObject(j);
-            transfers.add(new Transfer(transfer.getString("created_at"),
-                    transfer.getString("id"),
-                    transfer.getDouble("amount"),
-                    transfer.getString("type"),
-                    transfer.getString("completed_at"),
-                    transfer
-            ));
-        }
-        return transfers;
     }
 
     /** Request to get all Coinbase's users wallets available

@@ -1,5 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.Transfers;
 
+import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.Transfers.Records.Deposit;
 import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods.PaymentMethod;
@@ -173,6 +174,18 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
             ));
         }
         return paymentMethods;
+    }
+
+    public String getAllTransfers() throws Exception {
+        return sendAPIRequest(TRANSFERS_ENDPOINT, GET_METHOD);
+    }
+
+    public JSONArray getAllTransfersJSON() throws Exception {
+        return new JSONArray(getAllTransfers());
+    }
+
+    public ArrayList<Transfer> getAllTransfersList() throws Exception {
+        return Transfer.assembleTransfersList(new JSONArray(getAllTransfers()));
     }
 
 }
