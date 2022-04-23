@@ -142,14 +142,6 @@ public class CoinbaseManager {
         return apiRequest.assembleAdditionalParams("?",queryParams);
     }
 
-    /** Method to assemble body params for a Coinbase request
-     * @param #extraBodyParams: value and key of query params to assemble
-     * @return extra body params as {@link String} es. param=paramValue&param2=param2Value
-     * **/
-    protected String assembleExtraBodyParams(HashMap<String, Object> extraBodyParams){
-        return apiRequest.assembleBodyParams(extraBodyParams);
-    }
-
     /** Method to get error response of request
      * any params required
      * @return error of the response as {@link String}

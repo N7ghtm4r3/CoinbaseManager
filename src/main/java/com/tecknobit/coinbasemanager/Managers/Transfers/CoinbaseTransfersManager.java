@@ -276,4 +276,5 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return assembleTransferActionObject(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraParams)));
     }
 
+
 }

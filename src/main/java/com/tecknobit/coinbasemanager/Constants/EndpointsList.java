@@ -19,6 +19,8 @@ public class EndpointsList {
     public static final String TRANSFERS_ENDPOINT = "/transfers";
     public static final String WITHDRAW_TO_COINBASE_ENDPOINT = "/withdrawals" + COINBASE_ACCOUNT_ENDPOINT;
     public static final String WITHDRAW_TO_CRYPTO_ENDPOINT = "/withdrawals/crypto";
+    public static final String FEE_WITHDRAW_TO_CRYPTO_ENDPOINT = "/withdrawals/fee-estimate";
     public static final String WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT = "/withdrawals/payment-method";
+
 
 }
