@@ -1,5 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.Currencies.Records;
 
+import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,7 +23,6 @@ public class Currency {
     private final String message;
     private final ArrayList<String> convertibleToCurrencies;
     private final CurrencyDetails currencyDetails;
-    private final JSONObject jsonCurrencyDetails;
 
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
                     JSONObject jsonCurrencyDetails) {
@@ -32,57 +32,21 @@ public class Currency {
         this.minSize = minSize;
         this.maxPrecision = maxPrecision;
         this.message = message;
-        this.jsonCurrencyDetails = jsonCurrencyDetails.getJSONObject("details");
+        JSONParserHelper jsonParserHelper = new JSONParserHelper(jsonCurrencyDetails.getJSONObject("details"));
         convertibleToCurrencies = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
-        currencyDetails = new CurrencyDetails(getStringDetailValue("symbol"),
-                getNumberDetailValue("min_withdrawal_amount"),
-                (int) getNumberDetailValue("network_confirmations"),
-                getNumberDetailValue("max_withdrawal_amount"),
-                getStringDetailValue("crypto_address_link"),
-                getStringDetailValue("type"),
-                (int) getNumberDetailValue("sort_order"),
-                getStringDetailValue("crypto_transaction_link"),
-                getStringDetailValue("display_name"),
-                getStringDetailValue("processing_time_seconds"),
-                loadDetailsList(getJSONArrayList("push_payment_methods")),
-                loadDetailsList(getJSONArrayList("group_types"))
+        currencyDetails = new CurrencyDetails(jsonParserHelper.getStringDetailValue("symbol"),
+                jsonParserHelper.getNumberDetailValue("min_withdrawal_amount"),
+                (int) jsonParserHelper.getNumberDetailValue("network_confirmations"),
+                jsonParserHelper.getNumberDetailValue("max_withdrawal_amount"),
+                jsonParserHelper.getStringDetailValue("crypto_address_link"),
+                jsonParserHelper.getStringDetailValue("type"),
+                (int) jsonParserHelper.getNumberDetailValue("sort_order"),
+                jsonParserHelper.getStringDetailValue("crypto_transaction_link"),
+                jsonParserHelper.getStringDetailValue("display_name"),
+                jsonParserHelper.getStringDetailValue("processing_time_seconds"),
+                loadDetailsList(jsonParserHelper.getJSONArrayList("push_payment_methods")),
+                loadDetailsList(jsonParserHelper.getJSONArrayList("group_types"))
         );
-    }
-
-    /** Method to get from jsonObject of currency's details a string value
-     * @param #key: key of string value to get from json
-     * @return value as {@link String}, if it is not exist will return null value
-     * **/
-    private String getStringDetailValue(String key){
-        try {
-            return jsonCurrencyDetails.getString(key);
-        }catch (Exception e){
-            return null;
-        }
-    }
-
-    /** Method to get from jsonObject of currency's details a numeric value
-     * @param #key: key of numeric value to get from json
-     * @return value as double, if it is not exist will return -1 value
-     * **/
-    private double getNumberDetailValue(String key){
-        try {
-            return jsonCurrencyDetails.getDouble(key);
-        }catch (Exception e){
-            return -1;
-        }
-    }
-
-    /** Method to get from jsonObject of currency's details a list of values
-     * @param #key: key of list to get from json
-     * @return value as {@link JSONArray}, if it is not exist will return null value
-     * **/
-    private JSONArray getJSONArrayList(String key){
-        try {
-            return jsonCurrencyDetails.getJSONArray(key);
-        }catch (Exception e){
-            return null;
-        }
     }
 
     /** Method to assemble a string value list

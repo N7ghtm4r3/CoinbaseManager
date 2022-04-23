@@ -2,13 +2,16 @@ package com.tecknobit.coinbasemanager.Managers.Transfers;
 
 import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.Transfers.Records.Deposit;
+import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethod;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
-import static com.tecknobit.coinbasemanager.Constants.EndpointsList.COINBASE_ACCOUNT_ENDPOINT;
-import static com.tecknobit.coinbasemanager.Constants.EndpointsList.PAYMENT_METHOD_ENDPOINT;
+import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
 
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
@@ -134,6 +137,42 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
                 jsonDeposit.getDouble("fee"),
                 jsonDeposit.getDouble("subtotal")
         );
+    }
+
+    public String getAllPaymentMethods() throws Exception {
+        return sendAPIRequest(PAYMENTS_METHOD_ENDPOINT, GET_METHOD);
+    }
+
+    public JSONArray getJSONAllPaymentMethods() throws Exception {
+        return new JSONArray(getAllPaymentMethods());
+    }
+
+    public ArrayList<PaymentMethod> getAllPaymentMethodsList() throws Exception {
+        ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
+        jsonArray = new JSONArray(getAllPaymentMethods());
+        for (int j=0; j < jsonArray.length(); j++){
+            JSONObject paymentMethod = jsonArray.getJSONObject(j);
+            paymentMethods.add(new PaymentMethod(paymentMethod.getString("id"),
+                    paymentMethod.getString("type"),
+                    paymentMethod.getString("name"),
+                    paymentMethod.getString("currency"),
+                    paymentMethod.getBoolean("primary_buy"),
+                    paymentMethod.getBoolean("primary_sell"),
+                    paymentMethod.getBoolean("instant_buy"),
+                    paymentMethod.getBoolean("instant_sell"),
+                    paymentMethod.getString("created_at"),
+                    paymentMethod.getString("updated_at"),
+                    paymentMethod.getString("resource"),
+                    paymentMethod.getString("resource_path"),
+                    paymentMethod.getBoolean("allow_buy"),
+                    paymentMethod.getBoolean("allow_sell"),
+                    paymentMethod.getBoolean("allow_deposit"),
+                    paymentMethod.getBoolean("allow_withdraw"),
+                    paymentMethod.getBoolean("verified"),
+                    paymentMethod
+            ));
+        }
+        return paymentMethods;
     }
 
 }

@@ -14,5 +14,7 @@ public class EndpointsList {
 
     /**Transfers endpoints**/
     public static final String PAYMENT_METHOD_ENDPOINT = "/payment-method";
+    public static final String PAYMENTS_METHOD_ENDPOINT = "/payment-methods";
+
 
 }
