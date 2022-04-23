@@ -572,30 +572,75 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return jsonObject.getDouble("fee");
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link String}
+     * **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
         return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, null));
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link JSONObject}
+     * **/
     public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId) throws Exception {
         return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId));
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link TransferAction} object
+     * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
         return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @param #profileId: identifier of profile used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link String}
+     * **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                             String profileId) throws Exception {
         return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @param #profileId: identifier of profile used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link JSONObject}
+     * **/
     public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId,
                                                     String profileId) throws Exception {
         return new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId, profileId));
     }
 
+    /** Request to withdraw using payment method
+     * @param #amount: amount to withdraw
+     * @param #paymentMethodId: identifier of payment method used in withdraw
+     * @param #currencyId: identifier of currency used in withdraw
+     * @param #profileId: identifier of profile used in withdraw
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod
+     * @return result of withdraw as {@link TransferAction} object
+     * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
                                                           String profileId) throws Exception {
         return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId,
