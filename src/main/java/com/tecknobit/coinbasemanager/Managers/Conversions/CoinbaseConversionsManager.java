@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.CONVERSIONS_ENDPOINT;
 
 /**
@@ -65,7 +66,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return result of conversion as {@link String}
      * **/
     public String convertCurrency(String from, String to, double amount) throws Exception {
-        return sendPostAPIRequest(CONVERSIONS_ENDPOINT, assembleConversionBodyParams(from, to, amount));
+        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, assembleConversionBodyParams(from, to, amount));
     }
     
     /** Request to convert one currency into another one
@@ -104,7 +105,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
         HashMap<String, Object> bodyParams = assembleConversionBodyParams(from, to, amount);
         for (String key : extraParams.keySet())
             bodyParams.put(key, extraParams.get(key));
-        return sendPostAPIRequest(CONVERSIONS_ENDPOINT, bodyParams);
+        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
     /** Request to convert one currency into another one

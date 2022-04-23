@@ -6,8 +6,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
-
 /**
  *  The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
  *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/docs
@@ -106,10 +104,13 @@ public class CoinbaseManager {
      * @param #bodyParams: params to insert in the http body post request
      * @return response as {@link String}
      * **/
-    public String sendPostAPIRequest(String endpoint, HashMap<String, Object> bodyParams) throws Exception {
-        setRequestHeaders(POST_METHOD, endpoint, apiRequest.assembleBodyParams(bodyParams));
-        apiRequest.sendPostAPIRequest(BASE_ENDPOINT+endpoint,bodyParams);
-        return apiRequest.getResponse();
+    public String sendBodyParamsAPIRequest(String endpoint, String method, HashMap<String, Object> bodyParams) throws Exception {
+        if(method.equals(APIRequest.POST_METHOD) || method.equals(APIRequest.PUT_METHOD)){
+            setRequestHeaders(method, endpoint, apiRequest.assembleBodyParams(bodyParams));
+            apiRequest.sendPostAPIRequest(BASE_ENDPOINT+endpoint,bodyParams);
+            return apiRequest.getResponse();
+        }else
+            throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");
     }
 
     /** Method to set Coinbase request headers
