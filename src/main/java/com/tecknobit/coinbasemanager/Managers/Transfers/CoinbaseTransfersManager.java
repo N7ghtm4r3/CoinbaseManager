@@ -13,6 +13,8 @@ import java.util.HashMap;
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
+import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransferObject;
+import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransfersList;
 
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
@@ -185,7 +187,31 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     }
 
     public ArrayList<Transfer> getAllTransfersList() throws Exception {
-        return Transfer.assembleTransfersList(new JSONArray(getAllTransfers()));
+        return assembleTransfersList(new JSONArray(getAllTransfers()));
+    }
+
+    public String getAllTransfers(HashMap<String, Object> queryParams) throws Exception {
+        return sendAPIRequest(TRANSFERS_ENDPOINT+assembleQueryParams(queryParams), GET_METHOD);
+    }
+
+    public JSONArray getAllTransfersJSON(HashMap<String, Object> queryParams) throws Exception {
+        return new JSONArray(getAllTransfers(queryParams));
+    }
+
+    public ArrayList<Transfer> getAllTransfersList(HashMap<String, Object> queryParams) throws Exception {
+        return assembleTransfersList(new JSONArray(getAllTransfers(queryParams)));
+    }
+
+    public String getSingleTransfer(String transferId) throws Exception {
+        return sendAPIRequest(TRANSFERS_ENDPOINT+"/"+transferId, GET_METHOD);
+    }
+
+    public JSONObject getSingleTransferJSON(String transferId) throws Exception {
+        return new JSONObject(getSingleTransfer(transferId));
+    }
+
+    public Transfer getSingleTransferObject(String transferId) throws Exception {
+        return assembleTransferObject(new JSONObject(getSingleTransfer(transferId)));
     }
 
 }
