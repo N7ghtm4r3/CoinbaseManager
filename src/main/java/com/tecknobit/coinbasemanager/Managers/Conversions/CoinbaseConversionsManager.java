@@ -66,7 +66,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return result of conversion as {@link String}
      * **/
     public String convertCurrency(String from, String to, double amount) throws Exception {
-        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, assembleConversionBodyParams(from, to, amount));
+        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, assembleConversionPayload(from, to, amount));
     }
     
     /** Request to convert one currency into another one
@@ -102,7 +102,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * **/
     public String convertCurrency(String from, String to, double amount,
                                   HashMap<String,Object> extraParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleConversionBodyParams(from, to, amount);
+        HashMap<String, Object> bodyParams = assembleConversionPayload(from, to, amount);
         for (String key : extraParams.keySet())
             bodyParams.put(key, extraParams.get(key));
         return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, bodyParams);
@@ -142,7 +142,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #amount: amount value to convert
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleConversionBodyParams(String from, String to, double amount){
+    private HashMap<String, Object> assembleConversionPayload(String from, String to, double amount){
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("from",from);
         bodyParams.put("to",to);
@@ -152,7 +152,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /** Method to assemble a CurrencyConversion object
      * @param #jsonCurrencyConversion: jsonObject obtained by response request
-     * @return currencyConversion {@link CurrencyConversion} object
+     * @return currencyConversion as {@link CurrencyConversion} object
      * **/
     private CurrencyConversion assembleCurrencyConversion(JSONObject jsonCurrencyConversion){
         return new CurrencyConversion(jsonCurrencyConversion.getString("id"),
