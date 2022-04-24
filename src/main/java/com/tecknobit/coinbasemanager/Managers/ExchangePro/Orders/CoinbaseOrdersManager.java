@@ -14,7 +14,6 @@ import static com.tecknobit.apimanager.Manager.APIRequest.DELETE_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ORDERS_ENDPOINT;
-import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records.Order.*;
 
 public class CoinbaseOrdersManager extends CoinbaseManager {
 
@@ -132,17 +131,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
-        if(areValidStatuses(statuses)){
-            if(isValidSorter(sortedBy)) {
-                if(isValidSortingOrder(sorting)){
-                    String statusesParams = apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
-                    return sendAPIRequest(ORDERS_ENDPOINT +"?limit="+limit+statusesParams, GET_METHOD);
-                }
-                throw new IllegalArgumentException("sorting can be desc or asc");
-            }
-            throw new IllegalArgumentException("sorted_by can be created_at,price,size,order_id,side or type");
-        }
-        throw new IllegalArgumentException("Status can be open,received,rejected,done,active,pending or all");
+        String statusesParams = apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
+        return sendAPIRequest(ORDERS_ENDPOINT +"?limit="+limit+statusesParams, GET_METHOD);
     }
 
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting,
@@ -169,18 +159,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
                                HashMap<String, Object> queryParams) throws Exception {
-        if(areValidStatuses(statuses)){
-            if(isValidSorter(sortedBy)) {
-                if(isValidSortingOrder(sorting)){
-                    String params = "?limit="+limit+apiRequest.concatenateParamsList("&","status",
-                            new ArrayList<>(statuses));
-                    return sendAPIRequest(ORDERS_ENDPOINT +assembleQueryParams(params,queryParams), GET_METHOD);
-                }
-                throw new IllegalArgumentException("sorting can be desc or asc");
-            }
-            throw new IllegalArgumentException("sorted_by can be created_at,price,size,order_id,side or type");
-        }
-        throw new IllegalArgumentException("Status can be open,received,rejected,done,active,pending or all");
+        String params = "?limit="+limit+apiRequest.concatenateParamsList("&","status",
+                new ArrayList<>(statuses));
+        return sendAPIRequest(ORDERS_ENDPOINT +assembleQueryParams(params,queryParams), GET_METHOD);
     }
 
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
@@ -234,26 +215,6 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         );
     }
 
-    private boolean areValidStatuses(ArrayList<String> statuses){
-        for (String status : statuses) {
-            if(!status.equals(STATUS_OPEN) && !status.equals(STATUS_RECEIVED) && !status.equals(STATUS_REJECTED)
-                    && !status.equals(STATUS_DONE) && !status.equals(STATUS_ACTIVE) && !status.equals(STATUS_PENDING)
-                    && !status.equals(STATUS_ALL)){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isValidSorter(String sortedBy) {
-        return sortedBy.equals(SIDE_SORTER) || sortedBy.equals(SIZE_SORTER) || sortedBy.equals(TYPE_SORTER)
-                || sortedBy.equals(PRICE_SORTER) || sortedBy.equals(CREATED_AT_SORTER) || sortedBy.equals(ORDER_ID_SORTER);
-    }
-
-    private boolean isValidSortingOrder(String sorting) {
-        return sorting.equals(ASC_SORTING_ORDER) || sorting.equals(DESC_SORTING_ORDER);
-    }
-
     public String cancelAllOpenOrders() throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT, DELETE_METHOD);
     }
@@ -283,6 +244,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         for (int j = 0; j < jsonOrders.length(); j++)
             ordersId.add(jsonOrders.getString(j));
         return ordersId;
+    }
+
+    public String sendNewOrder(String type, String side, String productId, String stp, String stop,
+                               String timeInForce, String cancelAfter, boolean postOnly){
+        return null;
     }
 
 }
