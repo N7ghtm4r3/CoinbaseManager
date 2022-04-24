@@ -245,10 +245,5 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
             ordersId.add(jsonOrders.getString(j));
         return ordersId;
     }
-
-    public String sendNewOrder(String type, String side, String productId, String stp, String stop,
-                               String timeInForce, String cancelAfter, boolean postOnly){
-        return null;
-    }
-
+    
 }
