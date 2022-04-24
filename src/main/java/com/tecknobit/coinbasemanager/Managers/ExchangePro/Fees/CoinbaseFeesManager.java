@@ -20,6 +20,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
     public CoinbaseFeesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
+
     /** Constructor to init a CoinbaseFees manager
      * @param #apiKey your Coinbase api key
      * @param #apiSecret your Coinbase api secret
