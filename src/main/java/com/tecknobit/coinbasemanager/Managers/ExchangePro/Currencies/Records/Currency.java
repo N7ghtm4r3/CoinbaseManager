@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Currencies.Records;
 
-import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
+import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,20 +32,20 @@ public class Currency {
         this.minSize = minSize;
         this.maxPrecision = maxPrecision;
         this.message = message;
-        JSONParserHelper jsonParserHelper = new JSONParserHelper(jsonCurrencyDetails.getJSONObject("details"));
+        JsonHelper jsonHelper = new JsonHelper(jsonCurrencyDetails.getJSONObject("details"));
         convertibleToCurrencies = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
-        currencyDetails = new CurrencyDetails(jsonParserHelper.getStringDetailValue("symbol"),
-                jsonParserHelper.getNumberDetailValue("min_withdrawal_amount"),
-                (int) jsonParserHelper.getNumberDetailValue("network_confirmations"),
-                jsonParserHelper.getNumberDetailValue("max_withdrawal_amount"),
-                jsonParserHelper.getStringDetailValue("crypto_address_link"),
-                jsonParserHelper.getStringDetailValue("type"),
-                (int) jsonParserHelper.getNumberDetailValue("sort_order"),
-                jsonParserHelper.getStringDetailValue("crypto_transaction_link"),
-                jsonParserHelper.getStringDetailValue("display_name"),
-                jsonParserHelper.getStringDetailValue("processing_time_seconds"),
-                loadDetailsList(jsonParserHelper.getJSONArrayList("push_payment_methods")),
-                loadDetailsList(jsonParserHelper.getJSONArrayList("group_types"))
+        currencyDetails = new CurrencyDetails(jsonHelper.getString("symbol"),
+                jsonHelper.getDouble("min_withdrawal_amount"),
+                jsonHelper.getInt("network_confirmations"),
+                jsonHelper.getDouble("max_withdrawal_amount"),
+                jsonHelper.getString("crypto_address_link"),
+                jsonHelper.getString("type"),
+                jsonHelper.getInt("sort_order"),
+                jsonHelper.getString("crypto_transaction_link"),
+                jsonHelper.getString("display_name"),
+                jsonHelper.getString("processing_time_seconds"),
+                loadDetailsList(jsonHelper.getJSONArray("push_payment_methods")),
+                loadDetailsList(jsonHelper.getJSONArray("group_types"))
         );
     }
 

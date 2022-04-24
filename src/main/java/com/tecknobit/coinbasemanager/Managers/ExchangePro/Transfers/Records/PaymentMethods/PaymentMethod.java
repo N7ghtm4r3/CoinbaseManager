@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
-import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
+import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import org.json.JSONObject;
 
 /**
@@ -31,7 +31,7 @@ public class PaymentMethod extends PayMethod{
     private final boolean verified;
     private final int holdBusinessDays;
     private final int holdDays;
-    private final JSONParserHelper jsonParserHelper;
+    private final JsonHelper jsonHelper;
     private final MinimumPurchaseAmount minimumPurchaseAmount;
     private JSONObject payPalLimits;
     private JSONObject bankLimits;
@@ -46,7 +46,7 @@ public class PaymentMethod extends PayMethod{
                          String resourcePath, boolean allowBuy, boolean allowSell, boolean allowDeposit, boolean allowWithdraw,
                          boolean verified, JSONObject jsonPayment) {
         super(name, type);
-        jsonParserHelper = new JSONParserHelper(jsonPayment);
+        jsonHelper = new JsonHelper(jsonPayment);
         this.id = id;
         this.currency = currency;
         this.primaryBuy = primaryBuy;
@@ -62,9 +62,9 @@ public class PaymentMethod extends PayMethod{
         this.allowDeposit = allowDeposit;
         this.allowWithdraw = allowWithdraw;
         this.verified = verified;
-        this.holdBusinessDays = (int) jsonParserHelper.getNumberDetailValue("hold_business_days");
-        this.holdDays = (int) jsonParserHelper.getNumberDetailValue("hold_days");
-        minimumPurchaseAmount = new MinimumPurchaseAmount(jsonParserHelper.getJSONObject("minimum_purchase_amount"));
+        this.holdBusinessDays = jsonHelper.getInt("hold_business_days");
+        this.holdDays = jsonHelper.getInt("hold_days");
+        minimumPurchaseAmount = new MinimumPurchaseAmount(jsonHelper.getJSONObject("minimum_purchase_amount"));
     }
 
     public String getId() {
@@ -145,7 +145,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public PayPalMethod getPayPalLimits(){
         if(payPalLimits == null)
-            payPalLimits = jsonParserHelper.getJSONObject("limits");
+            payPalLimits = jsonHelper.getJSONObject("limits");
         if(payPalLimits != null) {
             String type = payPalLimits.getString("type");
             if(type.equals(PAYPAL_TYPE))
@@ -161,7 +161,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
         if(payPalPickerData == null)
-            payPalPickerData = jsonParserHelper.getJSONObject("picker_data");
+            payPalPickerData = jsonHelper.getJSONObject("picker_data");
         if(payPalPickerData != null){
             String symbol = payPalPickerData.getString("symbol");
             if(symbol.equals(PAYPAL_TYPE)){
@@ -183,7 +183,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public BankMethod getBankLimits(){
         if(bankLimits == null)
-            bankLimits = jsonParserHelper.getJSONObject("limits");
+            bankLimits = jsonHelper.getJSONObject("limits");
         if(bankLimits != null){
             String type = bankLimits.getString("type");
             if(type.equals(BANK_TYPE))
@@ -199,7 +199,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public BankMethod.BankPickerData getBankPickerData(){
         if(bankPickerData == null)
-            bankPickerData = jsonParserHelper.getJSONObject("picker_data");
+            bankPickerData = jsonHelper.getJSONObject("picker_data");
         if(bankPickerData != null){
             String symbol = bankPickerData.getString("symbol");
             if(symbol.equals(BANK_TYPE)){
@@ -221,7 +221,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
         if(fiatAccountDetails == null)
-            fiatAccountDetails = jsonParserHelper.getJSONObject(FIAT_ACCOUNT_TYPE);
+            fiatAccountDetails = jsonHelper.getJSONObject(FIAT_ACCOUNT_TYPE);
         if(fiatAccountDetails != null){
             return new FiatAccountMethod.FiatAccountDetails(fiatAccountDetails.getString("id"),
                     fiatAccountDetails.getString("resource"),
@@ -238,7 +238,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public FiatAccountMethod getFiatAccountLimit(){
         if(fiatAccountLimit == null)
-            fiatAccountLimit = jsonParserHelper.getJSONObject("limits");
+            fiatAccountLimit = jsonHelper.getJSONObject("limits");
         if(fiatAccountLimit != null){
             String type = fiatAccountLimit.getString("type");
             if(type.equals(FIAT_ACCOUNT_TYPE))
@@ -255,7 +255,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
         if(fiatAccountPickerData == null)
-            fiatAccountPickerData = jsonParserHelper.getJSONObject("picker_data");
+            fiatAccountPickerData = jsonHelper.getJSONObject("picker_data");
         if(fiatAccountPickerData != null){
             String symbol = fiatAccountPickerData.getString("type");
             if(symbol.equals(FIAT_ACCOUNT_TYPE)){
@@ -274,7 +274,7 @@ public class PaymentMethod extends PayMethod{
      * @return snippet of details as {@link JSONObject}
      * **/
     public JSONObject getSnippetDetail(String key){
-        return jsonParserHelper.getJSONObject(key);
+        return jsonHelper.getJSONObject(key);
     }
 
     /**
