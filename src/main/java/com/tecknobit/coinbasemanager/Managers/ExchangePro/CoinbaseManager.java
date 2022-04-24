@@ -1,6 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
+import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,6 +27,7 @@ public class CoinbaseManager {
     private final String apiKey;
     protected JSONObject jsonObject;
     protected JSONArray jsonArray;
+    protected JSONParserHelper jsonParserHelper;
     private boolean keysInserted;
 
     /** Constructor to init a Coinbase manager
