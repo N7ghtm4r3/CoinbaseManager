@@ -140,8 +140,8 @@ public class CoinbaseManager {
      * @param #queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
      * **/
-    protected String assembleQueryParams(HashMap<String, Object> queryParams){
-        return apiRequest.assembleAdditionalParams("?",queryParams);
+    protected String assembleQueryParams(String defParams, HashMap<String, Object> queryParams){
+        return apiRequest.assembleAdditionalParams(defParams, queryParams);
     }
 
     /** Method to get error response of request

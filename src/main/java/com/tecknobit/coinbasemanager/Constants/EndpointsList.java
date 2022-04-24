@@ -25,4 +25,7 @@ public class EndpointsList {
     /**ExchangePro: Fees endpoints**/
     public static final String FEES_ENDPOINT = "/fees";
 
+    /**ExchangePro: Orders endpoints**/
+    public static final String GET_ALL_FILLS_ENDPOINT = "/fills";
+
 }

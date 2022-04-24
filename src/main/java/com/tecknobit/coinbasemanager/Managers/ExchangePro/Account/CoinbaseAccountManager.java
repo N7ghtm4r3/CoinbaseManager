@@ -176,7 +176,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return hold information from one profile as {@link String}
      * **/
     public String getAccountProfileHold(String accountId, HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/holds"+assembleQueryParams(queryParams), GET_METHOD);
+        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/holds"+assembleQueryParams("?",
+                queryParams), GET_METHOD);
     }
 
     /** Request to get hold information from one profile
@@ -254,7 +255,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return ledger information from one profile as {@link String}
      * **/
     public String getAccountLedger(String accountId, HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/ledger"+assembleQueryParams(queryParams), GET_METHOD);
+        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/ledger"+assembleQueryParams("?",
+                queryParams), GET_METHOD);
     }
 
     /** Request to get ledger information from one profile
@@ -333,7 +335,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return transfer information from one profile as {@link String}
      * **/
     public String getAccountTransfers(String accountId, HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/transfers"+assembleQueryParams(queryParams), GET_METHOD);
+        return sendAPIRequest(ACCOUNT_ENDPOINT +"/"+accountId+"/transfers"+assembleQueryParams("?",
+                queryParams), GET_METHOD);
     }
 
     /** Request to get transfer information from one profile

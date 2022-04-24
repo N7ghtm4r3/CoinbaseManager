@@ -8,6 +8,12 @@ import org.json.JSONObject;
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.FEES_ENDPOINT;
 
+/**
+ *  The {@code CoinbaseFeesManager} class is useful to manage all Coinbase fees endpoints
+ *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees
+ *  @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class CoinbaseFeesManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseFees manager

@@ -303,7 +303,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return transfers list as {@link String}
      * **/
     public String getAllTransfers(HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(TRANSFERS_ENDPOINT+assembleQueryParams(queryParams), GET_METHOD);
+        return sendAPIRequest(TRANSFERS_ENDPOINT+assembleQueryParams("?", queryParams), GET_METHOD);
     }
 
     /** Request to get all transfers list
