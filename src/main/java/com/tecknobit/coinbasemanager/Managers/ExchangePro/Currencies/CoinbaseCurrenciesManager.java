@@ -1,7 +1,7 @@
-package com.tecknobit.coinbasemanager.Managers.Currencies;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Currencies;
 
-import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
-import com.tecknobit.coinbasemanager.Managers.Currencies.Records.Currency;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Currencies.Records.Currency;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

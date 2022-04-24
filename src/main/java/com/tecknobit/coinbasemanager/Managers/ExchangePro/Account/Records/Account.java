@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Account.Records;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 
 /**
  * The {@code Account} class is useful to format Account object

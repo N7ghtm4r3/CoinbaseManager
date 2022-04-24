@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
 import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
 import org.json.JSONObject;

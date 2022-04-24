@@ -1,9 +1,9 @@
-package com.tecknobit.coinbasemanager.Managers.Transfers;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers;
 
-import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
-import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
-import com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods.PaymentMethod;
-import com.tecknobit.coinbasemanager.Managers.Transfers.Records.TransferAction;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods.PaymentMethod;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.TransferAction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,8 +13,8 @@ import java.util.HashMap;
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
-import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransferObject;
-import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransfersList;
+import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransferObject;
+import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransfersList;
 
 /**
  *  The {@code CoinbaseTransfersManager} class is useful to manage all Coinbase transfers endpoints

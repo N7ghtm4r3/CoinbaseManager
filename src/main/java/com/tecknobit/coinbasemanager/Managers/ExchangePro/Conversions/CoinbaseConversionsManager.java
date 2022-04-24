@@ -1,7 +1,7 @@
-package com.tecknobit.coinbasemanager.Managers.Conversions;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Conversions;
 
-import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
-import com.tecknobit.coinbasemanager.Managers.Conversions.Records.CurrencyConversion;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Conversions.Records.CurrencyConversion;
 import org.json.JSONObject;
 
 import java.util.HashMap;

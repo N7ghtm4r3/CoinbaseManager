@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
 import org.json.JSONArray;

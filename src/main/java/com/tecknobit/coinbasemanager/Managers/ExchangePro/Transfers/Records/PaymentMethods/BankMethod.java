@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Transfers.Records.PaymentMethods;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
 /**
  * The {@code BankMethod} class is useful to format BankMethod object

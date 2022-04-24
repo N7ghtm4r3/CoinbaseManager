@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Transfers.Records;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records;
 
 /**
  * The {@code TransferAction} class is useful to format general TransferAction object

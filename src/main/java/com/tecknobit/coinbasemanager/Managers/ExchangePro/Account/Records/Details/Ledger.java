@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Account.Records.Details;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details;
 
 import org.json.JSONObject;
 

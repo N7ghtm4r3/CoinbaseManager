@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Conversions.Records;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Conversions.Records;
 
 /**
  * The {@code CurrencyConversion} class is useful to format CurrencyConversion object

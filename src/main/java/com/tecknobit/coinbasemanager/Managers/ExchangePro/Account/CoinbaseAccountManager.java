@@ -1,12 +1,12 @@
-package com.tecknobit.coinbasemanager.Managers.Account;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account;
 
-import com.tecknobit.coinbasemanager.Managers.Account.Records.Account;
-import com.tecknobit.coinbasemanager.Managers.Account.Records.CoinbaseAccount;
-import com.tecknobit.coinbasemanager.Managers.Account.Records.CryptoAddress;
-import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Hold;
-import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Ledger;
-import com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer;
-import com.tecknobit.coinbasemanager.Managers.CoinbaseManager;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Account;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CoinbaseAccount;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CryptoAddress;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Hold;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Ledger;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +18,7 @@ import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ACCOUNT_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.COINBASE_ACCOUNT_ENDPOINT;
-import static com.tecknobit.coinbasemanager.Managers.Account.Records.Details.Transfer.assembleTransfersList;
+import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransfersList;
 
 /**
  *  The {@code CoinbaseAccountManager} class is useful to manage all Coinbase account endpoints

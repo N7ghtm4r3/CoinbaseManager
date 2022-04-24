@@ -1,4 +1,4 @@
-package com.tecknobit.coinbasemanager.Managers.Currencies.Records;
+package com.tecknobit.coinbasemanager.Managers.ExchangePro.Currencies.Records;
 
 import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
 import org.json.JSONArray;
