@@ -27,5 +27,6 @@ public class EndpointsList {
 
     /**ExchangePro: Orders endpoints**/
     public static final String GET_ALL_FILLS_ENDPOINT = "/fills";
+    public static final String GET_ALL_ORDERS_ENDPOINT = "/orders";
 
 }

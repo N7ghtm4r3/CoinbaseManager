@@ -66,8 +66,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     public String getAllFillsByOrderId(String orderId, HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+assembleQueryParams("?order_id="+orderId,queryParams),
-                GET_METHOD);
+        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+assembleQueryParams("?order_id="+orderId,
+                        queryParams), GET_METHOD);
     }
 
     public JSONArray getAllFillsByOrderIdJSON(String orderId, HashMap<String, Object> queryParams) throws Exception {
@@ -123,6 +123,19 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
             ));
         }
         return fills;
+    }
+
+    public String getAllOrders(int limit, ArrayList<String> statuses){
+        System.out.println(assembleStatusesString("","status",statuses));
+        return null;
+    }
+
+    // TODO: 24/04/2022 INSERT IN APIMANAGER LIBRARY
+    private String assembleStatusesString(String startCharacter, String keyValue, ArrayList<String> params){
+        StringBuilder stringBuilder = new StringBuilder(startCharacter);
+        for (String param : params)
+            stringBuilder.append("&").append(keyValue).append("=").append(param);
+        return stringBuilder.toString();
     }
 
 }

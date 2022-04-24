@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 public class JSONParserHelper {
 
+    // TODO: 24/04/2022 INSERT IN APIMANAGER LIBRARY
     private final JSONObject jsonDetails;
 
     public JSONParserHelper(JSONObject jsonDetails) {
