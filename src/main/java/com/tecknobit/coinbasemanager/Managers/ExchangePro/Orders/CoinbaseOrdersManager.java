@@ -127,7 +127,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     public String getAllOrders(int limit, ArrayList<String> statuses){
-        
+
         return null;
     }
 
