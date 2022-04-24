@@ -122,20 +122,14 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
                     fill.getDouble("usd_volume")
             ));
         }
+
         return fills;
     }
 
     public String getAllOrders(int limit, ArrayList<String> statuses){
-        System.out.println(assembleStatusesString("","status",statuses));
+        
         return null;
     }
 
-    // TODO: 24/04/2022 INSERT IN APIMANAGER LIBRARY
-    private String assembleStatusesString(String startCharacter, String keyValue, ArrayList<String> params){
-        StringBuilder stringBuilder = new StringBuilder(startCharacter);
-        for (String param : params)
-            stringBuilder.append("&").append(keyValue).append("=").append(param);
-        return stringBuilder.toString();
-    }
 
 }

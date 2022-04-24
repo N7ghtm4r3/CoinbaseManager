@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Fees;
 
-import com.tecknobit.coinbasemanager.Helpers.JSONParserHelper;
+import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Fees.Records.Fee;
 import org.json.JSONObject;
@@ -81,10 +81,10 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * will be returned as -1 value
      * **/
     public Fee getFeesObject() throws Exception {
-        jsonParserHelper = new JSONParserHelper(new JSONObject(getFees()));
-        return new Fee(jsonParserHelper.getNumberDetailValue("taker_fee_rate"),
-                jsonParserHelper.getNumberDetailValue("maker_fee_rate"),
-                jsonParserHelper.getNumberDetailValue("usd_volume")
+        jsonHelper = new JsonHelper(new JSONObject(getFees()));
+        return new Fee(jsonHelper.getDouble("taker_fee_rate"),
+                jsonHelper.getDouble("maker_fee_rate"),
+                jsonHelper.getDouble("usd_volume")
         );
     }
 
