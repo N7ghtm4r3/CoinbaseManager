@@ -10,10 +10,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static com.tecknobit.apimanager.Manager.APIRequest.DELETE_METHOD;
-import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ORDERS_ENDPOINT;
+
+/**
+ *  The {@code CoinbaseOrdersManager} class is useful to manage all Coinbase orders endpoints
+ *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+ *  @author N7ghtm4r3 - Tecknobit
+ * **/
 
 public class CoinbaseOrdersManager extends CoinbaseManager {
 
@@ -192,11 +197,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     private ArrayList<Order> assembleOrdersList(JSONArray jsonOrders){
         ArrayList<Order> orders = new ArrayList<>();
         for (int j = 0; j < jsonOrders.length(); j++)
-            orders.add(assembleOrder(jsonOrders.getJSONObject(j)));
+            orders.add(assembleOrderObject(jsonOrders.getJSONObject(j)));
         return orders;
     }
 
-    private Order assembleOrder(JSONObject jsonOrder){
+    private Order assembleOrderObject(JSONObject jsonOrder){
         return new Order(jsonOrder.getString("created_at"),
                 jsonOrder.getString("product_id"),
                 jsonOrder.getString("profile_id"),
@@ -245,5 +250,170 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
             ordersId.add(jsonOrders.getString(j));
         return ordersId;
     }
-    
+
+    public String createLimitOrder(String side, String productId, double price, double size) throws Exception {
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleOrderPayload(side, productId, price,
+                size, Order.LIMIT_TYPE));
+    }
+
+    public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size) throws Exception {
+        return new JSONObject(createLimitOrder(side, productId, price, size));
+    }
+
+    public Order createNewLimitOrderObject(String side, String productId, double price, double size) throws Exception {
+        return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size)));
+    }
+
+    public String createLimitOrder(String side, String productId, double price, double size,
+                                   HashMap<String ,Object> extraBodyParams) throws Exception {
+        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.LIMIT_TYPE);
+        bodyParams.putAll(extraBodyParams);
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    }
+
+    public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size,
+                                              HashMap<String ,Object> extraBodyParams) throws Exception {
+        return new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams));
+    }
+
+    public Order createNewLimitOrderObject(String side, String productId, double price, double size,
+                                           HashMap<String ,Object> extraBodyParams) throws Exception {
+        return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
+    }
+
+    private HashMap<String, Object> assembleOrderPayload(String side, String productId, double price, double size,
+                                                         String type){
+        HashMap<String, Object> bodyParams = new HashMap<>();
+        bodyParams.put("side", side);
+        bodyParams.put("product_id", productId);
+        bodyParams.put("price", price);
+        bodyParams.put("size", size);
+        bodyParams.put("type", type);
+        return bodyParams;
+    }
+
+    public String createMarketOrderSize(String side, String productId, double size) throws Exception {
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
+                "size", size));
+    }
+
+    public JSONObject createMarketOrderSizeJSON(String side, String productId, double size) throws Exception {
+        return new JSONObject(createMarketOrderSize(side, productId, size));
+    }
+
+    public Order createMarketOrderSizeObject(String side, String productId, double size) throws Exception {
+        return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size)));
+    }
+
+    public String createMarketOrderSize(String side, String productId, double size,
+                                        HashMap<String ,Object> extraBodyParams) throws Exception {
+        HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "size", size);
+        bodyParams.putAll(extraBodyParams);
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    }
+
+    public JSONObject createMarketOrderSizeJSON(String side, String productId, double size,
+                                                HashMap<String ,Object> extraBodyParams) throws Exception {
+        return new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams));
+    }
+
+    public Order createMarketOrderSizeObject(String side, String productId, double size,
+                                             HashMap<String ,Object> extraBodyParams) throws Exception {
+        return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
+    }
+
+    public String createMarketOrderFounds(String side, String productId, double founds) throws Exception {
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
+                "founds", founds));
+    }
+
+    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds) throws Exception {
+        return new JSONObject(createMarketOrderFounds(side, productId, founds));
+    }
+
+    public Order createMarketOrderFoundsObject(String side, String productId, double founds) throws Exception {
+        return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds)));
+    }
+
+    public String createMarketOrderFounds(String side, String productId, double founds,
+                                          HashMap<String ,Object> extraBodyParams) throws Exception {
+        HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "founds", founds);
+        bodyParams.putAll(extraBodyParams);
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    }
+
+    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds,
+                                               HashMap<String ,Object> extraBodyParams) throws Exception {
+        return new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams));
+    }
+
+    public Order createMarketOrderFoundsObject(String side, String productId, double founds,
+                                            HashMap<String ,Object> extraBodyParams) throws Exception {
+        return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
+    }
+
+    private HashMap<String, Object> assembleMarketOrderPayload(String side, String productId, String key, double keyValue){
+        HashMap<String, Object> bodyParams = new HashMap<>();
+        bodyParams.put("side", side);
+        bodyParams.put("product_id", productId);
+        bodyParams.put(key, keyValue);
+        bodyParams.put("type", Order.MARKET_TYPE);
+        return bodyParams;
+    }
+
+    public String createStopOrder(String side, String productId, double price, double size,
+                                  double stopPrice) throws Exception {
+        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
+        bodyParams.put("stop_price", stopPrice);
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    }
+
+    public JSONObject createStopOrderJSON(String side, String productId, double price, double size,
+                                          double stopPrice) throws Exception {
+        return new JSONObject(createStopOrder(side, productId, price, size, stopPrice));
+    }
+
+    public Order createStopOrderObject(String side, String productId, double price, double size,
+                                       double stopPrice) throws Exception {
+        return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice)));
+    }
+
+    public String createStopOrder(String side, String productId, double price, double size, double stopPrice,
+                                  HashMap<String ,Object> extraBodyParams) throws Exception {
+        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
+        bodyParams.put("stop_price", stopPrice);
+        bodyParams.putAll(extraBodyParams);
+        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    }
+
+    public JSONObject createStopOrderJSON(String side, String productId, double price, double size, double stopPrice,
+                                          HashMap<String ,Object> extraBodyParams) throws Exception {
+        return new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams));
+    }
+
+    public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
+                                       HashMap<String ,Object> extraBodyParams) throws Exception {
+        return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
+    }
+
+    public String getSingleOrder(String orderId) throws Exception {
+        return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId, GET_METHOD);
+    }
+
+    public JSONObject getSingleOrderJSON(String orderId) throws Exception {
+        return new JSONObject(getSingleOrder(orderId));
+    }
+
+    public Order getSingleOrderObject(String orderId) throws Exception {
+        return assembleOrderObject(new JSONObject(getSingleOrder(orderId)));
+    }
+
+    public String cancelOrder(String orderId) throws Exception {
+        return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId, DELETE_METHOD);
+    }
+
+    public String cancelOrder(String orderId, String profileId) throws Exception {
+        return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId+"?profile_id="+profileId, DELETE_METHOD);
+    }
+
 }
