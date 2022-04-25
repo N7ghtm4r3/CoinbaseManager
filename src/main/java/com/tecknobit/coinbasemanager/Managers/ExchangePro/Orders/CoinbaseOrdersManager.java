@@ -865,7 +865,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /** Request to get single order information
      * @param #orderId: identifier of order from fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder
      * @return result of single order information as {@link String}
      * **/
     public String getSingleOrder(String orderId) throws Exception {
@@ -874,7 +874,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /** Request to get single order information
      * @param #orderId: identifier of order from fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder
      * @return result of single order information as {@link JSONObject}
      * **/
     public JSONObject getSingleOrderJSON(String orderId) throws Exception {
@@ -883,7 +883,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /** Request to get single order information
      * @param #orderId: identifier of order from fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder
      * @return result of single order information as {@link Order} object
      * **/
     public Order getSingleOrderObject(String orderId) throws Exception {
@@ -892,7 +892,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /** Request to cancel an order
      * @param #orderId: identifier of order to cancel
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder
      * @return result of order cancellation as {@link String}
      * **/
     public String cancelOrder(String orderId) throws Exception {
@@ -902,7 +902,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     /** Request to get an order
      * @param #orderId: identifier of order to cancel
      * @param #profileId: identifier of account where delete an order
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder
      * @return result of order cancellation as {@link String}
      * **/
     public String cancelOrder(String orderId, String profileId) throws Exception {
