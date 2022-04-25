@@ -890,8 +890,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrderObject(new JSONObject(getSingleOrder(orderId)));
     }
 
-    /** Request to get cancel an order
-     * @param #orderId: identifier of order from fetch details
+    /** Request to cancel an order
+     * @param #orderId: identifier of order to cancel
      * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
      * @return result of order cancellation as {@link String}
      * **/
@@ -899,8 +899,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId, DELETE_METHOD);
     }
 
-    /** Request to get cancel an order
-     * @param #orderId: identifier of order from fetch details
+    /** Request to get an order
+     * @param #orderId: identifier of order to cancel
      * @param #profileId: identifier of account where delete an order
      * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
      * @return result of order cancellation as {@link String}
