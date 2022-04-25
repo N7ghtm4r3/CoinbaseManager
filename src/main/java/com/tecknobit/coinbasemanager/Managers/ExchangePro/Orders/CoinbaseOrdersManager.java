@@ -62,56 +62,132 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase);
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link String}
+     * **/
     public String getAllFillsByOrderId(String orderId) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+"?order_id="+orderId, GET_METHOD);
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link JSONArray}
+     * **/
     public JSONArray getAllFillsByOrderIdJSON(String orderId) throws Exception {
         return new JSONArray(getAllFillsByOrderId(orderId));
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders list as {@link ArrayList} of {@link Fill}
+     * **/
     public ArrayList<Fill> getAllFillsListByOrderId(String orderId) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByOrderId(orderId)));
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are product_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link String}
+     * **/
     public String getAllFillsByOrderId(String orderId, HashMap<String, Object> queryParams) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+assembleQueryParams("?order_id="+orderId,
                         queryParams), GET_METHOD);
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are product_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link JSONArray}
+     * **/
     public JSONArray getAllFillsByOrderIdJSON(String orderId, HashMap<String, Object> queryParams) throws Exception {
         return new JSONArray(getAllFillsByOrderId(orderId, queryParams));
     }
 
+    /** Request to get all filled orders
+     * @param #orderId: identifier of order from get fill details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are product_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders list as {@link ArrayList} of {@link Fill}
+     * **/
     public ArrayList<Fill> getAllFillsListByOrderId(String orderId, HashMap<String, Object> queryParams) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByOrderId(orderId, queryParams)));
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link String}
+     * **/
     public String getAllFillsByProductId(String productId) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+"?product_id="+productId, GET_METHOD);
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link JSONArray}
+     * **/
     public JSONArray getAllFillsByProductIdJSON(String productId) throws Exception {
         return new JSONArray(getAllFillsByProductId(productId));
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link ArrayList} of {@link Fill}
+     * **/
     public ArrayList<Fill> getAllFillsListByProductId(String productId) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByProductId(productId)));
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are order_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link String}
+     * **/
     public String getAllFillsByProductId(String productId, HashMap<String, Object> queryParams) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT+assembleQueryParams("?product_id="+productId,
                         queryParams), GET_METHOD);
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are order_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link JSONArray}
+     * **/
     public JSONArray getAllFillsByProductIdJSON(String productId, HashMap<String, Object> queryParams) throws Exception {
         return new JSONArray(getAllFillsByProductId(productId, queryParams));
     }
 
+    /** Request to get all filled orders
+     * @param #productId: identifier of product to get details
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are order_id,profile_id,before,after,limit)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+     * @return all filled orders as {@link ArrayList} of {@link Fill}
+     * **/
     public ArrayList<Fill> getAllFillsListByProductId(String productId, HashMap<String, Object> queryParams) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByProductId(productId, queryParams)));
     }
 
+    /** Method to assemble a fills list
+     * @param #jsonFills: jsonArray obtained by response request
+     * @return fills list as {@link ArrayList} of {@link Fill}
+     * **/
     private ArrayList<Fill> assembleFillsList(JSONArray jsonFills){
         ArrayList<Fill> fills = new ArrayList<>();
         for (int j = 0; j < jsonFills.length(); j++){
@@ -136,8 +212,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
-        String statusesParams = apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
-        return sendAPIRequest(ORDERS_ENDPOINT +"?limit="+limit+statusesParams, GET_METHOD);
+        String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
+        params += apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
+        return sendAPIRequest(ORDERS_ENDPOINT + params, GET_METHOD);
     }
 
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting,
@@ -164,9 +241,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
                                HashMap<String, Object> queryParams) throws Exception {
-        String params = "?limit="+limit+apiRequest.concatenateParamsList("&","status",
-                new ArrayList<>(statuses));
-        return sendAPIRequest(ORDERS_ENDPOINT +assembleQueryParams(params,queryParams), GET_METHOD);
+        String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
+        params += apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
+        return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams), GET_METHOD);
     }
 
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
@@ -199,6 +276,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         for (int j = 0; j < jsonOrders.length(); j++)
             orders.add(assembleOrderObject(jsonOrders.getJSONObject(j)));
         return orders;
+    }
+
+    private HashMap<String, Object> assembleSortCriteria(String sortedBy, String sorting){
+        HashMap<String, Object> criteria = new HashMap<>();
+        criteria.put("sortedBy", sortedBy);
+        criteria.put("sorting", sorting);
+        return criteria;
     }
 
     private Order assembleOrderObject(JSONObject jsonOrder){

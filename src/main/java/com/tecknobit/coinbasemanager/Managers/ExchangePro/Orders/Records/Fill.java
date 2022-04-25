@@ -1,5 +1,11 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
+/**
+ * The {@code Fill} class is useful to format Fill object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Fill extends OrderDetails{
 
     private final long tradeId;

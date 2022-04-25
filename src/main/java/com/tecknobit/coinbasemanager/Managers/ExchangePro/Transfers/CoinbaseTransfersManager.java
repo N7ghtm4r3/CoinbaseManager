@@ -24,6 +24,7 @@ import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records
 
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
+    /**Constants methods used in transfer requests**/
     public static final String COINBASE_ACCOUNT_METHOD = "coinbase_account_id";
     public static final String PAYMENT_METHOD = "payment_method_id";
     public static final String CRYPTO_ADDRESS_METHOD = "crypto_address";
