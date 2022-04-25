@@ -493,19 +493,53 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return ordersId;
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link String}
+     * **/
     public String createLimitOrder(String side, String productId, double price, double size) throws Exception {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleOrderPayload(side, productId, price,
                 size, Order.LIMIT_TYPE));
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link JSONObject}
+     * **/
     public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size) throws Exception {
         return new JSONObject(createLimitOrder(side, productId, price, size));
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link Order} object
+     * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size) throws Exception {
         return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size)));
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link String}
+     * **/
     public String createLimitOrder(String side, String productId, double price, double size,
                                    HashMap<String ,Object> extraBodyParams) throws Exception {
         HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.LIMIT_TYPE);
@@ -513,16 +547,44 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link JSONObject}
+     * **/
     public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size,
                                               HashMap<String ,Object> extraBodyParams) throws Exception {
         return new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams));
     }
 
+    /** Request to create new limit order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link Order} object
+     * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size,
                                            HashMap<String ,Object> extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
     }
 
+    /** Method to assemble a payload for limit and stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #type: type of the order (limit or stop)
+     * @return payload for a new order as {@link HashMap} <{@link String} ,{@link Object}>
+     * **/
     private HashMap<String, Object> assembleOrderPayload(String side, String productId, double price, double size,
                                                          String type){
         HashMap<String, Object> bodyParams = new HashMap<>();
@@ -534,19 +596,49 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return bodyParams;
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link String}
+     * **/
     public String createMarketOrderSize(String side, String productId, double size) throws Exception {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
                 "size", size));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link JSONObject}
+     * **/
     public JSONObject createMarketOrderSizeJSON(String side, String productId, double size) throws Exception {
         return new JSONObject(createMarketOrderSize(side, productId, size));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link Order} object
+     * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size)));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,funds)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link String}
+     * **/
     public String createMarketOrderSize(String side, String productId, double size,
                                         HashMap<String ,Object> extraBodyParams) throws Exception {
         HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "size", size);
@@ -554,29 +646,77 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,funds)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link JSONObject}
+     * **/
     public JSONObject createMarketOrderSizeJSON(String side, String productId, double size,
                                                 HashMap<String ,Object> extraBodyParams) throws Exception {
         return new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #size: amount of base currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,funds)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link Order}
+     * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size,
                                              HashMap<String ,Object> extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link String}
+     * **/
     public String createMarketOrderFounds(String side, String productId, double founds) throws Exception {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
                 "founds", founds));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link JSONObject}
+     * **/
     public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds) throws Exception {
         return new JSONObject(createMarketOrderFounds(side, productId, founds));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link Order} object
+     * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds)));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,size)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link String}
+     * **/
     public String createMarketOrderFounds(String side, String productId, double founds,
                                           HashMap<String ,Object> extraBodyParams) throws Exception {
         HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "founds", founds);
@@ -584,16 +724,41 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,size)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link JSONObject}
+     * **/
     public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds,
                                                HashMap<String ,Object> extraBodyParams) throws Exception {
         return new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams));
     }
 
+    /** Request to create new market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #founds: amount of quote currency used in the order
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,post_only,client_oid,size)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new market order as {@link Order} object
+     * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds,
                                             HashMap<String ,Object> extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
     }
 
+    /** Method to assemble a payload for market order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #key: size of funds parameter
+     * @param #keyValue: value of key
+     * @return payload for a new market order as {@link HashMap} <{@link String} ,{@link Object}>
+     * **/
     private HashMap<String, Object> assembleMarketOrderPayload(String side, String productId, String key, double keyValue){
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("side", side);
@@ -603,6 +768,15 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return bodyParams;
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link String}
+     * **/
     public String createStopOrder(String side, String productId, double price, double size,
                                   double stopPrice) throws Exception {
         HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
@@ -610,16 +784,45 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link JSONObject}
+     * **/
     public JSONObject createStopOrderJSON(String side, String productId, double price, double size,
                                           double stopPrice) throws Exception {
         return new JSONObject(createStopOrder(side, productId, price, size, stopPrice));
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link Order} object
+     * **/
     public Order createStopOrderObject(String side, String productId, double price, double size,
                                        double stopPrice) throws Exception {
         return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice)));
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link String}
+     * **/
     public String createStopOrder(String side, String productId, double price, double size, double stopPrice,
                                   HashMap<String ,Object> extraBodyParams) throws Exception {
         HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
@@ -628,32 +831,80 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link JSONObject}
+     * **/
     public JSONObject createStopOrderJSON(String side, String productId, double price, double size, double stopPrice,
                                           HashMap<String ,Object> extraBodyParams) throws Exception {
         return new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams));
     }
 
+    /** Request to create new stop order
+     * @param #side: side of the order (buy or sell)
+     * @param #productId: identifier of product to buy or sell es. BTC-USD
+     * @param #price: price per unit of product es. price for one unit of BTC in USD base
+     * @param #size: amount of base currency used in the order
+     * @param #stopPrice: price when stop order will be placed on the book
+     * @param #extraBodyParams: extra body params of request
+     * @implSpec (keys accepted are profile_id,time_in_force,cancel_after,stp,stop,client_oid)
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of creation a new limit order as {@link Order} object
+     * **/
     public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
                                        HashMap<String ,Object> extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
     }
 
+    /** Request to get single order information
+     * @param #orderId: identifier of order from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of single order information as {@link String}
+     * **/
     public String getSingleOrder(String orderId) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId, GET_METHOD);
     }
 
+    /** Request to get single order information
+     * @param #orderId: identifier of order from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of single order information as {@link JSONObject}
+     * **/
     public JSONObject getSingleOrderJSON(String orderId) throws Exception {
         return new JSONObject(getSingleOrder(orderId));
     }
 
+    /** Request to get single order information
+     * @param #orderId: identifier of order from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of single order information as {@link Order} object
+     * **/
     public Order getSingleOrderObject(String orderId) throws Exception {
         return assembleOrderObject(new JSONObject(getSingleOrder(orderId)));
     }
 
+    /** Request to get cancel an order
+     * @param #orderId: identifier of order from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of order cancellation as {@link String}
+     * **/
     public String cancelOrder(String orderId) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId, DELETE_METHOD);
     }
 
+    /** Request to get cancel an order
+     * @param #orderId: identifier of order from fetch details
+     * @param #profileId: identifier of account where delete an order
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
+     * @return result of order cancellation as {@link String}
+     * **/
     public String cancelOrder(String orderId, String profileId) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT+"/order_id="+orderId+"?profile_id="+profileId, DELETE_METHOD);
     }
