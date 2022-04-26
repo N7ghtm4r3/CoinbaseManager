@@ -1,5 +1,12 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+/**
+ * The {@code Product} class is useful to format general Product object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Product {
 
     private final double open;

@@ -1,7 +1,14 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+/**
+ * The {@code Candle} class is useful to format Candle object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Candle extends Product {
 
+    /**Constants used in candle requests**/
     public static final int GRANULARITY_1m = 60;
     public static final int GRANULARITY_5m = 300;
     public static final int GRANULARITY_15m = 900;

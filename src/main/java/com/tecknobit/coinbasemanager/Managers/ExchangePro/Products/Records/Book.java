@@ -8,6 +8,12 @@ import java.util.ArrayList;
 
 import static java.lang.String.valueOf;
 
+/**
+ * The {@code Book} class is useful to format Book object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Book {
 
     private final long sequence;
@@ -24,6 +30,10 @@ public class Book {
         bids = assembleStringList(jsonBook.getJSONArray("bids"));
     }
 
+    /** Method to assemble a string list
+     * @param #jsonList: jsonArray obtained by response request
+     * @return strings list as {@link ArrayList} of {@link String}
+     * **/
     private ArrayList<String> assembleStringList(JSONArray jsonList){
         ArrayList<String> strings = new ArrayList<>();
         for (int j = 0; j < jsonList.length(); j++){

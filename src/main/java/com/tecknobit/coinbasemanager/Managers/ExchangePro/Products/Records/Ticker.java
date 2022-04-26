@@ -1,5 +1,11 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+/**
+ * The {@code Ticker} class is useful to format Ticker object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Ticker extends StatDetails{
 
     private final double bid;

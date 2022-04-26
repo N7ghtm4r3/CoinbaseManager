@@ -1,5 +1,12 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+/**
+ * The {@code StatDetails} class is useful to format general StatDetails object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class StatDetails {
 
     private final long tradeId;
