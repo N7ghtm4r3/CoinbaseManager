@@ -29,4 +29,7 @@ public class EndpointsList {
     public static final String GET_ALL_FILLS_ENDPOINT = "/fills";
     public static final String ORDERS_ENDPOINT = "/orders";
 
+    /**ExchangePro: PriceOracle endpoints**/
+    public static final String PRICE_ORACLE_ENDPOINT = "/oracle";
+
 }

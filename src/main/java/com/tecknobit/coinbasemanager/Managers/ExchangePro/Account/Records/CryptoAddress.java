@@ -51,10 +51,8 @@ public class CryptoAddress {
      * **/
     private ArrayList<AddressInfo> assembleAddressInfo(JSONObject jsonAddressInfo) {
         ArrayList<AddressInfo> addressInfo = new ArrayList<>();
-        for (String addressInfoLine : jsonAddressInfo.toString().split(",")) {
-            String[] addressInfoDetails = addressInfoLine.split(":");
-            addressInfo.add(new AddressInfo(addressInfoDetails[0], addressInfoDetails[1]));
-        }
+        for (String title : jsonAddressInfo.keySet())
+            addressInfo.add(new AddressInfo(title, jsonAddressInfo.getString(title)));
         return addressInfo;
     }
 
