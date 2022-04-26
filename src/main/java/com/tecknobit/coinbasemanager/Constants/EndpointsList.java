@@ -32,4 +32,9 @@ public class EndpointsList {
     /**ExchangePro: PriceOracle endpoints**/
     public static final String PRICE_ORACLE_ENDPOINT = "/oracle";
 
+    /**ExchangePro: Products endpoints**/
+    public static final String PRODUCTS_ENDPOINT = "/products";
+    public static final String GET_PRODUCT_BOOK_ENDPOINT = "/book";
+    public static final String GET_PRODUCT_CANDLE_ENDPOINT = "/candles";
+
 }
