@@ -36,5 +36,8 @@ public class EndpointsList {
     public static final String PRODUCTS_ENDPOINT = "/products";
     public static final String GET_PRODUCT_BOOK_ENDPOINT = "/book";
     public static final String GET_PRODUCT_CANDLE_ENDPOINT = "/candles";
+    public static final String GET_PRODUCT_STAT_ENDPOINT = "/stats";
+    public static final String GET_PRODUCT_TICKER_ENDPOINT = "/ticker";
+    public static final String GET_PRODUCT_TRADE_ENDPOINT = "/trades";
 
 }
