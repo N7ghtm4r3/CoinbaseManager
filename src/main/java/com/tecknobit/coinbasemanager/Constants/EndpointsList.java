@@ -42,5 +42,6 @@ public class EndpointsList {
 
     /**ExchangePro: Profile endpoints**/
     public static final String PROFILES_ENDPOINT = "/profiles";
-
+    public static final String TRANSFER_BETWEEN_PROFILES_ENDPOINT = "/transfer";
+    public static final String DELETE_PROFILE_ENDPOINT = "/deactivate";
 }
