@@ -40,4 +40,7 @@ public class EndpointsList {
     public static final String GET_PRODUCT_TICKER_ENDPOINT = "/ticker";
     public static final String GET_PRODUCT_TRADE_ENDPOINT = "/trades";
 
+    /**ExchangePro: Profile endpoints**/
+    public static final String PROFILES_ENDPOINT = "/profiles";
+
 }

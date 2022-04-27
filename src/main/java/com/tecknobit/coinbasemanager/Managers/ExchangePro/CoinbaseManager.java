@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 public class CoinbaseManager {
 
+    /**Useful for workflow of library**/
     public static final String BASE_ENDPOINT = "https://api.exchange.coinbase.com";
     protected static final String CB_ACCESS_KEY = "cb-access-key";
     protected static final String CB_ACCESS_SIGN = "cb-access-sign";
