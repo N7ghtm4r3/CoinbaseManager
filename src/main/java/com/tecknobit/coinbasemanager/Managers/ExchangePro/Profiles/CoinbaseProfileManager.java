@@ -11,6 +11,12 @@ import java.util.HashMap;
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
 
+/**
+ *  The {@code CoinbaseProfileManager} class is useful to manage all Coinbase profiles endpoints
+ *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+ *  @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class CoinbaseProfileManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseProfile manager
@@ -53,30 +59,64 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase);
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * any params required
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account as {@link String}
+     * **/
     public String getProfiles() throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD);
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * any params required
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account as {@link JSONArray}
+     * **/
     public JSONArray getProfilesJSON() throws Exception {
         return new JSONArray(getProfiles());
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * any params required
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account list as {@link ArrayList} of {@link Profile}
+     * **/
     public ArrayList<Profile> getProfilesList() throws Exception {
         return assembleProfilesList(new JSONArray(getProfiles()));
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account as {@link String}
+     * **/
     public String getProfiles(boolean active) throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET_METHOD);
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account as {@link JSONArray}
+     * **/
     public JSONArray getProfilesJSON(boolean active) throws Exception {
         return new JSONArray(getProfiles(active));
     }
 
+    /** Request to get profiles of a Coinbase's account
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles
+     * @return profiles of a Coinbase's account list as {@link ArrayList} of {@link Profile}
+     * **/
     public ArrayList<Profile> getProfilesList(boolean active) throws Exception {
         return assembleProfilesList(new JSONArray(getProfiles(active)));
     }
 
+    /** Method to assemble a profile list
+     * @param #jsonProfiles: jsonArray obtained by response request
+     * @return profile list as {@link ArrayList} of {@link Profile}
+     * **/
     private ArrayList<Profile> assembleProfilesList(JSONArray jsonProfiles){
         ArrayList<Profile> profiles = new ArrayList<>();
         for (int j=0; j < jsonProfiles.length(); j++)
@@ -84,20 +124,43 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return profiles;
     }
 
+    /** Request to create a profile
+     * @param #name: name of profile to create
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile
+     * @return result of creation profile as {@link String}
+     * **/
     public String createProfile(String name) throws Exception {
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("name", name);
         return sendBodyParamsAPIRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
     }
 
+    /** Request to create a profile
+     * @param #name: name of profile to create
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile
+     * @return result of creation profile as {@link JSONObject}
+     * **/
     public JSONObject createProfileJSON(String name) throws Exception {
         return new JSONObject(createProfile(name));
     }
 
+    /** Request to create a profile
+     * @param #name: name of profile to create
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile
+     * @return result of creation profile as {@link Profile} object
+     * **/
     public Profile createProfileObject(String name) throws Exception {
         return assembleProfileObject(new JSONObject(createProfile(name)));
     }
 
+    /** Request to transfer funds between profiles
+     * @param #from: identifier of profile where starts funds
+     * @param #to: identifier of profile where arrive funds
+     * @param #currency: currency to be transferred
+     * @param #amount: amount to be transferred
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer
+     * @return result of successful transfer or not as boolean
+     * **/
     public boolean transferFundsBetweenProfiles(String from, String to, String currency, double amount) throws Exception {
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("from", from);
@@ -107,30 +170,69 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link String}
+     * **/
     public String getProfileById(String profileId) throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET_METHOD);
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link JSONObject}
+     * **/
     public JSONObject getProfileByIdJSON(String profileId) throws Exception {
         return new JSONObject(getProfileById(profileId));
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link Profile} object
+     * **/
     public Profile getProfileByIdObject(String profileId) throws Exception {
         return assembleProfileObject(new JSONObject(getProfileById(profileId)));
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link String}
+     * **/
     public String getProfileById(String profileId, boolean active) throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET_METHOD);
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link JSONObject}
+     * **/
     public JSONObject getProfileByIdJSON(String profileId, boolean active) throws Exception {
         return new JSONObject(getProfileById(profileId, active));
     }
 
+    /** Request to get a single Coinbase's profile
+     * @param #profileId: identifier of profile from fetch details
+     * @param #active: flag if profile is active or not
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile
+     * @return single profile as {@link Profile} object
+     * **/
     public Profile getProfileByIdObject(String profileId, boolean active) throws Exception {
         return assembleProfileObject(new JSONObject(getProfileById(profileId, active)));
     }
 
+    /** Request to rename a profile
+     * @param #profileId: identifier of profile to change
+     * @param #name: name to assign at profile to change
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile
+     * @return result of renaming as {@link String}
+     * **/
     public String renameProfile(String profileId, String name) throws Exception {
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("profileId", profileId);
@@ -138,22 +240,30 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, bodyParams);
     }
 
+    /** Request to rename a profile
+     * @param #profileId: identifier of profile to change
+     * @param #name: name to assign at profile to change
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile
+     * @return result of renaming as {@link JSONObject}
+     * **/
     public JSONObject renameProfileJSON(String profileId, String name) throws Exception {
         return new JSONObject(renameProfile(profileId, name));
     }
 
+    /** Request to rename a profile
+     * @param #profileId: identifier of profile to change
+     * @param #name: name to assign at profile to change
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile
+     * @return result of renaming as {@link Profile} object
+     * **/
     public Profile renameProfileObject(String profileId, String name) throws Exception {
         return assembleProfileObject(new JSONObject(renameProfile(profileId, name)));
     }
 
-    public boolean deleteProfile(String profileId, String to) throws Exception {
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("profileId", profileId);
-        bodyParams.put("to", to);
-        return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
-                , PUT_METHOD, bodyParams).equals("{}");
-    }
-
+    /** Method to assemble a Profile object
+     * @param #jsonProfile: jsonObject obtained by response request
+     * @return profile as {@link Profile} object
+     * **/
     private Profile assembleProfileObject(JSONObject jsonProfile){
         return new Profile(jsonProfile.getString("id"),
                 jsonProfile.getString("user_id"),
@@ -163,6 +273,20 @@ public class CoinbaseProfileManager extends CoinbaseManager {
                 jsonProfile.getString("created_at"),
                 jsonProfile.getBoolean("has_margin")
         );
+    }
+
+    /** Request to delete a profile
+     * @param #profileId: identifier of buck profile to delete
+     * @param #to: identifier of profile do delete
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate
+     * @return result of deletion or not as boolean
+     * **/
+    public boolean deleteProfile(String profileId, String to) throws Exception {
+        HashMap<String, Object> bodyParams = new HashMap<>();
+        bodyParams.put("profileId", profileId);
+        bodyParams.put("to", to);
+        return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
+                , PUT_METHOD, bodyParams).equals("{}");
     }
 
 }
