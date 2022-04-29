@@ -1,4 +1,4 @@
-plugins {
+plugins { q
     id 'java'
     id 'maven-publish'
 }
