@@ -35,6 +35,46 @@ public class Report {
         this.fileCount = fileCount;
     }
 
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getCompletedAt() {
+        return completedAt;
+    }
+
+    public String getExpiresAt() {
+        return expiresAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public ReportParams getReportParams() {
+        return reportParams;
+    }
+
+    public String getFileCount() {
+        return fileCount;
+    }
+
     public static class ReportParams{
 
         private final String startDate;
@@ -60,6 +100,42 @@ public class Report {
             this.reportUser = reportUser;
         }
 
+        public String getStartDate() {
+            return startDate;
+        }
+
+        public String getEndDate() {
+            return endDate;
+        }
+
+        public String getFormat() {
+            return format;
+        }
+
+        public String getProductId() {
+            return productId;
+        }
+
+        public String getAccountId() {
+            return accountId;
+        }
+
+        public String getProfileId() {
+            return profileId;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public boolean isNewYorkState() {
+            return newYorkState;
+        }
+
+        public ReportUser getReportUser() {
+            return reportUser;
+        }
+
         public static class ReportUser{
 
             private final String createdAt;
@@ -78,8 +154,112 @@ public class Report {
             private final ArrayList<ReportPreference> reportPreferences;
             private final boolean hasDefault;
 
+            public ReportUser(String createdAt, String activeAt, String id, String name, String email, String roles,
+                              boolean isBanned, String permissions, String userType, boolean fullFillsNewRequirements,
+                              String flags, String details, String oauthClient, ArrayList<ReportPreference> reportPreferences,
+                              boolean hasDefault) {
+                this.createdAt = createdAt;
+                this.activeAt = activeAt;
+                this.id = id;
+                this.name = name;
+                this.email = email;
+                this.roles = roles;
+                this.isBanned = isBanned;
+                this.permissions = permissions;
+                this.userType = userType;
+                this.fullFillsNewRequirements = fullFillsNewRequirements;
+                this.flags = flags;
+                this.details = details;
+                this.oauthClient = oauthClient;
+                this.reportPreferences = reportPreferences;
+                this.hasDefault = hasDefault;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public String getActiveAt() {
+                return activeAt;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getEmail() {
+                return email;
+            }
+
+            public String getRoles() {
+                return roles;
+            }
+
+            public boolean isBanned() {
+                return isBanned;
+            }
+
+            public String getPermissions() {
+                return permissions;
+            }
+
+            public String getUserType() {
+                return userType;
+            }
+
+            public boolean isFullFillsNewRequirements() {
+                return fullFillsNewRequirements;
+            }
+
+            public String getFlags() {
+                return flags;
+            }
+
+            public String getDetails() {
+                return details;
+            }
+
+            public String getOauthClient() {
+                return oauthClient;
+            }
+
+            public ArrayList<ReportPreference> getReportPreferences() {
+                return reportPreferences;
+            }
+
+            public boolean isHasDefault() {
+                return hasDefault;
+            }
+
             public static class ReportPreference{
-                
+
+                private final String preferredMarket;
+                private final String marginTermsCompletedUTC;
+                private final String marginTutorialCompletedUtc;
+
+                public ReportPreference(String preferredMarket, String marginTermsCompletedUTC,
+                                        String marginTutorialCompletedUtc) {
+                    this.preferredMarket = preferredMarket;
+                    this.marginTermsCompletedUTC = marginTermsCompletedUTC;
+                    this.marginTutorialCompletedUtc = marginTutorialCompletedUtc;
+                }
+
+                public String getPreferredMarket() {
+                    return preferredMarket;
+                }
+
+                public String getMarginTermsCompletedUTC() {
+                    return marginTermsCompletedUTC;
+                }
+
+                public String getMarginTutorialCompletedUtc() {
+                    return marginTutorialCompletedUtc;
+                }
+
             }
 
         }

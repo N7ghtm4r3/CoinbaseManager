@@ -2,6 +2,9 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports;
 
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 
+import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.coinbasemanager.Constants.EndpointsList.REPORTS_ENDPOINT;
+
 public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseReports manager
@@ -42,6 +45,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * **/
     public CoinbaseReportsManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
+    }
+
+    public String getAllReports(String type) throws Exception {
+        return sendAPIRequest(REPORTS_ENDPOINT + "?=type" + type, GET_METHOD);
     }
 
 }
