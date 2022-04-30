@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
 import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Trading.TradingTools;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -23,6 +24,7 @@ public class CoinbaseManager {
     protected static final String CB_ACCESS_PASSPHRASE = "cb-access-passphrase";
     protected final HashMap<String, String> headers;
     protected final APIRequest apiRequest;
+    protected final TradingTools tradingTools;
     private final String apiSecret;
     private final String passphrase;
     private final String apiKey;
@@ -43,6 +45,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
+        tradingTools = new TradingTools();
         headers = new HashMap<>();
         keysInserted = false;
     }
@@ -58,6 +61,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
+        tradingTools = new TradingTools();
         headers = new HashMap<>();
         keysInserted = false;
     }
@@ -73,6 +77,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
+        tradingTools = new TradingTools();
         headers = new HashMap<>();
         keysInserted = false;
     }
@@ -85,8 +90,9 @@ public class CoinbaseManager {
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase) {
         apiRequest = new APIRequest();
         this.apiKey = apiKey;
-        this.passphrase = passphrase;
         this.apiSecret = apiSecret;
+        this.passphrase = passphrase;
+        tradingTools = new TradingTools();
         headers = new HashMap<>();
         keysInserted = false;
     }
@@ -161,6 +167,64 @@ public class CoinbaseManager {
         return apiRequest.getResponseStatusCode();
     }
 
+    /** Method to round a value
+     * @param #value: value to round
+     * @param #decimalDigits: number of digits to round final value
+     * @return value rounded with decimalDigits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double roundValue(double value, int decimalDigits){
+        return tradingTools.roundValue(value, decimalDigits);
+    }
+
+    /** Method to get percent between two values
+     * @param #startValue: first value to make compare
+     * @param #finalValue: last value to compare and get percent by first value
+     * @return percent value as double es. 8 or -8
+     * @throws IllegalArgumentException if startValue or lastValue are negative
+     * **/
+    public double getTrendPercent(double startValue, double finalValue){
+        return tradingTools.computeAssetPercent(startValue, finalValue);
+    }
+
+    /** Method to get percent between two values and round it
+     * @param #startValue: first value to make compare
+     * @param #finalValue: last value to compare and get percent by first value
+     * @param #decimalDigits: number of digits to round final percent value
+     * @return percent value as double es. 8 or -8
+     * @throws IllegalArgumentException if startValue or lastValue are negative
+     * **/
+    public double getTrendPercent(double startValue, double finalValue, int decimalDigits){
+        return tradingTools.computeAssetPercent(startValue, finalValue, decimalDigits);
+    }
+
+    /** Method to format percent between two values and textualize it
+     * @param #percent: value to format
+     * @return percent value formatted es. +8% or -8% as {@link String}
+     * **/
+    public String getTextTrendPercent(double percent){
+        return tradingTools.textualizeAssetPercent(percent);
+    }
+
+    /** Method to get percent between two values and textualize it
+     * @param #startValue: first value to make compare
+     * @param #finalValue: last value to compare and get percent by first value
+     * @return percent value es. +8% or -8% as {@link String}
+     * **/
+    public String getTextTrendPercent(double startValue, double finalValue){
+        return tradingTools.textualizeAssetPercent(startValue, finalValue);
+    }
+
+    /** Method to get percent between two values and textualize it
+     * @param #startValue: first value to make compare
+     * @param #finalValue: last value to compare and get percent by first value
+     * @param #decimalDigits: number of digits to round final percent value
+     * @return percent value es. +8% or -8% as {@link String}
+     * **/
+    public String getTextTrendPercent(double startValue, double finalValue, int decimalDigits){
+        return tradingTools.textualizeAssetPercent(startValue, finalValue, decimalDigits);
+    }
+
     /** Method to get Coinbase api key
      * any params required
      * @return api key as {@link String}
@@ -183,6 +247,14 @@ public class CoinbaseManager {
      * **/
     public String getPassphrase() {
         return passphrase;
+    }
+
+    /** Method to get TradingTools object
+     * any params required
+     * @return tradingTools as {@link TradingTools}
+     * **/
+    public TradingTools getTradingTools() {
+        return tradingTools;
     }
 
 }

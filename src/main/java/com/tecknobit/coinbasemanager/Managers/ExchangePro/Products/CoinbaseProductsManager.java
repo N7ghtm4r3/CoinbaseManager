@@ -470,4 +470,35 @@ public class CoinbaseProductsManager extends CoinbaseManager {
         return trades;
     }
 
+    /** Method to get forecast of a cryptocurrency in base of days's gap inserted
+     * @param #productId: productId to calculate forecast es. BTC-USD
+     * @param #intervalDays: days gap for the prevision range
+     * @param #granularity: interval for candles
+     * @param #toleranceValue: tolerance for select similar value compared to lastValue inserted
+     * @return forecast value as a double es. 8 or -8
+     * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
+     * **/
+    public double getSymbolForecast(String productId, int intervalDays, int granularity, int toleranceValue) throws Exception {
+        ArrayList<Double> historicalValues = new ArrayList<>();
+        HashMap<String, Object> intervalMap = new HashMap<>();
+        intervalMap.put("granularity", granularity);
+        for (Candle candle : getProductCandlesList(productId, intervalMap))
+            historicalValues.add(candle.getHigh());
+        return tradingTools.computeTPTOPAsset(historicalValues, getProductStatsObject(productId).getLast(),
+                intervalDays,toleranceValue);
+    }
+
+    /** Method to get forecast of a cryptocurrency in base of days's gap inserted
+     * @param #productId: productId to calculate forecast es. BTC-USD
+     * @param #intervalDays: days gap for the prevision range
+     * @param #granularity: interval for candles
+     * @param #toleranceValue: tolerance for select similar value compared to lastValue inserted
+     * @param #decimalDigits: number of digits to round final forecast value
+     * @return forecast value as a double es. 8 or -8
+     * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
+     * **/
+    public double getSymbolForecast(String productId, int intervalDays, int granularity, int toleranceValue, int decimalDigits) throws Exception {
+        return tradingTools.roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
+    }
+
 }
