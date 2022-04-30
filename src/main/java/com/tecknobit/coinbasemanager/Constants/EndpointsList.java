@@ -48,5 +48,7 @@ public class EndpointsList {
     /**ExchangePro: Reports endpoints**/
     public static final String REPORTS_ENDPOINT = "/reports";
 
+    /**ExchangePro: Users endpoints**/
+    public static final String EXCHANGE_LIMITS_ENDPOINT = "/exchange-limits";
 
 }
