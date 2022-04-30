@@ -1,8 +1,16 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records;
 
 import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Users.Records.ExchangeLimits;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+/**
+ * The {@code ReportDetails} class is useful to format general ReportDetails object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
 
 public class ReportDetails {
 
@@ -28,6 +36,11 @@ public class ReportDetails {
         return status;
     }
 
+    /**
+     * The {@code UserDetails} class is useful to obtain and format general UserDetails object for {@link Report} and {@link ExchangeLimits} object
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * **/
     public static class UserDetails{
 
         private final String createdAt;

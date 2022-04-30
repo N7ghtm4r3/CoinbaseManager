@@ -7,6 +7,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * The {@code ExchangeLimits} class is useful to format ExchangeLimits object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class ExchangeLimits extends ReportDetails.UserDetails {
 
     private final String termsAccepted;
@@ -60,6 +66,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         address = new Address(jsonHelper.getJSONObject("address"));
     }
 
+    /** Method to assemble a test list
+     * @param #jsonTests: jsonArray obtained by response request
+     * any params required
+     * **/
     private void assembleTestList(JSONArray jsonTests){
         testGroups = new ArrayList<>();
         for (int j=0; j < jsonTests.length(); j++){
@@ -151,6 +161,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return jsonHelper;
     }
 
+    /**
+     * The {@code Test} class is useful to obtain and format Test object for ExchangeLimits
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * **/
     public static class Test{
 
         private final String test;
@@ -177,6 +191,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     }
 
+    /**
+     * The {@code Country} class is useful to obtain and format Country object for ExchangeLimits
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * **/
     public static class Country{
 
         private final String code;
@@ -209,6 +227,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     }
 
+    /**
+     * The {@code Address} class is useful to obtain and format Address object for ExchangeLimits
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * **/
     public static class Address{
 
         private final String line1;
@@ -263,6 +285,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     }
 
+    /**
+     * The {@code MarginInformation} class is useful to obtain and format MarginInformation object for ExchangeLimits
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * **/
     public static class MarginInformation{
 
         private final boolean eligible;

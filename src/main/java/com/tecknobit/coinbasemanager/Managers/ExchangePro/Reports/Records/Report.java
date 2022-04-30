@@ -3,8 +3,15 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records;
 import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import org.json.JSONObject;
 
+/**
+ * The {@code Report} class is useful to format Report object
+ * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+ * @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class Report extends ReportDetails{
 
+    /**Constants used in report requests**/
     public static final String FILLS_REPORT_TYPE = "fills";
     public static final String ACCOUNT_REPORT_TYPE = "account";
     public static final String OTC_FILLS_REPORT_TYPE = "otc_fills";
@@ -68,6 +75,10 @@ public class Report extends ReportDetails{
         return jsonHelper.getString("file_count");
     }
 
+    /**
+     * The {@code ParamsReport} class is useful to obtain and format ParamsReport object for Report
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+     * **/
     public static class ParamsReport {
 
         private final String startDate;
@@ -150,6 +161,10 @@ public class Report extends ReportDetails{
             return jsonHelper.getBoolean("is_brokerage");
         }
 
+        /**
+         * The {@code UserReport} class is useful to obtain and format UserReport object for Report
+         * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+         * **/
         public static class UserReport extends UserDetails{
 
             private final String oauthClient;
