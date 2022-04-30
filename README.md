@@ -138,7 +138,7 @@ For support, email infotecknobitcompany@gmail.com.
 [![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://github.com/N7ghtm4r3/BinanceManager/blob/main/README.md)
 
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Tecknobit)](https://twitter.com/tecknobit)
-[![](https://jitpack.io/v/N7ghtm4r3/BinanceManager.svg)](https://jitpack.io/#N7ghtm4r3/BinanceManager)
+[![](https://jitpack.io/v/N7ghtm4r3/CoinbaseManager.svg)](https://jitpack.io/#N7ghtm4r3/CoinbaseManager)
 
 ## Donations 
 
