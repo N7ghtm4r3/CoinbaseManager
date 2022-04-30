@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.Manager.APIRequest.PUT_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.REPORTS_ENDPOINT;
 
 public class CoinbaseReportsManager extends CoinbaseManager {
@@ -84,6 +85,19 @@ public class CoinbaseReportsManager extends CoinbaseManager {
             reports.add(assembleReportObject(jsonReports.getJSONObject(j)));
         return reports;
     }
+
+    public String create1099KReport(int year) throws Exception {
+        HashMap<String, Object> bodyParams = new HashMap<>();
+        bodyParams.put("type", Report.REPORT_TYPE_1099K);
+        bodyParams.put("year", year);
+        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
+    }
+
+    public JSONObject create1099KReportJSON(int year) throws Exception {
+        return new JSONObject(create1099KReport(year));
+    }
+
+
 
     private Report assembleReportObject(JSONObject jsonReport){
         return new Report(jsonReport.getString("created_at"),

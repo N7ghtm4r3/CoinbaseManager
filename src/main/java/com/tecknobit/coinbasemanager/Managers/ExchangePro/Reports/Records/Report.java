@@ -3,7 +3,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records;
 import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import org.json.JSONObject;
 
-public class Report {
+public class Report extends ReportDetails{
 
     public static final String FILLS_REPORT_TYPE = "fills";
     public static final String ACCOUNT_REPORT_TYPE = "account";
@@ -14,9 +14,6 @@ public class Report {
     private final String createdAt;
     private final String completedAt;
     private final String expiresAt;
-    private final String id;
-    private final String type;
-    private final String status;
     private final String userId;
     private final String fileUrl;
     private final ParamsReport paramsReport;
@@ -24,12 +21,10 @@ public class Report {
 
     public Report(String createdAt, String completedAt, String expiresAt, String id, String type, String status,
                   String userId, String fileUrl, JsonHelper jsonHelper) {
+        super(id, type, status);
         this.createdAt = createdAt;
         this.completedAt = completedAt;
         this.expiresAt = expiresAt;
-        this.id = id;
-        this.type = type;
-        this.status = status;
         this.userId = userId;
         this.fileUrl = fileUrl;
         this.jsonHelper = jsonHelper;
@@ -55,18 +50,6 @@ public class Report {
 
     public String getExpiresAt() {
         return expiresAt;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public String getUserId() {
