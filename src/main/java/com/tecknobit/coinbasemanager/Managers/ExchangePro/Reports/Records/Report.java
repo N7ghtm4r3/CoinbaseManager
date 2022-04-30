@@ -1,6 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records;
 
-import java.util.ArrayList;
+import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import org.json.JSONObject;
 
 public class Report {
 
@@ -18,11 +19,11 @@ public class Report {
     private final String status;
     private final String userId;
     private final String fileUrl;
-    private final ReportParams reportParams;
-    private final String fileCount;
+    private final ParamsReport paramsReport;
+    private final JsonHelper jsonHelper;
 
     public Report(String createdAt, String completedAt, String expiresAt, String id, String type, String status,
-                  String userId, String fileUrl, ReportParams reportParams, String fileCount) {
+                  String userId, String fileUrl, JsonHelper jsonHelper) {
         this.createdAt = createdAt;
         this.completedAt = completedAt;
         this.expiresAt = expiresAt;
@@ -31,8 +32,17 @@ public class Report {
         this.status = status;
         this.userId = userId;
         this.fileUrl = fileUrl;
-        this.reportParams = reportParams;
-        this.fileCount = fileCount;
+        this.jsonHelper = jsonHelper;
+        this.paramsReport = new ParamsReport(jsonHelper.getString("start_date"),
+                jsonHelper.getString("end_date"),
+                jsonHelper.getString("format"),
+                jsonHelper.getString("product_id"),
+                jsonHelper.getString("account_id"),
+                jsonHelper.getString("profile_id"),
+                jsonHelper.getString("email"),
+                jsonHelper.getBoolean("new_york_state"),
+                new JsonHelper(jsonHelper.getJSONObject("user"))
+        );
     }
 
     public String getCreatedAt() {
@@ -67,15 +77,15 @@ public class Report {
         return fileUrl;
     }
 
-    public ReportParams getReportParams() {
-        return reportParams;
+    public ParamsReport getParamsReport() {
+        return paramsReport;
     }
 
     public String getFileCount() {
-        return fileCount;
+        return jsonHelper.getString("file_count");
     }
 
-    public static class ReportParams{
+    public static class ParamsReport {
 
         private final String startDate;
         private final String endDate;
@@ -85,10 +95,11 @@ public class Report {
         private final String profileId;
         private final String email;
         private final boolean newYorkState;
-        private final ReportUser reportUser;
+        private final UserReport userReport;
+        private final JsonHelper jsonHelper;
 
-        public ReportParams(String startDate, String endDate, String format, String productId, String accountId,
-                            String profileId, String email, boolean newYorkState, ReportUser reportUser) {
+        public ParamsReport(String startDate, String endDate, String format, String productId, String accountId,
+                            String profileId, String email, boolean newYorkState, JsonHelper jsonHelper) {
             this.startDate = startDate;
             this.endDate = endDate;
             this.format = format;
@@ -97,7 +108,19 @@ public class Report {
             this.profileId = profileId;
             this.email = email;
             this.newYorkState = newYorkState;
-            this.reportUser = reportUser;
+            this.jsonHelper = jsonHelper;
+            this.userReport = new UserReport(jsonHelper.getString("created_at"),
+                    jsonHelper.getString("active_at"),
+                    jsonHelper.getString("id"),
+                    jsonHelper.getString("name"),
+                    jsonHelper.getString("email"),
+                    jsonHelper.getBoolean("is_banned"),
+                    jsonHelper.getString("user_type"),
+                    jsonHelper.getBoolean("fulfills_new_requirements"),
+                    jsonHelper.getString("oauth_client"),
+                    jsonHelper.getBoolean("has_default"),
+                    jsonHelper
+            );
         }
 
         public String getStartDate() {
@@ -132,47 +155,50 @@ public class Report {
             return newYorkState;
         }
 
-        public ReportUser getReportUser() {
-            return reportUser;
+        public UserReport getUserReport() {
+            return userReport;
         }
 
-        public static class ReportUser{
+        public String getDefaultProfileId(){
+            return jsonHelper.getString("default_profile_id");
+        }
+
+        public boolean isBrokerage(){
+            return jsonHelper.getBoolean("is_brokerage");
+        }
+
+        public String getTaxDomain(){
+            return jsonHelper.getString("tax_domain");
+        }
+
+        public static class UserReport {
 
             private final String createdAt;
             private final String activeAt;
             private final String id;
             private final String name;
             private final String email;
-            private final String roles;
             private final boolean isBanned;
-            private final String permissions;
             private final String userType;
             private final boolean fullFillsNewRequirements;
-            private final String flags;
-            private final String details;
             private final String oauthClient;
-            private final ArrayList<ReportPreference> reportPreferences;
             private final boolean hasDefault;
+            private final JsonHelper jsonUser;
 
-            public ReportUser(String createdAt, String activeAt, String id, String name, String email, String roles,
-                              boolean isBanned, String permissions, String userType, boolean fullFillsNewRequirements,
-                              String flags, String details, String oauthClient, ArrayList<ReportPreference> reportPreferences,
-                              boolean hasDefault) {
+            public UserReport(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
+                              String userType, boolean fullFillsNewRequirements, String oauthClient, boolean hasDefault,
+                              JsonHelper jsonUser) {
                 this.createdAt = createdAt;
                 this.activeAt = activeAt;
                 this.id = id;
                 this.name = name;
                 this.email = email;
-                this.roles = roles;
                 this.isBanned = isBanned;
-                this.permissions = permissions;
                 this.userType = userType;
                 this.fullFillsNewRequirements = fullFillsNewRequirements;
-                this.flags = flags;
-                this.details = details;
                 this.oauthClient = oauthClient;
-                this.reportPreferences = reportPreferences;
                 this.hasDefault = hasDefault;
+                this.jsonUser = jsonUser;
             }
 
             public String getCreatedAt() {
@@ -195,16 +221,16 @@ public class Report {
                 return email;
             }
 
-            public String getRoles() {
-                return roles;
+            public JSONObject getRoles() {
+                return jsonUser.getJSONObject("roles");
             }
 
             public boolean isBanned() {
                 return isBanned;
             }
 
-            public String getPermissions() {
-                return permissions;
+            public JSONObject getPermissions() {
+                return jsonUser.getJSONObject("permissions");
             }
 
             public String getUserType() {
@@ -215,51 +241,24 @@ public class Report {
                 return fullFillsNewRequirements;
             }
 
-            public String getFlags() {
-                return flags;
+            public JSONObject getFlags() {
+                return jsonUser.getJSONObject("flags");
             }
 
-            public String getDetails() {
-                return details;
+            public JSONObject getDetails() {
+                return jsonUser.getJSONObject("details");
             }
 
             public String getOauthClient() {
                 return oauthClient;
             }
 
-            public ArrayList<ReportPreference> getReportPreferences() {
-                return reportPreferences;
-            }
-
             public boolean isHasDefault() {
                 return hasDefault;
             }
 
-            public static class ReportPreference{
-
-                private final String preferredMarket;
-                private final String marginTermsCompletedUTC;
-                private final String marginTutorialCompletedUtc;
-
-                public ReportPreference(String preferredMarket, String marginTermsCompletedUTC,
-                                        String marginTutorialCompletedUtc) {
-                    this.preferredMarket = preferredMarket;
-                    this.marginTermsCompletedUTC = marginTermsCompletedUTC;
-                    this.marginTutorialCompletedUtc = marginTutorialCompletedUtc;
-                }
-
-                public String getPreferredMarket() {
-                    return preferredMarket;
-                }
-
-                public String getMarginTermsCompletedUTC() {
-                    return marginTermsCompletedUTC;
-                }
-
-                public String getMarginTutorialCompletedUtc() {
-                    return marginTutorialCompletedUtc;
-                }
-
+            public JSONObject getPreferences(){
+                return jsonUser.getJSONObject("preferences");
             }
 
         }
