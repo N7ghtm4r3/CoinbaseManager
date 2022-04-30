@@ -9,6 +9,12 @@ import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.EXCHANGE_LIMITS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.USERS_ENDPOINT;
 
+/**
+ *  The {@code CoinbaseUsersManager} class is useful to manage all Coinbase users endpoints
+ *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+ *  @author N7ghtm4r3 - Tecknobit
+ * **/
+
 public class CoinbaseUsersManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseUsers manager
@@ -51,14 +57,29 @@ public class CoinbaseUsersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase);
     }
 
+    /** Request to get exchange user limits for a user
+     * @param #userId: type of report from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * @return exchange user limits for a user as {@link String}
+     * **/
     public String getUserExchangeLimits(String userId) throws Exception {
         return sendAPIRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT, GET_METHOD);
     }
 
+    /** Request to get exchange user limits for a user
+     * @param #userId: type of report from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * @return exchange user limits for a user as {@link JSONObject}
+     * **/
     public JSONObject getUserExchangeLimitsJSON(String userId) throws Exception {
         return new JSONObject(getUserExchangeLimits(userId));
     }
 
+    /** Request to get exchange user limits for a user
+     * @param #userId: type of report from fetch details
+     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits
+     * @return exchange user limits for a user as {@link ExchangeLimits} object
+     * **/
     public ExchangeLimits getUserExchangeLimitsObject(String userId) throws Exception {
         jsonHelper = new JsonHelper(getUserExchangeLimitsJSON(userId));
         return new ExchangeLimits(jsonHelper.getString("created_at"),

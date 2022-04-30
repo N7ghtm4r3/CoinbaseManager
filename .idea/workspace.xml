@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4365f22a-e5d1-46ea-8174-7cd8c14d93e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/ReportDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/ReportDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/CoinbaseReportsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/CoinbaseReportsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/CoinbaseUsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/CoinbaseUsersManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/Records/ExchangeLimits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/Records/ExchangeLimits.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650207438683</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Upload first file">
-      <created>1650466844929</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1650466844929</updated>
     </task>
     <task id="LOCAL-00013" summary="Upload first file">
       <created>1650468394475</created>
@@ -448,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651327200781</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Upload first file">
+      <created>1651329049174</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1651329049175</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
