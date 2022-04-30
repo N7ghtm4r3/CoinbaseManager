@@ -150,82 +150,20 @@ public class Report extends ReportDetails{
             return jsonHelper.getBoolean("is_brokerage");
         }
 
-        public String getTaxDomain(){
-            return jsonHelper.getString("tax_domain");
-        }
+        public static class UserReport extends UserDetails{
 
-        public static class UserReport {
-
-            private final String createdAt;
-            private final String activeAt;
-            private final String id;
-            private final String name;
-            private final String email;
-            private final boolean isBanned;
-            private final String userType;
-            private final boolean fullFillsNewRequirements;
             private final String oauthClient;
-            private final boolean hasDefault;
-            private final JsonHelper jsonUser;
 
             public UserReport(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
                               String userType, boolean fullFillsNewRequirements, String oauthClient, boolean hasDefault,
                               JsonHelper jsonUser) {
-                this.createdAt = createdAt;
-                this.activeAt = activeAt;
-                this.id = id;
-                this.name = name;
-                this.email = email;
-                this.isBanned = isBanned;
-                this.userType = userType;
-                this.fullFillsNewRequirements = fullFillsNewRequirements;
+                super(createdAt, activeAt, id, name, email, isBanned, userType, fullFillsNewRequirements, hasDefault,
+                        jsonUser);
                 this.oauthClient = oauthClient;
-                this.hasDefault = hasDefault;
-                this.jsonUser = jsonUser;
-            }
-
-            public String getCreatedAt() {
-                return createdAt;
-            }
-
-            public String getActiveAt() {
-                return activeAt;
-            }
-
-            public String getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public String getEmail() {
-                return email;
             }
 
             public JSONObject getRoles() {
                 return jsonUser.getJSONObject("roles");
-            }
-
-            public boolean isBanned() {
-                return isBanned;
-            }
-
-            public JSONObject getPermissions() {
-                return jsonUser.getJSONObject("permissions");
-            }
-
-            public String getUserType() {
-                return userType;
-            }
-
-            public boolean isFullFillsNewRequirements() {
-                return fullFillsNewRequirements;
-            }
-
-            public JSONObject getFlags() {
-                return jsonUser.getJSONObject("flags");
             }
 
             public JSONObject getDetails() {
@@ -234,14 +172,6 @@ public class Report extends ReportDetails{
 
             public String getOauthClient() {
                 return oauthClient;
-            }
-
-            public boolean isHasDefault() {
-                return hasDefault;
-            }
-
-            public JSONObject getPreferences(){
-                return jsonUser.getJSONObject("preferences");
             }
 
         }
