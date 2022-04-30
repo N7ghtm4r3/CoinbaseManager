@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports;
 import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records.Report;
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records.ReportDetails;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -97,7 +98,24 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         return new JSONObject(create1099KReport(year));
     }
 
+    public ReportDetails create1099KReportObject(int year) throws Exception {
+        return assembleReportDetails(new JSONObject(create1099KReport(year)));
+    }
 
+    public String create1099KReport(int year, HashMap<String, Object> extraBodyParams) throws Exception {
+        HashMap<String, Object> bodyParams = new HashMap<>();
+        bodyParams.put("type", Report.REPORT_TYPE_1099K);
+        bodyParams.put("year", year);
+        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
+    }
+
+    public JSONObject create1099KReportJSON(int year, HashMap<String, Object> extraBodyParams) throws Exception {
+        return new JSONObject(create1099KReport(year, extraBodyParams));
+    }
+
+    public ReportDetails create1099KReportObject(int year, HashMap<String, Object> extraBodyParams) throws Exception {
+        return assembleReportDetails(new JSONObject(create1099KReport(year, extraBodyParams)));
+    }
 
     private Report assembleReportObject(JSONObject jsonReport){
         return new Report(jsonReport.getString("created_at"),
@@ -109,6 +127,13 @@ public class CoinbaseReportsManager extends CoinbaseManager {
                 jsonReport.getString("user_id"),
                 jsonReport.getString("file_url"),
                 new JsonHelper(jsonReport.getJSONObject("params"))
+        );
+    }
+
+    private ReportDetails assembleReportDetails(JSONObject jsonReport){
+        return new ReportDetails(jsonReport.getString("id"),
+                jsonReport.getString("type"),
+                jsonReport.getString("status")
         );
     }
 
