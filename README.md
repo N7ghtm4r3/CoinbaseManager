@@ -105,7 +105,7 @@ try {
 // it return double type es. 1.544
 try {
     System.out.println(coinbaseProductsManager.roundValue(1,3));
-} catch (SystemException | IOException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 ```
