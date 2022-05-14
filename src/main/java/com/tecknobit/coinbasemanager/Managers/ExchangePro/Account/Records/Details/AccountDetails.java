@@ -9,8 +9,8 @@ public class AccountDetails {
 
     private final String createdAt;
     private final String id;
-    private final double amount;
-    private final String type;
+    private double amount;
+    private String type;
 
     public AccountDetails(String createdAt, String id, double amount, String type) {
         this.createdAt = createdAt;
@@ -31,8 +31,20 @@ public class AccountDetails {
         return amount;
     }
 
+    public void setAmount(double amount) {
+        if(amount < 0)
+            throw new IllegalArgumentException("Amount value cannot be less than 0");
+        this.amount = amount;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        if(type == null || type.isBlank())
+            throw new IllegalArgumentException("Type value cannot be empty or null");
+        this.type = type;
     }
 
 }

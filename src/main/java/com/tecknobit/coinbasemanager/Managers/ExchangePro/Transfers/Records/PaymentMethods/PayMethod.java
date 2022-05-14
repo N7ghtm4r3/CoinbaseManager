@@ -12,8 +12,12 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.Pay
 
 public class PayMethod {
 
-    private final String name;
-    private final String type;
+    public static final String PAYPAL_TYPE = "paypal";
+    public static final String BANK_TYPE = "bank";
+    public static final String FIAT_ACCOUNT_TYPE = "fiat_account";
+
+    private String name;
+    private String type;
 
     public PayMethod(String name, String type) {
         this.name = name;
@@ -24,8 +28,20 @@ public class PayMethod {
         return name;
     }
 
+    public void setName(String name) {
+        if(name == null || name.isBlank())
+            throw new IllegalArgumentException("Name value cannot be empty or null");
+        this.name = name;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        if(type == null || (!type.equals(FIAT_ACCOUNT_TYPE) && !type.equals(PAYPAL_TYPE) && !type.equals(BANK_TYPE)))
+            throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
+        this.type = type;
     }
 
     public static class PickerData{

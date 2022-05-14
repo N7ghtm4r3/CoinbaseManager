@@ -48,8 +48,8 @@ public class FiatAccountMethod extends PayMethod{
      * **/
     public static class FiatAccountPickerData extends PickerData{
 
-        private final double amount;
-        private final String currency;
+        private double amount;
+        private String currency;
 
         public FiatAccountPickerData(String symbol, double amount, String currency) {
             super(symbol);
@@ -61,8 +61,20 @@ public class FiatAccountMethod extends PayMethod{
             return amount;
         }
 
+        public void setAmount(double amount) {
+            if(amount < 0)
+                throw new IllegalArgumentException("Amount value cannot be less than 0");
+            this.amount = amount;
+        }
+
         public String getCurrency() {
             return currency;
+        }
+
+        public void setCurrency(String currency) {
+            if(currency == null || currency.isBlank())
+                throw new IllegalArgumentException("Currency value cannot be empty or null");
+            this.currency = currency;
         }
 
     }

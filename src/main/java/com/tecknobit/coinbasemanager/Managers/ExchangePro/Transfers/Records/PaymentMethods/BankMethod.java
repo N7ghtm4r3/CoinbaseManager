@@ -18,9 +18,9 @@ public class BankMethod extends PayMethod{
      * **/
     public static class BankPickerData extends PickerData{
 
-        private final String iban;
-        private final String institutionName;
-        private final String swift;
+        private String iban;
+        private String institutionName;
+        private String swift;
 
         public BankPickerData(String symbol, String iban, String institutionName, String swift) {
             super(symbol);
@@ -33,12 +33,33 @@ public class BankMethod extends PayMethod{
             return iban;
         }
 
+        public void setIban(String iban) {
+            if(iban == null || iban.isBlank())
+                throw new IllegalArgumentException("Iban value cannot be empty or null");
+            this.iban = iban;
+        }
+
         public String getInstitutionName() {
             return institutionName;
         }
 
+        public void setInstitutionName(String institutionName) {
+            if(institutionName == null || institutionName.isBlank())
+                throw new IllegalArgumentException("Institution name value cannot be empty or null");
+            this.institutionName = institutionName;
+        }
+
         public String getSwift() {
             return swift;
+        }
+
+        public void setSwift(String swift) {
+            if(swift == null || swift.isBlank())
+                throw new IllegalArgumentException("Swift value cannot be empty or null");
+            int swiftLength = swift.length();
+            if(swiftLength < 8 || swiftLength > 11)
+                throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
+            this.swift = swift;
         }
 
     }

@@ -15,11 +15,11 @@ public class Profile {
 
     private final String id;
     private final String userId;
-    private final String name;
-    private final boolean active;
-    private final boolean isDefault;
+    private String name;
+    private boolean active;
+    private boolean isDefault;
     private final String createdAt;
-    private final boolean hasMargin;
+    private boolean hasMargin;
 
     public Profile(String id, String userId, String name, boolean active, boolean isDefault, String createdAt,
                    boolean hasMargin) {
@@ -44,12 +44,26 @@ public class Profile {
         return name;
     }
 
+    public void setName(String name) {
+        if(name == null || name.isBlank())
+            throw new IllegalArgumentException("Name value cannot be empty or null");
+        this.name = name;
+    }
+
     public boolean isActive() {
         return active;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public boolean isDefault() {
         return isDefault;
+    }
+
+    public void setDefault(boolean aDefault) {
+        isDefault = aDefault;
     }
 
     public String getCreatedAt() {
@@ -58,6 +72,10 @@ public class Profile {
 
     public boolean isHasMargin() {
         return hasMargin;
+    }
+
+    public void setHasMargin(boolean hasMargin) {
+        this.hasMargin = hasMargin;
     }
 
 }

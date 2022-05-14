@@ -15,7 +15,7 @@ public class CryptoAddress {
 
     private final String id;
     private final String address;
-    private final ArrayList<AddressInfo> addressInfo;
+    private ArrayList<AddressInfo> addressInfoList;
     private final String name;
     private final String createdAt;
     private final String updatedAt;
@@ -25,14 +25,14 @@ public class CryptoAddress {
     private final String resourcePath;
     private final String depositUri;
     private final boolean exchangeDepositAddress;
-    private final ArrayList<Warning> warnings;
+    private ArrayList<Warning> warningsList;
 
     public CryptoAddress(String id, String address, JSONObject jsonAddressInfo, String name, String createdAt,
                          String updatedAt, String network, String uriScheme, String resource, String resourcePath,
                          String depositUri, boolean exchangeDepositAddress, JSONArray jsonWarnings) {
         this.id = id;
         this.address = address;
-        addressInfo = assembleAddressInfo(jsonAddressInfo);
+        addressInfoList = assembleAddressInfo(jsonAddressInfo);
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -42,7 +42,7 @@ public class CryptoAddress {
         this.resourcePath = resourcePath;
         this.depositUri = depositUri;
         this.exchangeDepositAddress = exchangeDepositAddress;
-        this.warnings = assembleWarningList(jsonWarnings);
+        this.warningsList = assembleWarningList(jsonWarnings);
     }
 
     /** Method to assemble an address info list
@@ -56,9 +56,9 @@ public class CryptoAddress {
         return addressInfo;
     }
 
-    /** Method to assemble a warnings list
+    /** Method to assemble a warningsList list
      * @param #jsonWarnings: jsonObject obtained by response request
-     * @return warnings list as {@link ArrayList} of {@link Warning}
+     * @return warningsList list as {@link ArrayList} of {@link Warning}
      * **/
     private ArrayList<Warning> assembleWarningList(JSONArray jsonWarnings){
         ArrayList<Warning> warnings = new ArrayList<>();
@@ -80,8 +80,21 @@ public class CryptoAddress {
         return address;
     }
 
-    public ArrayList<AddressInfo> getAddressInfo() {
-        return addressInfo;
+    public ArrayList<AddressInfo> getAddressInfoList() {
+        return addressInfoList;
+    }
+
+    public void setAddressInfoList(ArrayList<AddressInfo> addressInfoList) {
+        this.addressInfoList = addressInfoList;
+    }
+
+    public void insertAddressInfo(AddressInfo addressInfo){
+        if(!addressInfoList.contains(addressInfo))
+            addressInfoList.add(addressInfo);
+    }
+
+    public boolean removeAddressInfo(AddressInfo addressInfo){
+        return addressInfoList.remove(addressInfo);
     }
 
     public String getName() {
@@ -120,8 +133,21 @@ public class CryptoAddress {
         return exchangeDepositAddress;
     }
 
-    public ArrayList<Warning> getWarnings() {
-        return warnings;
+    public ArrayList<Warning> getWarningsList() {
+        return warningsList;
+    }
+
+    public void setWarningsList(ArrayList<Warning> warningsList) {
+        this.warningsList = warningsList;
+    }
+
+    public void insertAddressInfo(Warning warning){
+        if(!warningsList.contains(warning))
+            warningsList.add(warning);
+    }
+
+    public boolean removeAddressInfo(Warning warning){
+        return warningsList.remove(warning);
     }
 
     /**
@@ -151,7 +177,7 @@ public class CryptoAddress {
 
     /**
      * The {@code Warning} class is useful to obtain and format Warning object for CryptoAddress
-     * This class give warnings about crypto address used in the request
+     * This class give warningsList about crypto address used in the request
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * **/
     public static class Warning{

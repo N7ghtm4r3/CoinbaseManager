@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * The {@code PriceOracle} class is useful to format PriceOracle object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -65,12 +65,12 @@ public class PriceOracle {
     /**
      * The {@code Price} class is useful to obtain and format Price object for PriceOracle
      * This class give info about each price in prices list
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * **/
     public static class Price{
 
         private final String symbol;
-        private final double price;
+        private double price;
 
         public Price(String symbol, double price) {
             this.symbol = symbol;
@@ -83,6 +83,12 @@ public class PriceOracle {
 
         public double getPrice() {
             return price;
+        }
+
+        public void setPrice(double price) {
+            if(price < 0)
+                throw new IllegalArgumentException("Price value cannot be less than 0");
+            this.price = price;
         }
 
     }

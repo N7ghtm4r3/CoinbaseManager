@@ -11,9 +11,6 @@ import org.json.JSONObject;
 
 public class PaymentMethod extends PayMethod{
 
-    public static final String PAYPAL_TYPE = "paypal";
-    public static final String BANK_TYPE = "bank";
-    public static final String FIAT_ACCOUNT_TYPE = "fiat_account";
     private final String id;
     private final String currency;
     private final boolean primaryBuy;

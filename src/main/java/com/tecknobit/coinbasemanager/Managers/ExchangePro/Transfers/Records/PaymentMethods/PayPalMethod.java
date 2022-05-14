@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public class PayPalMethod extends PayMethod{
 
-    private final ArrayList<PayPalDetails> payPalBuys;
-    private final ArrayList<PayPalDetails> payPalDeposits;
+    private ArrayList<PayPalDetails> payPalBuysList;
+    private ArrayList<PayPalDetails> payPalDepositsList;
 
     public PayPalMethod(String name, String type, JSONObject jsonPaypal) {
         super(name, type);
-        payPalBuys = assemblePayPalDetailsList(jsonPaypal.getJSONArray("buy"));
-        payPalDeposits = assemblePayPalDetailsList(jsonPaypal.getJSONArray("deposit"));
+        payPalBuysList = assemblePayPalDetailsList(jsonPaypal.getJSONArray("buy"));
+        payPalDepositsList = assemblePayPalDetailsList(jsonPaypal.getJSONArray("deposit"));
     }
 
     /** Method to assemble a PayPalDetails list
@@ -40,11 +40,37 @@ public class PayPalMethod extends PayMethod{
     }
 
     public ArrayList<PayPalDetails> getPayPalBuys() {
-        return payPalBuys;
+        return payPalBuysList;
     }
 
-    public ArrayList<PayPalDetails> getPayPalDeposits() {
-        return payPalDeposits;
+    public void setPayPalBuysList(ArrayList<PayPalDetails> payPalBuysList) {
+        this.payPalBuysList = payPalBuysList;
+    }
+
+    public void insertPayPalBuy(PayPalDetails payPalBuy){
+        if(!payPalBuysList.contains(payPalBuy))
+            payPalBuysList.add(payPalBuy);
+    }
+
+    public boolean removePayPalBuy(PayPalDetails payPalBuy){
+        return payPalBuysList.remove(payPalBuy);
+    }
+
+    public ArrayList<PayPalDetails> getPayPalDepositsList() {
+        return payPalDepositsList;
+    }
+
+    public void setPayPalDepositsList(ArrayList<PayPalDetails> payPalDepositsList) {
+        this.payPalDepositsList = payPalDepositsList;
+    }
+
+    public void insertPayPalDeposit(PayPalDetails payPalDeposit){
+        if(!payPalDepositsList.contains(payPalDeposit))
+            payPalDepositsList.add(payPalDeposit);
+    }
+
+    public boolean removePayPalDeposit(PayPalDetails payPalDeposit){
+        return payPalDepositsList.remove(payPalDeposit);
     }
 
     /**
@@ -53,11 +79,11 @@ public class PayPalMethod extends PayMethod{
      * **/
     public static class PayPalDetails {
 
-        private final int periodInDays;
-        private final String description;
-        private final String label;
-        private final PayPalStatusAmount total;
-        private final PayPalStatusAmount remaining;
+        private int periodInDays;
+        private String description;
+        private String label;
+        private PayPalStatusAmount total;
+        private PayPalStatusAmount remaining;
 
         public PayPalDetails(int periodInDays, String description, String label, JSONObject jsonPaypal) {
             this.periodInDays = periodInDays;
@@ -73,20 +99,44 @@ public class PayPalMethod extends PayMethod{
             return periodInDays;
         }
 
+        public void setPeriodInDays(int periodInDays) {
+            if(periodInDays < 0)
+                throw new IllegalArgumentException("Period in days value cannot be less than 0");
+            this.periodInDays = periodInDays;
+        }
+
         public String getDescription() {
             return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public String getLabel() {
             return label;
         }
 
+        public void setLabel(String label) {
+            if(label == null || label.isBlank())
+                throw new IllegalArgumentException("Label value cannot be empty or null");
+            this.label = label;
+        }
+
         public PayPalStatusAmount getTotal() {
             return total;
         }
 
+        public void setTotal(PayPalStatusAmount total) {
+            this.total = total;
+        }
+
         public PayPalStatusAmount getRemaining() {
             return remaining;
+        }
+
+        public void setRemaining(PayPalStatusAmount remaining) {
+            this.remaining = remaining;
         }
 
         /**
@@ -95,8 +145,8 @@ public class PayPalMethod extends PayMethod{
          * **/
         public static class PayPalStatusAmount {
 
-            private final double amount;
-            private final String currency;
+            private double amount;
+            private String currency;
 
             public PayPalStatusAmount(double amount, String currency) {
                 this.amount = amount;
@@ -107,8 +157,20 @@ public class PayPalMethod extends PayMethod{
                 return amount;
             }
 
+            public void setAmount(double amount) {
+                if(amount < 0)
+                    throw new IllegalArgumentException("Amount value cannot be less than 0");
+                this.amount = amount;
+            }
+
             public String getCurrency() {
                 return currency;
+            }
+
+            public void setCurrency(String currency) {
+                if(currency == null || currency.isBlank())
+                    throw new IllegalArgumentException("Currency value cannot be empty or null");
+                this.currency = currency;
             }
 
         }
@@ -121,10 +183,10 @@ public class PayPalMethod extends PayMethod{
      * **/
     public static class PayPalPickerData extends PickerData{
 
-        private final boolean payoutOnly;
-        private final String payPalEmail;
-        private final String payPalOwner;
-        private final boolean reauth;
+        private boolean payoutOnly;
+        private String payPalEmail;
+        private String payPalOwner;
+        private boolean reauth;
 
         public PayPalPickerData(String symbol, boolean payoutOnly, String payPalEmail, String payPalOwner, boolean reauth) {
             super(symbol);
@@ -138,16 +200,38 @@ public class PayPalMethod extends PayMethod{
             return payoutOnly;
         }
 
+        public void setPayoutOnly(boolean payoutOnly) {
+            this.payoutOnly = payoutOnly;
+        }
+
         public String getPayPalEmail() {
             return payPalEmail;
+        }
+
+        public void setPayPalEmail(String payPalEmail) {
+            if(payPalEmail == null || payPalEmail.isBlank())
+                throw new IllegalArgumentException("PayPal email value cannot be empty or null");
+            if(!payPalEmail.contains("@"))
+                throw new IllegalArgumentException("PayPal email inserted is not a valid email, check it out");
+            this.payPalEmail = payPalEmail;
         }
 
         public String getPayPalOwner() {
             return payPalOwner;
         }
 
+        public void setPayPalOwner(String payPalOwner) {
+            if(payPalOwner == null || payPalOwner.isBlank())
+                throw new IllegalArgumentException("PayPal owner value cannot be empty or null");
+            this.payPalOwner = payPalOwner;
+        }
+
         public boolean isReauth() {
             return reauth;
+        }
+
+        public void setReauth(boolean reauth) {
+            this.reauth = reauth;
         }
 
     }

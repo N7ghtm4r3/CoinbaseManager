@@ -9,12 +9,12 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 public class Account {
 
     private final String id;
-    private final String currency;
-    private final double balance;
-    private final double available;
-    private final double hold;
+    private String currency;
+    private double balance;
+    private double available;
+    private double hold;
     private final String profileId;
-    private final boolean tradingEnable;
+    private boolean tradingEnable;
 
     public Account(String id, String currency, double balance, double available, double hold, String profileId,
                    boolean tradingEnable) {
@@ -35,16 +35,40 @@ public class Account {
         return currency;
     }
 
+    public void setCurrency(String currency) {
+        if(currency == null || currency.isBlank())
+            throw new IllegalArgumentException("Currency value cannot be empty or null");
+        this.currency = currency;
+    }
+
     public double getBalance() {
         return balance;
+    }
+
+    public void setBalance(double balance) {
+        if(balance < 0)
+            throw new IllegalArgumentException("Balance value cannot be less than 0");
+        this.balance = balance;
     }
 
     public double getAvailable() {
         return available;
     }
 
+    public void setAvailable(double available) {
+        if(available < 0)
+            throw new IllegalArgumentException("Available value cannot be less than 0");
+        this.available = available;
+    }
+
     public double getHold() {
         return hold;
+    }
+
+    public void setHold(double hold) {
+        if(hold < 0)
+            throw new IllegalArgumentException("Hold value cannot be less than 0");
+        this.hold = hold;
     }
 
     public String getProfileId() {
@@ -53,6 +77,10 @@ public class Account {
 
     public boolean isTradingEnable() {
         return tradingEnable;
+    }
+
+    public void setTradingEnable(boolean tradingEnable) {
+        this.tradingEnable = tradingEnable;
     }
 
 }

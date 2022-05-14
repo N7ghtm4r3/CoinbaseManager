@@ -16,24 +16,24 @@ import java.util.ArrayList;
 public class ExchangeLimits extends ReportDetails.UserDetails {
 
     private final String termsAccepted;
-    private ArrayList<Test> testGroups;
-    private final Country country;
-    private final String stateCode;
-    private final boolean accessPrivacyRights;
+    private ArrayList<Test> testGroupsList;
+    private Country country;
+    private String stateCode;
+    private boolean accessPrivacyRights;
     private final String twoFactorMethod;
-    private final boolean analyticsProcessingEnabled;
-    private final boolean isPrime;
-    private final boolean hasProWbl;
-    private final boolean hasClawBack;
-    private final boolean hasClawBackPaymentPending;
-    private final boolean hasRestrictedAssets;
-    private final String legalName;
-    private final boolean whitelistingEnabled;
-    private final boolean regionBankingSupport;
-    private final String defaultPreferredMarket;
-    private final boolean marginEligible;
-    private final MarginInformation marginInformation;
-    private final Address address;
+    private boolean analyticsProcessingEnabled;
+    private boolean isPrime;
+    private boolean hasProWbl;
+    private boolean hasClawBack;
+    private boolean hasClawBackPaymentPending;
+    private boolean hasRestrictedAssets;
+    private String legalName;
+    private boolean whitelistingEnabled;
+    private boolean regionBankingSupport;
+    private String defaultPreferredMarket;
+    private boolean marginEligible;
+    private MarginInformation marginInformation;
+    private Address address;
     private final JsonHelper jsonHelper;
 
     public ExchangeLimits(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
@@ -71,10 +71,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * any return
      * **/
     private void assembleTestList(JSONArray jsonTests){
-        testGroups = new ArrayList<>();
+        testGroupsList = new ArrayList<>();
         for (int j=0; j < jsonTests.length(); j++){
             JSONObject test = jsonTests.getJSONObject(j);
-            testGroups.add(new Test(test.getString("test"),
+            testGroupsList.add(new Test(test.getString("test"),
                     test.getString("group"),
                     test.getBoolean("forced")
             ));
@@ -85,20 +85,47 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return termsAccepted;
     }
 
-    public ArrayList<Test> getTestGroups() {
-        return testGroups;
+    public ArrayList<Test> getTestGroupsList() {
+        return testGroupsList;
+    }
+
+    public void setTestGroupsList(ArrayList<Test> testGroupsList) {
+        this.testGroupsList = testGroupsList;
+    }
+
+    public void insertTestGroup(Test testGroup){
+        if(!testGroupsList.contains(testGroup))
+            testGroupsList.add(testGroup);
+    }
+
+    public boolean removeTestGroup(Test testGroup){
+        return testGroupsList.remove(testGroup);
     }
 
     public Country getCountry() {
         return country;
     }
 
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     public String getStateCode() {
         return stateCode;
     }
 
+    public void setStateCode(String stateCode) {
+        if(stateCode == null || stateCode.isBlank())
+            throw new IllegalArgumentException("State code value cannot be empty or null");
+        this.stateCode = stateCode;
+    }
+
     public boolean isAccessPrivacyRights() {
         return accessPrivacyRights;
+    }
+
+    public void setAccessPrivacyRights(boolean accessPrivacyRights) {
+        this.accessPrivacyRights = accessPrivacyRights;
     }
 
     public String getTwoFactorMethod() {
@@ -109,52 +136,108 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return analyticsProcessingEnabled;
     }
 
+    public void setAnalyticsProcessingEnabled(boolean analyticsProcessingEnabled) {
+        this.analyticsProcessingEnabled = analyticsProcessingEnabled;
+    }
+
     public boolean isPrime() {
         return isPrime;
+    }
+
+    public void setPrime(boolean prime) {
+        isPrime = prime;
     }
 
     public boolean isHasProWbl() {
         return hasProWbl;
     }
 
+    public void setHasProWbl(boolean hasProWbl) {
+        this.hasProWbl = hasProWbl;
+    }
+
     public boolean isHasClawBack() {
         return hasClawBack;
+    }
+
+    public void setHasClawBack(boolean hasClawBack) {
+        this.hasClawBack = hasClawBack;
     }
 
     public boolean isHasClawBackPaymentPending() {
         return hasClawBackPaymentPending;
     }
 
+    public void setHasClawBackPaymentPending(boolean hasClawBackPaymentPending) {
+        this.hasClawBackPaymentPending = hasClawBackPaymentPending;
+    }
+
     public boolean isHasRestrictedAssets() {
         return hasRestrictedAssets;
+    }
+
+    public void setHasRestrictedAssets(boolean hasRestrictedAssets) {
+        this.hasRestrictedAssets = hasRestrictedAssets;
     }
 
     public String getLegalName() {
         return legalName;
     }
 
+    public void setLegalName(String legalName) {
+        if(legalName == null || legalName.isBlank())
+            throw new IllegalArgumentException("Legal name value cannot be empty or null");
+        this.legalName = legalName;
+    }
+
     public boolean isWhitelistingEnabled() {
         return whitelistingEnabled;
+    }
+
+    public void setWhitelistingEnabled(boolean whitelistingEnabled) {
+        this.whitelistingEnabled = whitelistingEnabled;
     }
 
     public boolean isRegionBankingSupport() {
         return regionBankingSupport;
     }
 
+    public void setRegionBankingSupport(boolean regionBankingSupport) {
+        this.regionBankingSupport = regionBankingSupport;
+    }
+
     public String getDefaultPreferredMarket() {
         return defaultPreferredMarket;
+    }
+
+    public void setDefaultPreferredMarket(String defaultPreferredMarket) {
+        if(defaultPreferredMarket == null || defaultPreferredMarket.isBlank())
+            throw new IllegalArgumentException("Default preferred market value cannot be empty or null");
+        this.defaultPreferredMarket = defaultPreferredMarket;
     }
 
     public boolean isMarginEligible() {
         return marginEligible;
     }
 
+    public void setMarginEligible(boolean marginEligible) {
+        this.marginEligible = marginEligible;
+    }
+
     public MarginInformation getMarginInformation() {
         return marginInformation;
     }
 
+    public void setMarginInformation(MarginInformation marginInformation) {
+        this.marginInformation = marginInformation;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public JsonHelper getJsonHelper() {
@@ -197,9 +280,9 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     public static class Country{
 
-        private final String code;
-        private final String name;
-        private final boolean isInEurope;
+        private String code;
+        private String name;
+        private boolean isInEurope;
 
         public Country(String code, String name, boolean isInEurope) {
             this.code = code;
@@ -217,12 +300,28 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return code;
         }
 
+        public void setCode(String code) {
+            if(code == null || code.isBlank())
+                throw new IllegalArgumentException("Code value cannot be empty or null");
+            this.code = code;
+        }
+
         public String getName() {
             return name;
         }
 
+        public void setName(String name) {
+            if(name == null || name.isBlank())
+                throw new IllegalArgumentException("Name value cannot be empty or null");
+            this.name = name;
+        }
+
         public boolean isInEurope() {
             return isInEurope;
+        }
+
+        public void setInEurope(boolean inEurope) {
+            isInEurope = inEurope;
         }
 
     }
@@ -233,12 +332,12 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     public static class Address{
 
-        private final String line1;
-        private final String city;
-        private final String state;
-        private final String postalCode;
-        private final String code;
-        private final String name;
+        private String line1;
+        private String city;
+        private String state;
+        private String postalCode;
+        private String code;
+        private String name;
 
         public Address(String line1, String city, String state, String postalCode, String code, String name) {
             this.line1 = line1;
@@ -263,24 +362,60 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return line1;
         }
 
+        public void setLine1(String line1) {
+            if(line1 == null || line1.isBlank())
+                throw new IllegalArgumentException("Line1 value cannot be empty or null");
+            this.line1 = line1;
+        }
+
         public String getCity() {
             return city;
+        }
+
+        public void setCity(String city) {
+            if(city == null || city.isBlank())
+                throw new IllegalArgumentException("City value cannot be empty or null");
+            this.city = city;
         }
 
         public String getState() {
             return state;
         }
 
+        public void setState(String state) {
+            if(state == null || state.isBlank())
+                throw new IllegalArgumentException("State value cannot be empty or null");
+            this.state = state;
+        }
+
         public String getPostalCode() {
             return postalCode;
+        }
+
+        public void setPostalCode(String postalCode) {
+            if(postalCode == null || postalCode.isBlank())
+                throw new IllegalArgumentException("Postal code value cannot be empty or null");
+            this.postalCode = postalCode;
         }
 
         public String getCode() {
             return code;
         }
 
+        public void setCode(String code) {
+            if(code == null || code.isBlank())
+                throw new IllegalArgumentException("Code value cannot be empty or null");
+            this.code = code;
+        }
+
         public String getName() {
             return name;
+        }
+
+        public void setName(String name) {
+            if(name == null || name.isBlank())
+                throw new IllegalArgumentException("Name value cannot be empty or null");
+            this.name = name;
         }
 
     }
@@ -291,9 +426,9 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     public static class MarginInformation{
 
-        private final boolean eligible;
-        private final boolean enabled;
-        private final String tier;
+        private boolean eligible;
+        private boolean enabled;
+        private String tier;
 
         public MarginInformation(boolean eligible, boolean enabled, String tier) {
             this.eligible = eligible;
@@ -311,12 +446,26 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return eligible;
         }
 
+        public void setEligible(boolean eligible) {
+            this.eligible = eligible;
+        }
+
         public boolean isEnabled() {
             return enabled;
         }
 
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
+
         public String getTier() {
             return tier;
+        }
+
+        public void setTier(String tier) {
+            if(tier == null || tier.isBlank())
+                throw new IllegalArgumentException("Tier value cannot be empty or null");
+            this.tier = tier;
         }
 
     }
