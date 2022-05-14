@@ -97,6 +97,10 @@ public class CryptoAddress {
         return addressInfoList.remove(addressInfo);
     }
 
+    public AddressInfo getAddressInfo(int index){
+        return addressInfoList.get(index);
+    }
+
     public String getName() {
         return name;
     }
@@ -148,6 +152,10 @@ public class CryptoAddress {
 
     public boolean removeAddressInfo(Warning warning){
         return warningsList.remove(warning);
+    }
+
+    public Warning getWarning(int index){
+        return warningsList.get(index);
     }
 
     /**

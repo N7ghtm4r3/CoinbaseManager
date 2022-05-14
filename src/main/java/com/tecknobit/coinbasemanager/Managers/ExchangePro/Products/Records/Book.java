@@ -65,8 +65,17 @@ public class Book {
         return asks;
     }
 
+    public String getAsk(int index){
+        return asks.get(index);
+    }
+
     public ArrayList<String> getBids() {
         return bids;
     }
+
+    public String getBid(int index){
+        return bids.get(index);
+    }
+
 
 }

@@ -102,6 +102,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return testGroupsList.remove(testGroup);
     }
 
+    public Test getGroupTest(int index){
+        return testGroupsList.get(index);
+    }
+
     public Country getCountry() {
         return country;
     }

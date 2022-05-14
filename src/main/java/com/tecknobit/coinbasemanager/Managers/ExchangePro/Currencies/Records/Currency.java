@@ -21,7 +21,7 @@ public class Currency {
     private final double minSize;
     private final double maxPrecision;
     private final String message;
-    private final ArrayList<String> convertibleToCurrencies;
+    private final ArrayList<String> convertibleToCurrenciesList;
     private final CurrencyDetails currencyDetails;
 
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
@@ -33,7 +33,7 @@ public class Currency {
         this.maxPrecision = maxPrecision;
         this.message = message;
         JsonHelper jsonHelper = new JsonHelper(jsonCurrencyDetails.getJSONObject("details"));
-        convertibleToCurrencies = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
+        convertibleToCurrenciesList = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
         currencyDetails = new CurrencyDetails(jsonHelper.getString("symbol"),
                 jsonHelper.getDouble("min_withdrawal_amount"),
                 jsonHelper.getInt("network_confirmations"),
@@ -85,8 +85,12 @@ public class Currency {
         return message;
     }
 
-    public ArrayList<String> getConvertibleToCurrencies() {
-        return convertibleToCurrencies;
+    public ArrayList<String> getConvertibleToCurrenciesList() {
+        return convertibleToCurrenciesList;
+    }
+
+    public String getConvertibleCurrency(int index){
+        return convertibleToCurrenciesList.get(index);
     }
 
     public CurrencyDetails getCurrencyDetails() {
@@ -110,13 +114,13 @@ public class Currency {
         private final String cryptoTransactionLink;
         private final String displayName;
         private final String processingTimeSeconds;
-        private final ArrayList<String> pushPaymentMethods;
-        private final ArrayList<String> groupTypes;
+        private final ArrayList<String> pushPaymentMethodsList;
+        private final ArrayList<String> groupTypesList;
 
         public CurrencyDetails(String symbol, double minWithdrawalAmount, int networksConfirmations,
                                double maxWithdrawalAmount, String cryptoAddressLink, String type, int sortOrder,
                                String cryptoTransactionLink, String displayName, String processingTimeSeconds,
-                               ArrayList<String> pushPaymentMethods, ArrayList<String> groupTypes) {
+                               ArrayList<String> pushPaymentMethodsList, ArrayList<String> groupTypesList) {
             this.symbol = symbol;
             this.minWithdrawalAmount = minWithdrawalAmount;
             this.networksConfirmations = networksConfirmations;
@@ -127,8 +131,8 @@ public class Currency {
             this.cryptoTransactionLink = cryptoTransactionLink;
             this.displayName = displayName;
             this.processingTimeSeconds = processingTimeSeconds;
-            this.pushPaymentMethods = pushPaymentMethods;
-            this.groupTypes = groupTypes;
+            this.pushPaymentMethodsList = pushPaymentMethodsList;
+            this.groupTypesList = groupTypesList;
         }
 
         public String getSymbol() {
@@ -171,12 +175,20 @@ public class Currency {
             return processingTimeSeconds;
         }
 
-        public ArrayList<String> getPushPaymentMethods() {
-            return pushPaymentMethods;
+        public ArrayList<String> getPushPaymentMethodsList() {
+            return pushPaymentMethodsList;
         }
 
-        public ArrayList<String> getGroupTypes() {
-            return groupTypes;
+        public String getPushPaymentMethod(int index){
+            return pushPaymentMethodsList.get(index);
+        }
+
+        public ArrayList<String> getGroupTypesList() {
+            return groupTypesList;
+        }
+
+        public String getGroupType(int index){
+            return groupTypesList.get(index);
         }
 
     }

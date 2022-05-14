@@ -56,6 +56,10 @@ public class PayPalMethod extends PayMethod{
         return payPalBuysList.remove(payPalBuy);
     }
 
+    public PayPalDetails getPayPalBuy(int index){
+        return payPalBuysList.get(index);
+    }
+
     public ArrayList<PayPalDetails> getPayPalDepositsList() {
         return payPalDepositsList;
     }
@@ -71,6 +75,10 @@ public class PayPalMethod extends PayMethod{
 
     public boolean removePayPalDeposit(PayPalDetails payPalDeposit){
         return payPalDepositsList.remove(payPalDeposit);
+    }
+
+    public PayPalDetails getPayPalDeposit(int index){
+        return payPalDepositsList.get(index);
     }
 
     /**

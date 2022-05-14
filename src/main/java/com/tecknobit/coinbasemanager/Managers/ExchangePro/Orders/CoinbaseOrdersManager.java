@@ -14,6 +14,7 @@ import java.util.HashMap;
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ORDERS_ENDPOINT;
+import static java.util.List.of;
 
 /**
  *  The {@code CoinbaseOrdersManager} class is useful to manage all Coinbase orders endpoints
@@ -378,6 +379,274 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String[] statuses,
                                              HashMap<String, Object> queryParams) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, String status) throws Exception {
+        return getAllOrdersJSON(limit, sortedBy, sorting, status).toString();
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link JSONArray}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status))));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status) throws Exception {
+        return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date,product_id)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, String status,
+                               HashMap<String, Object> queryParams) throws Exception {
+        return getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams).toString();
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date,product_id)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link JSONArray}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status,
+                                      HashMap<String, Object> queryParams) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date,product_id)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status,
+                                             HashMap<String, Object> queryParams) throws Exception {
+        return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                               String productId) throws Exception {
+        HashMap<String, Object> productIdPayload = new HashMap<>();
+        productIdPayload.put("product_id", productId);
+        return getAllOrders(limit, sortedBy, sorting, statuses, productIdPayload);
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link JSONArray}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                                      String productId) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                                             String productId) throws Exception {
+        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId)));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                               String productId, HashMap<String, Object> queryParams) throws Exception {
+        HashMap<String, Object> productIdPayload = new HashMap<>();
+        productIdPayload.put("product_id", productId);
+        queryParams.putAll(productIdPayload);
+        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams);
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                                      String productId, HashMap<String, Object> queryParams) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
+                                             String productId, HashMap<String, Object> queryParams) throws Exception {
+        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams)));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
+        HashMap<String, Object> productIdPayload = new HashMap<>();
+        productIdPayload.put("product_id", productId);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), productIdPayload);
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link JSONArray}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
+        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId)));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link String}
+     * **/
+    public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId,
+                               HashMap<String, Object> queryParams) throws Exception {
+        HashMap<String, Object> productIdPayload = new HashMap<>();
+        productIdPayload.put("product_id", productId);
+        queryParams.putAll(productIdPayload);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams);
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link JSONArray}
+     * **/
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status, String productId,
+                                      HashMap<String, Object> queryParams) throws Exception {
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams));
+    }
+
+    /** Request to get all orders
+     * @param #limit: number of returns
+     * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param #sorting: ascending or descending order criteria (asc or desc)
+     * @param #status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param #productId: identifier of product from fetch details es. BTC-ETH
+     * @param #queryParams: query params of request
+     * @implSpec (keys accepted are profile_id,before,after,start_date,end_date)
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * **/
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status, String productId,
+                                             HashMap<String, Object> queryParams) throws Exception {
+        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams)));
     }
 
     /** Method to assemble an orders list
