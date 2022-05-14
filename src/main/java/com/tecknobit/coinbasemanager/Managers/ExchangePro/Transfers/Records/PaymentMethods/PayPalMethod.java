@@ -126,7 +126,7 @@ public class PayPalMethod extends PayMethod{
         }
 
         public void setLabel(String label) {
-            if(label == null || label.isBlank())
+            if(label == null || label.isEmpty())
                 throw new IllegalArgumentException("Label value cannot be empty or null");
             this.label = label;
         }
@@ -176,7 +176,7 @@ public class PayPalMethod extends PayMethod{
             }
 
             public void setCurrency(String currency) {
-                if(currency == null || currency.isBlank())
+                if(currency == null || currency.isEmpty())
                     throw new IllegalArgumentException("Currency value cannot be empty or null");
                 this.currency = currency;
             }
@@ -217,7 +217,7 @@ public class PayPalMethod extends PayMethod{
         }
 
         public void setPayPalEmail(String payPalEmail) {
-            if(payPalEmail == null || payPalEmail.isBlank())
+            if(payPalEmail == null || payPalEmail.isEmpty())
                 throw new IllegalArgumentException("PayPal email value cannot be empty or null");
             if(!payPalEmail.contains("@"))
                 throw new IllegalArgumentException("PayPal email inserted is not a valid email, check it out");
@@ -229,7 +229,7 @@ public class PayPalMethod extends PayMethod{
         }
 
         public void setPayPalOwner(String payPalOwner) {
-            if(payPalOwner == null || payPalOwner.isBlank())
+            if(payPalOwner == null || payPalOwner.isEmpty())
                 throw new IllegalArgumentException("PayPal owner value cannot be empty or null");
             this.payPalOwner = payPalOwner;
         }

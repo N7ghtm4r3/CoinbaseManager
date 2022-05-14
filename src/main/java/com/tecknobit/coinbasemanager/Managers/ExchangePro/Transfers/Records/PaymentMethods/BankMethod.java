@@ -34,7 +34,7 @@ public class BankMethod extends PayMethod{
         }
 
         public void setIban(String iban) {
-            if(iban == null || iban.isBlank())
+            if(iban == null || iban.isEmpty())
                 throw new IllegalArgumentException("Iban value cannot be empty or null");
             this.iban = iban;
         }
@@ -44,7 +44,7 @@ public class BankMethod extends PayMethod{
         }
 
         public void setInstitutionName(String institutionName) {
-            if(institutionName == null || institutionName.isBlank())
+            if(institutionName == null || institutionName.isEmpty())
                 throw new IllegalArgumentException("Institution name value cannot be empty or null");
             this.institutionName = institutionName;
         }
@@ -54,7 +54,7 @@ public class BankMethod extends PayMethod{
         }
 
         public void setSwift(String swift) {
-            if(swift == null || swift.isBlank())
+            if(swift == null || swift.isEmpty())
                 throw new IllegalArgumentException("Swift value cannot be empty or null");
             int swiftLength = swift.length();
             if(swiftLength < 8 || swiftLength > 11)

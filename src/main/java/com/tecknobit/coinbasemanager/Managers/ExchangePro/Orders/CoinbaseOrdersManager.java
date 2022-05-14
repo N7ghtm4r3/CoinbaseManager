@@ -8,13 +8,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ORDERS_ENDPOINT;
-import static java.util.List.of;
+import static java.util.Arrays.asList;
 
 /**
  *  The {@code CoinbaseOrdersManager} class is useful to manage all Coinbase orders endpoints
@@ -262,7 +261,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String[] statuses) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(Arrays.asList(statuses)));
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(statuses)));
     }
 
     /** Request to get all orders
@@ -348,7 +347,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String[] statuses,
                                HashMap<String, Object> queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(Arrays.asList(statuses)), queryParams);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(statuses)), queryParams);
     }
 
     /** Request to get all orders
@@ -402,7 +401,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link JSONArray}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status))));
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status))));
     }
 
     /** Custom request to get all orders
@@ -444,7 +443,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status,
                                       HashMap<String, Object> queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams));
+        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams));
     }
 
     /** Custom request to get all orders
@@ -569,7 +568,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
         HashMap<String, Object> productIdPayload = new HashMap<>();
         productIdPayload.put("product_id", productId);
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), productIdPayload);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), productIdPayload);
     }
 
     /** Custom request to get all orders
@@ -614,7 +613,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         HashMap<String, Object> productIdPayload = new HashMap<>();
         productIdPayload.put("product_id", productId);
         queryParams.putAll(productIdPayload);
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams);
     }
 
     /** Custom request to get all orders

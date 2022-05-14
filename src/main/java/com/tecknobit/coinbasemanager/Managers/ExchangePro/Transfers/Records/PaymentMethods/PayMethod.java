@@ -29,7 +29,7 @@ public class PayMethod {
     }
 
     public void setName(String name) {
-        if(name == null || name.isBlank())
+        if(name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         this.name = name;
     }

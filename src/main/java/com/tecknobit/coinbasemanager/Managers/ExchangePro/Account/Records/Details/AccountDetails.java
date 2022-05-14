@@ -42,7 +42,7 @@ public class AccountDetails {
     }
 
     public void setType(String type) {
-        if(type == null || type.isBlank())
+        if(type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");
         this.type = type;
     }

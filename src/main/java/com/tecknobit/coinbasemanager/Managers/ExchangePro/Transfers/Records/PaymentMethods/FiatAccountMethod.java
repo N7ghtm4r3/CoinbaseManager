@@ -72,7 +72,7 @@ public class FiatAccountMethod extends PayMethod{
         }
 
         public void setCurrency(String currency) {
-            if(currency == null || currency.isBlank())
+            if(currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");
             this.currency = currency;
         }

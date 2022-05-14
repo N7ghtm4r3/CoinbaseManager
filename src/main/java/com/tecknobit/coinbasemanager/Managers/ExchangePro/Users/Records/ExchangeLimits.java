@@ -119,7 +119,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
     }
 
     public void setStateCode(String stateCode) {
-        if(stateCode == null || stateCode.isBlank())
+        if(stateCode == null || stateCode.isEmpty())
             throw new IllegalArgumentException("State code value cannot be empty or null");
         this.stateCode = stateCode;
     }
@@ -189,7 +189,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
     }
 
     public void setLegalName(String legalName) {
-        if(legalName == null || legalName.isBlank())
+        if(legalName == null || legalName.isEmpty())
             throw new IllegalArgumentException("Legal name value cannot be empty or null");
         this.legalName = legalName;
     }
@@ -215,7 +215,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
     }
 
     public void setDefaultPreferredMarket(String defaultPreferredMarket) {
-        if(defaultPreferredMarket == null || defaultPreferredMarket.isBlank())
+        if(defaultPreferredMarket == null || defaultPreferredMarket.isEmpty())
             throw new IllegalArgumentException("Default preferred market value cannot be empty or null");
         this.defaultPreferredMarket = defaultPreferredMarket;
     }
@@ -305,7 +305,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setCode(String code) {
-            if(code == null || code.isBlank())
+            if(code == null || code.isEmpty())
                 throw new IllegalArgumentException("Code value cannot be empty or null");
             this.code = code;
         }
@@ -315,7 +315,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setName(String name) {
-            if(name == null || name.isBlank())
+            if(name == null || name.isEmpty())
                 throw new IllegalArgumentException("Name value cannot be empty or null");
             this.name = name;
         }
@@ -367,7 +367,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setLine1(String line1) {
-            if(line1 == null || line1.isBlank())
+            if(line1 == null || line1.isEmpty())
                 throw new IllegalArgumentException("Line1 value cannot be empty or null");
             this.line1 = line1;
         }
@@ -377,7 +377,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setCity(String city) {
-            if(city == null || city.isBlank())
+            if(city == null || city.isEmpty())
                 throw new IllegalArgumentException("City value cannot be empty or null");
             this.city = city;
         }
@@ -387,7 +387,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setState(String state) {
-            if(state == null || state.isBlank())
+            if(state == null || state.isEmpty())
                 throw new IllegalArgumentException("State value cannot be empty or null");
             this.state = state;
         }
@@ -397,7 +397,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setPostalCode(String postalCode) {
-            if(postalCode == null || postalCode.isBlank())
+            if(postalCode == null || postalCode.isEmpty())
                 throw new IllegalArgumentException("Postal code value cannot be empty or null");
             this.postalCode = postalCode;
         }
@@ -407,7 +407,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setCode(String code) {
-            if(code == null || code.isBlank())
+            if(code == null || code.isEmpty())
                 throw new IllegalArgumentException("Code value cannot be empty or null");
             this.code = code;
         }
@@ -417,7 +417,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setName(String name) {
-            if(name == null || name.isBlank())
+            if(name == null || name.isEmpty())
                 throw new IllegalArgumentException("Name value cannot be empty or null");
             this.name = name;
         }
@@ -467,7 +467,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         }
 
         public void setTier(String tier) {
-            if(tier == null || tier.isBlank())
+            if(tier == null || tier.isEmpty())
                 throw new IllegalArgumentException("Tier value cannot be empty or null");
             this.tier = tier;
         }

@@ -76,7 +76,7 @@ public class CoinbaseAccount {
     }
 
     public void setCurrency(String currency) {
-        if(currency == null || currency.isBlank())
+        if(currency == null || currency.isEmpty())
             throw new IllegalArgumentException("Currency value cannot be empty or null");
         this.currency = currency;
     }
@@ -90,7 +90,7 @@ public class CoinbaseAccount {
     }
 
     public void setType(String type) {
-        if(type == null || type.isBlank())
+        if(type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");
         this.type = type;
     }
@@ -118,7 +118,7 @@ public class CoinbaseAccount {
     }
 
     public void setHoldCurrency(String holdCurrency) {
-        if(holdCurrency == null || holdCurrency.isBlank())
+        if(holdCurrency == null || holdCurrency.isEmpty())
             throw new IllegalArgumentException("Hold currency value cannot be empty or null");
         this.holdCurrency = holdCurrency;
     }
@@ -178,7 +178,7 @@ public class CoinbaseAccount {
         }
 
         public void setReference(String reference) {
-            if(reference == null || reference.isBlank())
+            if(reference == null || reference.isEmpty())
                 throw new IllegalArgumentException("Reference value cannot be empty or null");
             this.reference = reference;
         }
@@ -196,7 +196,7 @@ public class CoinbaseAccount {
         }
 
         public void setAccountName(String accountName) {
-            if(accountName == null || accountName.isBlank())
+            if(accountName == null || accountName.isEmpty())
                 throw new IllegalArgumentException("Account name value cannot be empty or null");
             this.accountName = accountName;
         }
@@ -206,7 +206,7 @@ public class CoinbaseAccount {
         }
 
         public void setBankName(String bankName) {
-            if(bankName == null || bankName.isBlank())
+            if(bankName == null || bankName.isEmpty())
                 throw new IllegalArgumentException("Bank name value cannot be empty or null");
             this.bankName = bankName;
         }
@@ -216,7 +216,7 @@ public class CoinbaseAccount {
         }
 
         public void setBankAddress(String bankAddress) {
-            if(bankAddress == null || bankAddress.isBlank())
+            if(bankAddress == null || bankAddress.isEmpty())
                 throw new IllegalArgumentException("Bank address value cannot be empty or null");
             this.bankAddress = bankAddress;
         }
@@ -226,7 +226,7 @@ public class CoinbaseAccount {
         }
 
         public void setAccountAddress(String accountAddress) {
-            if(accountAddress == null || accountAddress.isBlank())
+            if(accountAddress == null || accountAddress.isEmpty())
                 throw new IllegalArgumentException("Account address value cannot be empty or null");
             this.accountAddress = accountAddress;
         }
@@ -236,7 +236,7 @@ public class CoinbaseAccount {
         }
 
         public void setSwift(String swift) {
-            if(swift == null || swift.isBlank())
+            if(swift == null || swift.isEmpty())
                 throw new IllegalArgumentException("Swift value cannot be empty or null");
             this.swift = swift;
         }
@@ -246,7 +246,7 @@ public class CoinbaseAccount {
         }
 
         public void setBankCountryCode(String bankCountryCode) {
-            if(bankCountryCode == null || bankCountryCode.isBlank())
+            if(bankCountryCode == null || bankCountryCode.isEmpty())
                 throw new IllegalArgumentException("Bank country code value cannot be empty or null");
             this.bankCountryCode = bankCountryCode;
         }
@@ -256,7 +256,7 @@ public class CoinbaseAccount {
         }
 
         public void setBankCountryName(String bankCountryName) {
-            if(bankCountryName == null || bankCountryName.isBlank())
+            if(bankCountryName == null || bankCountryName.isEmpty())
                 throw new IllegalArgumentException("Bank country name value cannot be empty or null");
             this.bankCountryName = bankCountryName;
         }
