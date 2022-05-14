@@ -4,6 +4,7 @@ import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records.*;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -120,8 +121,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * **/
     private ArrayList<TradingPair> assembleTradingPairsList(JSONArray jsonTradings){
         ArrayList<TradingPair> tradingPairs = new ArrayList<>();
-        for (int j=0; j < jsonTradings.length(); j++)
-            tradingPairs.add(assembleTradingPairObject(jsonTradings.getJSONObject(j)));
+            for (int j=0; j < jsonTradings.length(); j++)
+                tradingPairs.add(assembleTradingPairObject(jsonTradings.getJSONObject(j)));
         return tradingPairs;
     }
 
@@ -386,15 +387,64 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return product stats as {@link Ticker} object
      * **/
     public Ticker getProductTickerObject(String productId) throws Exception {
-        jsonObject = new JSONObject(getProductTicker(productId));
-        return new Ticker(jsonObject.getLong("trade_id"),
-                jsonObject.getDouble("price"),
-                jsonObject.getDouble("size"),
-                jsonObject.getString("time"),
-                jsonObject.getDouble("bid"),
-                jsonObject.getDouble("ask"),
-                jsonObject.getDouble("volume")
-        );
+        return assembleTickerObject(new JSONObject(getProductTicker(productId)));
+    }
+
+    /** Custom request to get product all tickers list
+     * any params required
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @return all tickers list as {@link String}
+     * **/
+    public String getAllTickers() throws Exception {
+        return getAllTickersJSON().toString();
+    }
+
+    /** Custom request to get product all tickers list
+     * any params required
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @return all tickers list as {@link JSONArray}
+     * **/
+    public JSONArray getAllTickersJSON() throws Exception {
+        jsonArray = getAllTradingPairsJSON();
+        JSONArray tickersList = new JSONArray();
+        for (int j=0; j < jsonArray.length(); j++)
+            tickersList.put(getProductTickerJSON(jsonArray.getJSONObject(j).getString("id")));
+        return tickersList;
+    }
+
+    /** Custom request to get product all tickers list
+     * any params required
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @return all tickers list as {@link ArrayList} of {@link Ticker}
+     * **/
+    public ArrayList<Ticker> getAllTickersList() throws Exception {
+        ArrayList<Ticker> tickers = new ArrayList<>();
+        jsonArray = getAllTickersJSON();
+        for (int j=0; j < jsonArray.length(); j++) {
+            Ticker ticker = assembleTickerObject(jsonArray.getJSONObject(j));
+            if(ticker != null)
+                tickers.add(ticker);
+        }
+        return tickers;
+    }
+
+    /** Method to assemble a ticker object
+     * @param #jsonTicker: jsonArray obtained by response request
+     * @return ticker as {@link Ticker}
+     * **/
+    private Ticker assembleTickerObject(JSONObject jsonTicker){
+        try {
+            return new Ticker(jsonTicker.getLong("trade_id"),
+                    jsonTicker.getDouble("price"),
+                    jsonTicker.getDouble("size"),
+                    jsonTicker.getString("time"),
+                    jsonTicker.getDouble("bid"),
+                    jsonTicker.getDouble("ask"),
+                    jsonTicker.getDouble("volume")
+            );
+        }catch (JSONException e){
+            return null;
+        }
     }
 
     /** Request to get product trades

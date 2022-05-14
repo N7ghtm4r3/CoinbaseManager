@@ -381,7 +381,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -393,7 +393,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrdersJSON(limit, sortedBy, sorting, status).toString();
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -405,7 +405,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status))));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -417,7 +417,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -432,7 +432,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams).toString();
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -447,7 +447,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -462,7 +462,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -478,7 +478,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrders(limit, sortedBy, sorting, statuses, productIdPayload);
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -492,7 +492,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -506,7 +506,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId)));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -525,7 +525,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrders(limit, sortedBy, sorting, statuses, queryParams);
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -541,7 +541,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -557,7 +557,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams)));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -572,7 +572,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), productIdPayload);
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -585,7 +585,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -598,7 +598,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId)));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -617,7 +617,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(of(status)), queryParams);
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
@@ -633,7 +633,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams));
     }
 
-    /** Request to get all orders
+    /** Custom request to get all orders
      * @param #limit: number of returns
      * @param #sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param #sorting: ascending or descending order criteria (asc or desc)
