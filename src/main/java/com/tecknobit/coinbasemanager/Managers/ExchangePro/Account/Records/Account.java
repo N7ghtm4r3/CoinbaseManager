@@ -2,7 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 
 /**
  * The {@code Account} class is useful to format Account object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

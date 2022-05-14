@@ -2,7 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.Pay
 
 /**
  * The {@code BankMethod} class is useful to format BankMethod object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -14,7 +14,7 @@ public class BankMethod extends PayMethod{
 
     /**
      * The {@code BankPickerData} class is useful to obtain and format BankPickerData object for BankMethod
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * **/
     public static class BankPickerData extends PickerData{
 

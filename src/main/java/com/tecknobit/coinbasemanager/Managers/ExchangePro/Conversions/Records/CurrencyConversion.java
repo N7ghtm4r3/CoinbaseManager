@@ -2,8 +2,8 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Conversions.Records;
 
 /**
  * The {@code CurrencyConversion} class is useful to format CurrencyConversion object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

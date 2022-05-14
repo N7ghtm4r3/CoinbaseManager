@@ -2,7 +2,7 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
 /**
  * The {@code Fill} class is useful to format Fill object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

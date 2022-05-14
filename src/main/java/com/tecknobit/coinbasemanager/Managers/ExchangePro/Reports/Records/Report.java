@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 /**
  * The {@code Report} class is useful to format Report object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -77,7 +77,7 @@ public class Report extends ReportDetails{
 
     /**
      * The {@code ParamsReport} class is useful to obtain and format ParamsReport object for Report
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
      * **/
     public static class ParamsReport {
 
@@ -163,7 +163,7 @@ public class Report extends ReportDetails{
 
         /**
          * The {@code UserReport} class is useful to obtain and format UserReport object for Report
-         * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports
+         * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
          * **/
         public static class UserReport extends UserDetails{
 

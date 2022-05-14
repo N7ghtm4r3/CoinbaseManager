@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 /**
  * The {@code PayPalMethod} class is useful to format PaymentMethod object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -279,7 +279,7 @@ public class PaymentMethod extends PayMethod{
 
     /**
      * The {@code MinimumPurchaseAmount} class is useful to obtain and format MinimumPurchaseAmount object for PaymentMethod
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * **/
     public static class MinimumPurchaseAmount{
 

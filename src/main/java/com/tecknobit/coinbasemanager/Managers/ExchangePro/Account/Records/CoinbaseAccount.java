@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 /**
  * The {@code CoinbaseAccount} class is useful to format CoinbaseAccount object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -87,7 +87,7 @@ public class CoinbaseAccount {
 
     /**
      * The {@code DepositInformation} class is useful to obtain and format DepositInformation object for CoinbaseAccount
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts</a>
      * **/
     public static class DepositInformation{
 

@@ -12,7 +12,7 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.CONVERSIONS_
 
 /**
  *  The {@code CoinbaseConversionsManager} class is useful to manage all Coinbase conversion endpoints
- *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+ *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
  *  @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -62,7 +62,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #from: currency to convert
      * @param #to: final currency to convert
      * @param #amount: amount value to convert
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link String}
      * **/
     public String convertCurrency(String from, String to, double amount) throws Exception {
@@ -73,7 +73,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #from: currency to convert
      * @param #to: final currency to convert
      * @param #amount: amount value to convert
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link JSONObject}
      * **/
     public JSONObject convertCurrencyJSON(String from, String to, double amount) throws Exception {
@@ -84,7 +84,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #from: currency to convert
      * @param #to: final currency to convert
      * @param #amount: amount value to convert
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount) throws Exception {
@@ -97,7 +97,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #amount: amount value to convert
      * @param #extraParams: extra body params of request
      * @implSpec (keys accepted are profile_id,nonce)
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link String}
      * **/
     public String convertCurrency(String from, String to, double amount,
@@ -114,7 +114,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #amount: amount value to convert
      * @param #extraParams: extra body params of request
      * @implSpec (keys accepted are profile_id,nonce)
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link JSONObject}
      * **/
     public JSONObject convertCurrencyJSON(String from, String to, double amount,
@@ -128,7 +128,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param #amount: amount value to convert
      * @param #extraParams: extra body params of request
      * @implSpec (keys accepted are profile_id,nonce)
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount,
@@ -166,7 +166,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link String}
      * **/
     public String getCurrencyConversion(String conversionId) throws Exception {
@@ -175,7 +175,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link JSONObject}
      * **/
     public JSONObject getCurrencyConversionJSON(String conversionId) throws Exception {
@@ -184,7 +184,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId) throws Exception {
@@ -194,7 +194,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
      * @param #profileId: identifier of account to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link String}
      * **/
     public String getCurrencyConversion(String conversionId, String profileId) throws Exception {
@@ -204,7 +204,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
      * @param #profileId: identifier of account to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link JSONObject}
      * **/
     public JSONObject getCurrencyConversionJSON(String conversionId, String profileId) throws Exception {
@@ -214,7 +214,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     /** Request to get information about one conversion
      * @param #conversionId: identifier of conversion to fetch details
      * @param #profileId: identifier of account to fetch details
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion</a>
      * @return information about one conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId, String profileId) throws Exception {

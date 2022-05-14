@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 /**
  * The {@code Transfer} class is useful to format Transfer object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -62,7 +62,7 @@ public class Transfer extends AccountDetails{
 
     /**
      * The {@code TransferDetails} class is useful to obtain and format TransferDetails object for Transfer
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * **/
     public static class TransferDetails{
 

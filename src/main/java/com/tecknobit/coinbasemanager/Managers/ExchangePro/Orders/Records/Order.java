@@ -2,10 +2,10 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
 /**
  * The {@code Order} class is useful to format Order object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

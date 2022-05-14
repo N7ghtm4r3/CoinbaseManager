@@ -10,7 +10,7 @@ import static java.lang.String.valueOf;
 
 /**
  * The {@code Book} class is useful to format Book object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

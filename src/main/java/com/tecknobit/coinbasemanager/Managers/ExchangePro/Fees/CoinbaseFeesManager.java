@@ -10,7 +10,7 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.FEES_ENDPOIN
 
 /**
  *  The {@code CoinbaseFeesManager} class is useful to manage all Coinbase fees endpoints
- *  @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees
+ *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees</a>
  *  @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -58,7 +58,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /** Request to get fees rates and 30 days trailing volume
      * any params required
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees</a>
      * @return fees rates and 30 days trailing volume as {@link String}
      * **/
     public String getFees() throws Exception {
@@ -67,7 +67,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /** Request to get fees rates and 30 days trailing volume
      * any params required
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees</a>
      * @return fees rates and 30 days trailing volume as {@link JSONObject}
      * **/
     public JSONObject getFeesJSON() throws Exception {
@@ -76,7 +76,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /** Request to get fees rates and 30 days trailing volume
      * any params required
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees</a>
      * @return fees rates and 30 days trailing volume as {@link Fee} object, if some values are null in response
      * will be returned as -1 value
      * **/

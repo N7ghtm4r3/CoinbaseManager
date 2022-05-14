@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 /**
  * The {@code Ledger} class is useful to format Ledger object
- * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
@@ -32,7 +32,7 @@ public class Ledger extends AccountDetails{
 
     /**
      * The {@code Details} class is useful to obtain and format Details object for ledger
-     * @apiNote see official documentation at: https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * **/
     public static class Details{
 
