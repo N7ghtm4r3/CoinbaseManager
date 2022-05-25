@@ -267,7 +267,7 @@ public class PaymentMethod extends PayMethod{
     }
 
     /** Method to get custom snippet of payment method details
-     * @param #key: key to get snippet of details
+     * @param key: key to get snippet of details
      * @return snippet of details as {@link JSONObject}
      * **/
     public JSONObject getSnippetDetail(String key){

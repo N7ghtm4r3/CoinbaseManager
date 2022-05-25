@@ -18,47 +18,47 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.USERS_ENDPOI
 public class CoinbaseUsersManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseUsers manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
     /** Constructor to init a CoinbaseUsers manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
     /** Constructor to init a CoinbaseUsers manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
      * **/
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
     /** Constructor to init a CoinbaseUsers manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
      * **/
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
 
     /** Request to get exchange user limits for a user
-     * @param #userId: type of report from fetch details
+     * @param userId: type of report from fetch details
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * @return exchange user limits for a user as {@link String}
      * **/
@@ -67,7 +67,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
     }
 
     /** Request to get exchange user limits for a user
-     * @param #userId: type of report from fetch details
+     * @param userId: type of report from fetch details
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * @return exchange user limits for a user as {@link JSONObject}
      * **/
@@ -76,7 +76,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
     }
 
     /** Request to get exchange user limits for a user
-     * @param #userId: type of report from fetch details
+     * @param userId: type of report from fetch details
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * @return exchange user limits for a user as {@link ExchangeLimits} object
      * **/

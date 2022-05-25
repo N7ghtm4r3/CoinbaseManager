@@ -28,7 +28,7 @@ public class Transfer extends AccountDetails{
     }
 
     /** Method to assemble a transfer list
-     * @param #jsonTransfers: jsonArray obtained by response request
+     * @param jsonTransfers: jsonArray obtained by response request
      * @return transfer list as {@link ArrayList} of {@link Transfer}
      * **/
     public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers){
@@ -39,7 +39,7 @@ public class Transfer extends AccountDetails{
     }
 
     /** Method to assemble a transfer object
-     * @param #jsonTransfer: jsonObject obtained by response request
+     * @param jsonTransfer: jsonObject obtained by response request
      * @return transfer as {@link Transfer} object
      * **/
     public static Transfer assembleTransferObject(JSONObject jsonTransfer){

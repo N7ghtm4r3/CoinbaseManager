@@ -67,7 +67,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
     }
 
     /** Method to assemble a test list
-     * @param #jsonTests: jsonArray obtained by response request
+     * @param jsonTests: jsonArray obtained by response request
      * any return
      * **/
     private void assembleTestList(JSONArray jsonTests){

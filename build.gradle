@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'tecknobit.com'
-version '1.0.2'
+version '1.0.3'
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.tecknobit.coinbasemanager'
             artifactId = 'CoinbaseManager'
-            version = '1.0.2'
+            version = '1.0.3'
             from components.java
         }
     }

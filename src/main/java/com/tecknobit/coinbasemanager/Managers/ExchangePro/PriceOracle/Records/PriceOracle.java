@@ -27,7 +27,7 @@ public class PriceOracle {
     }
 
     /** Method to assemble a string list
-     * @param #jsonList: jsonObject obtained by response request
+     * @param jsonList: jsonObject obtained by response request
      * @return string list as {@link ArrayList} of {@link String}
      * **/
     private ArrayList<String> assembleStringList(JSONArray jsonList){
@@ -38,7 +38,7 @@ public class PriceOracle {
     }
 
     /** Method to assemble a prices list
-     * @param #jsonPrices: jsonObject obtained by response request
+     * @param jsonPrices: jsonObject obtained by response request
      * any return
      * **/
     private void loadPricesList(JSONObject jsonPrices) {
@@ -63,7 +63,7 @@ public class PriceOracle {
     }
 
     /**
-     * The {@code Price} class is useful to obtain and format Price object for PriceOracle
+     * The {@code Price} class is useful to obtain and format Price objects for PriceOracle
      * This class give info about each price in prices list
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * **/

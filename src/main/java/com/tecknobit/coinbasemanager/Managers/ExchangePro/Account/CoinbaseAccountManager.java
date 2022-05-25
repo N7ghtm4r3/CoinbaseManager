@@ -30,40 +30,40 @@ import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records
 public class CoinbaseAccountManager extends CoinbaseManager {
 
     /** Constructor to init a CoinbaseAccount manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
     /** Constructor to init a CoinbaseAccount manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
     /** Constructor to init a CoinbaseAccount manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
      * **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
     /** Constructor to init a CoinbaseAccount manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
      * **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
@@ -101,7 +101,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get one account from a profile
-     * @param #accountId: account id to fetch from profile
+     * @param accountId: account id to fetch from profile
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount</a>
      * @return one account from a profile as {@link String}
      * **/
@@ -110,7 +110,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get one account from a profile
-     * @param #accountId: account id to fetch from profile
+     * @param accountId: account id to fetch from profile
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount</a>
      * @return one account from a profile as {@link JSONObject}
      * **/
@@ -119,7 +119,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get one account from a profile
-     * @param #accountId: account id to fetch from profile
+     * @param accountId: account id to fetch from profile
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount</a>
      * @return one account from a profile as {@link Account} object
      * **/
@@ -128,7 +128,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Method to assemble an Account object
-     * @param #jsonAccount: jsonObject obtained by response request
+     * @param jsonAccount: jsonObject obtained by response request
      * @return Account object as {@link Account}
      * **/
     private Account assembleAccountProfile(JSONObject jsonAccount){
@@ -142,7 +142,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
+     * @param accountId: account id to fetch hold information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link String}
      * **/
@@ -151,7 +151,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
+     * @param accountId: account id to fetch hold information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link JSONArray}
      * **/
@@ -160,7 +160,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
+     * @param accountId: account id to fetch hold information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as list {@link ArrayList} of {@link Hold}
      * **/
@@ -169,8 +169,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch hold information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link String}
@@ -181,8 +181,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch hold information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link JSONArray}
@@ -192,8 +192,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get hold information from one profile
-     * @param #accountId: account id to fetch hold information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch hold information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as list {@link ArrayList} of {@link Hold}
@@ -203,7 +203,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Method to assemble a holds list
-     * @param #jsonHolds: jsonObject obtained by response request
+     * @param jsonHolds: jsonObject obtained by response request
      * @return holds list as {@link ArrayList} of {@link Hold}
      * **/
     private ArrayList<Hold> assembleHoldsList(JSONArray jsonHolds){
@@ -221,7 +221,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
+     * @param accountId: account id to fetch ledger information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link String}
      * **/
@@ -230,7 +230,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
+     * @param accountId: account id to fetch ledger information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link JSONArray}
      * **/
@@ -239,7 +239,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
+     * @param accountId: account id to fetch ledger information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as list {@link ArrayList} of {@link Ledger}
      * **/
@@ -248,8 +248,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch ledger information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are start_date,end_date,profile_id,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link String}
@@ -260,8 +260,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch ledger information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are start_date,end_date,profile_id,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link JSONArray}
@@ -271,8 +271,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get ledger information from one profile
-     * @param #accountId: account id to fetch ledger information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch ledger information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are start_date,end_date,profile_id,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as list {@link ArrayList} of {@link Ledger}
@@ -282,7 +282,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Method to assemble a ledger list
-     * @param #jsonLedgers: jsonObject obtained by response request
+     * @param jsonLedgers: jsonObject obtained by response request
      * @return ledger list as {@link ArrayList} of {@link Ledger}
      * **/
     private ArrayList<Ledger> assembleLedgersList(JSONArray jsonLedgers){
@@ -301,7 +301,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
+     * @param accountId: account id to fetch transfer information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link String}
      * **/
@@ -310,7 +310,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
+     * @param accountId: account id to fetch transfer information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link JSONArray}
      * **/
@@ -319,7 +319,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
+     * @param accountId: account id to fetch transfer information
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as list {@link ArrayList} of {@link Transfer}
      * **/
@@ -328,8 +328,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch transfer information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are type,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link String}
@@ -340,8 +340,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch transfer information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are type,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link JSONArray}
@@ -351,8 +351,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to get transfer information from one profile
-     * @param #accountId: account id to fetch transfer information
-     * @param #queryParams: queryParams of request
+     * @param accountId: account id to fetch transfer information
+     * @param queryParams: queryParams of request
      * @implSpec (keys accepted are type,before,after,limit)
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as list {@link ArrayList} of {@link Transfer}
@@ -411,7 +411,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to generate one time crypto address for a deposit
-     * @param #accountId: account id used to create crypto address
+     * @param accountId: account id used to create crypto address
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * @return response of generation one time crypto address for a deposit as {@link String}
      * **/
@@ -420,7 +420,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to generate one time crypto address for a deposit
-     * @param #accountId: account id used to create crypto address
+     * @param accountId: account id used to create crypto address
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * @return response of generation one time crypto address for a deposit as {@link JSONObject}
      * **/
@@ -429,7 +429,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     }
 
     /** Request to generate one time crypto address for a deposit
-     * @param #accountId: account id used to create crypto address
+     * @param accountId: account id used to create crypto address
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
      * @return response of generation one time crypto address for a deposit as {@link CryptoAddress} object
      * **/

@@ -50,7 +50,7 @@ public class Currency {
     }
 
     /** Method to assemble a string value list
-     * @param #jsonDetails: jsonObject obtained by response request
+     * @param jsonDetails: jsonObject obtained by response request
      * @return string values list as {@link ArrayList} of {@link String}
      * **/
     private ArrayList<String> loadDetailsList(JSONArray jsonDetails){

@@ -46,7 +46,7 @@ public class CryptoAddress {
     }
 
     /** Method to assemble an address info list
-     * @param #jsonAddressInfo: jsonObject obtained by response request
+     * @param jsonAddressInfo: jsonObject obtained by response request
      * @return address info list as {@link ArrayList} of {@link AddressInfo}
      * **/
     private ArrayList<AddressInfo> assembleAddressInfo(JSONObject jsonAddressInfo) {
@@ -57,7 +57,7 @@ public class CryptoAddress {
     }
 
     /** Method to assemble a warningsList list
-     * @param #jsonWarnings: jsonObject obtained by response request
+     * @param jsonWarnings: jsonObject obtained by response request
      * @return warningsList list as {@link ArrayList} of {@link Warning}
      * **/
     private ArrayList<Warning> assembleWarningList(JSONArray jsonWarnings){

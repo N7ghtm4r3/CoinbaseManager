@@ -31,7 +31,7 @@ public class Book {
     }
 
     /** Method to assemble a string list
-     * @param #jsonList: jsonArray obtained by response request
+     * @param jsonList: jsonArray obtained by response request
      * @return strings list as {@link ArrayList} of {@link String}
      * **/
     private ArrayList<String> assembleStringList(JSONArray jsonList){

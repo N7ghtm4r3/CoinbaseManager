@@ -34,11 +34,11 @@ public class CoinbaseManager {
     private boolean keysInserted;
 
     /** Constructor to init a Coinbase manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         apiRequest = new APIRequest(defaultErrorMessage, timeout);
@@ -51,10 +51,10 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #timeout custom timeout for request
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param timeout custom timeout for request
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         apiRequest = new APIRequest(timeout);
@@ -67,10 +67,10 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
-     * @param #defaultErrorMessage custom error to show when is not a request error
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
+     * @param defaultErrorMessage custom error to show when is not a request error
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         apiRequest = new APIRequest(defaultErrorMessage);
@@ -83,9 +83,9 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param #apiKey your Coinbase api key
-     * @param #apiSecret your Coinbase api secret
-     * @param #passphrase your Coinbase api passphrase
+     * @param apiKey your Coinbase api key
+     * @param apiSecret your Coinbase api secret
+     * @param passphrase your Coinbase api passphrase
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase) {
         apiRequest = new APIRequest();
@@ -98,8 +98,8 @@ public class CoinbaseManager {
     }
 
     /** Method to execute and get response of a request
-     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param #method: method HTTP for the request
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param method: method HTTP for the request
      * @return response as {@link String}
      * **/
     public String sendAPIRequest(String endpoint, String method) throws Exception {
@@ -109,8 +109,8 @@ public class CoinbaseManager {
     }
 
     /** Method to execute and get response of a POST http request
-     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param #bodyParams: params to insert in the http body post request
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param bodyParams: params to insert in the http body post request
      * @return response as {@link String}
      * **/
     public String sendBodyParamsAPIRequest(String endpoint, String method, HashMap<String, Object> bodyParams) throws Exception {
@@ -123,9 +123,9 @@ public class CoinbaseManager {
     }
 
     /** Method to set Coinbase request headers
-     * @param #endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param #method: method HTTP for the request
-     * @param #body: only if request has a body params (generally POST request)
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param method: method HTTP for the request
+     * @param body: only if request has a body params (generally POST request)
      * any return
      * **/
     private void setRequestHeaders(String method, String endpoint, String body) throws Exception {
@@ -144,7 +144,7 @@ public class CoinbaseManager {
     }
 
     /** Method to assemble query params for a Coinbase request
-     * @param #queryParams: value and key of query params to assemble
+     * @param queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
      * **/
     protected String assembleQueryParams(String defParams, HashMap<String, Object> queryParams){
@@ -168,8 +168,8 @@ public class CoinbaseManager {
     }
 
     /** Method to round a value
-     * @param #value: value to round
-     * @param #decimalDigits: number of digits to round final value
+     * @param value: value to round
+     * @param decimalDigits: number of digits to round final value
      * @return value rounded with decimalDigits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
      * **/
@@ -178,8 +178,8 @@ public class CoinbaseManager {
     }
 
     /** Method to get percent between two values
-     * @param #startValue: first value to make compare
-     * @param #finalValue: last value to compare and get percent by first value
+     * @param startValue: first value to make compare
+     * @param finalValue: last value to compare and get percent by first value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
      * **/
@@ -188,9 +188,9 @@ public class CoinbaseManager {
     }
 
     /** Method to get percent between two values and round it
-     * @param #startValue: first value to make compare
-     * @param #finalValue: last value to compare and get percent by first value
-     * @param #decimalDigits: number of digits to round final percent value
+     * @param startValue: first value to make compare
+     * @param finalValue: last value to compare and get percent by first value
+     * @param decimalDigits: number of digits to round final percent value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
      * **/
@@ -199,7 +199,7 @@ public class CoinbaseManager {
     }
 
     /** Method to format percent between two values and textualize it
-     * @param #percent: value to format
+     * @param percent: value to format
      * @return percent value formatted es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double percent){
@@ -207,8 +207,8 @@ public class CoinbaseManager {
     }
 
     /** Method to get percent between two values and textualize it
-     * @param #startValue: first value to make compare
-     * @param #finalValue: last value to compare and get percent by first value
+     * @param startValue: first value to make compare
+     * @param finalValue: last value to compare and get percent by first value
      * @return percent value es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double startValue, double finalValue){
@@ -216,9 +216,9 @@ public class CoinbaseManager {
     }
 
     /** Method to get percent between two values and textualize it
-     * @param #startValue: first value to make compare
-     * @param #finalValue: last value to compare and get percent by first value
-     * @param #decimalDigits: number of digits to round final percent value
+     * @param startValue: first value to make compare
+     * @param finalValue: last value to compare and get percent by first value
+     * @param decimalDigits: number of digits to round final percent value
      * @return percent value es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double startValue, double finalValue, int decimalDigits){

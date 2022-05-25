@@ -23,7 +23,7 @@ public class PayPalMethod extends PayMethod{
     }
 
     /** Method to assemble a PayPalDetails list
-     * @param #jsonPaypal: jsonObject obtained by response request
+     * @param jsonPaypal: jsonObject obtained by response request
      * @return PayPalDetails list as {@link ArrayList} of {@link PayPalDetails}
      * **/
     private ArrayList<PayPalDetails> assemblePayPalDetailsList(JSONArray jsonPaypal) {
