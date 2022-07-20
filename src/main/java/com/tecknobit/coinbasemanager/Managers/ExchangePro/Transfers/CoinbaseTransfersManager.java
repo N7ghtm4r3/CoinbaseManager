@@ -18,52 +18,63 @@ import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records
 
 /**
  *  The {@code CoinbaseTransfersManager} class is useful to manage all Coinbase transfers endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+ *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+ *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
  *  @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
-    /**Constants methods used in transfer requests**/
+    /**
+     * {@code COINBASE_ACCOUNT_METHOD} is constant for coinbase account identifier method type
+     * **/
     public static final String COINBASE_ACCOUNT_METHOD = "coinbase_account_id";
+
+    /**
+     * {@code PAYMENT_METHOD} is constant for payment identifier method type
+     * **/
     public static final String PAYMENT_METHOD = "payment_method_id";
+
+    /**
+     * {@code CRYPTO_ADDRESS_METHOD} is constant for crypto address method type
+     * **/
     public static final String CRYPTO_ADDRESS_METHOD = "crypto_address";
 
     /** Constructor to init a CoinbaseTransfers manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
-     * @param timeout custom timeout for request
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
     /** Constructor to init a CoinbaseTransfers manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param timeout custom timeout for request
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
     /** Constructor to init a CoinbaseTransfers manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
      * **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
     /** Constructor to init a CoinbaseTransfers manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
      * **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
@@ -73,7 +84,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link String}
      * **/
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -85,7 +97,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link JSONObject}
      * **/
     public JSONObject depositFromCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -96,7 +109,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -108,7 +122,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link String}
      * **/
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -122,7 +137,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link JSONObject}
      * **/
     public JSONObject depositFromCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId,
@@ -135,7 +151,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
@@ -148,19 +165,21 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to deposit
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link String}
      * **/
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
-                assembleTransferActionPayload(amount,PAYMENT_METHOD, paymentMethodId, currencyId, null));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, null));
     }
 
     /** Request to deposit using payment method
      * @param amount: amount to deposit
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link JSONObject}
      * **/
     public JSONObject depositFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -171,7 +190,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to deposit
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -183,13 +203,14 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link String}
      * **/
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                            String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT,POST_METHOD,
-                assembleTransferActionPayload(amount,PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
+        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+                assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
     }
 
     /** Request to deposit using payment method
@@ -197,7 +218,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link JSONObject}
      * **/
     public JSONObject depositFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId,
@@ -210,7 +232,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in deposit
      * @param currencyId: identifier of currency used in deposit
      * @param profileId: identifier of profile used in deposit
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod</a>
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
@@ -221,7 +244,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all payment methods list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * @return payment methods list as {@link String}
      * **/
     public String getAllPaymentMethods() throws Exception {
@@ -230,7 +254,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all payment methods list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * @return payment methods list as {@link JSONArray}
      * **/
     public JSONArray getJSONAllPaymentMethods() throws Exception {
@@ -239,7 +264,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all payment methods list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * @return payment methods list as {@link ArrayList} of {@link PaymentMethod}
      * **/
     public ArrayList<PaymentMethod> getAllPaymentMethodsList() throws Exception {
@@ -272,7 +298,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all transfers list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link String}
      * **/
     public String getAllTransfers() throws Exception {
@@ -281,7 +308,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all transfers list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link JSONArray}
      * **/
     public JSONArray getAllTransfersJSON() throws Exception {
@@ -290,7 +318,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get all transfers list
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link ArrayList} of {@link Transfer}
      * **/
     public ArrayList<Transfer> getAllTransfersList() throws Exception {
@@ -300,17 +329,19 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     /** Request to get all transfers list
      * @param queryParams: query params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link String}
      * **/
     public String getAllTransfers(HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(TRANSFERS_ENDPOINT+assembleQueryParams("?", queryParams), GET_METHOD);
+        return sendAPIRequest(TRANSFERS_ENDPOINT + assembleQueryParams("?", queryParams), GET_METHOD);
     }
 
     /** Request to get all transfers list
      * @param queryParams: query params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link JSONArray}
      * **/
     public JSONArray getAllTransfersJSON(HashMap<String, Object> queryParams) throws Exception {
@@ -320,7 +351,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     /** Request to get all transfers list
      * @param queryParams: query params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link ArrayList} of {@link Transfer}
      * **/
     public ArrayList<Transfer> getAllTransfersList(HashMap<String, Object> queryParams) throws Exception {
@@ -329,16 +361,18 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get a single transfer
      * @param transferId: identifier used to fetch information
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
      * @return single transfer as {@link String}
      * **/
     public String getSingleTransfer(String transferId) throws Exception {
-        return sendAPIRequest(TRANSFERS_ENDPOINT+"/"+transferId, GET_METHOD);
+        return sendAPIRequest(TRANSFERS_ENDPOINT + "/" + transferId, GET_METHOD);
     }
 
     /** Request to get a single transfer
      * @param transferId: identifier used to fetch information
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
      * @return single transfer as {@link JSONObject}
      * **/
     public JSONObject getSingleTransferJSON(String transferId) throws Exception {
@@ -347,7 +381,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /** Request to get a single transfer
      * @param transferId: identifier used to fetch information
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer</a>
      * @return single transfer as {@link Transfer} object
      * **/
     public Transfer getSingleTransferObject(String transferId) throws Exception {
@@ -358,7 +393,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -370,7 +406,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawToCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -381,7 +418,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
@@ -393,7 +431,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -407,7 +446,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawToCoinbaseAccountJSON(double amount, String coinbaseAccountId, String currencyId,
@@ -420,7 +460,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
@@ -433,7 +474,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId) throws Exception {
@@ -445,7 +487,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawToCryptoJSON(double amount, String cryptoAddress, String currencyId) throws Exception {
@@ -456,7 +499,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId) throws Exception {
@@ -469,7 +513,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param currencyId: identifier of currency used in withdraw
      * @param extraBodyParams: extra body params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
@@ -486,7 +531,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param currencyId: identifier of currency used in withdraw
      * @param extraBodyParams: extra body params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawToCryptoJSON(double amount, String cryptoAddress, String currencyId,
@@ -500,7 +546,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param currencyId: identifier of currency used in withdraw
      * @param extraBodyParams: extra body params of request
      * @implSpec (keys accepted are profile_id,before,after,limit,type)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId,
@@ -519,11 +566,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     private HashMap<String, Object> assembleTransferActionPayload(double amount, String keyMethodId, String valueMethodId,
                                                                   String currencyId, String profileId){
         HashMap<String, Object> depositBodyParams = new HashMap<>();
-        depositBodyParams.put("amount",amount);
-        depositBodyParams.put(keyMethodId,valueMethodId);
-        depositBodyParams.put("currency",currencyId);
+        depositBodyParams.put("amount", amount);
+        depositBodyParams.put(keyMethodId, valueMethodId);
+        depositBodyParams.put("currency", currencyId);
         if(profileId != null)
-            depositBodyParams.put("profile_id",profileId);
+            depositBodyParams.put("profile_id", profileId);
         return depositBodyParams;
     }
 
@@ -544,18 +591,20 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     /** Request to get estimate fee of withdraw to crypto address
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currency: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
      * @return estimate fee of withdraw as {@link String}
      * **/
     public String getFeeForCryptoWithdrawal(String cryptoAddress, String currency) throws Exception {
-        String queryParams = "?currency="+currency+"&crypto_address="+cryptoAddress;
+        String queryParams = "?currency=" + currency + "&crypto_address=" + cryptoAddress;
         return sendAPIRequest(FEE_WITHDRAW_TO_CRYPTO_ENDPOINT + queryParams, GET_METHOD);
     }
 
     /** Request to get estimate fee of withdraw to crypto address
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currency: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
      * @return estimate fee of withdraw as {@link JSONObject}
      * **/
     public JSONObject getFeeForCryptoWithdrawalJSON(String cryptoAddress, String currency) throws Exception {
@@ -565,7 +614,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     /** Request to get estimate fee of withdraw to crypto address
      * @param cryptoAddress: identifier of crypto address used in withdraw
      * @param currency: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate</a>
      * @return estimate fee of withdraw as double
      * **/
     public double getFeeForCryptoWithdrawalValue(String cryptoAddress, String currency) throws Exception {
@@ -577,7 +627,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -589,7 +640,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -600,7 +652,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param amount: amount to withdraw
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -612,7 +665,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
@@ -626,7 +680,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawFromPaymentMethodJSON(double amount, String paymentMethodId, String currencyId,
@@ -639,7 +694,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param paymentMethodId: identifier of payment method used in withdraw
      * @param currencyId: identifier of currency used in withdraw
      * @param profileId: identifier of profile used in withdraw
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod</a>
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,

@@ -443,8 +443,14 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
          * @throws IllegalArgumentException if parameters range is not respected
          * **/
         public Country(String code, String name, boolean isInEurope) {
-            this.code = code;
-            this.name = name;
+            if(code == null || code.isEmpty())
+                throw new IllegalArgumentException("Code value cannot be empty or null");
+            else
+                this.code = code;
+            if(name == null || name.isEmpty())
+                throw new IllegalArgumentException("Name value cannot be empty or null");
+            else
+                 this.name = name;
             this.isInEurope = isInEurope;
         }
 
@@ -461,6 +467,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return code;
         }
 
+        /** Method to set {@link #code}
+         * @param code: code value
+         * @throws IllegalArgumentException when code value is null or empty
+         * **/
         public void setCode(String code) {
             if(code == null || code.isEmpty())
                 throw new IllegalArgumentException("Code value cannot be empty or null");
@@ -471,6 +481,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return name;
         }
 
+        /** Method to set {@link #name}
+         * @param name: code value
+         * @throws IllegalArgumentException when name value is null or empty
+         * **/
         public void setName(String name) {
             if(name == null || name.isEmpty())
                 throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -494,13 +508,45 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     public static class Address{
 
+        /**
+         * {@code line1} is instance that memorizes line1 value
+         * **/
         private String line1;
+
+        /**
+         * {@code city} is instance that memorizes city value
+         * **/
         private String city;
+
+        /**
+         * {@code state} is instance that memorizes state value
+         * **/
         private String state;
+
+        /**
+         * {@code postalCode} is instance that memorizes postal code value
+         * **/
         private String postalCode;
+
+        /**
+         * {@code code} is instance that memorizes code value
+         * **/
         private String code;
+
+        /**
+         * {@code name} is instance that memorizes name value
+         * **/
         private String name;
 
+        /** Constructor to init {@link Address} object
+         * @param line1: line1 value
+         * @param city: city value
+         * @param state: state value
+         * @param postalCode: postal code value
+         * @param code: code value
+         * @param name: name value
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public Address(String line1, String city, String state, String postalCode, String code, String name) {
             this.line1 = line1;
             this.city = city;
@@ -510,6 +556,9 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             this.name = name;
         }
 
+        /** Constructor to init {@link Address} object
+         * @param jsonAddress: address details in JSON format
+         * **/
         public Address(JSONObject jsonAddress){
             line1 = jsonAddress.getString("line1");
             city = jsonAddress.getString("city");
@@ -524,6 +573,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return line1;
         }
 
+        /** Method to set {@link #line1}
+         * @param line1: line1 value
+         * @throws IllegalArgumentException when line1 value is null or empty
+         * **/
         public void setLine1(String line1) {
             if(line1 == null || line1.isEmpty())
                 throw new IllegalArgumentException("Line1 value cannot be empty or null");
@@ -534,6 +587,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return city;
         }
 
+        /** Method to set {@link #city}
+         * @param city: city value
+         * @throws IllegalArgumentException when city value is null or empty
+         * **/
         public void setCity(String city) {
             if(city == null || city.isEmpty())
                 throw new IllegalArgumentException("City value cannot be empty or null");
@@ -544,6 +601,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return state;
         }
 
+        /** Method to set {@link #state}
+         * @param state: state value
+         * @throws IllegalArgumentException when state value is null or empty
+         * **/
         public void setState(String state) {
             if(state == null || state.isEmpty())
                 throw new IllegalArgumentException("State value cannot be empty or null");
@@ -554,6 +615,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return postalCode;
         }
 
+        /** Method to set {@link #postalCode}
+         * @param postalCode: postal code value
+         * @throws IllegalArgumentException when postal code value is null or empty
+         * **/
         public void setPostalCode(String postalCode) {
             if(postalCode == null || postalCode.isEmpty())
                 throw new IllegalArgumentException("Postal code value cannot be empty or null");
@@ -564,6 +629,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return code;
         }
 
+        /** Method to set {@link #code}
+         * @param code: code value
+         * @throws IllegalArgumentException when code value is null or empty
+         * **/
         public void setCode(String code) {
             if(code == null || code.isEmpty())
                 throw new IllegalArgumentException("Code value cannot be empty or null");
@@ -574,6 +643,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return name;
         }
 
+        /** Method to set {@link #name}
+         * @param name: code value
+         * @throws IllegalArgumentException when name value is null or empty
+         * **/
         public void setName(String name) {
             if(name == null || name.isEmpty())
                 throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -589,16 +662,39 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     public static class MarginInformation{
 
+        /**
+         * {@code eligible} is flag for eligible value
+         * **/
         private boolean eligible;
+
+        /**
+         * {@code enabled} is flag for enabled value
+         * **/
         private boolean enabled;
+
+        /**
+         * {@code tier} is instance that memorizes tier value
+         * **/
         private String tier;
 
+        /** Constructor to init {@link MarginInformation} object
+         * @param eligible: flag for eligible value
+         * @param enabled: flag for enabled value
+         * @param tier: tier value
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public MarginInformation(boolean eligible, boolean enabled, String tier) {
             this.eligible = eligible;
             this.enabled = enabled;
-            this.tier = tier;
+            if(tier == null)
+                throw new IllegalArgumentException("Tier value cannot be empty or null");
+            else
+                this.tier = tier;
         }
 
+        /** Constructor to init {@link MarginInformation} object
+         * @param jsonMargin: margin information details in JSON format
+         * **/
         public MarginInformation(JSONObject jsonMargin){
             eligible = jsonMargin.getBoolean("eligible");
             enabled = jsonMargin.getBoolean("enabled");
@@ -625,8 +721,12 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             return tier;
         }
 
+        /** Method to set {@link #tier}
+         * @param tier: tier value
+         * @throws IllegalArgumentException when tier value is null or empty
+         * **/
         public void setTier(String tier) {
-            if(tier == null || tier.isEmpty())
+            if(tier == null)
                 throw new IllegalArgumentException("Tier value cannot be empty or null");
             this.tier = tier;
         }

@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONObject;
 
 /**
@@ -29,7 +29,7 @@ public class PaymentMethod extends PayMethod{
     private final int holdBusinessDays;
     private final int holdDays;
     private final JsonHelper jsonHelper;
-    private final MinimumPurchaseAmount minimumPurchaseAmount;
+    private final Amount minimumPurchaseAmount;
     private JSONObject payPalLimits;
     private JSONObject bankLimits;
     private JSONObject payPalPickerData;
@@ -61,7 +61,7 @@ public class PaymentMethod extends PayMethod{
         this.verified = verified;
         this.holdBusinessDays = jsonHelper.getInt("hold_business_days");
         this.holdDays = jsonHelper.getInt("hold_days");
-        minimumPurchaseAmount = new MinimumPurchaseAmount(jsonHelper.getJSONObject("minimum_purchase_amount"));
+        minimumPurchaseAmount = new Amount(jsonHelper.getJSONObject("minimum_purchase_amount"));
     }
 
     public String getId() {
@@ -132,7 +132,7 @@ public class PaymentMethod extends PayMethod{
         return holdDays;
     }
 
-    public MinimumPurchaseAmount getMinimumPurchaseAmount() {
+    public Amount getMinimumPurchaseAmount() {
         return minimumPurchaseAmount;
     }
 
@@ -257,7 +257,7 @@ public class PaymentMethod extends PayMethod{
             String symbol = fiatAccountPickerData.getString("type");
             if(symbol.equals(FIAT_ACCOUNT_TYPE)){
                 return new FiatAccountMethod.FiatAccountPickerData(symbol,
-                        fiatAccountPickerData.getDouble("amount"),
+                        fiatAccountPickerData.getDouble("minimumPurchaseAmount"),
                         fiatAccountDetails.getString("currency")
                 );
             }
@@ -275,22 +275,44 @@ public class PaymentMethod extends PayMethod{
     }
 
     /**
-     * The {@code MinimumPurchaseAmount} class is useful to obtain and format MinimumPurchaseAmount object for PaymentMethod
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * The {@code Amount} class is useful to obtain and format Amount object for PaymentMethod
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * **/
-    public static class MinimumPurchaseAmount{
+    public static class Amount {
 
-        private final double amount;
-        private final String currency;
+        /**
+         * {@code amount} is instance that memorizes amount value
+         * **/
+        private double amount;
 
-        public MinimumPurchaseAmount(double amount, String currency) {
-            this.amount = amount;
-            this.currency = currency;
+        /**
+         * {@code currency} is instance that memorizes currency value
+         * **/
+        private String currency;
+
+        /** Constructor to init a {@link Amount} object
+         * @param amount: period in days value
+         * @param currency: description value
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public Amount(double amount, String currency) {
+            if(amount < 0)
+                throw new IllegalArgumentException("Amount value cannot be less than 0");
+            else
+                this.amount = amount;
+            if(currency == null || currency.isEmpty())
+                throw new IllegalArgumentException("Currency value cannot be empty or null");
+            else
+                this.currency = currency;
         }
 
-        public MinimumPurchaseAmount(JSONObject jsonDetails){
+        /** Constructor to init a {@link Amount} object
+         * @param jsonDetails: amount details in JSON format
+         * **/
+        public Amount(JSONObject jsonDetails){
             if(jsonDetails != null){
-                amount = jsonDetails.getDouble("amount");
+                amount = jsonDetails.getDouble("minimumPurchaseAmount");
                 currency = jsonDetails.getString("currency");
             }else{
                 amount = -1;
@@ -302,8 +324,28 @@ public class PaymentMethod extends PayMethod{
             return amount;
         }
 
+        /** Method to set {@link #amount}
+         * @param amount: minimumPurchaseAmount value
+         * @throws IllegalArgumentException when minimumPurchaseAmount value is less than 0
+         * **/
+        public void setAmount(double amount) {
+            if(amount < 0)
+                throw new IllegalArgumentException("Amount value cannot be less than 0");
+            this.amount = amount;
+        }
+
         public String getCurrency() {
             return currency;
+        }
+
+        /** Method to set {@link #currency}
+         * @param currency: currency value
+         * @throws IllegalArgumentException when currency value is null or empty
+         * **/
+        public void setCurrency(String currency) {
+            if(currency == null || currency.isEmpty())
+                throw new IllegalArgumentException("Currency value cannot be empty or null");
+            this.currency = currency;
         }
 
     }

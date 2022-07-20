@@ -1,21 +1,37 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods.PaymentMethod.Amount;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static org.apache.commons.validator.routines.EmailValidator.getInstance;
+
 /**
  * The {@code PayPalMethod} class is useful to format PayPalMethod object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class PayPalMethod extends PayMethod{
 
+    /**
+     * {@code payPalBuysList} is instance that memorizes list of {@link PayPalDetails} for buys
+     * **/
     private ArrayList<PayPalDetails> payPalBuysList;
+
+    /**
+     * {@code payPalDepositsList} is instance that memorizes list of {@link PayPalDetails} for deposits
+     * **/
     private ArrayList<PayPalDetails> payPalDepositsList;
 
+    /** Constructor to init a {@link PayPalMethod} object
+     * @param name: pay method name
+     * @param type: pay method type
+     * @param jsonPaypal: paypal details in JSON format
+     * **/
     public PayPalMethod(String name, String type, JSONObject jsonPaypal) {
         super(name, type);
         payPalBuysList = assemblePayPalDetailsList(jsonPaypal.getJSONArray("buy"));
@@ -28,7 +44,7 @@ public class PayPalMethod extends PayMethod{
      * **/
     private ArrayList<PayPalDetails> assemblePayPalDetailsList(JSONArray jsonPaypal) {
         ArrayList<PayPalDetails> payPalDetails = new ArrayList<>();
-        for (int j=0; j < jsonPaypal.length(); j++) {
+        for (int j = 0; j < jsonPaypal.length(); j++) {
             JSONObject payPalDetail = jsonPaypal.getJSONObject(j);
             payPalDetails.add(new PayPalDetails(payPalDetail.getInt("period_in_days"),
                     payPalDetail.getString("description"),
@@ -83,30 +99,67 @@ public class PayPalMethod extends PayMethod{
 
     /**
      * The {@code PayPalDetails} class is useful to obtain and format PayPalDetails object for PayPalMethod
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * **/
     public static class PayPalDetails {
 
+        /**
+         * {@code periodInDays} is instance that memorizes periodic in days value
+         * **/
         private int periodInDays;
-        private String description;
-        private String label;
-        private PayPalStatusAmount total;
-        private PayPalStatusAmount remaining;
 
+        /**
+         * {@code description} is instance that memorizes description value
+         * **/
+        private String description;
+
+        /**
+         * {@code label} is instance that memorizes label value
+         * **/
+        private String label;
+
+        /**
+         * {@code total} is instance that memorizes total value
+         * **/
+        private Amount total;
+
+        /**
+         * {@code remaining} is instance that remaining total value
+         * **/
+        private Amount remaining;
+
+        /** Constructor to init a {@link PayPalDetails} object
+         * @param periodInDays: period in days value
+         * @param description: description value
+         * @param label: value
+         * @param jsonPaypal: paypal details in JSON format
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public PayPalDetails(int periodInDays, String description, String label, JSONObject jsonPaypal) {
-            this.periodInDays = periodInDays;
+            if(periodInDays < 0)
+                throw new IllegalArgumentException("Period in days value cannot be less than 0");
+            else
+                this.periodInDays = periodInDays;
             this.description = description;
-            this.label = label;
+            if(label == null || label.isEmpty())
+                throw new IllegalArgumentException("Label value cannot be empty or null");
+            else
+                this.label = label;
             JSONObject total = jsonPaypal.getJSONObject("total");
+            this.total = new Amount(total.getDouble("amount"), total.getString("currency"));
             JSONObject remaining = jsonPaypal.getJSONObject("remaining");
-            this.total = new PayPalStatusAmount(total.getDouble("amount"), total.getString("currency"));
-            this.remaining = new PayPalStatusAmount(remaining.getDouble("amount"), remaining.getString("currency"));
+            this.remaining = new Amount(remaining.getDouble("amount"), remaining.getString("currency"));
         }
 
         public int getPeriodInDays() {
             return periodInDays;
         }
 
+        /** Method to set {@link #periodInDays}
+         * @param periodInDays: period in days value
+         * @throws IllegalArgumentException when period in days value is less than 0
+         * **/
         public void setPeriodInDays(int periodInDays) {
             if(periodInDays < 0)
                 throw new IllegalArgumentException("Period in days value cannot be less than 0");
@@ -125,77 +178,69 @@ public class PayPalMethod extends PayMethod{
             return label;
         }
 
+        /** Method to set {@link #label}
+         * @param label: label value
+         * @throws IllegalArgumentException when label value is null or empty
+         * **/
         public void setLabel(String label) {
             if(label == null || label.isEmpty())
                 throw new IllegalArgumentException("Label value cannot be empty or null");
             this.label = label;
         }
 
-        public PayPalStatusAmount getTotal() {
+        public Amount getTotal() {
             return total;
         }
 
-        public void setTotal(PayPalStatusAmount total) {
+        public void setTotal(Amount total) {
             this.total = total;
         }
 
-        public PayPalStatusAmount getRemaining() {
+        public Amount getRemaining() {
             return remaining;
         }
 
-        public void setRemaining(PayPalStatusAmount remaining) {
+        public void setRemaining(Amount remaining) {
             this.remaining = remaining;
-        }
-
-        /**
-         * The {@code PayPalStatusAmount} class is useful to obtain and format PayPalStatusAmount object for PayPalDetails
-         * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
-         * **/
-        public static class PayPalStatusAmount {
-
-            private double amount;
-            private String currency;
-
-            public PayPalStatusAmount(double amount, String currency) {
-                this.amount = amount;
-                this.currency = currency;
-            }
-
-            public double getAmount() {
-                return amount;
-            }
-
-            public void setAmount(double amount) {
-                if(amount < 0)
-                    throw new IllegalArgumentException("Amount value cannot be less than 0");
-                this.amount = amount;
-            }
-
-            public String getCurrency() {
-                return currency;
-            }
-
-            public void setCurrency(String currency) {
-                if(currency == null || currency.isEmpty())
-                    throw new IllegalArgumentException("Currency value cannot be empty or null");
-                this.currency = currency;
-            }
-
         }
 
     }
 
     /**
      * The {@code PayPalPickerData} class is useful to obtain and format PayPalPickerData object for PayPalMethod
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
      * **/
     public static class PayPalPickerData extends PickerData{
 
+        /**
+         * {@code payoutOnly} is instance is flag for check out payout only
+         * **/
         private boolean payoutOnly;
+
+        /**
+         * {@code payPalEmail} is instance is PayPal's email value
+         * **/
         private String payPalEmail;
+
+        /**
+         * {@code payPalOwner} is instance is PayPal's owner value
+         * **/
         private String payPalOwner;
+
+        /**
+         * {@code reauth} is instance is flag for reauth
+         * **/
         private boolean reauth;
 
+        /** Constructor to init a {@link PayPalPickerData} object
+         * @param symbol: symbol value
+         * @param payoutOnly: flag for check out payout only
+         * @param payPalEmail: PayPal's email value
+         * @param payPalOwner: PayPal's owner value
+         * @param reauth: flag for reauth
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public PayPalPickerData(String symbol, boolean payoutOnly, String payPalEmail, String payPalOwner, boolean reauth) {
             super(symbol);
             this.payoutOnly = payoutOnly;
@@ -216,11 +261,15 @@ public class PayPalMethod extends PayMethod{
             return payPalEmail;
         }
 
+        /** Method to set {@link #payPalEmail}
+         * @param payPalEmail: PayPal's email value
+         * @throws IllegalArgumentException when PayPal's email value is null, empty or non a valid email
+         * **/
         public void setPayPalEmail(String payPalEmail) {
             if(payPalEmail == null || payPalEmail.isEmpty())
-                throw new IllegalArgumentException("PayPal email value cannot be empty or null");
-            if(!payPalEmail.contains("@"))
-                throw new IllegalArgumentException("PayPal email inserted is not a valid email, check it out");
+                throw new IllegalArgumentException("PayPal's email value cannot be empty or null");
+            if(!getInstance().isValid(payPalEmail))
+                throw new IllegalArgumentException("PayPal's email inserted is not a valid email, check it out");
             this.payPalEmail = payPalEmail;
         }
 
@@ -228,9 +277,13 @@ public class PayPalMethod extends PayMethod{
             return payPalOwner;
         }
 
+        /** Method to set {@link #payPalOwner}
+         * @param payPalOwner: PayPal's owner value
+         * @throws IllegalArgumentException when PayPal's owner value is null or empty
+         * **/
         public void setPayPalOwner(String payPalOwner) {
             if(payPalOwner == null || payPalOwner.isEmpty())
-                throw new IllegalArgumentException("PayPal owner value cannot be empty or null");
+                throw new IllegalArgumentException("PayPal's owner value cannot be empty or null");
             this.payPalOwner = payPalOwner;
         }
 
