@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Users.Records;
 
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records.ReportDetails;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,43 +9,149 @@ import java.util.ArrayList;
 
 /**
  * The {@code ExchangeLimits} class is useful to format ExchangeLimits object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class ExchangeLimits extends ReportDetails.UserDetails {
 
+    /**
+     * {@code termsAccepted} is instance that memorizes if terms are being accepted
+     * **/
     private final String termsAccepted;
-    private ArrayList<Test> testGroupsList;
-    private Country country;
-    private String stateCode;
-    private boolean accessPrivacyRights;
-    private final String twoFactorMethod;
-    private boolean analyticsProcessingEnabled;
-    private boolean isPrime;
-    private boolean hasProWbl;
-    private boolean hasClawBack;
-    private boolean hasClawBackPaymentPending;
-    private boolean hasRestrictedAssets;
-    private String legalName;
-    private boolean whitelistingEnabled;
-    private boolean regionBankingSupport;
-    private String defaultPreferredMarket;
-    private boolean marginEligible;
-    private MarginInformation marginInformation;
-    private Address address;
-    private final JsonHelper jsonHelper;
 
+    /**
+     * {@code testGroupsList} is instance that memorizes list of {@link Test}
+     * **/
+    private ArrayList<Test> testGroupsList;
+
+    /**
+     * {@code country} is instance that memorizes country details
+     * **/
+    private Country country;
+
+    /**
+     * {@code stateCode} is instance that memorizes state code value
+     * **/
+    private String stateCode;
+
+    /**
+     * {@code accessPrivacyRights} is flag that checks access privacy policy rights
+     * **/
+    private boolean accessPrivacyRights;
+
+    /**
+     * {@code twoFactorMethod} is instance that memorizes two factor method value
+     * **/
+    private final String twoFactorMethod;
+
+    /**
+     * {@code analyticsProcessingEnabled} is flag that checks analytics processing are enabled
+     * **/
+    private boolean analyticsProcessingEnabled;
+
+    /**
+     * {@code analyticsProcessingEnabled} is flag that checks if is prime
+     * **/
+    private boolean isPrime;
+
+    /**
+     * {@code hasProWbl} is flag that checks if account has pro wbl value
+     * **/
+    private boolean hasProWbl;
+
+    /**
+     * {@code hasProWbl} is flag that checks if account has claw back value
+     * **/
+    private boolean hasClawBack;
+
+    /**
+     * {@code hasClawBackPaymentPending} is flag that checks if account has clawed back payments pending value
+     * **/
+    private boolean hasClawBackPaymentPending;
+
+    /**
+     * {@code hasRestrictedAssets} is flag that checks if account has restricted assets
+     * **/
+    private boolean hasRestrictedAssets;
+
+    /**
+     * {@code legalName} is instance that memorizes legal name value
+     * **/
+    private String legalName;
+
+    /**
+     * {@code whitelistingEnabled} is flag that checks if account has white listing enabled
+     * **/
+    private boolean whitelistingEnabled;
+
+    /**
+     * {@code regionBankingSupport} is flag that checks if account has region banking support
+     * **/
+    private boolean regionBankingSupport;
+
+    /**
+     * {@code legalName} is instance that memorizes default preferred market value
+     * **/
+    private String defaultPreferredMarket;
+
+    /**
+     * {@code marginEligible} is flag that checks if account has margin eligible
+     * **/
+    private boolean marginEligible;
+
+    /**
+     * {@code marginInformation} is instance that memorizes margin information value
+     * **/
+    private MarginInformation marginInformation;
+
+    /**
+     * {@code Address} is instance that memorizes address value
+     * **/
+    private Address address;
+
+    /** Constructor to init {@link ExchangeLimits} object
+     * @param createdAt: created at value
+     * @param activeAt: active at value
+     * @param id: identifier value
+     * @param name: name value
+     * @param email: email value
+     * @param isBanned: flag if account is banned
+     * @param userType: user type value
+     * @param fullFillsNewRequirements: flag for full fills new requirements
+     * @param hasDefault: flag for default check
+     * @param jsonHelper: useful to help to format JSON
+     * @param termsAccepted: terms are being accepted
+     * @param stateCode: state code value
+     * @param accessPrivacyRights: flag that checks access privacy policy rights
+     * @param twoFactorMethod: two factor method value
+     * @param analyticsProcessingEnabled: flag that checks analytics processing are enabled
+     * @param isPrime: flag that checks if is prime
+     * @param hasProWbl: flag that checks if account has pro wbl value
+     * @param hasClawBack: flag that checks if account has claw back value
+     * @param hasClawBackPaymentPending: flag that checks if account has clawed back payments pending value
+     * @param hasRestrictedAssets: flag that checks if account has restricted assets
+     * @param legalName: legal name value
+     * @param whitelistingEnabled: flag that checks if account has white listing enabled
+     * @param regionBankingSupport: flag that checks if account has region banking support
+     * @param defaultPreferredMarket: default preferred market value
+     * @param marginEligible: flag that checks if account has margin eligible
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
     public ExchangeLimits(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
                           String userType, boolean fullFillsNewRequirements, boolean hasDefault, JsonHelper jsonHelper,
-                          String termsAccepted, String stateCode,
-                          boolean accessPrivacyRights, String twoFactorMethod, boolean analyticsProcessingEnabled,
-                          boolean isPrime, boolean hasProWbl, boolean hasClawBack, boolean hasClawBackPaymentPending,
-                          boolean hasRestrictedAssets, String legalName, boolean whitelistingEnabled,
-                          boolean regionBankingSupport, String defaultPreferredMarket, boolean marginEligible) {
+                          String termsAccepted, String stateCode, boolean accessPrivacyRights, String twoFactorMethod,
+                          boolean analyticsProcessingEnabled, boolean isPrime, boolean hasProWbl, boolean hasClawBack,
+                          boolean hasClawBackPaymentPending, boolean hasRestrictedAssets, String legalName,
+                          boolean whitelistingEnabled, boolean regionBankingSupport, String defaultPreferredMarket,
+                          boolean marginEligible) {
         super(createdAt, activeAt, id, name, email, isBanned, userType, fullFillsNewRequirements, hasDefault, jsonHelper);
         this.termsAccepted = termsAccepted;
-        this.stateCode = stateCode;
+        if(stateCode == null || stateCode.isEmpty())
+            throw new IllegalArgumentException("State code value cannot be empty or null");
+        else
+            this.stateCode = stateCode;
         this.accessPrivacyRights = accessPrivacyRights;
         this.twoFactorMethod = twoFactorMethod;
         this.analyticsProcessingEnabled = analyticsProcessingEnabled;
@@ -54,12 +160,17 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         this.hasClawBack = hasClawBack;
         this.hasClawBackPaymentPending = hasClawBackPaymentPending;
         this.hasRestrictedAssets = hasRestrictedAssets;
-        this.legalName = legalName;
+        if(legalName == null || legalName.isEmpty())
+            throw new IllegalArgumentException("Legal name value cannot be empty or null");
+        else
+            this.legalName = legalName;
         this.whitelistingEnabled = whitelistingEnabled;
         this.regionBankingSupport = regionBankingSupport;
-        this.defaultPreferredMarket = defaultPreferredMarket;
+        if(defaultPreferredMarket == null || defaultPreferredMarket.isEmpty())
+            throw new IllegalArgumentException("Default preferred market value cannot be empty or null");
+        else
+            this.defaultPreferredMarket = defaultPreferredMarket;
         this.marginEligible = marginEligible;
-        this.jsonHelper = jsonHelper;
         assembleTestList(jsonHelper.getJSONArray("test_groups"));
         country = new Country(jsonHelper.getJSONObject("country"));
         marginInformation = new MarginInformation(jsonHelper.getJSONObject("margin_information"));
@@ -118,6 +229,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return stateCode;
     }
 
+    /** Method to set {@link #stateCode}
+     * @param stateCode: state code value
+     * @throws IllegalArgumentException when state code value is null or empty
+     * **/
     public void setStateCode(String stateCode) {
         if(stateCode == null || stateCode.isEmpty())
             throw new IllegalArgumentException("State code value cannot be empty or null");
@@ -188,6 +303,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return legalName;
     }
 
+    /** Method to set {@link #legalName}
+     * @param legalName: legal name value
+     * @throws IllegalArgumentException when legal name value is null or empty
+     * **/
     public void setLegalName(String legalName) {
         if(legalName == null || legalName.isEmpty())
             throw new IllegalArgumentException("Legal name value cannot be empty or null");
@@ -214,6 +333,10 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         return defaultPreferredMarket;
     }
 
+    /** Method to set {@link #defaultPreferredMarket}
+     * @param defaultPreferredMarket: default preferred market value
+     * @throws IllegalArgumentException when default preferred market value is null or empty
+     * **/
     public void setDefaultPreferredMarket(String defaultPreferredMarket) {
         if(defaultPreferredMarket == null || defaultPreferredMarket.isEmpty())
             throw new IllegalArgumentException("Default preferred market value cannot be empty or null");
@@ -244,20 +367,33 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         this.address = address;
     }
 
-    public JsonHelper getJsonHelper() {
-        return jsonHelper;
-    }
-
     /**
      * The {@code Test} class is useful to obtain and format Test objects for ExchangeLimits
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * **/
     public static class Test{
 
+        /**
+         * {@code test} is instance that memorizes test value
+         * **/
         private final String test;
+
+        /**
+         * {@code group} is instance that memorizes group value
+         * **/
         private final String group;
+
+        /**
+         * {@code forced} is flag that checks if test is forced
+         * **/
         private final boolean forced;
 
+        /** Constructor to init {@link Test} object
+         * @param test: test value
+         * @param group: group value
+         * @param forced: flag that checks if test is forced
+         * **/
         public Test(String test, String group, boolean forced) {
             this.test = test;
             this.group = group;
@@ -280,20 +416,41 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     /**
      * The {@code Country} class is useful to obtain and format Country object for ExchangeLimits
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * **/
     public static class Country{
 
+        /**
+         * {@code code} is instance that memorizes code value
+         * **/
         private String code;
+
+        /**
+         * {@code name} is instance that memorizes name value
+         * **/
         private String name;
+
+        /**
+         * {@code isInEurope} is flag that checks if account is in Europe
+         * **/
         private boolean isInEurope;
 
+        /** Constructor to init {@link Country} object
+         * @param code: code value
+         * @param name: name value
+         * @param isInEurope: flag that checks if account is in Europe
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public Country(String code, String name, boolean isInEurope) {
             this.code = code;
             this.name = name;
             this.isInEurope = isInEurope;
         }
 
+        /** Constructor to init {@link Country} object
+         * @param jsonCountry: country details in JSON format
+         * **/
         public Country(JSONObject jsonCountry){
             code = jsonCountry.getString("code");
             name = jsonCountry.getString("name");
@@ -332,7 +489,8 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     /**
      * The {@code Address} class is useful to obtain and format Address object for ExchangeLimits
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * **/
     public static class Address{
 
@@ -426,7 +584,8 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
     /**
      * The {@code MarginInformation} class is useful to obtain and format MarginInformation object for ExchangeLimits
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * **/
     public static class MarginInformation{
 

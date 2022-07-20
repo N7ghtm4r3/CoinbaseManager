@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products;
 
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records.*;
 import org.json.JSONArray;

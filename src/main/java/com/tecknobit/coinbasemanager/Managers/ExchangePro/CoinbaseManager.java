@@ -1,7 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.apimanager.Tools.Trading.TradingTools;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,29 +16,87 @@ import java.util.HashMap;
 
 public class CoinbaseManager {
 
-    /**Useful for workflow of library**/
+    /**
+     * {@code BASE_ENDPOINT} is constant for base endpoint for url api requests
+     * **/
     public static final String BASE_ENDPOINT = "https://api.exchange.coinbase.com";
+
+    /**
+     * {@code CB_ACCESS_KEY} is constant for CB_ACCESS_KEY's header
+     * **/
     protected static final String CB_ACCESS_KEY = "cb-access-key";
+
+    /**
+     * {@code CB_ACCESS_SIGN} is constant for CB_ACCESS_SIGN's header
+     * **/
     protected static final String CB_ACCESS_SIGN = "cb-access-sign";
+
+    /**
+     * {@code CB_ACCESS_TIMESTAMP} is constant for CB_ACCESS_TIMESTAMP's header
+     * **/
     protected static final String CB_ACCESS_TIMESTAMP = "cb-access-timestamp";
+
+    /**
+     * {@code CB_ACCESS_PASSPHRASE} is constant for CB_ACCESS_PASSPHRASE's header
+     * **/
     protected static final String CB_ACCESS_PASSPHRASE = "cb-access-passphrase";
+
+    /**
+     * {@code headers} is instance that memorizes headers values
+     * **/
     protected final HashMap<String, String> headers;
+
+    /**
+     * {@code apiRequest} is instance to use to make API requests
+     * **/
     protected final APIRequest apiRequest;
+
+    /**
+     * {@code tradingTools} is instance to use for trading tool workflow
+     * **/
     protected final TradingTools tradingTools;
-    private final String apiSecret;
-    private final String passphrase;
-    private final String apiKey;
+
+    /**
+     * {@code apiSecret} is instance that memorizes api secret user value
+     * **/
+    protected final String apiSecret;
+
+    /**
+     * {@code passphrase} is instance that memorizes pass phrase user value
+     * **/
+    protected final String passphrase;
+
+    /**
+     * {@code apiKey} is instance that memorizes api key user value
+     * **/
+    protected final String apiKey;
+
+    /**
+     * {@code jsonObject} is instance useful to format {@link JSONObject}' s responses API
+     * **/
     protected JSONObject jsonObject;
+
+    /**
+     * {@code jsonArray} is instance useful to format {@link JSONArray}' s responses API
+     * **/
     protected JSONArray jsonArray;
+
+    /**
+     * {@code jsonHelper} is instance useful to help to format JSON responses API
+     * **/
     protected JsonHelper jsonHelper;
+
+    /**
+     * {@code keysInserted} is control flag
+     * **/
     private boolean keysInserted;
 
     /** Constructor to init a Coinbase manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
-     * @param timeout custom timeout for request
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         apiRequest = new APIRequest(defaultErrorMessage, timeout);
@@ -51,10 +109,10 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param timeout custom timeout for request
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         apiRequest = new APIRequest(timeout);
@@ -67,10 +125,10 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         apiRequest = new APIRequest(defaultErrorMessage);
@@ -83,9 +141,9 @@ public class CoinbaseManager {
     }
 
     /** Constructor to init a Coinbase manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
      * **/
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase) {
         apiRequest = new APIRequest();
@@ -104,7 +162,7 @@ public class CoinbaseManager {
      * **/
     public String sendAPIRequest(String endpoint, String method) throws Exception {
         setRequestHeaders(method, endpoint, null);
-        apiRequest.sendAPIRequest(BASE_ENDPOINT+endpoint, method, headers);
+        apiRequest.sendAPIRequest(BASE_ENDPOINT + endpoint, method, headers);
         return apiRequest.getResponse();
     }
 
@@ -116,7 +174,7 @@ public class CoinbaseManager {
     public String sendBodyParamsAPIRequest(String endpoint, String method, HashMap<String, Object> bodyParams) throws Exception {
         if(method.equals(APIRequest.POST_METHOD) || method.equals(APIRequest.PUT_METHOD)){
             setRequestHeaders(method, endpoint, apiRequest.assembleBodyParams(bodyParams));
-            apiRequest.sendPostAPIRequest(BASE_ENDPOINT+endpoint,bodyParams);
+            apiRequest.sendPostAPIRequest(BASE_ENDPOINT + endpoint, bodyParams);
             return apiRequest.getResponse();
         }else
             throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");
@@ -129,7 +187,7 @@ public class CoinbaseManager {
      * any return
      * **/
     private void setRequestHeaders(String method, String endpoint, String body) throws Exception {
-        String timestamp = "" + System.currentTimeMillis()/1000;
+        String timestamp = "" + System.currentTimeMillis() / 1000;
         String stringToSign = timestamp + method + endpoint;
         if(body != null)
             stringToSign += body;
