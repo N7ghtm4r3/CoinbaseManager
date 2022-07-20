@@ -5,39 +5,164 @@ import org.json.JSONObject;
 
 /**
  * The {@code PayPalMethod} class is useful to format PaymentMethod object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class PaymentMethod extends PayMethod{
 
+    /**
+     * {@code id} is instance that memorizes identifier value
+     * **/
     private final String id;
+
+    /**
+     * {@code currency} is instance that memorizes currency value
+     * **/
     private final String currency;
+
+    /**
+     * {@code primaryBuy} is flag that checks if this is primary buy
+     * **/
     private final boolean primaryBuy;
+
+    /**
+     * {@code primarySell} is flag that checks if this is primary sell
+     * **/
     private final boolean primarySell;
+
+    /**
+     * {@code instantBuy} is flag that checks if this is instant buy
+     * **/
     private final boolean instantBuy;
+
+    /**
+     * {@code instantSell} is flag that checks if this is instant sell
+     * **/
     private final boolean instantSell;
+
+    /**
+     * {@code createdAt} is instance that memorizes created at value
+     * **/
     private final String createdAt;
+
+    /**
+     * {@code updatedAt} is instance that memorizes updated at value
+     * **/
     private final String updatedAt;
+
+    /**
+     * {@code resource} is instance that memorizes resource value
+     * **/
     private final String resource;
+
+    /**
+     * {@code resourcePath} is instance that memorizes resource path value
+     * **/
     private final String resourcePath;
+
+    /**
+     * {@code allowBuy} is flag that checks if buy is allowed
+     * **/
     private final boolean allowBuy;
+
+    /**
+     * {@code allowSell} is flag that checks if sell is allowed
+     * **/
     private final boolean allowSell;
+
+    /**
+     * {@code allowDeposit} is flag that checks if deposit is allowed
+     * **/
     private final boolean allowDeposit;
+
+    /**
+     * {@code allowWithdraw} is flag that checks if withdraw is allowed
+     * **/
     private final boolean allowWithdraw;
+
+    /**
+     * {@code verified} is flag that checks if this method is verified
+     * **/
     private final boolean verified;
+
+    /**
+     * {@code holdBusinessDays} is instance that memorizes hold business days value
+     * **/
     private final int holdBusinessDays;
+
+    /**
+     * {@code holdBusinessDays} is instance that memorizes hold days value
+     * **/
     private final int holdDays;
+
+    /**
+     * {@code jsonHelper} is instance useful to help to format JSON responses API
+     * **/
     private final JsonHelper jsonHelper;
+
+    /**
+     * {@code minimumPurchaseAmount} is instance that memorizes minimum purchase amount value
+     * **/
     private final Amount minimumPurchaseAmount;
+
+    /**
+     * {@code payPalLimits} is instance that memorizes PayPal's limits in JSON format
+     * **/
     private JSONObject payPalLimits;
+
+    /**
+     * {@code bankLimits} is instance that memorizes bank's limits in JSON format
+     * **/
     private JSONObject bankLimits;
+
+    /**
+     * {@code payPalPickerData} is instance that memorizes PayPal's picker data in JSON format
+     * **/
     private JSONObject payPalPickerData;
+
+    /**
+     * {@code bankPickerData} is instance that memorizes bank's picker data in JSON format
+     * **/
     private JSONObject bankPickerData;
+
+    /**
+     * {@code fiatAccountLimit} is instance that memorizes fiat account's limits in JSON format
+     * **/
     private JSONObject fiatAccountLimit;
+
+    /**
+     * {@code fiatAccountDetails} is instance that memorizes fiat account's details in JSON format
+     * **/
     private JSONObject fiatAccountDetails;
+
+    /**
+     * {@code fiatAccountDetails} is instance that memorizes fiat account's picker data in JSON format
+     * **/
     private JSONObject fiatAccountPickerData;
 
+    /** Constructor to init a {@link PaymentMethod} object
+     * @param name: pay method name
+     * @param type: pay method type
+     * @param id: identifier value
+     * @param currency: currency value
+     * @param primaryBuy: flag that checks if this is primary buy
+     * @param primarySell: flag that checks if this is primary sell
+     * @param instantBuy: flag that checks if this is instant buy
+     * @param instantSell: flag that checks if this is instant sell
+     * @param createdAt: created at value
+     * @param updatedAt: updated at value
+     * @param resource: resource value
+     * @param resourcePath: resource path value
+     * @param allowBuy: flag that checks if buy is allowed
+     * @param allowSell: flag that checks if sell is allowed
+     * @param allowDeposit: flag that checks if deposit is allowed
+     * @param allowWithdraw: flag that checks if withdraw is allowed
+     * @param verified: flag that checks if this method is verified
+     * @param jsonPayment: payment details in JSON format
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
     public PaymentMethod(String id, String type, String name, String currency, boolean primaryBuy, boolean primarySell,
                          boolean instantBuy, boolean instantSell, String createdAt, String updatedAt, String resource,
                          String resourcePath, boolean allowBuy, boolean allowSell, boolean allowDeposit, boolean allowWithdraw,
@@ -284,16 +409,16 @@ public class PaymentMethod extends PayMethod{
         /**
          * {@code amount} is instance that memorizes amount value
          * **/
-        private double amount;
+        protected double amount;
 
         /**
          * {@code currency} is instance that memorizes currency value
          * **/
-        private String currency;
+        protected String currency;
 
         /** Constructor to init a {@link Amount} object
-         * @param amount: period in days value
-         * @param currency: description value
+         * @param amount: amount value
+         * @param currency: currency value
          * @throws IllegalArgumentException if parameters range is not respected
          * **/
         public Amount(double amount, String currency) {

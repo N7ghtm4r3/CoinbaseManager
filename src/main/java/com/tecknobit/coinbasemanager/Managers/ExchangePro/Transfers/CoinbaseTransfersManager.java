@@ -40,7 +40,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public static final String CRYPTO_ADDRESS_METHOD = "crypto_address";
 
-    /** Constructor to init a CoinbaseTransfers manager
+    /** Constructor to init a {@link CoinbaseTransfersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -51,7 +51,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a CoinbaseTransfers manager
+    /** Constructor to init a {@link CoinbaseTransfersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -61,7 +61,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a CoinbaseTransfers manager
+    /** Constructor to init a {@link CoinbaseTransfersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -71,7 +71,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a CoinbaseTransfers manager
+    /** Constructor to init a {@link CoinbaseTransfersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase

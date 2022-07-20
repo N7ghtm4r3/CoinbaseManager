@@ -18,7 +18,7 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.USERS_ENDPOI
 
 public class CoinbaseUsersManager extends CoinbaseManager {
 
-    /** Constructor to init a CoinbaseUsers manager
+    /** Constructor to init a {@link CoinbaseUsersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -29,7 +29,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a CoinbaseUsers manager
+    /** Constructor to init a {@link CoinbaseUsersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -39,7 +39,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a CoinbaseUsers manager
+    /** Constructor to init a {@link CoinbaseUsersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -49,7 +49,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a CoinbaseUsers manager
+    /** Constructor to init a {@link CoinbaseUsersManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase

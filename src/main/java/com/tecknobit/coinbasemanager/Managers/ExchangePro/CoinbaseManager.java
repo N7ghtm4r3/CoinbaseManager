@@ -91,7 +91,7 @@ public class CoinbaseManager {
      * **/
     private boolean keysInserted;
 
-    /** Constructor to init a Coinbase manager
+    /** Constructor to init a {@link CoinbaseManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -108,7 +108,7 @@ public class CoinbaseManager {
         keysInserted = false;
     }
 
-    /** Constructor to init a Coinbase manager
+    /** Constructor to init a {@link CoinbaseManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -124,7 +124,7 @@ public class CoinbaseManager {
         keysInserted = false;
     }
 
-    /** Constructor to init a Coinbase manager
+    /** Constructor to init a {@link CoinbaseManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase
@@ -140,7 +140,7 @@ public class CoinbaseManager {
         keysInserted = false;
     }
 
-    /** Constructor to init a Coinbase manager
+    /** Constructor to init a {@link CoinbaseManager}
      * @param apiKey: your Coinbase api key
      * @param apiSecret: your Coinbase api secret
      * @param passphrase: your Coinbase api passphrase

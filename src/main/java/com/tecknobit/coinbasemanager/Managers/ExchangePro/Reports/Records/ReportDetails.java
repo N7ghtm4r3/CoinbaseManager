@@ -7,17 +7,35 @@ import org.json.JSONObject;
 
 /**
  * The {@code ReportDetails} class is useful to format general ReportDetails object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class ReportDetails {
 
-    private final String id;
-    private final String type;
-    private final String status;
+    /**
+     * {@code id} is instance that memorizes identifier value
+     * **/
+    protected final String id;
 
+    /**
+     * {@code type} is instance that memorizes type value
+     * **/
+    protected final String type;
+
+    /**
+     * {@code status} is instance that memorizes status value
+     * **/
+    protected final String status;
+
+    /** Constructor to init a {@link ReportDetails} object
+     * @param id: identifier value
+     * @param type: type value
+     * @param status: status value
+     * **/
     public ReportDetails(String id, String type, String status) {
         this.id = id;
         this.type = type;
@@ -38,22 +56,75 @@ public class ReportDetails {
 
     /**
      * The {@code UserDetails} class is useful to obtain and format general UserDetails object for {@link Report} and {@link ExchangeLimits} object
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
      * **/
-    public static class UserDetails{
+    public static class UserDetails {
 
-        private final String createdAt;
-        private final String activeAt;
-        private final String id;
-        private final String name;
-        private final String email;
-        private final boolean isBanned;
-        private final String userType;
-        private final boolean fullFillsNewRequirements;
-        private final boolean hasDefault;
+        /**
+         * {@code createdAt} is instance that memorizes created at value
+         * **/
+        protected final String createdAt;
+
+        /**
+         * {@code activeAt} is instance that memorizes active at value
+         * **/
+        protected final String activeAt;
+
+        /**
+         * {@code id} is instance that memorizes identifier value
+         * **/
+        protected final String id;
+
+        /**
+         * {@code name} is instance that memorizes name value
+         * **/
+        protected final String name;
+
+        /**
+         * {@code email} is instance that memorizes email value
+         * **/
+        protected final String email;
+
+        /**
+         * {@code email} is flag that checks if is banned or not
+         * **/
+        protected final boolean isBanned;
+
+        /**
+         * {@code userType} is instance that memorizes user type value
+         * **/
+        protected final String userType;
+
+        /**
+         * {@code fullFillsNewRequirements} is flag for full fills new requirements
+         * **/
+        protected final boolean fullFillsNewRequirements;
+
+        /**
+         * {@code fullFillsNewRequirements} is flag for default check
+         * **/
+        protected final boolean hasDefault;
+
+        /**
+         * {@code fullFillsNewRequirements} is useful to help to format JSON
+         * **/
         protected final JsonHelper jsonUser;
 
+        /** Constructor to init {@link UserDetails} object
+         * @param createdAt: created at value
+         * @param activeAt: active at value
+         * @param id: identifier value
+         * @param name: name value
+         * @param email: email value
+         * @param isBanned: flag if account is banned
+         * @param userType: user type value
+         * @param fullFillsNewRequirements: flag for full fills new requirements
+         * @param hasDefault: flag for default check
+         * @param jsonUser: useful to help to format JSON
+         * **/
         public UserDetails(String createdAt, String activeAt, String id, String name, String email,
                            boolean isBanned, String userType, boolean fullFillsNewRequirements, boolean hasDefault,
                            JsonHelper jsonUser) {

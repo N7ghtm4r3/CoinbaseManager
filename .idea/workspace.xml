@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4365f22a-e5d1-46ea-8174-7cd8c14d93e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/CoinbaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/CoinbaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/CoinbaseProfileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/CoinbaseProfileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/Records/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/Records/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/CoinbaseReportsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/CoinbaseReportsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/ReportDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/ReportDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/CoinbaseTransfersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/CoinbaseTransfersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/BankMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/BankMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/FiatAccountMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/FiatAccountMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayPalMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayPalMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PaymentMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/Records/ExchangeLimits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/Records/ExchangeLimits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/TransferAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/TransferAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/CoinbaseUsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/CoinbaseUsersManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +112,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650207438683</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Upload first file">
-      <created>1650717691899</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1650717691899</updated>
     </task>
     <task id="LOCAL-00025" summary="Upload first file">
       <created>1650722960256</created>
@@ -452,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658323065006</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Fix docu strings">
+      <created>1658335736468</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1658335736468</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,31 +1,88 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records;
 
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONObject;
 
 /**
  * The {@code Report} class is useful to format Report object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
-public class Report extends ReportDetails{
+public class Report extends ReportDetails {
 
-    /**Constants used in report requests**/
+    /**
+     * {@code FILLS_REPORT_TYPE} is constant for fills report type
+     * **/
     public static final String FILLS_REPORT_TYPE = "fills";
+
+    /**
+     * {@code ACCOUNT_REPORT_TYPE} is constant for account report type
+     * **/
     public static final String ACCOUNT_REPORT_TYPE = "account";
+
+    /**
+     * {@code OTC_FILLS_REPORT_TYPE} is constant for otc fills report type
+     * **/
     public static final String OTC_FILLS_REPORT_TYPE = "otc_fills";
+
+    /**
+     * {@code REPORT_TYPE_1099K} is constant for type 1099k transaction history report type
+     * **/
     public static final String REPORT_TYPE_1099K = "type_1099k_transaction_history";
+
+    /**
+     * {@code TAX_INVOICE_REPORT_TYPE} is constant for tax invoice report type
+     * **/
     public static final String TAX_INVOICE_REPORT_TYPE = "tax_invoice";
 
+    /**
+     * {@code createdAt} is instance that memorizes created at value
+     * **/
     private final String createdAt;
+
+    /**
+     * {@code completedAt} is instance that memorizes completed at value
+     * **/
     private final String completedAt;
+
+    /**
+     * {@code expiresAt} is instance that memorizes expires at value
+     * **/
     private final String expiresAt;
+
+    /**
+     * {@code userId} is instance that memorizes user identifier value
+     * **/
     private final String userId;
+
+    /**
+     * {@code fileUrl} is instance that memorizes file url value
+     * **/
     private final String fileUrl;
+
+    /**
+     * {@code paramsReport} is instance that memorizes params for report
+     * **/
     private final ParamsReport paramsReport;
+
+    /**
+     * {@code jsonHelper} is instance useful to help to format JSON
+     * **/
     private final JsonHelper jsonHelper;
 
+    /** Constructor to init a {@link Report} object
+     * @param createdAt: created at value
+     * @param completedAt: completed at value
+     * @param expiresAt: expires at value
+     * @param id: identifier value
+     * @param type: type value
+     * @param status: status value
+     * @param userId: user identifier value
+     * @param fileUrl: file url value
+     * @param jsonHelper: useful to help to format JSON
+     * **/
     public Report(String createdAt, String completedAt, String expiresAt, String id, String type, String status,
                   String userId, String fileUrl, JsonHelper jsonHelper) {
         super(id, type, status);
@@ -77,21 +134,72 @@ public class Report extends ReportDetails{
 
     /**
      * The {@code ParamsReport} class is useful to obtain and format ParamsReport object for Report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
      * **/
     public static class ParamsReport {
 
+        /**
+         * {@code startDate} is instance that memorizes start date value
+         * **/
         private final String startDate;
+
+        /**
+         * {@code endDate} is instance that memorizes end date value
+         * **/
         private final String endDate;
+
+        /**
+         * {@code format} is instance that memorizes format value
+         * **/
         private final String format;
+
+        /**
+         * {@code productId} is instance that memorizes product identifier value
+         * **/
         private final String productId;
+
+        /**
+         * {@code accountId} is instance that memorizes account identifier value
+         * **/
         private final String accountId;
+
+        /**
+         * {@code profileId} is instance that memorizes profile identifier value
+         * **/
         private final String profileId;
+
+        /**
+         * {@code email} is instance that memorizes email value
+         * **/
         private final String email;
+
+        /**
+         * {@code newYorkState} is flag that checks if is report of New York's State
+         * **/
         private final boolean newYorkState;
+
+        /**
+         * {@code userReport} is instance that memorizes user report value
+         * **/
         private final UserReport userReport;
+
+        /**
+         * {@code jsonHelper} is instance useful to help to format JSON
+         * **/
         private final JsonHelper jsonHelper;
 
+        /** Constructor to init a {@link ParamsReport} object
+         * @param startDate: start date value
+         * @param endDate: end date value
+         * @param format: format value
+         * @param productId: product identifier value
+         * @param accountId: account identifier value
+         * @param profileId: profile identifier value
+         * @param email: email value
+         * @param newYorkState: flag that checks if is report of New York's State
+         * @param jsonHelper: useful to help to format JSON
+         * **/
         public ParamsReport(String startDate, String endDate, String format, String productId, String accountId,
                             String profileId, String email, boolean newYorkState, JsonHelper jsonHelper) {
             this.startDate = startDate;
@@ -163,12 +271,29 @@ public class Report extends ReportDetails{
 
         /**
          * The {@code UserReport} class is useful to obtain and format UserReport object for Report
-         * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+         * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+         *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
          * **/
-        public static class UserReport extends UserDetails{
+        public static class UserReport extends UserDetails {
 
+            /**
+             * {@code oauthClient} is instance that memorizes oauth client value
+             * **/
             private final String oauthClient;
 
+            /** Constructor to init {@link UserReport} object
+             * @param createdAt: created at value
+             * @param activeAt: active at value
+             * @param id: identifier value
+             * @param name: name value
+             * @param email: email value
+             * @param isBanned: flag if account is banned
+             * @param userType: user type value
+             * @param fullFillsNewRequirements: flag for full fills new requirements
+             * @param hasDefault: flag for default check
+             * @param jsonUser: useful to help to format JSON
+             * @param oauthClient: oauth client value
+             * **/
             public UserReport(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
                               String userType, boolean fullFillsNewRequirements, String oauthClient, boolean hasDefault,
                               JsonHelper jsonUser) {
