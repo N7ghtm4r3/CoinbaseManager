@@ -209,16 +209,23 @@ public class CoinbaseManager {
         return apiRequest.assembleAdditionalParams(defParams, queryParams);
     }
 
-    /** Method to get error response of request
-     * any params required
+    /** Method to get error response of request <br>
+     * Any params required
      * @return error of the response as {@link String}
      * **/
     public String getErrorResponse(){
         return apiRequest.getErrorResponse();
     }
 
-    /** Method to get status code of request response
-     * any params required
+    /** Method to print error response of request <br>
+     * Any params required
+     * **/
+    public void printErrorResponse(){
+        apiRequest.printErrorResponse();
+    }
+
+    /** Method to get status code of request response <br>
+     * Any params required
      * @return status code of request response
      * **/
     public int getStatusResponse(){

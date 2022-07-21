@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
+import static com.tecknobit.apimanager.Tools.Formatters.ScientificNotationParser.sNotationParse;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.ORDERS_ENDPOINT;
 import static java.util.Arrays.asList;
@@ -410,7 +411,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param sorting: ascending or descending order criteria (asc or desc)
      * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String status) throws Exception {
@@ -775,7 +777,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result list of cancelled id orders as {@link String}
      * **/
     public String cancelAllOpenOrders(HashMap<String, Object> queryParams) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT+assembleQueryParams("", queryParams), DELETE_METHOD);
+        return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams("", queryParams), DELETE_METHOD);
     }
 
     /** Request to cancel all orders
@@ -915,7 +917,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         bodyParams.put("side", side);
         bodyParams.put("product_id", productId);
         bodyParams.put("price", price);
-        bodyParams.put("size", size);
+        bodyParams.put("size", sNotationParse(8, size));
         bodyParams.put("type", type);
         return bodyParams;
     }
@@ -1099,7 +1101,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         HashMap<String, Object> bodyParams = new HashMap<>();
         bodyParams.put("side", side);
         bodyParams.put("product_id", productId);
-        bodyParams.put(key, keyValue);
+        bodyParams.put(key, sNotationParse(8, keyValue));
         bodyParams.put("type", Order.MARKET_TYPE);
         return bodyParams;
     }
