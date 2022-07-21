@@ -7,10 +7,17 @@ import org.json.JSONObject;
 
 /**
  * The {@code ReportDetails} class is useful to format general ReportDetails object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+ * @apiNote see official documentation at:
+ <ul>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     </li>
+ </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

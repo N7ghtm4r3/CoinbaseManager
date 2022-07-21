@@ -17,10 +17,10 @@ import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records
 import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransfersList;
 
 /**
- *  The {@code CoinbaseTransfersManager} class is useful to manage all Coinbase transfers endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
- *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
- *  @author N7ghtm4r3 - Tecknobit
+ * The {@code CoinbaseTransfersManager} class is useful to manage all Coinbase transfers endpoints
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount</a>
+ * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseTransfersManager extends CoinbaseManager {

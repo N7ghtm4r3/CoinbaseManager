@@ -450,8 +450,8 @@ public class PaymentMethod extends PayMethod{
         }
 
         /** Method to set {@link #amount}
-         * @param amount: minimumPurchaseAmount value
-         * @throws IllegalArgumentException when minimumPurchaseAmount value is less than 0
+         * @param amount: amount value
+         * @throws IllegalArgumentException when amount value is less than 0
          * **/
         public void setAmount(double amount) {
             if(amount < 0)

@@ -10,18 +10,44 @@ import static java.lang.String.valueOf;
 
 /**
  * The {@code Book} class is useful to format Book object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class Book {
 
+    /**
+     * {@code sequence} is instance that memorizes sequence value
+     * **/
     private final long sequence;
+
+    /**
+     * {@code auctionMode} is flag that checks if book is in auction mode
+     * **/
     private final boolean auctionMode;
+
+    /**
+     * {@code auction} is instance that memorizes auction value
+     * **/
     private final String auction;
+
+    /**
+     * {@code asks} is instance that memorizes list of asks
+     * **/
     private final ArrayList<String> asks;
+
+    /**
+     * {@code bids} is instance that memorizes list of bids
+     * **/
     private final ArrayList<String> bids;
 
+    /** Constructor to init a {@link Book} object
+     * @param sequence: sequence value
+     * @param auctionMode: flag that checks if book is in auction mode
+     * @param auction: auction value
+     * @param jsonBook: book details in JSON format
+     * **/
     public Book(long sequence, boolean auctionMode, String auction, JSONObject jsonBook) {
         this.sequence = sequence;
         this.auctionMode = auctionMode;

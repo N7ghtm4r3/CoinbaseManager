@@ -7,17 +7,37 @@ import java.util.ArrayList;
 
 /**
  * The {@code PriceOracle} class is useful to format PriceOracle object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class PriceOracle {
 
+    /**
+     * {@code timestamp} is instance that memorizes timestamp value
+     * **/
     private final long timestamp;
+
+    /**
+     * {@code messages} is instance that memorizes list of messages
+     * **/
     private final ArrayList<String> messages;
+
+    /**
+     * {@code signatures} is instance that memorizes list of signatures
+     * **/
     private final ArrayList<String> signatures;
+
+    /**
+     * {@code prices} is instance that memorizes list of {@link Price}
+     * **/
     private final ArrayList<Price> prices;
 
+    /** Constructor to init a {@link PriceOracle} object
+     * @param timestamp: timestamp value
+     * @param jsonPriceOracle: price oracle details in JSON format
+     * **/
     public PriceOracle(long timestamp, JSONObject jsonPriceOracle) {
         this.timestamp = timestamp;
         messages = assembleStringList(jsonPriceOracle.getJSONArray("messages"));
@@ -65,16 +85,31 @@ public class PriceOracle {
     /**
      * The {@code Price} class is useful to obtain and format Price objects for PriceOracle
      * This class give info about each price in prices list
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses</a>
+     * @author N7ghtm4r3 - Tecknobit
      * **/
     public static class Price{
 
+        /**
+         * {@code symbol} is instance that memorizes symbol value
+         * **/
         private final String symbol;
+
+        /**
+         * {@code price} is instance that memorizes price value
+         * **/
         private double price;
 
+        /** Constructor to init a {@link Price} object
+         * @param symbol: symbol value
+         * @param price: price value
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public Price(String symbol, double price) {
             this.symbol = symbol;
-            this.price = price;
+            if(price < 0)
+                throw new IllegalArgumentException("Price value cannot be less than 0");
+            else
+                this.price = price;
         }
 
         public String getSymbol() {
@@ -85,6 +120,10 @@ public class PriceOracle {
             return price;
         }
 
+        /** Method to set {@link #price}
+         * @param price: price value
+         * @throws IllegalArgumentException when price value is less than 0
+         * **/
         public void setPrice(double price) {
             if(price < 0)
                 throw new IllegalArgumentException("Price value cannot be less than 0");

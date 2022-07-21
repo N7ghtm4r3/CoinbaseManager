@@ -7,16 +7,44 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Detai
 
 public class AccountDetails {
 
-    private final String createdAt;
-    private final String id;
-    private double amount;
-    private String type;
+    /**
+     * {@code createdAt} is instance that memorizes created at value
+     * **/
+    protected final String createdAt;
 
+    /**
+     * {@code id} is instance that memorizes identifier value
+     * **/
+    protected final String id;
+
+    /**
+     * {@code amount} is instance that memorizes amount value
+     * **/
+    protected double amount;
+
+    /**
+     * {@code type} is instance that memorizes type value
+     * **/
+    protected String type;
+
+    /** Constructor to init a {@link AccountDetails} object
+     * @param createdAt: created at value
+     * @param id: identifier value
+     * @param amount: amount value
+     * @param type: type value
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
     public AccountDetails(String createdAt, String id, double amount, String type) {
         this.createdAt = createdAt;
         this.id = id;
-        this.amount = amount;
-        this.type = type;
+        if(amount < 0)
+            throw new IllegalArgumentException("Amount value cannot be less than 0");
+        else
+            this.amount = amount;
+        if(type == null || type.isEmpty())
+            throw new IllegalArgumentException("Type value cannot be empty or null");
+        else
+            this.type = type;
     }
 
     public String getCreatedAt() {
@@ -31,6 +59,10 @@ public class AccountDetails {
         return amount;
     }
 
+    /** Method to set {@link #amount}
+     * @param amount: amount value
+     * @throws IllegalArgumentException when amount value is less than 0
+     * **/
     public void setAmount(double amount) {
         if(amount < 0)
             throw new IllegalArgumentException("Amount value cannot be less than 0");
@@ -41,6 +73,10 @@ public class AccountDetails {
         return type;
     }
 
+    /** Method to set {@link #type}
+     * @param type: type value
+     * @throws IllegalArgumentException when type value null or is empty
+     * **/
     public void setType(String type) {
         if(type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");

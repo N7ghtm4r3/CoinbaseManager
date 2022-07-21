@@ -2,18 +2,33 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Profiles.Records;
 
 /**
  * The {@code Profile} class is useful to format Profile object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate</a>
+ * @apiNote see official documentation at:
+ <ul>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate</a>
+     </li>
+ </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

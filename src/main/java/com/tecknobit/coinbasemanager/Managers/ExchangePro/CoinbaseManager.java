@@ -9,9 +9,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 /**
- *  The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs">https://docs.cloud.coinbase.com/exchange/docs</a>
- *  @author N7ghtm4r3 - Tecknobit
+ * The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs">https://docs.cloud.coinbase.com/exchange/docs</a>
+ * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseManager {

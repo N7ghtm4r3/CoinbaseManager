@@ -1,40 +1,113 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONObject;
 
 /**
  * The {@code CoinbaseAccount} class is useful to format CoinbaseAccount object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts</a>
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts</a>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseAccount {
 
+    /**
+     * {@code balance} is instance that memorizes balance value
+     * **/
     private double balance;
+
+    /**
+     * {@code availableOnConsumer} is flag that checks available on consumer
+     * **/
     private boolean availableOnConsumer;
+
+    /**
+     * {@code name} is instance that memorizes name value
+     * **/
     private final String name;
+
+    /**
+     * {@code active} is flag that checks if the account is active
+     * **/
     private boolean active;
+
+    /**
+     * {@code currency} is instance that memorizes currency value
+     * **/
     private String currency;
+
+    /**
+     * {@code id} is instance that memorizes identifier value
+     * **/
     private final String id;
+
+    /**
+     * {@code type} is instance that memorizes type value
+     * **/
     private String type;
+
+    /**
+     * {@code primary} is flag that checks if the account is primary
+     * **/
     private boolean primary;
+
+    /**
+     * {@code holdBalance} is instance that memorizes hold balance value
+     * **/
     private double holdBalance;
+
+    /**
+     * {@code holdCurrency} is instance that memorizes hold currency value
+     * **/
     private String holdCurrency;
+
+    /**
+     * {@code depositInformation} is instance that memorizes deposit information value
+     * **/
     private DepositInformation depositInformation;
 
+    /** Constructor to init a {@link CoinbaseAccount} object
+     * @param balance: balance value
+     * @param availableOnConsumer: is flag that checks available on consumer
+     * @param name: name value
+     * @param active: flag that checks if the account is active
+     * @param currency: currency value
+     * @param id: identifier value
+     * @param primary: flag that checks if the account is primary
+     * @param holdBalance: hold balance value
+     * @param holdCurrency: hold currency value
+     * @param jsonDepositInformation: deposit information in JSON format
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
     public CoinbaseAccount(double balance, boolean availableOnConsumer, String name, boolean active, String currency,
                            String id, String type, boolean primary, double holdBalance, String holdCurrency,
                            JSONObject jsonDepositInformation) {
-        this.balance = balance;
+        if(balance < 0)
+            throw new IllegalArgumentException("Balance value cannot be less than 0");
+        else
+            this.balance = balance;
         this.availableOnConsumer = availableOnConsumer;
         this.name = name;
         this.active = active;
-        this.currency = currency;
+        if(currency == null || currency.isEmpty())
+            throw new IllegalArgumentException("Currency value cannot be empty or null");
+        else
+            this.currency = currency;
         this.id = id;
-        this.type = type;
+        if(type == null || type.isEmpty())
+            throw new IllegalArgumentException("Type value cannot be empty or null");
+        else
+            this.type = type;
         this.primary = primary;
-        this.holdBalance = holdBalance;
-        this.holdCurrency = holdCurrency;
+        if(holdBalance < 0)
+            throw new IllegalArgumentException("Hold balance value cannot be less than 0");
+        else
+            this.holdBalance = holdBalance;
+        if(holdCurrency == null || holdCurrency.isEmpty())
+            throw new IllegalArgumentException("Hold currency value cannot be empty or null");
+        else
+            this.holdCurrency = holdCurrency;
         if(jsonDepositInformation != null)
             depositInformation = new DepositInformation(jsonDepositInformation);
         else
@@ -45,6 +118,10 @@ public class CoinbaseAccount {
         return balance;
     }
 
+    /** Method to set {@link #balance}
+     * @param balance: balance value
+     * @throws IllegalArgumentException when balance value is less than 0
+     * **/
     public void setBalance(double balance) {
         if(balance < 0)
             throw new IllegalArgumentException("Balance value cannot be less than 0");
@@ -75,6 +152,10 @@ public class CoinbaseAccount {
         return currency;
     }
 
+    /** Method to set {@link #currency}
+     * @param currency: currency value
+     * @throws IllegalArgumentException when currency value is null or empty
+     * **/
     public void setCurrency(String currency) {
         if(currency == null || currency.isEmpty())
             throw new IllegalArgumentException("Currency value cannot be empty or null");
@@ -89,6 +170,10 @@ public class CoinbaseAccount {
         return type;
     }
 
+    /** Method to set {@link #type}
+     * @param type: type value
+     * @throws IllegalArgumentException when type value is null or empty
+     * **/
     public void setType(String type) {
         if(type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");
@@ -107,6 +192,10 @@ public class CoinbaseAccount {
         return holdBalance;
     }
 
+    /** Method to set {@link #holdBalance}
+     * @param holdBalance: hold balance value
+     * @throws IllegalArgumentException when hold balance value is less than 0
+     * **/
     public void setHoldBalance(double holdBalance) {
         if(holdBalance < 0)
             throw new IllegalArgumentException("Hold balance value cannot be less than 0");
@@ -117,6 +206,10 @@ public class CoinbaseAccount {
         return holdCurrency;
     }
 
+    /** Method to set {@link #holdCurrency}
+     * @param holdCurrency: hold currency value
+     * @throws IllegalArgumentException when hold currency value is null or empty
+     * **/
     public void setHoldCurrency(String holdCurrency) {
         if(holdCurrency == null || holdCurrency.isEmpty())
             throw new IllegalArgumentException("Hold currency value cannot be empty or null");
@@ -133,50 +226,138 @@ public class CoinbaseAccount {
 
     /**
      * The {@code DepositInformation} class is useful to obtain and format DepositInformation object for CoinbaseAccount
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts</a>
+     * @author N7ghtm4r3 - Tecknobit
      * **/
-    public static class DepositInformation{
+    public static class DepositInformation {
 
+        /**
+         * {@code reference} is instance that memorizes reference value
+         * **/
         private String reference;
+
+        /**
+         * {@code iban} is instance that memorizes iban value
+         * **/
         private String iban;
+
+        /**
+         * {@code accountName} is instance that memorizes account name value
+         * **/
         private String accountName;
+
+        /**
+         * {@code bankName} is instance that memorizes bank name value
+         * **/
         private String bankName;
+
+        /**
+         * {@code bankAddress} is instance that memorizes bank address value
+         * **/
         private String bankAddress;
+
+        /**
+         * {@code accountAddress} is instance that memorizes account address value
+         * **/
         private String accountAddress;
+
+        /**
+         * {@code swift} is instance that memorizes swift value
+         * **/
         private String swift;
+
+        /**
+         * {@code bankCountryCode} is instance that memorizes bank country code value
+         * **/
         private String bankCountryCode;
+
+        /**
+         * {@code bankCountryName} is instance that memorizes bank country name value
+         * **/
         private String bankCountryName;
 
+        /** Constructor to init a {@link DepositInformation} object
+         * @param reference: reference value
+         * @param iban: iban value
+         * @param accountName: account value
+         * @param bankName: bank name value
+         * @param bankAddress: bank address value
+         * @param accountAddress: account address value
+         * @param swift: swift value
+         * @param bankCountryCode: bank country code value
+         * @param bankCountryName: bank country name value
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
         public DepositInformation(String reference, String iban, String accountName, String bankName, String bankAddress,
                                   String accountAddress, String swift, String bankCountryCode, String bankCountryName) {
-            this.reference = reference;
-            this.iban = iban;
-            this.accountName = accountName;
-            this.bankName = bankName;
-            this.bankAddress = bankAddress;
-            this.accountAddress = accountAddress;
+            if(reference == null || reference.isEmpty())
+                throw new IllegalArgumentException("Reference value cannot be empty or null");
+            else
+                this.reference = reference;
+            if(iban == null || iban.isEmpty())
+                throw new IllegalArgumentException("Iban value cannot be empty or null");
+            else
+                this.iban = iban;
+            if(accountName == null || accountName.isEmpty())
+                throw new IllegalArgumentException("Account name value cannot be empty or null");
+            else
+                this.accountName = accountName;
+            if(bankName == null || bankName.isEmpty())
+                throw new IllegalArgumentException("Bank name value cannot be empty or null");
+            else
+                this.bankName = bankName;
+            if(bankAddress == null || bankAddress.isEmpty())
+                throw new IllegalArgumentException("Bank address value cannot be empty or null");
+            else
+                this.bankAddress = bankAddress;
+            if(accountAddress == null || accountAddress.isEmpty())
+                throw new IllegalArgumentException("Account address value cannot be empty or null");
+            else
+                this.accountAddress = accountAddress;
+            if(swift == null || swift.isEmpty())
+                throw new IllegalArgumentException("Swift value cannot be empty or null");
+            int swiftLength = swift.length();
+            if(swiftLength < 8 || swiftLength > 11)
+                throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
             this.swift = swift;
-            this.bankCountryCode = bankCountryCode;
-            this.bankCountryName = bankCountryName;
+            if(bankCountryCode == null || bankCountryCode.isEmpty())
+                throw new IllegalArgumentException("Bank country code value cannot be empty or null");
+            else
+                this.bankCountryCode = bankCountryCode;
+            if(bankCountryName == null || bankCountryName.isEmpty())
+                throw new IllegalArgumentException("Bank country name value cannot be empty or null");
+            else
+                this.bankCountryName = bankCountryName;
         }
 
-        public DepositInformation(JSONObject depositInformation) {
-            this.reference = depositInformation.getString("reference");
-            this.iban = depositInformation.getString("iban");
-            this.accountName = depositInformation.getString("account_name");
-            this.bankName = depositInformation.getString("bank_name");
-            this.bankAddress = depositInformation.getString("bank_address");
-            this.accountAddress = depositInformation.getString("account_address");
-            this.swift = depositInformation.getString("swift");
-            JSONObject bankCountry = depositInformation.getJSONObject("bank_country");
-            this.bankCountryCode = bankCountry.getString("code");
-            this.bankCountryName = bankCountry.getString("name");
+        /** Constructor to init a {@link DepositInformation} object
+         * @param jsonDepositInformation: deposit information value in JSON format
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public DepositInformation(JSONObject jsonDepositInformation) {
+            if(jsonDepositInformation != null) {
+                JsonHelper depositInformation = new JsonHelper(jsonDepositInformation);
+                this.reference = depositInformation.getString("reference");
+                this.iban = depositInformation.getString("iban");
+                this.accountName = depositInformation.getString("account_name");
+                this.bankName = depositInformation.getString("bank_name");
+                this.bankAddress = depositInformation.getString("bank_address");
+                this.accountAddress = depositInformation.getString("account_address");
+                this.swift = depositInformation.getString("swift");
+                JSONObject bankCountry = depositInformation.getJSONObject("bank_country");
+                this.bankCountryCode = bankCountry.getString("code");
+                this.bankCountryName = bankCountry.getString("name");
+            }else
+                throw new IllegalArgumentException("Deposit information details not recoverable");
         }
 
         public String getReference() {
             return reference;
         }
 
+        /** Method to set {@link #reference}
+         * @param reference: reference value
+         * @throws IllegalArgumentException when reference value is null or empty
+         * **/
         public void setReference(String reference) {
             if(reference == null || reference.isEmpty())
                 throw new IllegalArgumentException("Reference value cannot be empty or null");
@@ -187,7 +368,13 @@ public class CoinbaseAccount {
             return iban;
         }
 
+        /** Method to set {@link #iban}
+         * @param iban: iban value
+         * @throws IllegalArgumentException when iban value is null or empty
+         * **/
         public void setIban(String iban) {
+            if(iban == null || iban.isEmpty())
+                throw new IllegalArgumentException("Iban value cannot be empty or null");
             this.iban = iban;
         }
 
@@ -195,6 +382,10 @@ public class CoinbaseAccount {
             return accountName;
         }
 
+        /** Method to set {@link #accountName}
+         * @param accountName: account name value
+         * @throws IllegalArgumentException when account name value is null or empty
+         * **/
         public void setAccountName(String accountName) {
             if(accountName == null || accountName.isEmpty())
                 throw new IllegalArgumentException("Account name value cannot be empty or null");
@@ -205,6 +396,10 @@ public class CoinbaseAccount {
             return bankName;
         }
 
+        /** Method to set {@link #bankName}
+         * @param bankName: bank name value
+         * @throws IllegalArgumentException when bank name value is null or empty
+         * **/
         public void setBankName(String bankName) {
             if(bankName == null || bankName.isEmpty())
                 throw new IllegalArgumentException("Bank name value cannot be empty or null");
@@ -215,6 +410,10 @@ public class CoinbaseAccount {
             return bankAddress;
         }
 
+        /** Method to set {@link #bankAddress}
+         * @param bankAddress: bank address value
+         * @throws IllegalArgumentException when bank address value is null or empty
+         * **/
         public void setBankAddress(String bankAddress) {
             if(bankAddress == null || bankAddress.isEmpty())
                 throw new IllegalArgumentException("Bank address value cannot be empty or null");
@@ -225,6 +424,10 @@ public class CoinbaseAccount {
             return accountAddress;
         }
 
+        /** Method to set {@link #accountAddress}
+         * @param accountAddress: account address value
+         * @throws IllegalArgumentException when account address value is null or empty
+         * **/
         public void setAccountAddress(String accountAddress) {
             if(accountAddress == null || accountAddress.isEmpty())
                 throw new IllegalArgumentException("Account address value cannot be empty or null");
@@ -235,9 +438,16 @@ public class CoinbaseAccount {
             return swift;
         }
 
+        /** Method to set {@link #swift}
+         * @param swift: swift value
+         * @throws IllegalArgumentException when swift is null, empty or invalid value
+         * **/
         public void setSwift(String swift) {
             if(swift == null || swift.isEmpty())
                 throw new IllegalArgumentException("Swift value cannot be empty or null");
+            int swiftLength = swift.length();
+            if(swiftLength < 8 || swiftLength > 11)
+                throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
             this.swift = swift;
         }
 
@@ -245,6 +455,10 @@ public class CoinbaseAccount {
             return bankCountryCode;
         }
 
+        /** Method to set {@link #bankCountryCode}
+         * @param bankCountryCode: bank country code value
+         * @throws IllegalArgumentException when bank country code value is null or empty
+         * **/
         public void setBankCountryCode(String bankCountryCode) {
             if(bankCountryCode == null || bankCountryCode.isEmpty())
                 throw new IllegalArgumentException("Bank country code value cannot be empty or null");
@@ -255,6 +469,10 @@ public class CoinbaseAccount {
             return bankCountryName;
         }
 
+        /** Method to set {@link #bankCountryName}
+         * @param bankCountryName: bank country name value
+         * @throws IllegalArgumentException when bank country name value is null or empty
+         * **/
         public void setBankCountryName(String bankCountryName) {
             if(bankCountryName == null || bankCountryName.isEmpty())
                 throw new IllegalArgumentException("Bank country name value cannot be empty or null");

@@ -14,10 +14,10 @@ import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.REPORTS_ENDPOINT;
 
 /**
- *  The {@code CoinbaseReportsManager} class is useful to manage all Coinbase reports endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
- *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
- *  @author N7ghtm4r3 - Tecknobit
+ * The {@code CoinbaseReportsManager} class is useful to manage all Coinbase reports endpoints
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+ * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseReportsManager extends CoinbaseManager {

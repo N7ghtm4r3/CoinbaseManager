@@ -12,10 +12,10 @@ import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
 
 /**
- *  The {@code CoinbaseProfileManager} class is useful to manage all Coinbase profiles endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
- *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles</a>
- *  @author N7ghtm4r3 - Tecknobit
+ * The {@code CoinbaseProfileManager} class is useful to manage all Coinbase profiles endpoints
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
+ *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles</a>
+ * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseProfileManager extends CoinbaseManager {

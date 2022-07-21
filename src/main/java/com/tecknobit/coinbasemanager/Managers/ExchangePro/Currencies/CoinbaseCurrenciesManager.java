@@ -11,48 +11,49 @@ import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.CURRENCIES_ENDPOINT;
 
 /**
- *  The {@code CoinbaseCurrenciesManager} class is useful to manage all Coinbase currencies endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
- *  @author N7ghtm4r3 - Tecknobit
+ * The {@code CoinbaseCurrenciesManager} class is useful to manage all Coinbase currencies endpoints
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
+ *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
+ * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
-    /** Constructor to init a CoinbaseCurrencies manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
-     * @param timeout custom timeout for request
+    /** Constructor to init a {@link CoinbaseCurrenciesManager}
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a CoinbaseCurrencies manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param timeout custom timeout for request
+    /** Constructor to init a {@link CoinbaseCurrenciesManager}
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param timeout: custom timeout for request
      * **/
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a CoinbaseCurrencies manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
-     * @param defaultErrorMessage custom error to show when is not a request error
+    /** Constructor to init a {@link CoinbaseCurrenciesManager}
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
+     * @param defaultErrorMessage: custom error to show when is not a request error
      * **/
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a CoinbaseCurrencies manager
-     * @param apiKey your Coinbase api key
-     * @param apiSecret your Coinbase api secret
-     * @param passphrase your Coinbase api passphrase
+    /** Constructor to init a {@link CoinbaseCurrenciesManager}
+     * @param apiKey: your Coinbase api key
+     * @param apiSecret: your Coinbase api secret
+     * @param passphrase: your Coinbase api passphrase
      * **/
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
@@ -60,7 +61,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get list of all currencies
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
      * @return list of all currencies as {@link String}
      * **/
     public String getAllKnownCurrencies() throws Exception {
@@ -69,7 +71,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get list of all currencies
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
      * @return list of all currencies as {@link JSONArray}
      * **/
     public JSONArray getJSONAllKnownCurrencies() throws Exception {
@@ -78,7 +81,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get list of all currencies
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
      * @return list of all currencies as {@link ArrayList} of {@link Currency}
      * **/
     public ArrayList<Currency> getAllKnownCurrenciesList() throws Exception {
@@ -91,16 +95,18 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
      * @return currency as {@link String}
      * **/
     public String getCurrency(String currencyId) throws Exception {
-        return sendAPIRequest(CURRENCIES_ENDPOINT+"/"+currencyId, GET_METHOD);
+        return sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET_METHOD);
     }
 
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
      * @return currency as {@link JSONObject}
      * **/
     public JSONObject getJSONCurrency(String currencyId) throws Exception {
@@ -109,7 +115,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
+     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
      * @return currency as {@link Currency} object
      * **/
     public Currency getCurrencyObject(String currencyId) throws Exception {

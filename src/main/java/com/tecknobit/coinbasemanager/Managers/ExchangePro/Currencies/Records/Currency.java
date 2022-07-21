@@ -1,6 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Currencies.Records;
 
-import com.tecknobit.apimanager.Tools.Readers.JsonHelper;
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,22 +8,71 @@ import java.util.ArrayList;
 
 /**
  * The {@code Currency} class is useful to format Currency object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
+ * @apiNote see official documentation at:
+ <ul>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
+     </li>
+     <li>
+         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
+            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
+     </li>
+ </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
 public class Currency {
 
+    /**
+     * {@code id} is instance that memorizes identifier value
+     * **/
     private final String id;
+
+    /**
+     * {@code name} is instance that memorizes name value
+     * **/
     private final String name;
+
+    /**
+     * {@code status} is instance that memorizes status value
+     * **/
     private final String status;
+
+    /**
+     * {@code minSize} is instance that memorizes minimum size value
+     * **/
     private final double minSize;
+
+    /**
+     * {@code maxPrecision} is instance that memorizes maximum precision value
+     * **/
     private final double maxPrecision;
+
+    /**
+     * {@code message} is instance that memorizes message value
+     * **/
     private final String message;
+
+    /**
+     * {@code convertibleToCurrenciesList} is instance that memorizes list of convertible currencies
+     * **/
     private final ArrayList<String> convertibleToCurrenciesList;
+
+    /**
+     * {@code currencyDetails} is instance that memorizes currency details
+     * **/
     private final CurrencyDetails currencyDetails;
 
+    /** Constructor to init a {@link Currency} object
+     * @param id: identifier value
+     * @param name: name value
+     * @param status: status value
+     * @param minSize: minimum size value
+     * @param maxPrecision: maximum precision value
+     * @param message: message value
+     * @param jsonCurrencyDetails: currency detail in JSON format
+     * **/
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
                     JSONObject jsonCurrencyDetails) {
         this.id = id;
@@ -33,7 +82,7 @@ public class Currency {
         this.maxPrecision = maxPrecision;
         this.message = message;
         JsonHelper jsonHelper = new JsonHelper(jsonCurrencyDetails.getJSONObject("details"));
-        convertibleToCurrenciesList = loadDetailsList(jsonCurrencyDetails.getJSONArray("convertible_to"));
+        convertibleToCurrenciesList = loadDetailsList(JsonHelper.getJSONArray(jsonCurrencyDetails, "convertible_to"));
         currencyDetails = new CurrencyDetails(jsonHelper.getString("symbol"),
                 jsonHelper.getDouble("min_withdrawal_amount"),
                 jsonHelper.getInt("network_confirmations"),
@@ -99,24 +148,84 @@ public class Currency {
 
     /**
      * The {@code CurrencyDetails} class is useful to obtain and format CurrencyDetails object for Currency
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
-     * **/
+     * @author N7ghtm4r3 - Tecknobit
+     * * **/
     public static class CurrencyDetails{
 
+        /**
+         * {@code symbol} is instance that memorizes symbol value
+         * **/
         private final String symbol;
+
+        /**
+         * {@code minWithdrawalAmount} is instance that memorizes minimum withdrawal amount value
+         * **/
         private final double minWithdrawalAmount;
+
+        /**
+         * {@code networksConfirmations} is instance that memorizes networks confirmations value
+         * **/
         private final int networksConfirmations;
+
+        /**
+         * {@code maxWithdrawalAmount} is instance that memorizes maximum withdrawal amount value
+         * **/
         private final double maxWithdrawalAmount;
+
+        /**
+         * {@code cryptoAddressLink} is instance that memorizes crypto address link value
+         * **/
         private final String cryptoAddressLink;
+
+        /**
+         * {@code type} is instance that memorizes type value
+         * **/
         private final String type;
+
+        /**
+         * {@code sortOrder} is instance that memorizes sort order value
+         * **/
         private final int sortOrder;
+
+        /**
+         * {@code cryptoTransactionLink} is instance that memorizes crypto transaction link value
+         * **/
         private final String cryptoTransactionLink;
+
+        /**
+         * {@code displayName} is instance that memorizes display name value
+         * **/
         private final String displayName;
+
+        /**
+         * {@code processingTimeSeconds} is instance that memorizes processing time seconds value
+         * **/
         private final String processingTimeSeconds;
+
+        /**
+         * {@code pushPaymentMethodsList} is instance that memorizes list of push payment methods
+         * **/
         private final ArrayList<String> pushPaymentMethodsList;
+
+        /**
+         * {@code groupTypesList} is instance that memorizes list of group types
+         * **/
         private final ArrayList<String> groupTypesList;
 
+        /** Constructor to init a {@link CurrencyDetails} object
+         * @param symbol: symbol value
+         * @param minWithdrawalAmount: minimum withdrawal amount value
+         * @param networksConfirmations: networks confirmations value
+         * @param maxWithdrawalAmount: maximum withdrawal amount value
+         * @param cryptoAddressLink: crypto address link value
+         * @param type: type value
+         * @param sortOrder: sort order value
+         * @param cryptoTransactionLink: crypto transaction link value
+         * @param displayName: display name value
+         * @param processingTimeSeconds: processing time seconds value
+         * @param pushPaymentMethodsList: list of push payment methods
+         * @param groupTypesList: list of group types
+         * **/
         public CurrencyDetails(String symbol, double minWithdrawalAmount, int networksConfirmations,
                                double maxWithdrawalAmount, String cryptoAddressLink, String type, int sortOrder,
                                String cryptoTransactionLink, String displayName, String processingTimeSeconds,
