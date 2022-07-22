@@ -224,6 +224,23 @@ public class CoinbaseAccount {
         this.depositInformation = depositInformation;
     }
 
+    @Override
+    public String toString() {
+        return "CoinbaseAccount{" +
+                "balance=" + balance +
+                ", availableOnConsumer=" + availableOnConsumer +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", currency='" + currency + '\'' +
+                ", id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", primary=" + primary +
+                ", holdBalance=" + holdBalance +
+                ", holdCurrency='" + holdCurrency + '\'' +
+                ", depositInformation=" + depositInformation.toString() +
+                '}';
+    }
+
     /**
      * The {@code DepositInformation} class is useful to obtain and format DepositInformation object for CoinbaseAccount
      * @author N7ghtm4r3 - Tecknobit
@@ -477,6 +494,21 @@ public class CoinbaseAccount {
             if(bankCountryName == null || bankCountryName.isEmpty())
                 throw new IllegalArgumentException("Bank country name value cannot be empty or null");
             this.bankCountryName = bankCountryName;
+        }
+
+        @Override
+        public String toString() {
+            return "DepositInformation{" +
+                    "reference='" + reference + '\'' +
+                    ", iban='" + iban + '\'' +
+                    ", accountName='" + accountName + '\'' +
+                    ", bankName='" + bankName + '\'' +
+                    ", bankAddress='" + bankAddress + '\'' +
+                    ", accountAddress='" + accountAddress + '\'' +
+                    ", swift='" + swift + '\'' +
+                    ", bankCountryCode='" + bankCountryCode + '\'' +
+                    ", bankCountryName='" + bankCountryName + '\'' +
+                    '}';
         }
 
     }

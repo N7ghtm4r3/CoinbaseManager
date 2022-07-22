@@ -1,5 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account;
 
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Account;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CoinbaseAccount;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CryptoAddress;
@@ -8,7 +9,6 @@ import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Detail
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -105,10 +105,10 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return all account for a profile as list {@link ArrayList} of {@link Account}
      * **/
     public ArrayList<Account> getAccountListForProfile() throws Exception {
-        jsonArray = new JSONArray(getAccountForProfile());
+        JSONArray jsonAccounts = new JSONArray(getAccountForProfile());
         ArrayList<Account> accounts = new ArrayList<>();
-        for (int j = 0; j < jsonArray.length(); j++)
-            accounts.add(assembleAccountProfile(jsonArray.getJSONObject(j)));
+        for (int j = 0; j < jsonAccounts.length(); j++)
+            accounts.add(assembleAccountProfile(jsonAccounts.getJSONObject(j)));
         return accounts;
     }
 
@@ -421,15 +421,10 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return all Coinbase's users wallets available as list {@link ArrayList} of {@link CoinbaseAccount}
      * **/
     public ArrayList<CoinbaseAccount> getCoinbaseWalletsList() throws Exception {
-        jsonArray = new JSONArray(getJSONCoinbaseWallets());
+        JSONArray jsonCoinbaseAccounts = new JSONArray(getJSONCoinbaseWallets());
         ArrayList<CoinbaseAccount> coinbaseAccounts = new ArrayList<>();
-        for (int j = 0; j < jsonArray.length(); j++){
-            JSONObject coinbaseAccount = jsonArray.getJSONObject(j);
-            try {
-                jsonObject = coinbaseAccount.getJSONObject("sepa_deposit_information");
-            }catch (JSONException e){
-                jsonObject = null;
-            }
+        for (int j = 0; j < jsonCoinbaseAccounts.length(); j++){
+            JSONObject coinbaseAccount = jsonCoinbaseAccounts.getJSONObject(j);
             coinbaseAccounts.add(new CoinbaseAccount(coinbaseAccount.getDouble("balance"),
                     coinbaseAccount.getBoolean("available_on_consumer"),
                     coinbaseAccount.getString("name"),
@@ -440,7 +435,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
                     coinbaseAccount.getBoolean("primary"),
                     coinbaseAccount.getDouble("hold_balance"),
                     coinbaseAccount.getString("hold_currency"),
-                    jsonObject
+                    JsonHelper.getJSONObject(coinbaseAccount, "sepa_deposit_information")
             ));
         }
         return coinbaseAccounts;
@@ -473,20 +468,20 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return response of generation one time crypto address for a deposit as {@link CryptoAddress} object
      * **/
     public CryptoAddress generateObjectCryptoAddress(String accountId) throws Exception {
-        jsonObject = new JSONObject(generateCryptoAddress(accountId));
-        return new CryptoAddress(jsonObject.getString("id"),
-                jsonObject.getString("address"),
-                jsonObject.getJSONObject("address_info"),
-                jsonObject.getString("name"),
-                jsonObject.getString("created_at"),
-                jsonObject.getString("updated_at"),
-                jsonObject.getString("network"),
-                jsonObject.getString("uri_scheme"),
-                jsonObject.getString("resource"),
-                jsonObject.getString("resource_path"),
-                jsonObject.getString("deposit_uri"),
-                jsonObject.getBoolean("exchange_deposit_address"),
-                jsonObject.getJSONArray("warnings")
+        JSONObject jsonCrypto = new JSONObject(generateCryptoAddress(accountId));
+        return new CryptoAddress(jsonCrypto.getString("id"),
+                jsonCrypto.getString("address"),
+                jsonCrypto.getJSONObject("address_info"),
+                jsonCrypto.getString("name"),
+                jsonCrypto.getString("created_at"),
+                jsonCrypto.getString("updated_at"),
+                jsonCrypto.getString("network"),
+                jsonCrypto.getString("uri_scheme"),
+                jsonCrypto.getString("resource"),
+                jsonCrypto.getString("resource_path"),
+                jsonCrypto.getString("deposit_uri"),
+                jsonCrypto.getBoolean("exchange_deposit_address"),
+                jsonCrypto.getJSONArray("warnings")
         );
     }
 

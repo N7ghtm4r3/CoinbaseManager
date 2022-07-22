@@ -30,4 +30,15 @@ public class Trade extends StatDetails {
         return side;
     }
 
+    @Override
+    public String toString() {
+        return "Trade{" +
+                "side='" + side + '\'' +
+                ", tradeId=" + tradeId +
+                ", price=" + price +
+                ", size=" + size +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
 }

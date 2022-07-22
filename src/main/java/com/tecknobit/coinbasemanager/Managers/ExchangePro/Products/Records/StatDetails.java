@@ -67,4 +67,14 @@ public class StatDetails {
         return time;
     }
 
+    @Override
+    public String toString() {
+        return "StatDetails{" +
+                "tradeId=" + tradeId +
+                ", price=" + price +
+                ", size=" + size +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
 }

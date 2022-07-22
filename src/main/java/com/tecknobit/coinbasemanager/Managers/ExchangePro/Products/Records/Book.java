@@ -18,6 +18,11 @@ import static java.lang.String.valueOf;
 public class Book {
 
     /**
+     * {@code productId} is instance that memorizes product identifier value
+     * **/
+    private final String productId;
+
+    /**
      * {@code sequence} is instance that memorizes sequence value
      * **/
     private final long sequence;
@@ -42,13 +47,16 @@ public class Book {
      * **/
     private final ArrayList<String> bids;
 
-    /** Constructor to init a {@link Book} object
+    /**
+     * Constructor to init a {@link Book} object
+     * @param productId: book identifier value
      * @param sequence: sequence value
      * @param auctionMode: flag that checks if book is in auction mode
      * @param auction: auction value
      * @param jsonBook: book details in JSON format
-     * **/
-    public Book(long sequence, boolean auctionMode, String auction, JSONObject jsonBook) {
+     **/
+    public Book(String productId, long sequence, boolean auctionMode, String auction, JSONObject jsonBook) {
+        this.productId = productId;
         this.sequence = sequence;
         this.auctionMode = auctionMode;
         this.auction = auction;
@@ -73,6 +81,10 @@ public class Book {
             }
         }
         return strings;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 
     public long getSequence() {
@@ -103,5 +115,16 @@ public class Book {
         return bids.get(index);
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "productId='" + productId + '\'' +
+                ", sequence=" + sequence +
+                ", auctionMode=" + auctionMode +
+                ", auction='" + auction + '\'' +
+                ", asks=" + asks +
+                ", bids=" + bids +
+                '}';
+    }
 
 }

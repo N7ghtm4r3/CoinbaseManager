@@ -270,9 +270,9 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public ArrayList<PaymentMethod> getAllPaymentMethodsList() throws Exception {
         ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
-        jsonArray = new JSONArray(getAllPaymentMethods());
-        for (int j=0; j < jsonArray.length(); j++){
-            JSONObject paymentMethod = jsonArray.getJSONObject(j);
+        JSONArray jsonPayments = new JSONArray(getAllPaymentMethods());
+        for (int j=0; j < jsonPayments.length(); j++){
+            JSONObject paymentMethod = jsonPayments.getJSONObject(j);
             paymentMethods.add(new PaymentMethod(paymentMethod.getString("id"),
                     paymentMethod.getString("type"),
                     paymentMethod.getString("name"),
@@ -619,8 +619,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return estimate fee of withdraw as double
      * **/
     public double getFeeForCryptoWithdrawalValue(String cryptoAddress, String currency) throws Exception {
-        jsonObject = new JSONObject(getFeeForCryptoWithdrawal(cryptoAddress, currency));
-        return jsonObject.getDouble("fee");
+        JSONObject jsonFee = new JSONObject(getFeeForCryptoWithdrawal(cryptoAddress, currency));
+        return jsonFee.getDouble("fee");
     }
 
     /** Request to withdraw using payment method

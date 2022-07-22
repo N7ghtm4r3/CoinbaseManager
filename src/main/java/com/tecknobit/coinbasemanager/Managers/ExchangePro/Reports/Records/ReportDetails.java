@@ -61,6 +61,15 @@ public class ReportDetails {
         return status;
     }
 
+    @Override
+    public String toString() {
+        return "ReportDetails{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
     /**
      * The {@code UserDetails} class is useful to obtain and format general UserDetails object for {@link Report} and {@link ExchangeLimits} object
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
@@ -205,6 +214,22 @@ public class ReportDetails {
 
         public JSONArray getCustomList(String key){
             return jsonUser.getJSONArray(key);
+        }
+
+        @Override
+        public String toString() {
+            return "UserDetails{" +
+                    "createdAt='" + createdAt + '\'' +
+                    ", activeAt='" + activeAt + '\'' +
+                    ", id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    ", email='" + email + '\'' +
+                    ", isBanned=" + isBanned +
+                    ", userType='" + userType + '\'' +
+                    ", fullFillsNewRequirements=" + fullFillsNewRequirements +
+                    ", hasDefault=" + hasDefault +
+                    ", jsonUser=" + jsonUser +
+                    '}';
         }
 
     }

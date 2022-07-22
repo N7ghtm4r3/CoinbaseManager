@@ -89,4 +89,16 @@ public class CurrencyConversion {
         return to;
     }
 
+    @Override
+    public String toString() {
+        return "CurrencyConversion{" +
+                "id='" + id + '\'' +
+                ", amount=" + amount +
+                ", fromAccountId='" + fromAccountId + '\'' +
+                ", toAccountId='" + toAccountId + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                '}';
+    }
+
 }

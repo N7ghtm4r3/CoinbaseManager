@@ -204,4 +204,27 @@ public class TradingPair {
         return auctionMode;
     }
 
+    @Override
+    public String toString() {
+        return "TradingPair{" +
+                "id='" + id + '\'' +
+                ", baseCurrency='" + baseCurrency + '\'' +
+                ", quoteCurrency='" + quoteCurrency + '\'' +
+                ", baseMinSize=" + baseMinSize +
+                ", baseMaxSize=" + baseMaxSize +
+                ", quoteIncrement=" + quoteIncrement +
+                ", baseIncrement=" + baseIncrement +
+                ", displayName='" + displayName + '\'' +
+                ", minMarketFunds=" + minMarketFunds +
+                ", maxMarketFunds=" + maxMarketFunds +
+                ", marginEnabled=" + marginEnabled +
+                ", postOnly=" + postOnly +
+                ", limitOnly=" + limitOnly +
+                ", cancelOnly=" + cancelOnly +
+                ", status='" + status + '\'' +
+                ", statusMessage='" + statusMessage + '\'' +
+                ", auctionMode=" + auctionMode +
+                '}';
+    }
+
 }

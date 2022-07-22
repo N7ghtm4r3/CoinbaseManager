@@ -227,6 +227,25 @@ public class CryptoAddress {
         return warningsList.get(index);
     }
 
+    @Override
+    public String toString() {
+        return "CryptoAddress{" +
+                "id='" + id + '\'' +
+                ", address='" + address + '\'' +
+                ", addressInfoList=" + addressInfoList +
+                ", name='" + name + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", network='" + network + '\'' +
+                ", uriScheme='" + uriScheme + '\'' +
+                ", resource='" + resource + '\'' +
+                ", resourcePath='" + resourcePath + '\'' +
+                ", depositUri='" + depositUri + '\'' +
+                ", exchangeDepositAddress=" + exchangeDepositAddress +
+                ", warningsList=" + warningsList +
+                '}';
+    }
+
     /**
      * The {@code AddressInfo} class is useful to obtain and format AddressInfo object for CryptoAddress <br>
      * This class give info about crypto address used in the request
@@ -259,6 +278,14 @@ public class CryptoAddress {
 
         public String getValueInfo() {
             return valueInfo;
+        }
+
+        @Override
+        public String toString() {
+            return "AddressInfo{" +
+                    "titleInfo='" + titleInfo + '\'' +
+                    ", valueInfo='" + valueInfo + '\'' +
+                    '}';
         }
 
     }
@@ -306,6 +333,15 @@ public class CryptoAddress {
 
         public String getImageUrl() {
             return imageUrl;
+        }
+
+        @Override
+        public String toString() {
+            return "Warning{" +
+                    "title='" + title + '\'' +
+                    ", details='" + details + '\'' +
+                    ", imageUrl='" + imageUrl + '\'' +
+                    '}';
         }
 
     }

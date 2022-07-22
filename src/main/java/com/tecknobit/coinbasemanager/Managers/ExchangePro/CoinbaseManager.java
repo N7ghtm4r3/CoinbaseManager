@@ -3,8 +3,6 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 import com.tecknobit.apimanager.Manager.APIRequest;
 import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.apimanager.Tools.Trading.TradingTools;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -70,16 +68,6 @@ public class CoinbaseManager {
      * {@code apiKey} is instance that memorizes api key user value
      * **/
     protected final String apiKey;
-
-    /**
-     * {@code jsonObject} is instance useful to format {@link JSONObject}' s responses API
-     * **/
-    protected JSONObject jsonObject;
-
-    /**
-     * {@code jsonArray} is instance useful to format {@link JSONArray}' s responses API
-     * **/
-    protected JSONArray jsonArray;
 
     /**
      * {@code jsonHelper} is instance useful to help to format JSON responses API

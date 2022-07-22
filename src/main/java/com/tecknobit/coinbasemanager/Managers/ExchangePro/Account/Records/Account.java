@@ -149,4 +149,17 @@ public class Account {
         this.tradingEnable = tradingEnable;
     }
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", currency='" + currency + '\'' +
+                ", balance=" + balance +
+                ", available=" + available +
+                ", hold=" + hold +
+                ", profileId='" + profileId + '\'' +
+                ", tradingEnable=" + tradingEnable +
+                '}';
+    }
+
 }

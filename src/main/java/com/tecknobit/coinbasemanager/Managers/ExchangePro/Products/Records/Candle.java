@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+import org.json.JSONArray;
+
 /**
  * The {@code Candle} class is useful to format Candle object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
@@ -69,6 +71,32 @@ public class Candle extends Product {
 
     public double getClose() {
         return close;
+    }
+
+    /** Method to assemble a candle object
+     * @param candle: jsonArray obtained by response request
+     * @return candle as {@link Candle}
+     * **/
+    public static Candle assembleCandle(JSONArray candle){
+        return new Candle(candle.getLong(3),
+                candle.getDouble(2),
+                candle.getDouble(1),
+                candle.getDouble(5),
+                candle.getLong(0),
+                candle.getDouble(4)
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "Candle{" +
+                "time=" + time +
+                ", close=" + close +
+                ", open=" + open +
+                ", high=" + high +
+                ", low=" + low +
+                ", volume=" + volume +
+                '}';
     }
 
 }

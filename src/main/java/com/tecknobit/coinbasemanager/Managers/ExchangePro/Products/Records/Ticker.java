@@ -39,8 +39,14 @@ public class Ticker extends StatDetails {
      * **/
     private final double volume;
 
-    /** Constructor to init a {@link Ticker} object
-     * @param tradeId: trade identifier value
+    /**
+     * {@code priceChangePercent} is instance that memorizes price change percent value in 24 hours
+     * **/
+    private final double priceChangePercent;
+
+    /**
+     * Constructor to init a {@link Ticker} object
+     * @param tradeId: ticker identifier value
      * @param price: price value
      * @param size: size value
      * @param time: time value
@@ -50,9 +56,10 @@ public class Ticker extends StatDetails {
      * @param bid: bid value
      * @param ask: ask value
      * @param volume: volume value
-     * **/
+     * @param priceChangePercent: price change percent value in 24 hours
+     **/
     public Ticker(long tradeId, double price, double size, String time, String productId, String baseAsset, String quoteAsset,
-                  double bid, double ask, double volume) {
+                  double bid, double ask, double volume, double priceChangePercent) {
         super(tradeId, price, size, time);
         this.productId = productId;
         this.baseAsset = baseAsset;
@@ -60,6 +67,7 @@ public class Ticker extends StatDetails {
         this.bid = bid;
         this.ask = ask;
         this.volume = volume;
+        this.priceChangePercent = priceChangePercent;
     }
 
     public String getProductId() {
@@ -84,6 +92,23 @@ public class Ticker extends StatDetails {
 
     public double getVolume() {
         return volume;
+    }
+
+    public double getPriceChangePercent() {
+        return priceChangePercent;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticker{" +
+                "productId='" + productId + '\'' +
+                ", baseAsset='" + baseAsset + '\'' +
+                ", quoteAsset='" + quoteAsset + '\'' +
+                ", bid=" + bid +
+                ", ask=" + ask +
+                ", volume=" + volume +
+                ", priceChangePercent=" + priceChangePercent +
+                '}';
     }
 
 }

@@ -399,6 +399,40 @@ public class PaymentMethod extends PayMethod{
         return jsonHelper.getJSONObject(key);
     }
 
+    @Override
+    public String toString() {
+        return "PaymentMethod{" +
+                "id='" + id + '\'' +
+                ", currency='" + currency + '\'' +
+                ", primaryBuy=" + primaryBuy +
+                ", primarySell=" + primarySell +
+                ", instantBuy=" + instantBuy +
+                ", instantSell=" + instantSell +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", resource='" + resource + '\'' +
+                ", resourcePath='" + resourcePath + '\'' +
+                ", allowBuy=" + allowBuy +
+                ", allowSell=" + allowSell +
+                ", allowDeposit=" + allowDeposit +
+                ", allowWithdraw=" + allowWithdraw +
+                ", verified=" + verified +
+                ", holdBusinessDays=" + holdBusinessDays +
+                ", holdDays=" + holdDays +
+                ", jsonHelper=" + jsonHelper +
+                ", minimumPurchaseAmount=" + minimumPurchaseAmount.toString() +
+                ", payPalLimits=" + payPalLimits +
+                ", bankLimits=" + bankLimits +
+                ", payPalPickerData=" + payPalPickerData +
+                ", bankPickerData=" + bankPickerData +
+                ", fiatAccountLimit=" + fiatAccountLimit +
+                ", fiatAccountDetails=" + fiatAccountDetails +
+                ", fiatAccountPickerData=" + fiatAccountPickerData +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     /**
      * The {@code Amount} class is useful to obtain and format Amount object for PaymentMethod
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
@@ -471,6 +505,14 @@ public class PaymentMethod extends PayMethod{
             if(currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");
             this.currency = currency;
+        }
+
+        @Override
+        public String toString() {
+            return "Amount{" +
+                    "amount=" + amount +
+                    ", currency='" + currency + '\'' +
+                    '}';
         }
 
     }

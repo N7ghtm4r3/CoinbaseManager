@@ -447,6 +447,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         return bodyParams;
     }
 
+    /** Method to assemble report details object
+     * @param jsonReport: report details in JSON format
+     * @return {@link ReportDetails} object
+     * **/
     private ReportDetails assembleReportDetails(JSONObject jsonReport){
         return new ReportDetails(jsonReport.getString("id"),
                 jsonReport.getString("type"),

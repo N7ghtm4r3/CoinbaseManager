@@ -67,4 +67,14 @@ public class Product {
         return volume;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "open=" + open +
+                ", high=" + high +
+                ", low=" + low +
+                ", volume=" + volume +
+                '}';
+    }
+
 }

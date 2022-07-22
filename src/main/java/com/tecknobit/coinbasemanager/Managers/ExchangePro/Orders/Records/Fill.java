@@ -90,4 +90,16 @@ public class Fill extends OrderDetails {
         return usdVolume;
     }
 
+    @Override
+    public String toString() {
+        return "Fill{" +
+                "tradeId=" + tradeId +
+                ", orderId='" + orderId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", liquidity='" + liquidity + '\'' +
+                ", fee=" + fee +
+                ", usdVolume=" + usdVolume +
+                '}';
+    }
+
 }

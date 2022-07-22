@@ -87,9 +87,9 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * **/
     public ArrayList<Currency> getAllKnownCurrenciesList() throws Exception {
         ArrayList<Currency> currencies = new ArrayList<>();
-        jsonArray = new JSONArray(getAllKnownCurrencies());
-        for (int j = 0; j < jsonArray.length(); j++)
-            currencies.add(assembleCurrencyObject(jsonArray.getJSONObject(j)));
+        JSONArray jsonCurrencies = new JSONArray(getAllKnownCurrencies());
+        for (int j = 0; j < jsonCurrencies.length(); j++)
+            currencies.add(assembleCurrencyObject(jsonCurrencies.getJSONObject(j)));
         return currencies;
     }
 

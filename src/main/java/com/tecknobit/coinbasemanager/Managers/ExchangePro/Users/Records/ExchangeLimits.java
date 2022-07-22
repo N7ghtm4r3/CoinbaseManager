@@ -367,6 +367,41 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "ExchangeLimits{" +
+                "termsAccepted='" + termsAccepted + '\'' +
+                ", testGroupsList=" + testGroupsList +
+                ", country=" + country +
+                ", stateCode='" + stateCode + '\'' +
+                ", accessPrivacyRights=" + accessPrivacyRights +
+                ", twoFactorMethod='" + twoFactorMethod + '\'' +
+                ", analyticsProcessingEnabled=" + analyticsProcessingEnabled +
+                ", isPrime=" + isPrime +
+                ", hasProWbl=" + hasProWbl +
+                ", hasClawBack=" + hasClawBack +
+                ", hasClawBackPaymentPending=" + hasClawBackPaymentPending +
+                ", hasRestrictedAssets=" + hasRestrictedAssets +
+                ", legalName='" + legalName + '\'' +
+                ", whitelistingEnabled=" + whitelistingEnabled +
+                ", regionBankingSupport=" + regionBankingSupport +
+                ", defaultPreferredMarket='" + defaultPreferredMarket + '\'' +
+                ", marginEligible=" + marginEligible +
+                ", marginInformation=" + marginInformation +
+                ", address=" + address +
+                ", createdAt='" + createdAt + '\'' +
+                ", activeAt='" + activeAt + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", isBanned=" + isBanned +
+                ", userType='" + userType + '\'' +
+                ", fullFillsNewRequirements=" + fullFillsNewRequirements +
+                ", hasDefault=" + hasDefault +
+                ", jsonUser=" + jsonUser +
+                '}';
+    }
+
     /**
      * The {@code Test} class is useful to obtain and format Test objects for ExchangeLimits
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
@@ -410,6 +445,15 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
         public boolean isForced() {
             return forced;
+        }
+
+        @Override
+        public String toString() {
+            return "Test{" +
+                    "test='" + test + '\'' +
+                    ", group='" + group + '\'' +
+                    ", forced=" + forced +
+                    '}';
         }
 
     }
@@ -497,6 +541,15 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
 
         public void setInEurope(boolean inEurope) {
             isInEurope = inEurope;
+        }
+
+        @Override
+        public String toString() {
+            return "Country{" +
+                    "code='" + code + '\'' +
+                    ", name='" + name + '\'' +
+                    ", isInEurope=" + isInEurope +
+                    '}';
         }
 
     }
@@ -653,6 +706,18 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             this.name = name;
         }
 
+        @Override
+        public String toString() {
+            return "Address{" +
+                    "line1='" + line1 + '\'' +
+                    ", city='" + city + '\'' +
+                    ", state='" + state + '\'' +
+                    ", postalCode='" + postalCode + '\'' +
+                    ", code='" + code + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
     }
 
     /**
@@ -729,6 +794,15 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             if(tier == null)
                 throw new IllegalArgumentException("Tier value cannot be empty or null");
             this.tier = tier;
+        }
+
+        @Override
+        public String toString() {
+            return "MarginInformation{" +
+                    "eligible=" + eligible +
+                    ", enabled=" + enabled +
+                    ", tier='" + tier + '\'' +
+                    '}';
         }
 
     }

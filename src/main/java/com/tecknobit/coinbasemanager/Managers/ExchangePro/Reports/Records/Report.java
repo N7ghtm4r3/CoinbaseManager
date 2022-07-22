@@ -132,6 +132,22 @@ public class Report extends ReportDetails {
         return jsonHelper.getString("file_count");
     }
 
+    @Override
+    public String toString() {
+        return "Report{" +
+                "createdAt='" + createdAt + '\'' +
+                ", completedAt='" + completedAt + '\'' +
+                ", expiresAt='" + expiresAt + '\'' +
+                ", userId='" + userId + '\'' +
+                ", fileUrl='" + fileUrl + '\'' +
+                ", paramsReport=" + paramsReport.toString() +
+                ", jsonHelper=" + jsonHelper +
+                ", id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
     /**
      * The {@code ParamsReport} class is useful to obtain and format ParamsReport object for Report
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
@@ -269,6 +285,22 @@ public class Report extends ReportDetails {
             return jsonHelper.getBoolean("is_brokerage");
         }
 
+        @Override
+        public String toString() {
+            return "ParamsReport{" +
+                    "startDate='" + startDate + '\'' +
+                    ", endDate='" + endDate + '\'' +
+                    ", format='" + format + '\'' +
+                    ", productId='" + productId + '\'' +
+                    ", accountId='" + accountId + '\'' +
+                    ", profileId='" + profileId + '\'' +
+                    ", email='" + email + '\'' +
+                    ", newYorkState=" + newYorkState +
+                    ", userReport=" + userReport.toString() +
+                    ", jsonHelper=" + jsonHelper +
+                    '}';
+        }
+
         /**
          * The {@code UserReport} class is useful to obtain and format UserReport object for Report
          * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
@@ -312,6 +344,23 @@ public class Report extends ReportDetails {
 
             public String getOauthClient() {
                 return oauthClient;
+            }
+
+            @Override
+            public String toString() {
+                return "UserReport{" +
+                        "oauthClient='" + oauthClient + '\'' +
+                        ", createdAt='" + createdAt + '\'' +
+                        ", activeAt='" + activeAt + '\'' +
+                        ", id='" + id + '\'' +
+                        ", name='" + name + '\'' +
+                        ", email='" + email + '\'' +
+                        ", isBanned=" + isBanned +
+                        ", userType='" + userType + '\'' +
+                        ", fullFillsNewRequirements=" + fullFillsNewRequirements +
+                        ", hasDefault=" + hasDefault +
+                        ", jsonUser=" + jsonUser +
+                        '}';
             }
 
         }

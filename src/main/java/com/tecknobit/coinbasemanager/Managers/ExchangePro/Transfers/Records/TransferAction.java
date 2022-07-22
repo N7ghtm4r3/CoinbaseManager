@@ -85,4 +85,16 @@ public class TransferAction extends PaymentMethod.Amount {
         return subTotal;
     }
 
+    @Override
+    public String toString() {
+        return "TransferAction{" +
+                "id='" + id + '\'' +
+                ", payoutAt='" + payoutAt + '\'' +
+                ", fee=" + fee +
+                ", subTotal=" + subTotal +
+                ", amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
+
 }

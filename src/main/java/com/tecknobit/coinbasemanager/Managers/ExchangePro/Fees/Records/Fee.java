@@ -47,4 +47,13 @@ public class Fee {
         return usdVolume;
     }
 
+    @Override
+    public String toString() {
+        return "Fee{" +
+                "takerFeeRate=" + takerFeeRate +
+                ", makerFeeRate=" + makerFeeRate +
+                ", usdVolume=" + usdVolume +
+                '}';
+    }
+
 }

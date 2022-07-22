@@ -294,4 +294,18 @@ public class Order extends OrderDetails {
         return status;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", timeInForce='" + timeInForce + '\'' +
+                ", postOnly=" + postOnly +
+                ", fillFees=" + fillFees +
+                ", filledSize=" + filledSize +
+                ", executedValue=" + executedValue +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
 }

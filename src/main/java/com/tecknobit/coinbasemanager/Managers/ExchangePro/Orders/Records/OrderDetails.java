@@ -113,4 +113,17 @@ public class OrderDetails {
         return settled;
     }
 
+    @Override
+    public String toString() {
+        return "OrderDetails{" +
+                "createdAt='" + createdAt + '\'' +
+                ", productId='" + productId + '\'' +
+                ", profileId='" + profileId + '\'' +
+                ", price=" + price +
+                ", size=" + size +
+                ", side='" + side + '\'' +
+                ", settled=" + settled +
+                '}';
+    }
+
 }

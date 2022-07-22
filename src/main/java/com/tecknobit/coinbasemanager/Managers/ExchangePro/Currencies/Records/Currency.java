@@ -146,6 +146,20 @@ public class Currency {
         return currencyDetails;
     }
 
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", minSize=" + minSize +
+                ", maxPrecision=" + maxPrecision +
+                ", message='" + message + '\'' +
+                ", convertibleToCurrenciesList=" + convertibleToCurrenciesList +
+                ", currencyDetails=" + currencyDetails.toString() +
+                '}';
+    }
+
     /**
      * The {@code CurrencyDetails} class is useful to obtain and format CurrencyDetails object for Currency
      * @author N7ghtm4r3 - Tecknobit
@@ -298,6 +312,24 @@ public class Currency {
 
         public String getGroupType(int index){
             return groupTypesList.get(index);
+        }
+
+        @Override
+        public String toString() {
+            return "CurrencyDetails{" +
+                    "symbol='" + symbol + '\'' +
+                    ", minWithdrawalAmount=" + minWithdrawalAmount +
+                    ", networksConfirmations=" + networksConfirmations +
+                    ", maxWithdrawalAmount=" + maxWithdrawalAmount +
+                    ", cryptoAddressLink='" + cryptoAddressLink + '\'' +
+                    ", type='" + type + '\'' +
+                    ", sortOrder=" + sortOrder +
+                    ", cryptoTransactionLink='" + cryptoTransactionLink + '\'' +
+                    ", displayName='" + displayName + '\'' +
+                    ", processingTimeSeconds='" + processingTimeSeconds + '\'' +
+                    ", pushPaymentMethodsList=" + pushPaymentMethodsList +
+                    ", groupTypesList=" + groupTypesList +
+                    '}';
         }
 
     }

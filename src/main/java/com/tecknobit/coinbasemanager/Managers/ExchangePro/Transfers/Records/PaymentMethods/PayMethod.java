@@ -107,6 +107,14 @@ public class PayMethod {
         return type != null && (type.equals(FIAT_ACCOUNT_TYPE) || type.equals(PAYPAL_TYPE) || type.equals(BANK_TYPE));
     }
 
+    @Override
+    public String toString() {
+        return "PayMethod{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     /**
      * The {@code PickerData} class is useful to obtain and format PickerData
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
@@ -129,6 +137,14 @@ public class PayMethod {
         public String getSymbol() {
             return symbol;
         }
+
+        @Override
+        public String toString() {
+            return "PickerData{" +
+                    "symbol='" + symbol + '\'' +
+                    '}';
+        }
+
     }
 
 }

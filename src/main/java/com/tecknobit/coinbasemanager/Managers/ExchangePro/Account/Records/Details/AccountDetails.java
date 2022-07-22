@@ -83,4 +83,14 @@ public class AccountDetails {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "AccountDetails{" +
+                "createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                ", amount=" + amount +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
 }

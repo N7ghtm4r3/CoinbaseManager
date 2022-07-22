@@ -10,6 +10,11 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 public class Stat extends Product {
 
     /**
+     * {@code productId} is instance that memorizes product identifier value
+     * **/
+    private final String productId;
+
+    /**
      * {@code last} is instance that memorizes last value
      * **/
     private final double last;
@@ -19,18 +24,25 @@ public class Stat extends Product {
      * **/
     private final double volume30Day;
 
-    /** Constructor to init a {@link Product} object
+    /**
+     * Constructor to init a {@link Stat} object
+     * @param productId: Stat identifier value
      * @param open: open value
      * @param high: high value
      * @param low: low value
      * @param volume: volume value
      * @param last: last value
      * @param volume30Day: thirty days volume value
-     * **/
-    public Stat(double open, double high, double low, double volume, double last, double volume30Day) {
+     **/
+    public Stat(String productId, double open, double high, double low, double volume, double last, double volume30Day) {
         super(open, high, low, volume);
+        this.productId = productId;
         this.last = last;
         this.volume30Day = volume30Day;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 
     public double getLast() {

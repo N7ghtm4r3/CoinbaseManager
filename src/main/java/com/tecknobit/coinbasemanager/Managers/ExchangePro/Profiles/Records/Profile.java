@@ -143,4 +143,17 @@ public class Profile {
         this.hasMargin = hasMargin;
     }
 
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", isDefault=" + isDefault +
+                ", createdAt='" + createdAt + '\'' +
+                ", hasMargin=" + hasMargin +
+                '}';
+    }
+
 }

@@ -97,6 +97,16 @@ public class PayPalMethod extends PayMethod{
         return payPalDepositsList.get(index);
     }
 
+    @Override
+    public String toString() {
+        return "PayPalMethod{" +
+                "payPalBuysList=" + payPalBuysList +
+                ", payPalDepositsList=" + payPalDepositsList +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     /**
      * The {@code PayPalDetails} class is useful to obtain and format PayPalDetails object for PayPalMethod
      * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
@@ -204,6 +214,17 @@ public class PayPalMethod extends PayMethod{
             this.remaining = remaining;
         }
 
+        @Override
+        public String toString() {
+            return "PayPalDetails{" +
+                    "periodInDays=" + periodInDays +
+                    ", description='" + description + '\'' +
+                    ", label='" + label + '\'' +
+                    ", total=" + total +
+                    ", remaining=" + remaining +
+                    '}';
+        }
+
     }
 
     /**
@@ -293,6 +314,17 @@ public class PayPalMethod extends PayMethod{
 
         public void setReauth(boolean reauth) {
             this.reauth = reauth;
+        }
+
+        @Override
+        public String toString() {
+            return "PayPalPickerData{" +
+                    "payoutOnly=" + payoutOnly +
+                    ", payPalEmail='" + payPalEmail + '\'' +
+                    ", payPalOwner='" + payPalOwner + '\'' +
+                    ", reauth=" + reauth +
+                    ", symbol='" + symbol + '\'' +
+                    '}';
         }
 
     }

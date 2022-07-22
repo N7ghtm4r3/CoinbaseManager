@@ -88,6 +88,18 @@ public class Transfer extends AccountDetails {
         return transferDetails;
     }
 
+    @Override
+    public String toString() {
+        return "Transfer{" +
+                "completedAt='" + completedAt + '\'' +
+                ", transferDetails=" + transferDetails.toString() +
+                ", createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                ", amount=" + amount +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     /**
      * The {@code TransferDetails} class is useful to obtain and format TransferDetails object for Transfer
      * @author N7ghtm4r3 - Tecknobit
@@ -130,6 +142,15 @@ public class Transfer extends AccountDetails {
 
         public String getCoinbasePaymentMethodId() {
             return coinbasePaymentMethodId;
+        }
+
+        @Override
+        public String toString() {
+            return "TransferDetails{" +
+                    "coinbaseAccountId='" + coinbaseAccountId + '\'' +
+                    ", coinbaseTransactionId='" + coinbaseTransactionId + '\'' +
+                    ", coinbasePaymentMethodId='" + coinbasePaymentMethodId + '\'' +
+                    '}';
         }
 
     }

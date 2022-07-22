@@ -109,6 +109,16 @@ public class BankMethod extends PayMethod{
             this.swift = swift;
         }
 
+        @Override
+        public String toString() {
+            return "BankPickerData{" +
+                    "iban='" + iban + '\'' +
+                    ", institutionName='" + institutionName + '\'' +
+                    ", swift='" + swift + '\'' +
+                    ", symbol='" + symbol + '\'' +
+                    '}';
+        }
+
     }
 
 }

@@ -62,6 +62,15 @@ public class FiatAccountMethod extends PayMethod{
             return resourcePath;
         }
 
+        @Override
+        public String toString() {
+            return "FiatAccountDetails{" +
+                    "id='" + id + '\'' +
+                    ", resource='" + resource + '\'' +
+                    ", resourcePath='" + resourcePath + '\'' +
+                    '}';
+        }
+
     }
 
     /**
@@ -125,6 +134,15 @@ public class FiatAccountMethod extends PayMethod{
             if(currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");
             this.currency = currency;
+        }
+
+        @Override
+        public String toString() {
+            return "FiatAccountPickerData{" +
+                    "amount=" + amount +
+                    ", currency='" + currency + '\'' +
+                    ", symbol='" + symbol + '\'' +
+                    '}';
         }
 
     }

@@ -47,6 +47,18 @@ public class Ledger extends AccountDetails {
         return details;
     }
 
+    @Override
+    public String toString() {
+        return "Ledger{" +
+                "balance=" + balance +
+                ", details=" + details.toString() +
+                ", createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                ", amount=" + amount +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     /**
      * The {@code Details} class is useful to obtain and format Details object for ledger
      * @author N7ghtm4r3 - Tecknobit
@@ -90,6 +102,15 @@ public class Ledger extends AccountDetails {
 
         public String getProfileTransferId() {
             return profileTransferId;
+        }
+
+        @Override
+        public String toString() {
+            return "Details{" +
+                    "to='" + to + '\'' +
+                    ", from='" + from + '\'' +
+                    ", profileTransferId='" + profileTransferId + '\'' +
+                    '}';
         }
 
     }

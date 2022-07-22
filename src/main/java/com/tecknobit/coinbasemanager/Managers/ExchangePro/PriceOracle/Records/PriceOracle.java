@@ -82,6 +82,16 @@ public class PriceOracle {
         return prices;
     }
 
+    @Override
+    public String toString() {
+        return "PriceOracle{" +
+                "timestamp=" + timestamp +
+                ", messages=" + messages +
+                ", signatures=" + signatures +
+                ", prices=" + prices +
+                '}';
+    }
+
     /**
      * The {@code Price} class is useful to obtain and format Price objects for PriceOracle
      * This class give info about each price in prices list
@@ -128,6 +138,14 @@ public class PriceOracle {
             if(price < 0)
                 throw new IllegalArgumentException("Price value cannot be less than 0");
             this.price = price;
+        }
+
+        @Override
+        public String toString() {
+            return "Price{" +
+                    "symbol='" + symbol + '\'' +
+                    ", price=" + price +
+                    '}';
         }
 
     }

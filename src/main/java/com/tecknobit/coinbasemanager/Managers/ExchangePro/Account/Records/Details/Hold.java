@@ -31,4 +31,15 @@ public class Hold extends AccountDetails {
         return ref;
     }
 
+    @Override
+    public String toString() {
+        return "Hold{" +
+                "ref='" + ref + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", id='" + id + '\'' +
+                ", amount=" + amount +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
 }
