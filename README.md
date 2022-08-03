@@ -49,6 +49,9 @@ dependencies {
 </dependency>
 ```
 
+## 🛠 Skills
+- Java
+
 ## Endpoints managers available
 
 - Coinbase Pro Exchange
@@ -121,8 +124,6 @@ try {
 /* NOTE: if is not a request error will appear: "Error is not in api request, check out your code"
   and you will have to work on your code to manage error, you can also change default error message*/
 ```
-## 🛠 Skills
-- Java
 
 ## Authors
 
