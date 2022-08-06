@@ -105,11 +105,10 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link String}
      * **/
-    public String convertCurrency(String from, String to, double amount,
-                                  HashMap<String,Object> extraParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleConversionPayload(from, to, amount);
-        for (String key : extraParams.keySet())
-            bodyParams.put(key, extraParams.get(key));
+    public String convertCurrency(String from, String to, double amount, Params extraParams) throws Exception {
+        Params bodyParams = assembleConversionPayload(from, to, amount);
+        for (String key : extraParams.getParamsKeys())
+            bodyParams.addParam(key, extraParams.getParam(key));
         return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -123,8 +122,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link JSONObject}
      * **/
-    public JSONObject convertCurrencyJSON(String from, String to, double amount,
-                                  HashMap<String,Object> extraParams) throws Exception {
+    public JSONObject convertCurrencyJSON(String from, String to, double amount, Params extraParams) throws Exception {
         return new JSONObject(convertCurrency(from, to, amount, extraParams));
     }
 
@@ -138,8 +136,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion</a>
      * @return result of conversion as {@link CurrencyConversion} object
      * **/
-    public CurrencyConversion convertCurrencyObject(String from, String to, double amount,
-                                                    HashMap<String,Object> extraParams) throws Exception {
+    public CurrencyConversion convertCurrencyObject(String from, String to, double amount, Params extraParams) throws Exception {
         return assembleCurrencyConversion(new JSONObject(convertCurrency(from, to, amount, extraParams)));
     }
 
@@ -149,11 +146,11 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param amount: amount value to convert
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleConversionPayload(String from, String to, double amount){
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("from", from);
-        bodyParams.put("to", to);
-        bodyParams.put("amount", amount);
+    private Params assembleConversionPayload(String from, String to, double amount){
+        Params bodyParams = new Params();
+        bodyParams.addParam("from", from);
+        bodyParams.addParam("to", to);
+        bodyParams.addParam("amount", amount);
         return bodyParams;
     }
 

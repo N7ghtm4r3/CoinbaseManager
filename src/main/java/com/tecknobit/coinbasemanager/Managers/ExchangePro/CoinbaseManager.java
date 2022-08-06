@@ -4,7 +4,9 @@ import com.tecknobit.apimanager.Manager.APIRequest;
 import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.apimanager.Tools.Trading.TradingTools;
 
-import java.util.HashMap;
+import static com.tecknobit.apimanager.Manager.APIRequest.*;
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.computeAssetPercent;
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.textualizeAssetPercent;
 
 /**
  * The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
@@ -42,17 +44,12 @@ public class CoinbaseManager {
     /**
      * {@code headers} is instance that memorizes headers values
      * **/
-    protected final HashMap<String, String> headers;
+    protected final Headers headers;
 
     /**
      * {@code apiRequest} is instance to use to make API requests
      * **/
     protected final APIRequest apiRequest;
-
-    /**
-     * {@code tradingTools} is instance to use for trading tool workflow
-     * **/
-    protected final TradingTools tradingTools;
 
     /**
      * {@code apiSecret} is instance that memorizes api secret user value
@@ -91,8 +88,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        tradingTools = new TradingTools();
-        headers = new HashMap<>();
+        headers = new Headers();
         keysInserted = false;
     }
 
@@ -107,8 +103,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        tradingTools = new TradingTools();
-        headers = new HashMap<>();
+        headers = new Headers();
         keysInserted = false;
     }
 
@@ -123,8 +118,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        tradingTools = new TradingTools();
-        headers = new HashMap<>();
+        headers = new Headers();
         keysInserted = false;
     }
 
@@ -138,8 +132,7 @@ public class CoinbaseManager {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.passphrase = passphrase;
-        tradingTools = new TradingTools();
-        headers = new HashMap<>();
+        headers = new Headers();
         keysInserted = false;
     }
 
@@ -159,10 +152,10 @@ public class CoinbaseManager {
      * @param bodyParams: params to insert in the http body post request
      * @return response as {@link String}
      * **/
-    public String sendBodyParamsAPIRequest(String endpoint, String method, HashMap<String, Object> bodyParams) throws Exception {
-        if(method.equals(APIRequest.POST_METHOD) || method.equals(APIRequest.PUT_METHOD)){
-            setRequestHeaders(method, endpoint, apiRequest.assembleBodyParams(bodyParams));
-            apiRequest.sendPostAPIRequest(BASE_ENDPOINT + endpoint, bodyParams);
+    public String sendBodyParamsAPIRequest(String endpoint, String method, Params bodyParams) throws Exception {
+        if(method.equals(POST_METHOD) || method.equals(APIRequest.PUT_METHOD)){
+            setRequestHeaders(method, endpoint, apiRequest.encodeBodyParams(bodyParams));
+            apiRequest.sendBodyAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, bodyParams);
             return apiRequest.getResponse();
         }else
             throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");
@@ -180,21 +173,21 @@ public class CoinbaseManager {
         if(body != null)
             stringToSign += body;
         if(!keysInserted){
-            headers.put("Accept","application/json");
-            headers.put(CB_ACCESS_KEY, apiKey);
-            headers.put(CB_ACCESS_PASSPHRASE, passphrase);
+            headers.addHeader("Accept","application/json");
+            headers.addHeader(CB_ACCESS_KEY, apiKey);
+            headers.addHeader(CB_ACCESS_PASSPHRASE, passphrase);
             keysInserted = true;
         }
-        headers.put(CB_ACCESS_SIGN, apiRequest.getBase64Signature(apiSecret, stringToSign));
-        headers.put(CB_ACCESS_TIMESTAMP, timestamp);
+        headers.addHeader(CB_ACCESS_SIGN, getBase64Signature(apiSecret, stringToSign, HMAC_SHA256_ALGORITHM));
+        headers.addHeader(CB_ACCESS_TIMESTAMP, timestamp);
     }
 
     /** Method to assemble query params for a Coinbase request
      * @param queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
      * **/
-    protected String assembleQueryParams(String defParams, HashMap<String, Object> queryParams){
-        return apiRequest.assembleAdditionalParams(defParams, queryParams);
+    protected String assembleQueryParams(String defParams, Params queryParams){
+        return apiRequest.encodeAdditionalParams(defParams, queryParams);
     }
 
     /** Method to get error response of request <br>
@@ -227,7 +220,7 @@ public class CoinbaseManager {
      * @throws IllegalArgumentException if decimalDigits is negative
      * **/
     public double roundValue(double value, int decimalDigits){
-        return tradingTools.roundValue(value, decimalDigits);
+        return TradingTools.roundValue(value, decimalDigits);
     }
 
     /** Method to get percent between two values
@@ -237,7 +230,7 @@ public class CoinbaseManager {
      * @throws IllegalArgumentException if startValue or lastValue are negative
      * **/
     public double getTrendPercent(double startValue, double finalValue){
-        return tradingTools.computeAssetPercent(startValue, finalValue);
+        return computeAssetPercent(startValue, finalValue);
     }
 
     /** Method to get percent between two values and round it
@@ -248,7 +241,7 @@ public class CoinbaseManager {
      * @throws IllegalArgumentException if startValue or lastValue are negative
      * **/
     public double getTrendPercent(double startValue, double finalValue, int decimalDigits){
-        return tradingTools.computeAssetPercent(startValue, finalValue, decimalDigits);
+        return computeAssetPercent(startValue, finalValue, decimalDigits);
     }
 
     /** Method to format percent between two values and textualize it
@@ -256,7 +249,7 @@ public class CoinbaseManager {
      * @return percent value formatted es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double percent){
-        return tradingTools.textualizeAssetPercent(percent);
+        return textualizeAssetPercent(percent);
     }
 
     /** Method to get percent between two values and textualize it
@@ -265,7 +258,7 @@ public class CoinbaseManager {
      * @return percent value es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double startValue, double finalValue){
-        return tradingTools.textualizeAssetPercent(startValue, finalValue);
+        return textualizeAssetPercent(startValue, finalValue);
     }
 
     /** Method to get percent between two values and textualize it
@@ -275,7 +268,7 @@ public class CoinbaseManager {
      * @return percent value es. +8% or -8% as {@link String}
      * **/
     public String getTextTrendPercent(double startValue, double finalValue, int decimalDigits){
-        return tradingTools.textualizeAssetPercent(startValue, finalValue, decimalDigits);
+        return textualizeAssetPercent(startValue, finalValue, decimalDigits);
     }
 
     /** Method to get Coinbase api key
@@ -302,12 +295,23 @@ public class CoinbaseManager {
         return passphrase;
     }
 
-    /** Method to get TradingTools object
-     * any params required
-     * @return tradingTools as {@link TradingTools}
+    /**
+     * The {@code Params} class is useful to assemble params values for the request
+     * @implNote this class can be used to assemble body payload or query request params
+     * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager">here</a>
+     * @see com.tecknobit.apimanager.Manager.APIRequest.Params
      * **/
-    public TradingTools getTradingTools() {
-        return tradingTools;
+
+    public static class Params extends APIRequest.Params {
+
+        /** Method to merge another params value in the same object
+         * @param params: params to merge
+         * **/
+        public void mergeParams(Params params){
+            for (String key : params.getParamsKeys())
+                addParam(key, params.getParam(key));
+        }
+
     }
 
 }

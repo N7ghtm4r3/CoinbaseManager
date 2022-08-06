@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
@@ -138,8 +137,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of creation profile as {@link String}
      * **/
     public String createProfile(String name) throws Exception {
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("name", name);
+        Params bodyParams = new Params();
+        bodyParams.addParam("name", name);
         return sendBodyParamsAPIRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -173,11 +172,11 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of successful transfer or not as boolean
      * **/
     public boolean transferFundsBetweenProfiles(String from, String to, String currency, double amount) throws Exception {
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("from", from);
-        bodyParams.put("to", to);
-        bodyParams.put("currency", currency);
-        bodyParams.put("amount", amount);
+        Params bodyParams = new Params();
+        bodyParams.addParam("from", from);
+        bodyParams.addParam("to", to);
+        bodyParams.addParam("currency", currency);
+        bodyParams.addParam("amount", amount);
         return sendBodyParamsAPIRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
     }
 
@@ -252,9 +251,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of renaming as {@link String}
      * **/
     public String renameProfile(String profileId, String name) throws Exception {
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("profileId", profileId);
-        bodyParams.put("name", name);
+        Params bodyParams = new Params();
+        bodyParams.addParam("profileId", profileId);
+        bodyParams.addParam("name", name);
         return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, bodyParams);
     }
 
@@ -303,9 +302,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of deletion or not as boolean
      * **/
     public boolean deleteProfile(String profileId, String to) throws Exception {
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("profileId", profileId);
-        bodyParams.put("to", to);
+        Params bodyParams = new Params();
+        bodyParams.addParam("profileId", profileId);
+        bodyParams.addParam("to", to);
         return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
                 , PUT_METHOD, bodyParams).equals("{}");
     }

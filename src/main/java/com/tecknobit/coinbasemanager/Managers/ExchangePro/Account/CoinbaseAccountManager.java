@@ -12,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
@@ -194,7 +193,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link String}
      * **/
-    public String getAccountProfileHold(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public String getAccountProfileHold(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds" + assembleQueryParams("?",
                 queryParams), GET_METHOD);
     }
@@ -207,7 +206,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as {@link JSONArray}
      * **/
-    public JSONArray getJSONAccountProfileHold(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getJSONAccountProfileHold(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return new JSONArray(getAccountProfileHold(accountId, queryParams));
     }
 
@@ -219,7 +218,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds</a>
      * @return hold information from one profile as list {@link ArrayList} of {@link Hold}
      * **/
-    public ArrayList<Hold> getAccountProfileHoldList(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Hold> getAccountProfileHoldList(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return assembleHoldsList(new JSONArray(getAccountProfileHold(accountId, queryParams)));
     }
 
@@ -279,7 +278,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link String}
      * **/
-    public String getAccountLedger(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public String getAccountLedger(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger" + assembleQueryParams("?",
                 queryParams), GET_METHOD);
     }
@@ -292,7 +291,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as {@link JSONArray}
      * **/
-    public JSONArray getJSONAccountProfileLedger(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getJSONAccountProfileLedger(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return new JSONArray(getAccountLedger(accountId, queryParams));
     }
 
@@ -304,7 +303,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
      * @return ledger information from one profile as list {@link ArrayList} of {@link Ledger}
      * **/
-    public ArrayList<Ledger> getAccountProfileLedgerList(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Ledger> getAccountProfileLedgerList(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return assembleLedgersList(new JSONArray(getAccountLedger(accountId, queryParams)));
     }
 
@@ -365,7 +364,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link String}
      * **/
-    public String getAccountTransfers(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public String getAccountTransfers(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers" + assembleQueryParams("?",
                 queryParams), GET_METHOD);
     }
@@ -378,7 +377,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as {@link JSONArray}
      * **/
-    public JSONArray getJSONAccountProfileTransfers(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getJSONAccountProfileTransfers(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return new JSONArray(getAccountLedger(accountId, queryParams));
     }
 
@@ -390,7 +389,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
      * @return transfer information from one profile as list {@link ArrayList} of {@link Transfer}
      * **/
-    public ArrayList<Transfer> getAccountProfileTransfersList(String accountId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Transfer> getAccountProfileTransfersList(String accountId, CoinbaseManager.Params queryParams) throws Exception {
         return assembleTransfersList(new JSONArray(getAccountTransfers(accountId, queryParams)));
     }
 

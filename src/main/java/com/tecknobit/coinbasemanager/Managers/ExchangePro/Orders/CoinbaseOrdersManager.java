@@ -103,7 +103,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders as {@link String}
      * **/
-    public String getAllFillsByOrderId(String orderId, HashMap<String, Object> queryParams) throws Exception {
+    public String getAllFillsByOrderId(String orderId, Params queryParams) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?order_id=" + orderId,
                         queryParams), GET_METHOD);
     }
@@ -116,7 +116,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders as {@link JSONArray}
      * **/
-    public JSONArray getAllFillsByOrderIdJSON(String orderId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getAllFillsByOrderIdJSON(String orderId, Params queryParams) throws Exception {
         return new JSONArray(getAllFillsByOrderId(orderId, queryParams));
     }
 
@@ -128,7 +128,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
      * **/
-    public ArrayList<Fill> getAllFillsListByOrderId(String orderId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Fill> getAllFillsListByOrderId(String orderId, Params queryParams) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByOrderId(orderId, queryParams)));
     }
 
@@ -170,7 +170,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders as {@link String}
      * **/
-    public String getAllFillsByProductId(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public String getAllFillsByProductId(String productId, Params queryParams) throws Exception {
         return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?product_id=" + productId,
                         queryParams), GET_METHOD);
     }
@@ -183,7 +183,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders as {@link JSONArray}
      * **/
-    public JSONArray getAllFillsByProductIdJSON(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getAllFillsByProductIdJSON(String productId, Params queryParams) throws Exception {
         return new JSONArray(getAllFillsByProductId(productId, queryParams));
     }
 
@@ -195,7 +195,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
      * **/
-    public ArrayList<Fill> getAllFillsListByProductId(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Fill> getAllFillsListByProductId(String productId, Params queryParams) throws Exception {
         return assembleFillsList(new JSONArray(getAllFillsByProductId(productId, queryParams)));
     }
 
@@ -320,7 +320,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                               HashMap<String, Object> queryParams) throws Exception {
+                               Params queryParams) throws Exception {
         String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
         params += apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
         return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams), GET_METHOD);
@@ -338,7 +338,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link JSONArray}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                      HashMap<String, Object> queryParams) throws Exception {
+                                      Params queryParams) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams));
     }
 
@@ -354,7 +354,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link ArrayList} of {@link Order}
      * **/
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                             HashMap<String, Object> queryParams) throws Exception {
+                                             Params queryParams) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
     }
 
@@ -370,7 +370,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String[] statuses,
-                               HashMap<String, Object> queryParams) throws Exception {
+                               Params queryParams) throws Exception {
         return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(statuses)), queryParams);
     }
 
@@ -386,7 +386,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link JSONArray}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String[] statuses,
-                                      HashMap<String, Object> queryParams) throws Exception {
+                                      Params queryParams) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams));
     }
 
@@ -402,7 +402,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link ArrayList} of {@link Order}
      * **/
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String[] statuses,
-                                             HashMap<String, Object> queryParams) throws Exception {
+                                             Params queryParams) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
     }
 
@@ -457,7 +457,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String status,
-                               HashMap<String, Object> queryParams) throws Exception {
+                               Params queryParams) throws Exception {
         return getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams).toString();
     }
 
@@ -473,7 +473,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link JSONArray}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status,
-                                      HashMap<String, Object> queryParams) throws Exception {
+                                      Params queryParams) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams));
     }
 
@@ -489,7 +489,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link ArrayList} of {@link Order}
      * **/
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status,
-                                             HashMap<String, Object> queryParams) throws Exception {
+                                             Params queryParams) throws Exception {
         return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams));
     }
 
@@ -505,8 +505,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
                                String productId) throws Exception {
-        HashMap<String, Object> productIdPayload = new HashMap<>();
-        productIdPayload.put("product_id", productId);
+        Params productIdPayload = new Params();
+        productIdPayload.addParam("product_id", productId);
         return getAllOrders(limit, sortedBy, sorting, statuses, productIdPayload);
     }
 
@@ -553,10 +553,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                               String productId, HashMap<String, Object> queryParams) throws Exception {
-        HashMap<String, Object> productIdPayload = new HashMap<>();
-        productIdPayload.put("product_id", productId);
-        queryParams.putAll(productIdPayload);
+                               String productId, Params queryParams) throws Exception {
+        Params productIdPayload = new Params();
+        productIdPayload.addParam("product_id", productId);
+        queryParams.mergeParams(productIdPayload);
         return getAllOrders(limit, sortedBy, sorting, statuses, queryParams);
     }
 
@@ -573,7 +573,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                      String productId, HashMap<String, Object> queryParams) throws Exception {
+                                      String productId, Params queryParams) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams));
     }
 
@@ -590,7 +590,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link ArrayList} of {@link Order}
      * **/
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                             String productId, HashMap<String, Object> queryParams) throws Exception {
+                                             String productId, Params queryParams) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams)));
     }
 
@@ -605,8 +605,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
-        HashMap<String, Object> productIdPayload = new HashMap<>();
-        productIdPayload.put("product_id", productId);
+        Params productIdPayload = new Params();
+        productIdPayload.addParam("product_id", productId);
         return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), productIdPayload);
     }
 
@@ -651,10 +651,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link String}
      * **/
     public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId,
-                               HashMap<String, Object> queryParams) throws Exception {
-        HashMap<String, Object> productIdPayload = new HashMap<>();
-        productIdPayload.put("product_id", productId);
-        queryParams.putAll(productIdPayload);
+                               Params queryParams) throws Exception {
+        Params productIdPayload = new Params();
+        productIdPayload.addParam("product_id", productId);
+        queryParams.mergeParams(productIdPayload);
         return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams);
     }
 
@@ -671,7 +671,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link JSONArray}
      * **/
     public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status, String productId,
-                                      HashMap<String, Object> queryParams) throws Exception {
+                                      Params queryParams) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams));
     }
 
@@ -688,7 +688,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return all orders as {@link ArrayList} of {@link Order}
      * **/
     public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status, String productId,
-                                             HashMap<String, Object> queryParams) throws Exception {
+                                             Params queryParams) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams)));
     }
 
@@ -708,10 +708,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting: ascending or descending order criteria (asc or desc)
      * @return map of sorting criteria params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleSortCriteria(String sortedBy, String sorting){
-        HashMap<String, Object> criteria = new HashMap<>();
-        criteria.put("sortedBy", sortedBy);
-        criteria.put("sorting", sorting);
+    private Params assembleSortCriteria(String sortedBy, String sorting){
+        Params criteria = new Params();
+        criteria.addParam("sortedBy", sortedBy);
+        criteria.addParam("sorting", sorting);
         return criteria;
     }
 
@@ -776,7 +776,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders</a>
      * @return result list of cancelled id orders as {@link String}
      * **/
-    public String cancelAllOpenOrders(HashMap<String, Object> queryParams) throws Exception {
+    public String cancelAllOpenOrders(Params queryParams) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams("", queryParams), DELETE_METHOD);
     }
 
@@ -787,7 +787,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders</a>
      * @return result list of cancelled id orders as {@link JSONArray}
      * **/
-    public JSONArray cancelAllOpenOrdersJSON(HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray cancelAllOpenOrdersJSON(Params queryParams) throws Exception {
         return new JSONArray(cancelAllOpenOrders(queryParams));
     }
 
@@ -798,7 +798,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders</a>
      * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
      * **/
-    public ArrayList<String> cancelAllOpenOrdersList(HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<String> cancelAllOpenOrdersList(Params queryParams) throws Exception {
         return assembleCancelOrdersList(new JSONArray(cancelAllOpenOrders(queryParams)));
     }
 
@@ -865,9 +865,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link String}
      * **/
     public String createLimitOrder(String side, String productId, double price, double size,
-                                   HashMap<String ,Object> extraBodyParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.LIMIT_TYPE);
-        bodyParams.putAll(extraBodyParams);
+                                   Params extraBodyParams) throws Exception {
+        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.LIMIT_TYPE);
+        bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -883,7 +883,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link JSONObject}
      * **/
     public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size,
-                                              HashMap<String ,Object> extraBodyParams) throws Exception {
+                                              Params extraBodyParams) throws Exception {
         return new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams));
     }
 
@@ -899,7 +899,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link Order} object
      * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size,
-                                           HashMap<String ,Object> extraBodyParams) throws Exception {
+                                           Params extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
     }
 
@@ -911,14 +911,14 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param type: type of the order (limit or stop)
      * @return payload for a new order as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleOrderPayload(String side, String productId, double price, double size,
+    private Params assembleOrderPayload(String side, String productId, double price, double size,
                                                          String type){
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("side", side);
-        bodyParams.put("product_id", productId);
-        bodyParams.put("price", price);
-        bodyParams.put("size", sNotationParse(8, size));
-        bodyParams.put("type", type);
+        Params bodyParams = new Params();
+        bodyParams.addParam("side", side);
+        bodyParams.addParam("product_id", productId);
+        bodyParams.addParam("price", price);
+        bodyParams.addParam("size", sNotationParse(8, size));
+        bodyParams.addParam("type", type);
         return bodyParams;
     }
 
@@ -970,9 +970,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link String}
      * **/
     public String createMarketOrderSize(String side, String productId, double size,
-                                        HashMap<String ,Object> extraBodyParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "size", size);
-        bodyParams.putAll(extraBodyParams);
+                                        Params extraBodyParams) throws Exception {
+        Params bodyParams = assembleMarketOrderPayload(side, productId, "size", size);
+        bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -987,7 +987,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link JSONObject}
      * **/
     public JSONObject createMarketOrderSizeJSON(String side, String productId, double size,
-                                                HashMap<String ,Object> extraBodyParams) throws Exception {
+                                                Params extraBodyParams) throws Exception {
         return new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams));
     }
 
@@ -1002,7 +1002,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link Order}
      * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size,
-                                             HashMap<String ,Object> extraBodyParams) throws Exception {
+                                             Params extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
     }
 
@@ -1053,10 +1053,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
      * @return result of creation a new market order as {@link String}
      * **/
-    public String createMarketOrderFounds(String side, String productId, double founds,
-                                          HashMap<String ,Object> extraBodyParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleMarketOrderPayload(side, productId, "founds", founds);
-        bodyParams.putAll(extraBodyParams);
+    public String createMarketOrderFounds(String side, String productId, double founds, Params extraBodyParams) throws Exception {
+        Params bodyParams = assembleMarketOrderPayload(side, productId, "founds", founds);
+        bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -1070,8 +1069,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
      * @return result of creation a new market order as {@link JSONObject}
      * **/
-    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds,
-                                               HashMap<String ,Object> extraBodyParams) throws Exception {
+    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds, Params extraBodyParams) throws Exception {
         return new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams));
     }
 
@@ -1085,8 +1083,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
      * @return result of creation a new market order as {@link Order} object
      * **/
-    public Order createMarketOrderFoundsObject(String side, String productId, double founds,
-                                            HashMap<String ,Object> extraBodyParams) throws Exception {
+    public Order createMarketOrderFoundsObject(String side, String productId, double founds, Params extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
     }
 
@@ -1097,12 +1094,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param keyValue: value of key
      * @return payload for a new market order as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleMarketOrderPayload(String side, String productId, String key, double keyValue){
-        HashMap<String, Object> bodyParams = new HashMap<>();
-        bodyParams.put("side", side);
-        bodyParams.put("product_id", productId);
-        bodyParams.put(key, sNotationParse(8, keyValue));
-        bodyParams.put("type", Order.MARKET_TYPE);
+    private Params assembleMarketOrderPayload(String side, String productId, String key, double keyValue){
+        Params bodyParams = new Params();
+        bodyParams.addParam("side", side);
+        bodyParams.addParam("product_id", productId);
+        bodyParams.addParam(key, sNotationParse(8, keyValue));
+        bodyParams.addParam("type", Order.MARKET_TYPE);
         return bodyParams;
     }
 
@@ -1118,8 +1115,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public String createStopOrder(String side, String productId, double price, double size,
                                   double stopPrice) throws Exception {
-        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
-        bodyParams.put("stop_price", stopPrice);
+        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
+        bodyParams.addParam("stop_price", stopPrice);
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -1166,10 +1163,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link String}
      * **/
     public String createStopOrder(String side, String productId, double price, double size, double stopPrice,
-                                  HashMap<String ,Object> extraBodyParams) throws Exception {
-        HashMap<String, Object> bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
-        bodyParams.put("stop_price", stopPrice);
-        bodyParams.putAll(extraBodyParams);
+                                  Params extraBodyParams) throws Exception {
+        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
+        bodyParams.addParam("stop_price", stopPrice);
+        bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
@@ -1186,7 +1183,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link JSONObject}
      * **/
     public JSONObject createStopOrderJSON(String side, String productId, double price, double size, double stopPrice,
-                                          HashMap<String ,Object> extraBodyParams) throws Exception {
+                                          Params extraBodyParams) throws Exception {
         return new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams));
     }
 
@@ -1203,7 +1200,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link Order} object
      * **/
     public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
-                                       HashMap<String ,Object> extraBodyParams) throws Exception {
+                                       Params extraBodyParams) throws Exception {
         return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
     }
 

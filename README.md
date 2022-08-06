@@ -1,5 +1,5 @@
 # CoinbaseManager
-**v1.0.4**
+**v1.0.5**
 
 This is a Java Based library useful to work with Coinbase's API service.
 
@@ -23,7 +23,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.0.4'
+	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.0.5'
 }
 ```
 
@@ -45,7 +45,7 @@ dependencies {
 <dependency>
     <groupId>com.github.N7ghtm4r3</groupId>
     <artifactId>CoinbaseManager</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 </dependency>
 ```
 
@@ -64,7 +64,7 @@ The other endpoints managers will be gradually released
 
 // init a Coinbase manager
 try {
-    CoinbaseProductsManager coinbaseProductsManager = new CoinbaseProductsManager("yourApiKey","yourSecretKey","yourPassphrase");
+    CoinbaseProductsManager coinbaseProductsManager = new CoinbaseProductsManager("yourApiKey", "yourSecretKey", "yourPassphrase");
 } catch (SystemException | IOException e) {
     e.printStackTrace();
 }
@@ -107,7 +107,7 @@ try {
 ```java
 // it return double type es. 1.544
 try {
-    System.out.println(coinbaseProductsManager.roundValue(1,3));
+    System.out.println(CoinbaseManager.roundValue(1, 3));
 } catch (Exception e) {
     e.printStackTrace();
 }

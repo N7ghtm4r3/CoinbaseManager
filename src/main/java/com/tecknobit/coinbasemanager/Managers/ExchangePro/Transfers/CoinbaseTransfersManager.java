@@ -333,7 +333,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link String}
      * **/
-    public String getAllTransfers(HashMap<String, Object> queryParams) throws Exception {
+    public String getAllTransfers(CoinbaseManager.Params queryParams) throws Exception {
         return sendAPIRequest(TRANSFERS_ENDPOINT + assembleQueryParams("?", queryParams), GET_METHOD);
     }
 
@@ -344,7 +344,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link JSONArray}
      * **/
-    public JSONArray getAllTransfersJSON(HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getAllTransfersJSON(CoinbaseManager.Params queryParams) throws Exception {
         return new JSONArray(getAllTransfers(queryParams));
     }
 
@@ -355,7 +355,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link ArrayList} of {@link Transfer}
      * **/
-    public ArrayList<Transfer> getAllTransfersList(HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Transfer> getAllTransfersList(CoinbaseManager.Params queryParams) throws Exception {
         return assembleTransfersList(new JSONArray(getAllTransfers(queryParams)));
     }
 
@@ -518,10 +518,10 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
-                                   HashMap<String, Object> extraBodyParams) throws Exception {
-        HashMap<String, Object> mandatoryBodyParams = assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD,
+                                   Params extraBodyParams) throws Exception {
+        Params mandatoryBodyParams = assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD,
                 cryptoAddress, currencyId, null);
-        mandatoryBodyParams.putAll(extraBodyParams);
+        mandatoryBodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD, mandatoryBodyParams);
     }
 
@@ -536,7 +536,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link JSONObject}
      * **/
     public JSONObject withdrawToCryptoJSON(double amount, String cryptoAddress, String currencyId,
-                                           HashMap<String, Object> extraBodyParams) throws Exception {
+                                           Params extraBodyParams) throws Exception {
         return new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraBodyParams));
     }
 
@@ -551,7 +551,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId,
-                                                 HashMap<String, Object> extraBodyParams) throws Exception {
+                                                 Params extraBodyParams) throws Exception {
         return assembleTransferActionObject(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraBodyParams)));
     }
 
@@ -563,14 +563,14 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param profileId: identifier of profile used in a transfer action
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private HashMap<String, Object> assembleTransferActionPayload(double amount, String keyMethodId, String valueMethodId,
-                                                                  String currencyId, String profileId){
-        HashMap<String, Object> depositBodyParams = new HashMap<>();
-        depositBodyParams.put("amount", amount);
-        depositBodyParams.put(keyMethodId, valueMethodId);
-        depositBodyParams.put("currency", currencyId);
+    private Params assembleTransferActionPayload(double amount, String keyMethodId, String valueMethodId,
+                                                 String currencyId, String profileId){
+        Params depositBodyParams = new Params();
+        depositBodyParams.addParam("amount", amount);
+        depositBodyParams.addParam(keyMethodId, valueMethodId);
+        depositBodyParams.addParam("currency", currencyId);
         if(profileId != null)
-            depositBodyParams.put("profile_id", profileId);
+            depositBodyParams.addParam("profile_id", profileId);
         return depositBodyParams;
     }
 

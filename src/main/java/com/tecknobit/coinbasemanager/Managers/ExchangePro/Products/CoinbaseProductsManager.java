@@ -8,9 +8,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.computeTPTOPAsset;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
 
 /**
@@ -410,7 +410,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
      * @return candles as {@link String}
      * **/
-    public String getProductCandles(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public String getProductCandles(String productId, Params queryParams) throws Exception {
         return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT +
                         assembleQueryParams("", queryParams), GET_METHOD);
     }
@@ -423,7 +423,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
      * @return candles as {@link JSONArray}
      * **/
-    public JSONArray getProductCandlesJSON(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getProductCandlesJSON(String productId, Params queryParams) throws Exception {
         return new JSONArray(getProductCandles(productId, queryParams));
     }
 
@@ -435,7 +435,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
      * @return candles list as {@link ArrayList} of {@link Candle}
      * **/
-    public ArrayList<Candle> getProductCandlesList(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Candle> getProductCandlesList(String productId, Params queryParams) throws Exception {
         return assembleCandlesList(new JSONArray(getProductCandles(productId, queryParams)));
     }
 
@@ -724,7 +724,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
      * @return product trades as {@link String}
      * **/
-    public String getProductTrades(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public String getProductTrades(String productId, Params queryParams) throws Exception {
         return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT +
                 assembleQueryParams("", queryParams), GET_METHOD);
     }
@@ -737,7 +737,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
      * @return product trades as {@link JSONArray}
      * **/
-    public JSONArray getProductTradesJSON(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public JSONArray getProductTradesJSON(String productId, Params queryParams) throws Exception {
         return new JSONArray(getProductTrades(productId, queryParams));
     }
 
@@ -749,7 +749,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
      * @return product trades as {@link ArrayList} of {@link Trade}
      * **/
-    public ArrayList<Trade> getProductTradesList(String productId, HashMap<String, Object> queryParams) throws Exception {
+    public ArrayList<Trade> getProductTradesList(String productId, Params queryParams) throws Exception {
         return assembleTradesList(new JSONArray(getProductTrades(productId, queryParams)));
     }
 
@@ -779,14 +779,13 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return forecast value as a double es. 8 or -8
      * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
      * **/
-    public double getSymbolForecast(String productId, int intervalDays, int granularity, int toleranceValue) throws Exception {
+    public double getSymbolForecast(String productId, int intervalDays, int granularity, double toleranceValue) throws Exception {
         ArrayList<Double> historicalValues = new ArrayList<>();
-        HashMap<String, Object> intervalMap = new HashMap<>();
-        intervalMap.put("granularity", granularity);
+        Params intervalMap = new Params();
+        intervalMap.addParam("granularity", granularity);
         for (Candle candle : getProductCandlesList(productId, intervalMap))
             historicalValues.add(candle.getHigh());
-        return tradingTools.computeTPTOPAsset(historicalValues, getProductStatsObject(productId).getLast(),
-                intervalDays,toleranceValue);
+        return computeTPTOPAsset(historicalValues, getProductStatsObject(productId).getLast(), intervalDays,toleranceValue);
     }
 
     /** Method to get forecast of a cryptocurrency in base of days's gap inserted
@@ -798,8 +797,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return forecast value as a double es. 8 or -8
      * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
      * **/
-    public double getSymbolForecast(String productId, int intervalDays, int granularity, int toleranceValue, int decimalDigits) throws Exception {
-        return tradingTools.roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
+    public double getSymbolForecast(String productId, int intervalDays, int granularity, double toleranceValue,
+                                    int decimalDigits) throws Exception {
+        return roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
     }
 
 }
