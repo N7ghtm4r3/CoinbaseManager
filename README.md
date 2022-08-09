@@ -107,7 +107,7 @@ try {
 ```java
 // it return double type es. 1.544
 try {
-    System.out.println(CoinbaseManager.roundValue(1, 3));
+    System.out.println(CoinbaseManager.roundValue(1.544242, 3));
 } catch (Exception e) {
     e.printStackTrace();
 }
@@ -120,6 +120,8 @@ try {
     System.out.println(coinbaseProductsManager.getProductStatsJSON("BTC-USD"));
 } catch (Exception e) {
     System.out.println(coinbaseProductsManager.getErrorResponse());
+    //or
+    manager.printErrorResponse();   
 }
 /* NOTE: if is not a request error will appear: "Error is not in api request, check out your code"
   and you will have to work on your code to manage error, you can also change default error message*/
