@@ -65,7 +65,7 @@ The other endpoints managers will be gradually released
 // init a Coinbase manager
 try {
     CoinbaseProductsManager coinbaseProductsManager = new CoinbaseProductsManager("yourApiKey", "yourSecretKey", "yourPassphrase");
-} catch (SystemException | IOException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 ```
@@ -77,7 +77,7 @@ try {
 ```java
 try {
     System.out.println(coinbaseProductsManager.getProductStats("BTC-USD"));
-} catch (IOException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 ```
@@ -87,7 +87,7 @@ try {
 ```java
 try {
     System.out.println(coinbaseProductsManager.getProductStatsJSON("BTC-USD"));
-} catch (IOException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 ```
@@ -97,7 +97,7 @@ try {
 ```java
 try {
     System.out.println(coinbaseProductsManager.getProductStatsObject("BTC-USD"));
-} catch (IOException e) {
+} catch (Exception e) {
     e.printStackTrace();
 }
 ```
