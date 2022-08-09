@@ -121,7 +121,7 @@ try {
 } catch (Exception e) {
     System.out.println(coinbaseProductsManager.getErrorResponse());
     //or
-    manager.printErrorResponse();   
+    coinbaseProductsManager.printErrorResponse();   
 }
 /* NOTE: if is not a request error will appear: "Error is not in api request, check out your code"
   and you will have to work on your code to manage error, you can also change default error message*/
