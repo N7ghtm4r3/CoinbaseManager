@@ -412,7 +412,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * **/
     public String getProductCandles(String productId, Params queryParams) throws Exception {
         return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT +
-                        assembleQueryParams("", queryParams), GET_METHOD);
+                        queryParams.createQueryString(), GET_METHOD);
     }
 
     /** Request to get candles
@@ -725,8 +725,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return product trades as {@link String}
      * **/
     public String getProductTrades(String productId, Params queryParams) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT +
-                assembleQueryParams("", queryParams), GET_METHOD);
+        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT + 
+                        queryParams.createQueryString(), GET_METHOD);
     }
 
     /** Request to get product trades

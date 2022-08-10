@@ -302,16 +302,6 @@ public class CoinbaseManager {
      * @see com.tecknobit.apimanager.Manager.APIRequest.Params
      * **/
 
-    public static class Params extends APIRequest.Params {
-
-        /** Method to merge another params value in the same object
-         * @param params: params to merge
-         * **/
-        public void mergeParams(Params params){
-            for (String key : params.getParamsKeys())
-                addParam(key, params.getParam(key));
-        }
-
-    }
+    public static class Params extends APIRequest.Params {}
 
 }

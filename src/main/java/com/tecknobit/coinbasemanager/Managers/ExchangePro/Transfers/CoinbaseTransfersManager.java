@@ -333,7 +333,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link String}
      * **/
-    public String getAllTransfers(CoinbaseManager.Params queryParams) throws Exception {
+    public String getAllTransfers(Params queryParams) throws Exception {
         return sendAPIRequest(TRANSFERS_ENDPOINT + assembleQueryParams("?", queryParams), GET_METHOD);
     }
 
@@ -344,7 +344,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link JSONArray}
      * **/
-    public JSONArray getAllTransfersJSON(CoinbaseManager.Params queryParams) throws Exception {
+    public JSONArray getAllTransfersJSON(Params queryParams) throws Exception {
         return new JSONArray(getAllTransfers(queryParams));
     }
 
@@ -355,7 +355,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
      * @return transfers list as {@link ArrayList} of {@link Transfer}
      * **/
-    public ArrayList<Transfer> getAllTransfersList(CoinbaseManager.Params queryParams) throws Exception {
+    public ArrayList<Transfer> getAllTransfersList(Params queryParams) throws Exception {
         return assembleTransfersList(new JSONArray(getAllTransfers(queryParams)));
     }
 

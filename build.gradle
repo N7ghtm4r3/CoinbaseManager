@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'tecknobit.com'
-version '1.0.5'
+version '1.0.6'
 
 repositories {
     mavenCentral()
@@ -12,11 +12,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     implementation(group: 'commons-codec', name: 'commons-codec', version: '1.9')
     implementation 'commons-validator:commons-validator:1.7'
-    implementation 'com.github.N7ghtm4r3:APIManager:1.0.10'
+    implementation 'com.github.N7ghtm4r3:APIManager:1.1.0'
     implementation 'org.json:json:20220320'
 }
 
@@ -25,7 +25,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.tecknobit.coinbasemanager'
             artifactId = 'CoinbaseManager'
-            version = '1.0.5'
+            version = '1.0.6'
             from components.java
         }
     }

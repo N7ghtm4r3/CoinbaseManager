@@ -100,7 +100,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
      * @return all reports as {@link String}
      * **/
-    public String getAllReports(String type, CoinbaseManager.Params queryParams) throws Exception {
+    public String getAllReports(String type, Params queryParams) throws Exception {
         return sendAPIRequest(REPORTS_ENDPOINT + assembleQueryParams("?=type" + type, queryParams), GET_METHOD);
     }
 
@@ -112,7 +112,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
      * @return all reports as {@link JSONArray}
      * **/
-    public JSONArray getAllReportsJSON(String type, CoinbaseManager.Params queryParams) throws Exception {
+    public JSONArray getAllReportsJSON(String type, Params queryParams) throws Exception {
         return new JSONArray(getAllReports(type, queryParams));
     }
 
@@ -124,7 +124,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
      * @return all reports as {@link ArrayList} of {@link Report}
      * **/
-    public ArrayList<Report> getAllReportsList(String type, CoinbaseManager.Params queryParams) throws Exception {
+    public ArrayList<Report> getAllReportsList(String type, Params queryParams) throws Exception {
         return assembleReportsList(new JSONArray(getAllReports(type, queryParams)));
     }
 
@@ -146,7 +146,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of general report as {@link String}
      * **/
     public String createGeneralReport(String type) throws Exception {
-        CoinbaseManager.Params bodyParams = new Params();
+        Params bodyParams = new Params();
         bodyParams.addParam("type", type);
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
@@ -180,7 +180,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of general report as {@link String}
      * **/
     public String createGeneralReport(String type, Params extraBodyParams) throws Exception {
-        CoinbaseManager.Params bodyParams = new Params();
+        Params bodyParams = new Params();
         bodyParams.addParam("type", type);
         bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
@@ -249,7 +249,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link String}
      * **/
     public String create1099KReport(int year, Params extraBodyParams) throws Exception {
-        CoinbaseManager.Params bodyParams = assemble1099KPayload(year);
+        Params bodyParams = assemble1099KPayload(year);
         bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
@@ -283,7 +283,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
     private Params assemble1099KPayload(int year){
-        CoinbaseManager.Params bodyParams = new Params();
+        Params bodyParams = new Params();
         bodyParams.addParam("type", Report.REPORT_TYPE_1099K);
         bodyParams.addParam("year", year);
         return bodyParams;
@@ -328,7 +328,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link String}
      * **/
     public String createFillsReport(String productId, Params extraBodyParams) throws Exception {
-        CoinbaseManager.Params bodyParams = assembleFillsPayload(productId);
+        Params bodyParams = assembleFillsPayload(productId);
         bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
     }
@@ -362,7 +362,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
     private Params assembleFillsPayload(String productId){
-        CoinbaseManager.Params bodyParams = new Params();
+        Params bodyParams = new Params();
         bodyParams.addParam("type", Report.FILLS_REPORT_TYPE);
         bodyParams.addParam("product_id", productId);
         return bodyParams;
@@ -407,7 +407,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link String}
      * **/
     public String createAccountReport(String accountId, Params extraBodyParams) throws Exception {
-        CoinbaseManager.Params bodyParams = assembleAccountPayload(accountId);
+        Params bodyParams = assembleAccountPayload(accountId);
         bodyParams.mergeParams(extraBodyParams);
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
     }
@@ -441,7 +441,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
     private Params assembleAccountPayload(String accountId){
-        CoinbaseManager.Params bodyParams = new Params();
+        Params bodyParams = new Params();
         bodyParams.addParam("type", Report.FILLS_REPORT_TYPE);
         bodyParams.addParam("account_id", accountId);
         return bodyParams;

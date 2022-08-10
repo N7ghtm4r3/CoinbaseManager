@@ -250,8 +250,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
      * @return all orders as {@link JSONArray}
      * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting,
-                                      ArrayList<String> statuses) throws Exception {
+    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
         return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses));
     }
 
@@ -264,8 +263,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
      * @return all orders list as {@link ArrayList} of {@link Order}
      * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting,
-                                             ArrayList<String> statuses) throws Exception {
+    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
         return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses)));
     }
 
@@ -777,7 +775,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result list of cancelled id orders as {@link String}
      * **/
     public String cancelAllOpenOrders(Params queryParams) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams("", queryParams), DELETE_METHOD);
+        return sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(), DELETE_METHOD);
     }
 
     /** Request to cancel all orders
