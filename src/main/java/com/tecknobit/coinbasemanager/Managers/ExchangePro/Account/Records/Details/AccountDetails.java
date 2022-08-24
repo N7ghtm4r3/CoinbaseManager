@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code AccountDetails} class is useful to format all base data of Coinbase account objects
  * @author N7ghtm4r3 - Tecknobit
@@ -47,6 +51,21 @@ public class AccountDetails {
             this.type = type;
     }
 
+    /** Constructor to init a {@link AccountDetails} object
+     * @param accountDetails: account details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public AccountDetails(JSONObject accountDetails) {
+        createdAt = accountDetails.getString("created_at");
+        id = accountDetails.getString("id");
+        amount = accountDetails.getDouble("amount");
+        if(amount < 0)
+            throw new IllegalArgumentException("Amount value cannot be less than 0");
+        type = accountDetails.getString("type");
+        if(type == null || type.isEmpty())
+            throw new IllegalArgumentException("Type value cannot be empty or null");
+    }
+
     public String getCreatedAt() {
         return createdAt;
     }
@@ -57,6 +76,15 @@ public class AccountDetails {
 
     public double getAmount() {
         return amount;
+    }
+
+    /** Method to get {@link #amount} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #amount} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getAmount(int decimals) {
+        return roundValue(amount, decimals);
     }
 
     /** Method to set {@link #amount}

@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code FiatAccountMethod} class is useful to format FiatAccountMethod object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
@@ -48,6 +52,15 @@ public class FiatAccountMethod extends PayMethod{
             this.id = id;
             this.resource = resource;
             this.resourcePath = resourcePath;
+        }
+
+        /** Constructor to init {@link FiatAccountDetails} object
+         * @param fiatAccount: fiat account details as {@link JSONObject}
+         * **/
+        public FiatAccountDetails(JSONObject fiatAccount) {
+            id = fiatAccount.getString("id");
+            resource = fiatAccount.getString("resource");
+            resourcePath = fiatAccount.getString("resource_path");
         }
 
         public String getId() {
@@ -108,8 +121,32 @@ public class FiatAccountMethod extends PayMethod{
                 this.currency = currency;
         }
 
+        /** Constructor to init {@link FiatAccountPickerData} object
+         * @param symbol: symbol value
+         * @param fiatPickerData: fiat picker details as {@link JSONObject}
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public FiatAccountPickerData(String symbol, JSONObject fiatPickerData) {
+            super(symbol);
+            amount = fiatPickerData.getDouble("minimumPurchaseAmount");
+            if(amount < 0)
+                throw new IllegalArgumentException("Amount value cannot be less than 0");
+            currency = fiatPickerData.getString("currency");
+            if(currency == null || currency.isEmpty())
+                throw new IllegalArgumentException("Currency value cannot be empty or null");
+        }
+
         public double getAmount() {
             return amount;
+        }
+
+        /** Method to get {@link #amount} instance
+         * @param decimals: number of digits to round final value
+         * @return {@link #amount} instance rounded with decimal digits inserted
+         * @throws IllegalArgumentException if decimalDigits is negative
+         * **/
+        public double getAmount(int decimals) {
+            return roundValue(amount, decimals);
         }
 
         /** Method to set {@link #amount}

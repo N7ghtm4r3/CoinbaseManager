@@ -1,6 +1,5 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products;
 
-import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records.*;
 import org.json.JSONArray;
@@ -144,7 +143,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     private ArrayList<TradingPair> assembleTradingPairsList(JSONArray jsonTradings){
         ArrayList<TradingPair> tradingPairs = new ArrayList<>();
             for (int j = 0; j < jsonTradings.length(); j++)
-                tradingPairs.add(assembleTradingPairObject(jsonTradings.getJSONObject(j)));
+                tradingPairs.add(new TradingPair(jsonTradings.getJSONObject(j)));
         return tradingPairs;
     }
 
@@ -175,32 +174,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return single trading pair as {@link TradingPair} object
      * **/
     public TradingPair getSingleTradingPairObject(String productId) throws Exception {
-        return assembleTradingPairObject(new JSONObject(getSingleTradingPair(productId)));
-    }
-
-    /** Method to assemble a TradingPair object
-     * @param jsonTrading: jsonObject obtained by response request
-     * @return trading pair as {@link TradingPair} object
-     * **/
-    private TradingPair assembleTradingPairObject(JSONObject jsonTrading){
-        return new TradingPair(jsonTrading.getString("id"),
-                jsonTrading.getString("base_currency"),
-                jsonTrading.getString("quote_currency"),
-                jsonTrading.getDouble("base_min_size"),
-                jsonTrading.getDouble("base_max_size"),
-                jsonTrading.getDouble("quote_increment"),
-                jsonTrading.getDouble("base_increment"),
-                jsonTrading.getString("display_name"),
-                jsonTrading.getDouble("min_market_funds"),
-                jsonTrading.getDouble("max_market_funds"),
-                jsonTrading.getBoolean("margin_enabled"),
-                jsonTrading.getBoolean("post_only"),
-                jsonTrading.getBoolean("limit_only"),
-                jsonTrading.getBoolean("cancel_only"),
-                jsonTrading.getString("status"),
-                jsonTrading.getString("status_message"),
-                jsonTrading.getBoolean("auction_mode")
-        );
+        return new TradingPair(new JSONObject(getSingleTradingPair(productId)));
     }
 
     /** Request to get book details
@@ -230,7 +204,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return book details as {@link Book} object
      * **/
     public Book getProductBookObject(String productId) throws Exception {
-        return assembleBookObject(productId, new JSONObject(getProductBook(productId)));
+        return new Book(productId, new JSONObject(getProductBook(productId)));
     }
 
     /** Request to get book details
@@ -264,7 +238,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return book details as {@link Book} object
      * **/
     public Book getProductBookObject(String productId, int level) throws Exception {
-        return assembleBookObject(productId, new JSONObject(getProductBook(productId, level)));
+        return new Book(productId, new JSONObject(getProductBook(productId, level)));
     }
 
     /** Custom request to get all products book details <br>
@@ -347,29 +321,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
         ArrayList<Book> books = new ArrayList<>();
         for (int j = 0; j < jsonBooks.length(); j++) {
             JSONObject jsonBook = jsonBooks.getJSONObject(j);
-            Book book = assembleBookObject(jsonBook.getString("productId"), jsonBook);
-            if(book != null)
-                books.add(book);
+            books.add(new Book(jsonBook.getString("productId"), jsonBook));
         }
         return books;
-    }
-
-    /** Method to assemble a book object
-     * @param productId: ticker identifier value
-     * @param jsonBook: jsonObject obtained by response request
-     * @return book as {@link Book} object or null if not exists
-     * **/
-    private Book assembleBookObject(String productId, JSONObject jsonBook){
-        try {
-            return new Book(productId,
-                    jsonBook.getLong("sequence"),
-                    jsonBook.getBoolean("auction_mode"),
-                    JsonHelper.getString(jsonBook, "auction"),
-                    jsonBook
-            );
-        }catch (JSONException e){
-            return null;
-        }
     }
 
     /** Request to get candles
@@ -445,16 +399,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * **/
     private ArrayList<Candle> assembleCandlesList(JSONArray jsonCandles){
         ArrayList<Candle> candles = new ArrayList<>();
-        for (int j = 0; j < jsonCandles.length(); j++){
-            JSONArray candle = jsonCandles.getJSONArray(j);
-            candles.add(new Candle(candle.getLong(3),
-                    candle.getDouble(2),
-                    candle.getDouble(1),
-                    candle.getDouble(5),
-                    candle.getLong(0),
-                    candle.getDouble(4)
-            ));
-        }
+        for (int j = 0; j < jsonCandles.length(); j++)
+            candles.add(new Candle(jsonCandles.getJSONArray(j)));
         return candles;
     }
 
@@ -485,7 +431,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @return product stats as {@link Stat} object
      * **/
     public Stat getProductStatsObject(String productId) throws Exception {
-        return assembleStatObject(productId, new JSONObject(getProductStats(productId)));
+        return new Stat(productId, new JSONObject(getProductStats(productId)));
     }
 
     /** Custom request to get all products stats <br>
@@ -659,17 +605,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
         try {
             String productId = jsonTicker.getString("productId");
             double price = jsonTicker.getDouble("price");
-            return new Ticker(jsonTicker.getLong("trade_id"),
-                    price,
-                    jsonTicker.getDouble("size"),
-                    jsonTicker.getString("time"),
-                    productId,
-                    jsonTicker.getString("baseAsset"),
-                    jsonTicker.getString("quoteAsset"),
-                    jsonTicker.getDouble("bid"),
-                    jsonTicker.getDouble("ask"),
-                    jsonTicker.getDouble("volume"),
-                    getPriceChangePercent(productId, price));
+            return new Ticker(productId, getPriceChangePercent(productId, price), jsonTicker);
         } catch (Exception e) {
             return null;
         }
@@ -682,8 +618,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * **/
     private double getPriceChangePercent(String productId, double price) throws Exception {
         JSONArray candles = getProductCandlesJSON(productId);
-        Candle candle = Candle.assembleCandle(candles.getJSONArray(candles.length() - 1));
-        return getTrendPercent(candle.getClose(), price, 2);
+        return getTrendPercent(new Candle(candles.getJSONArray(candles.length() - 1)).getClose(), price);
     }
 
     /** Request to get product trades
@@ -759,15 +694,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * **/
     private ArrayList<Trade> assembleTradesList(JSONArray jsonTrades){
         ArrayList<Trade> trades = new ArrayList<>();
-        for (int j = 0; j < jsonTrades.length(); j++){
-            JSONObject trade = jsonTrades.getJSONObject(j);
-            trades.add(new Trade(trade.getLong("trade_id"),
-                    trade.getDouble("price"),
-                    trade.getDouble("size"),
-                    trade.getString("time"),
-                    trade.getString("side")
-            ));
-        }
+        for (int j = 0; j < jsonTrades.length(); j++)
+            trades.add(new Trade(jsonTrades.getJSONObject(j)));
         return trades;
     }
 

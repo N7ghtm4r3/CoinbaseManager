@@ -1,12 +1,10 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import static java.lang.String.valueOf;
 
 /**
  * The {@code Book} class is useful to format Book object
@@ -40,12 +38,12 @@ public class Book {
     /**
      * {@code asks} is instance that memorizes list of asks
      * **/
-    private final ArrayList<String> asks;
+    private final ArrayList<Double> asks;
 
     /**
      * {@code bids} is instance that memorizes list of bids
      * **/
-    private final ArrayList<String> bids;
+    private final ArrayList<Double> bids;
 
     /**
      * Constructor to init a {@link Book} object
@@ -60,27 +58,37 @@ public class Book {
         this.sequence = sequence;
         this.auctionMode = auctionMode;
         this.auction = auction;
-        asks = assembleStringList(jsonBook.getJSONArray("asks"));
-        bids = assembleStringList(jsonBook.getJSONArray("bids"));
+        asks = assembleMarketList(jsonBook.getJSONArray("asks"));
+        bids = assembleMarketList(jsonBook.getJSONArray("bids"));
     }
 
-    /** Method to assemble a string list
+    /**
+     * Constructor to init a {@link Book} object
+     * @param productId: book identifier value
+     * @param book: book details as {@link JSONObject}
+     **/
+    public Book(String productId, JSONObject book) {
+        JsonHelper hBook = new JsonHelper(book);
+        this.productId = productId;
+        this.sequence = hBook.getLong("sequence", -1);
+        this.auctionMode = hBook.getBoolean("auction_mode");
+        this.auction = hBook.getString("auction");
+        asks = assembleMarketList(hBook.getJSONArray("asks", new JSONArray()));
+        bids = assembleMarketList(hBook.getJSONArray("bids", new JSONArray()));
+    }
+
+    /** Method to assemble a doubles list
      * @param jsonList: jsonArray obtained by response request
-     * @return strings list as {@link ArrayList} of {@link String}
+     * @return doubles list as {@link ArrayList} of {@link String}
      * **/
-    private ArrayList<String> assembleStringList(JSONArray jsonList){
-        ArrayList<String> strings = new ArrayList<>();
+    private ArrayList<Double> assembleMarketList(JSONArray jsonList){
+        ArrayList<Double> values = new ArrayList<>();
         for (int j = 0; j < jsonList.length(); j++){
             JSONArray list = jsonList.getJSONArray(j);
-            for (int i = 0; i < list.length(); i++) {
-                try {
-                    strings.add(list.getString(i));
-                }catch (JSONException e){
-                    strings.add(valueOf(list.getDouble(i)));
-                }
-            }
+            for (int i = 0; i < list.length(); i++)
+                values.add(list.getDouble(i));
         }
-        return strings;
+        return values;
     }
 
     public String getProductId() {
@@ -99,19 +107,19 @@ public class Book {
         return auction;
     }
 
-    public ArrayList<String> getAsks() {
+    public ArrayList<Double> getAsks() {
         return asks;
     }
 
-    public String getAsk(int index){
+    public Double getAsk(int index){
         return asks.get(index);
     }
 
-    public ArrayList<String> getBids() {
+    public ArrayList<Double> getBids() {
         return bids;
     }
 
-    public String getBid(int index){
+    public Double getBid(int index){
         return bids.get(index);
     }
 

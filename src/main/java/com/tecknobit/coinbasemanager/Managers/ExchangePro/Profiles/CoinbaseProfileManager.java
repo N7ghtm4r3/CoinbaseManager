@@ -126,7 +126,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     private ArrayList<Profile> assembleProfilesList(JSONArray jsonProfiles){
         ArrayList<Profile> profiles = new ArrayList<>();
         for (int j=0; j < jsonProfiles.length(); j++)
-            profiles.add(assembleProfileObject(jsonProfiles.getJSONObject(j)));
+            profiles.add(new Profile(jsonProfiles.getJSONObject(j)));
         return profiles;
     }
 
@@ -159,7 +159,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of creation profile as {@link Profile} object
      * **/
     public Profile createProfileObject(String name) throws Exception {
-        return assembleProfileObject(new JSONObject(createProfile(name)));
+        return new Profile(new JSONObject(createProfile(name)));
     }
 
     /** Request to transfer funds between profiles
@@ -207,7 +207,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return single profile as {@link Profile} object
      * **/
     public Profile getProfileByIdObject(String profileId) throws Exception {
-        return assembleProfileObject(new JSONObject(getProfileById(profileId)));
+        return new Profile(new JSONObject(getProfileById(profileId)));
     }
 
     /** Request to get a single Coinbase's profile
@@ -240,7 +240,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return single profile as {@link Profile} object
      * **/
     public Profile getProfileByIdObject(String profileId, boolean active) throws Exception {
-        return assembleProfileObject(new JSONObject(getProfileById(profileId, active)));
+        return new Profile(new JSONObject(getProfileById(profileId, active)));
     }
 
     /** Request to rename a profile
@@ -276,22 +276,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @return result of renaming as {@link Profile} object
      * **/
     public Profile renameProfileObject(String profileId, String name) throws Exception {
-        return assembleProfileObject(new JSONObject(renameProfile(profileId, name)));
-    }
-
-    /** Method to assemble a Profile object
-     * @param jsonProfile: jsonObject obtained by response request
-     * @return profile as {@link Profile} object
-     * **/
-    private Profile assembleProfileObject(JSONObject jsonProfile){
-        return new Profile(jsonProfile.getString("id"),
-                jsonProfile.getString("user_id"),
-                jsonProfile.getString("name"),
-                jsonProfile.getBoolean("active"),
-                jsonProfile.getBoolean("is_default"),
-                jsonProfile.getString("created_at"),
-                jsonProfile.getBoolean("has_margin")
-        );
+        return new Profile(new JSONObject(renameProfile(profileId, name)));
     }
 
     /** Request to delete a profile

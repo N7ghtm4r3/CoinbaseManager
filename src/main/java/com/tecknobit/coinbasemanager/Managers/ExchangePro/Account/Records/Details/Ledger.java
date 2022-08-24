@@ -2,6 +2,8 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Detai
 
 import org.json.JSONObject;
 
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Ledger} class is useful to format Ledger object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
@@ -39,8 +41,27 @@ public class Ledger extends AccountDetails {
         );
     }
 
+    /** Constructor to init a {@link Ledger} object
+     * @param ledger: ledger details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public Ledger(JSONObject ledger) {
+        super(ledger);
+        balance = ledger.getDouble("balance");
+        details = new Details(ledger);
+    }
+
     public double getBalance() {
         return balance;
+    }
+
+    /** Method to get {@link #balance} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #balance} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getBalance(int decimals) {
+        return roundValue(balance, decimals);
     }
 
     public Details getDetails() {
@@ -90,6 +111,16 @@ public class Ledger extends AccountDetails {
             this.to = to;
             this.from = from;
             this.profileTransferId = profileTransferId;
+        }
+
+        /** Constructor to init a {@link Details} object
+         * @param details: details as {@link JSONObject}
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public Details(JSONObject details) {
+            to = details.getString("to");
+            from = details.getString("from");
+            profileTransferId = details.getString("profile_transfer_id");
         }
 
         public String getTo() {

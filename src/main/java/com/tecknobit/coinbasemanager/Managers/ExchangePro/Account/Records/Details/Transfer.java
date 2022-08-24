@@ -55,6 +55,16 @@ public class Transfer extends AccountDetails {
         );
     }
 
+    /** Constructor to init a {@link Transfer} object
+     * @param transfer: transfer details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public Transfer(JSONObject transfer) {
+        super(transfer);
+        completedAt = transfer.getString("created_at");
+        transferDetails = new TransferDetails(transfer);
+    }
+
     /** Method to assemble a transfer list
      * @param jsonTransfers: jsonArray obtained by response request
      * @return transfer list as {@link ArrayList} of {@link Transfer}
@@ -62,22 +72,8 @@ public class Transfer extends AccountDetails {
     public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers){
         ArrayList<Transfer> transfers = new ArrayList<>();
         for (int j = 0; j < jsonTransfers.length(); j++)
-            transfers.add(assembleTransferObject(jsonTransfers.getJSONObject(j)));
+            transfers.add(new Transfer(jsonTransfers.getJSONObject(j)));
         return transfers;
-    }
-
-    /** Method to assemble a transfer object
-     * @param jsonTransfer: jsonObject obtained by response request
-     * @return transfer as {@link Transfer} object
-     * **/
-    public static Transfer assembleTransferObject(JSONObject jsonTransfer){
-        return new Transfer(jsonTransfer.getString("created_at"),
-                jsonTransfer.getString("id"),
-                jsonTransfer.getDouble("amount"),
-                jsonTransfer.getString("type"),
-                jsonTransfer.getString("completed_at"),
-                jsonTransfer
-        );
     }
 
     public String getCompletedAt() {
@@ -130,6 +126,15 @@ public class Transfer extends AccountDetails {
             this.coinbaseAccountId = coinbaseAccountId;
             this.coinbaseTransactionId = coinbaseTransactionId;
             this.coinbasePaymentMethodId = coinbasePaymentMethodId;
+        }
+
+        /** Constructor to init a {@link TransferDetails} object
+         * @param transferDetails: transfer details as {@link JSONObject}
+         * **/
+        public TransferDetails(JSONObject transferDetails) {
+            coinbaseAccountId = transferDetails.getString("coinbase_account_id");
+            coinbaseTransactionId = transferDetails.getString("coinbase_transaction_id");
+            coinbasePaymentMethodId = transferDetails.getString("coinbase_payment_method_id");
         }
 
         public String getCoinbaseAccountId() {

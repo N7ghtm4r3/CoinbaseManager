@@ -70,7 +70,7 @@ public class Report extends ReportDetails {
     /**
      * {@code jsonHelper} is instance useful to help to format JSON
      * **/
-    private final JsonHelper jsonHelper;
+    private static JsonHelper jsonHelper;
 
     /** Constructor to init a {@link Report} object
      * @param createdAt: created at value
@@ -91,7 +91,7 @@ public class Report extends ReportDetails {
         this.expiresAt = expiresAt;
         this.userId = userId;
         this.fileUrl = fileUrl;
-        this.jsonHelper = jsonHelper;
+        Report.jsonHelper = jsonHelper;
         this.paramsReport = new ParamsReport(jsonHelper.getString("start_date"),
                 jsonHelper.getString("end_date"),
                 jsonHelper.getString("format"),
@@ -102,6 +102,20 @@ public class Report extends ReportDetails {
                 jsonHelper.getBoolean("new_york_state"),
                 new JsonHelper(jsonHelper.getJSONObject("user"))
         );
+    }
+
+    /** Constructor to init a {@link Report} object
+     * @param report: Report details as {@link JSONObject}
+     * **/
+    public Report(JSONObject report) {
+        super(report);
+        createdAt = report.getString("created_at");
+        completedAt = report.getString("completed_at");
+        expiresAt = report.getString("expires_at");
+        userId = report.getString("user_id");
+        fileUrl = report.getString("file_url");
+        jsonHelper = new JsonHelper(report.getJSONObject("params"));
+        paramsReport = new ParamsReport(report);
     }
 
     public String getCreatedAt() {
@@ -200,11 +214,6 @@ public class Report extends ReportDetails {
          * **/
         private final UserReport userReport;
 
-        /**
-         * {@code jsonHelper} is instance useful to help to format JSON
-         * **/
-        private final JsonHelper jsonHelper;
-
         /** Constructor to init a {@link ParamsReport} object
          * @param startDate: start date value
          * @param endDate: end date value
@@ -226,7 +235,6 @@ public class Report extends ReportDetails {
             this.profileId = profileId;
             this.email = email;
             this.newYorkState = newYorkState;
-            this.jsonHelper = jsonHelper;
             this.userReport = new UserReport(jsonHelper.getString("created_at"),
                     jsonHelper.getString("active_at"),
                     jsonHelper.getString("id"),
@@ -239,6 +247,22 @@ public class Report extends ReportDetails {
                     jsonHelper.getBoolean("has_default"),
                     jsonHelper
             );
+        }
+
+        /** Constructor to init a {@link ParamsReport} object
+         * @param paramsReport: params report details as {@link JSONObject}
+         * **/
+        public ParamsReport(JSONObject paramsReport) {
+            jsonHelper = new JsonHelper(paramsReport);
+            startDate = jsonHelper.getString("start_date");
+            endDate = jsonHelper.getString("end_date");
+            format = jsonHelper.getString("format");
+            productId = jsonHelper.getString("product_id");
+            accountId = jsonHelper.getString("account_id");
+            profileId = jsonHelper.getString("profile_id");
+            email = jsonHelper.getString("email");
+            newYorkState = jsonHelper.getBoolean("new_york_state");
+            userReport = new UserReport(paramsReport);
         }
 
         public String getStartDate() {
@@ -334,12 +358,20 @@ public class Report extends ReportDetails {
                 this.oauthClient = oauthClient;
             }
 
+            /** Constructor to init a {@link UserReport} object
+             * @param userReport: user report report details as {@link JSONObject}
+             * **/
+            public UserReport(JSONObject userReport) {
+                super(userReport);
+                this.oauthClient = hUser.getString("oauth_client");
+            }
+
             public JSONObject getRoles() {
-                return jsonUser.getJSONObject("roles");
+                return hUser.getJSONObject("roles");
             }
 
             public JSONObject getDetails() {
-                return jsonUser.getJSONObject("details");
+                return hUser.getJSONObject("details");
             }
 
             public String getOauthClient() {
@@ -359,7 +391,7 @@ public class Report extends ReportDetails {
                         ", userType='" + userType + '\'' +
                         ", fullFillsNewRequirements=" + fullFillsNewRequirements +
                         ", hasDefault=" + hasDefault +
-                        ", jsonUser=" + jsonUser +
+                        ", hUser=" + hUser +
                         '}';
             }
 

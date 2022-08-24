@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details;
 
+import org.json.JSONObject;
+
 /**
  * The {@code Hold} class is useful to format Hold object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
@@ -25,6 +27,15 @@ public class Hold extends AccountDetails {
     public Hold(String createdAt, String id, double amount, String type, String ref) {
         super(createdAt, id, amount, type);
         this.ref = ref;
+    }
+
+    /** Constructor to init a {@link Hold} object
+     * @param hold: hold details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public Hold(JSONObject hold) {
+        super(hold);
+        this.ref = hold.getString("ref");
     }
 
     public String getRef() {

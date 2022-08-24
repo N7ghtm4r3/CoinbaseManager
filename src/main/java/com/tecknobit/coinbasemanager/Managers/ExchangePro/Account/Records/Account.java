@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Account} class is useful to format Account object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
@@ -77,6 +81,28 @@ public class Account {
         this.tradingEnable = tradingEnable;
     }
 
+    /** Constructor to init a {@link Account} object
+     * @param account: account details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public Account(JSONObject account){
+        id = account.getString("id");
+        currency = account.getString("currency");
+        if(currency == null || currency.isEmpty())
+            throw new IllegalArgumentException("Currency value cannot be empty or null");
+        balance = account.getDouble("balance");
+        if(balance < 0)
+            throw new IllegalArgumentException("Balance value cannot be less than 0");
+        available = account.getDouble("available");
+        if(available < 0)
+            throw new IllegalArgumentException("Available value cannot be less than 0");
+        hold = account.getDouble("hold");
+        if(hold < 0)
+            throw new IllegalArgumentException("Hold value cannot be less than 0");
+        profileId = account.getString("profile_id");
+        tradingEnable = account.getBoolean("trading_enabled");
+    }
+
     public String getId() {
         return id;
     }
@@ -99,6 +125,15 @@ public class Account {
         return balance;
     }
 
+    /** Method to get {@link #balance} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #balance} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getBalance(int decimals) {
+        return roundValue(balance, decimals);
+    }
+
     /** Method to set {@link #balance}
      * @param balance: balance value
      * @throws IllegalArgumentException when balance value is less than 0
@@ -113,6 +148,15 @@ public class Account {
         return available;
     }
 
+    /** Method to get {@link #available} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #available} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getAvailable(int decimals) {
+        return roundValue(available, decimals);
+    }
+
     /** Method to set {@link #available}
      * @param available: available value
      * @throws IllegalArgumentException when available value is less than 0
@@ -125,6 +169,15 @@ public class Account {
 
     public double getHold() {
         return hold;
+    }
+
+    /** Method to get {@link #hold} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #hold} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getHold(int decimals) {
+        return roundValue(hold, decimals);
     }
 
     /** Method to set {@link #hold}

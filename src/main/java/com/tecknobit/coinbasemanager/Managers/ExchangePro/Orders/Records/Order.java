@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Order} class is useful to format Order object
  * @apiNote see official documentation at:
@@ -262,6 +266,21 @@ public class Order extends OrderDetails {
         this.status = status;
     }
 
+    /** Constructor to init a {@link Order} object
+     * @param order: order details as {@link JSONObject}
+     **/
+    public Order(JSONObject order) {
+        super(order);
+        id = orderHelper.getString("id");
+        type = orderHelper.getString("type");
+        timeInForce = orderHelper.getString("time_in_force");
+        postOnly = orderHelper.getBoolean("post_only");
+        fillFees = orderHelper.getDouble("fill_fees");
+        filledSize = orderHelper.getDouble("filled_size");
+        executedValue = orderHelper.getDouble("executed_value");
+        status = orderHelper.getString("status");
+    }
+
     public String getId() {
         return id;
     }
@@ -282,12 +301,39 @@ public class Order extends OrderDetails {
         return fillFees;
     }
 
+    /** Method to get {@link #fillFees} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #fillFees} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getFillFees(int decimals) {
+        return roundValue(fillFees, decimals);
+    }
+
     public double getFilledSize() {
         return filledSize;
     }
 
+    /** Method to get {@link #filledSize} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #filledSize} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getFilledSize(int decimals) {
+        return roundValue(filledSize, decimals);
+    }
+
     public double getExecutedValue() {
         return executedValue;
+    }
+
+    /** Method to get {@link #executedValue} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #executedValue} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getExecutedValue(int decimals) {
+        return roundValue(executedValue, decimals);
     }
 
     public String getStatus() {

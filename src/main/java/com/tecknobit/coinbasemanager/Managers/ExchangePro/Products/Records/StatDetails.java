@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code StatDetails} class is useful to format general StatDetails object
  * @apiNote see official documentation at:
@@ -51,6 +55,16 @@ public class StatDetails {
         this.time = time;
     }
 
+    /** Constructor to init a {@link StatDetails} object
+     * @param stat: stat details as {@link JSONObject}
+     * **/
+    public StatDetails(JSONObject stat) {
+        tradeId = stat.getLong("trade_id");
+        price = stat.getDouble("price");
+        size = stat.getDouble("size");
+        time = stat.getString("time");
+    }
+
     public long getTradeId() {
         return tradeId;
     }
@@ -59,8 +73,26 @@ public class StatDetails {
         return price;
     }
 
+    /** Method to get {@link #price} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #price} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getPrice(int decimals) {
+        return roundValue(price, decimals);
+    }
+
     public double getSize() {
         return size;
+    }
+
+    /** Method to get {@link #size} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #size} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getSize(int decimals) {
+        return roundValue(size, decimals);
     }
 
     public String getTime() {

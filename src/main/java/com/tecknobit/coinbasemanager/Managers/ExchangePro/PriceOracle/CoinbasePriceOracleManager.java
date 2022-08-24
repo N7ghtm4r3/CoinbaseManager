@@ -83,8 +83,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @return signed prices as {@link PriceOracle} object
      * **/
     public PriceOracle getSignedPricesObject() throws Exception {
-        JSONObject priceOracle = new JSONObject(getSignedPrices());
-        return new PriceOracle(priceOracle.getLong("timestamp"), priceOracle);
+        return new PriceOracle(new JSONObject(getSignedPrices()));
     }
 
 }

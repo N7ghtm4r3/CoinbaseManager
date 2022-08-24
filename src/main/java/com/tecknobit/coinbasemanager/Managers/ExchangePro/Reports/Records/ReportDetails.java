@@ -49,6 +49,15 @@ public class ReportDetails {
         this.status = status;
     }
 
+    /** Constructor to init a {@link ReportDetails} object
+     * @param report: report details as {@link JSONObject}
+     * **/
+    public ReportDetails(JSONObject report) {
+        id = report.getString("id");
+        type = report.getString("type");
+        status = report.getString("status");
+    }
+
     public String getId() {
         return id;
     }
@@ -127,7 +136,7 @@ public class ReportDetails {
         /**
          * {@code fullFillsNewRequirements} is useful to help to format JSON
          * **/
-        protected final JsonHelper jsonUser;
+        protected final JsonHelper hUser;
 
         /** Constructor to init {@link UserDetails} object
          * @param createdAt: created at value
@@ -139,11 +148,10 @@ public class ReportDetails {
          * @param userType: user type value
          * @param fullFillsNewRequirements: flag for full fills new requirements
          * @param hasDefault: flag for default check
-         * @param jsonUser: useful to help to format JSON
+         * @param hUser: useful to help to format JSON
          * **/
-        public UserDetails(String createdAt, String activeAt, String id, String name, String email,
-                           boolean isBanned, String userType, boolean fullFillsNewRequirements, boolean hasDefault,
-                           JsonHelper jsonUser) {
+        public UserDetails(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
+                           String userType, boolean fullFillsNewRequirements, boolean hasDefault, JsonHelper hUser) {
             this.createdAt = createdAt;
             this.activeAt = activeAt;
             this.id = id;
@@ -153,7 +161,23 @@ public class ReportDetails {
             this.userType = userType;
             this.fullFillsNewRequirements = fullFillsNewRequirements;
             this.hasDefault = hasDefault;
-            this.jsonUser = jsonUser;
+            this.hUser = hUser;
+        }
+
+        /** Constructor to init a {@link UserDetails} object
+         * @param userDetails: user details as {@link JSONObject}
+         * **/
+        public UserDetails(JSONObject userDetails) {
+            hUser = new JsonHelper(userDetails);
+            createdAt = hUser.getString("created_at");
+            activeAt = hUser.getString("active_at");
+            id = hUser.getString("id");
+            name = hUser.getString("name");
+            email = hUser.getString("email");
+            isBanned = hUser.getBoolean("is_banned");
+            userType = hUser.getString("user_type");
+            fullFillsNewRequirements = hUser.getBoolean("fulfills_new_requirements");
+            hasDefault = hUser.getBoolean("has_default");
         }
 
         public String getCreatedAt() {
@@ -193,27 +217,27 @@ public class ReportDetails {
         }
 
         public String getTaxDomain(){
-            return jsonUser.getString("tax_domain");
+            return hUser.getString("tax_domain");
         }
 
         public JSONObject getPermissions() {
-            return jsonUser.getJSONObject("permissions");
+            return hUser.getJSONObject("permissions");
         }
 
         public JSONObject getFlags() {
-            return jsonUser.getJSONObject("flags");
+            return hUser.getJSONObject("flags");
         }
 
         public JSONObject getPreferences(){
-            return jsonUser.getJSONObject("preferences");
+            return hUser.getJSONObject("preferences");
         }
 
         public JSONObject getCustomSnippet(String key){
-            return jsonUser.getJSONObject(key);
+            return hUser.getJSONObject(key);
         }
 
         public JSONArray getCustomList(String key){
-            return jsonUser.getJSONArray(key);
+            return hUser.getJSONArray(key);
         }
 
         @Override
@@ -228,7 +252,7 @@ public class ReportDetails {
                     ", userType='" + userType + '\'' +
                     ", fullFillsNewRequirements=" + fullFillsNewRequirements +
                     ", hasDefault=" + hasDefault +
-                    ", jsonUser=" + jsonUser +
+                    ", hUser=" + hUser +
                     '}';
         }
 

@@ -13,7 +13,6 @@ import java.util.HashMap;
 import static com.tecknobit.apimanager.Manager.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.Manager.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
-import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransferObject;
 import static com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Details.Transfer.assembleTransfersList;
 
 /**
@@ -114,7 +113,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
+        return new TransferAction(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
     }
 
     /** Request to deposit from a Coinbase's account
@@ -157,7 +156,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public TransferAction depositFromCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
                                                            String profileId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId,
+        return new TransferAction(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId,
                 profileId)));
     }
 
@@ -195,7 +194,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of deposit as {@link TransferAction} object
      * **/
     public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
+        return new TransferAction(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
     }
 
     /** Request to deposit using payment method
@@ -238,7 +237,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public TransferAction depositFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
                                                          String profileId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId,
+        return new TransferAction(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId,
                 profileId)));
     }
 
@@ -271,28 +270,8 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
     public ArrayList<PaymentMethod> getAllPaymentMethodsList() throws Exception {
         ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
         JSONArray jsonPayments = new JSONArray(getAllPaymentMethods());
-        for (int j=0; j < jsonPayments.length(); j++){
-            JSONObject paymentMethod = jsonPayments.getJSONObject(j);
-            paymentMethods.add(new PaymentMethod(paymentMethod.getString("id"),
-                    paymentMethod.getString("type"),
-                    paymentMethod.getString("name"),
-                    paymentMethod.getString("currency"),
-                    paymentMethod.getBoolean("primary_buy"),
-                    paymentMethod.getBoolean("primary_sell"),
-                    paymentMethod.getBoolean("instant_buy"),
-                    paymentMethod.getBoolean("instant_sell"),
-                    paymentMethod.getString("created_at"),
-                    paymentMethod.getString("updated_at"),
-                    paymentMethod.getString("resource"),
-                    paymentMethod.getString("resource_path"),
-                    paymentMethod.getBoolean("allow_buy"),
-                    paymentMethod.getBoolean("allow_sell"),
-                    paymentMethod.getBoolean("allow_deposit"),
-                    paymentMethod.getBoolean("allow_withdraw"),
-                    paymentMethod.getBoolean("verified"),
-                    paymentMethod
-            ));
-        }
+        for (int j=0; j < jsonPayments.length(); j++)
+            paymentMethods.add(new PaymentMethod(jsonPayments.getJSONObject(j)));
         return paymentMethods;
     }
 
@@ -386,7 +365,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return single transfer as {@link Transfer} object
      * **/
     public Transfer getSingleTransferObject(String transferId) throws Exception {
-        return assembleTransferObject(new JSONObject(getSingleTransfer(transferId)));
+        return new Transfer(new JSONObject(getSingleTransfer(transferId)));
     }
 
     /** Request to withdraw to a Coinbase's account
@@ -423,7 +402,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
+        return new TransferAction(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
     }
 
     /** Request to withdraw to a Coinbase's account
@@ -466,7 +445,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public TransferAction withdrawToCoinbaseAccountObject(double amount, String coinbaseAccountId, String currencyId,
                                                           String profileId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId,
+        return new TransferAction(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId,
                 currencyId, profileId)));
     }
 
@@ -504,7 +483,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(withdrawToCoinbaseAccount(amount, cryptoAddress, currencyId)));
+        return new TransferAction(new JSONObject(withdrawToCoinbaseAccount(amount, cryptoAddress, currencyId)));
     }
 
     /** Request to withdraw to crypto address
@@ -552,7 +531,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public TransferAction withdrawToCryptoObject(double amount, String cryptoAddress, String currencyId,
                                                  Params extraBodyParams) throws Exception {
-        return assembleTransferActionObject(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraBodyParams)));
+        return new TransferAction(new JSONObject(withdrawToCrypto(amount, cryptoAddress, currencyId, extraBodyParams)));
     }
 
     /** Method to assemble map of body params
@@ -572,20 +551,6 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         if(profileId != null)
             depositBodyParams.addParam("profile_id", profileId);
         return depositBodyParams;
-    }
-
-    /** Method to assemble a TransferAction object
-     * @param jsonDeposit: jsonObject obtained by response request
-     * @return transferAction as {@link TransferAction} object
-     * **/
-    private TransferAction assembleTransferActionObject(JSONObject jsonDeposit){
-        return new TransferAction(jsonDeposit.getString("id"),
-                jsonDeposit.getDouble("amount"),
-                jsonDeposit.getString("currency"),
-                jsonDeposit.getString("payout_at"),
-                jsonDeposit.getDouble("fee"),
-                jsonDeposit.getDouble("subtotal")
-        );
     }
 
     /** Request to get estimate fee of withdraw to crypto address
@@ -657,7 +622,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link TransferAction} object
      * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
+        return new TransferAction(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId, currencyId)));
     }
 
     /** Request to withdraw using payment method
@@ -700,7 +665,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public TransferAction withdrawFromPaymentMethodObject(double amount, String paymentMethodId, String currencyId,
                                                           String profileId) throws Exception {
-        return assembleTransferActionObject(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId,
+        return new TransferAction(new JSONObject(depositFromPaymentMethod(amount, paymentMethodId,
                 currencyId, profileId)));
     }
 

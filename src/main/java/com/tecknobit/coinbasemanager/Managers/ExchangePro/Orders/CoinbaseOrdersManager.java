@@ -1,6 +1,5 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders;
 
-import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records.Fill;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records.Order;
@@ -205,24 +204,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     private ArrayList<Fill> assembleFillsList(JSONArray jsonFills){
         ArrayList<Fill> fills = new ArrayList<>();
-        for (int j = 0; j < jsonFills.length(); j++){
-            JsonHelper fill = new JsonHelper(jsonFills.getJSONObject(j));
-            fills.add(new Fill(fill.getString("created_at"),
-                    fill.getString("product_id"),
-                    fill.getString("profile_id"),
-                    fill.getDouble("price"),
-                    fill.getDouble("size"),
-                    fill.getString("side"),
-                    fill.getBoolean("settled"),
-                    fill.getLong("trade_id"),
-                    fill.getString("order_id"),
-                    fill.getString("user_id"),
-                    fill.getString("liquidity"),
-                    fill.getDouble("fee"),
-                    fill.getDouble("usd_volume")
-            ));
-        }
-
+        for (int j = 0; j < jsonFills.length(); j++)
+            fills.add(new Fill(jsonFills.getJSONObject(j)));
         return fills;
     }
 
@@ -697,7 +680,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     private ArrayList<Order> assembleOrdersList(JSONArray jsonOrders){
         ArrayList<Order> orders = new ArrayList<>();
         for (int j = 0; j < jsonOrders.length(); j++)
-            orders.add(assembleOrderObject(jsonOrders.getJSONObject(j)));
+            orders.add(new Order(jsonOrders.getJSONObject(j)));
         return orders;
     }
 
@@ -711,30 +694,6 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
         criteria.addParam("sortedBy", sortedBy);
         criteria.addParam("sorting", sorting);
         return criteria;
-    }
-
-    /** Method to assemble an Order object
-     * @param order: jsonObject obtained by response request
-     * @return order as {@link Order} object
-     * **/
-    private Order assembleOrderObject(JSONObject order){
-        JsonHelper jsonOrder = new JsonHelper(order);
-        return new Order(jsonOrder.getString("created_at"),
-                jsonOrder.getString("product_id"),
-                jsonOrder.getString("profile_id"),
-                jsonOrder.getDouble("price"),
-                jsonOrder.getDouble("size"),
-                jsonOrder.getString("side"),
-                jsonOrder.getBoolean("settled"),
-                jsonOrder.getString("id"),
-                jsonOrder.getString("type"),
-                jsonOrder.getString("time_in_force"),
-                jsonOrder.getBoolean("post_only"),
-                jsonOrder.getDouble("fill_fees"),
-                jsonOrder.getDouble("filled_size"),
-                jsonOrder.getDouble("executed_value"),
-                jsonOrder.getString("status")
-        );
     }
 
     /** Request to cancel all orders
@@ -848,7 +807,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new limit order as {@link Order} object
      * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size) throws Exception {
-        return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size)));
+        return new Order(new JSONObject(createLimitOrder(side, productId, price, size)));
     }
 
     /** Request to create new limit order
@@ -898,7 +857,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size,
                                            Params extraBodyParams) throws Exception {
-        return assembleOrderObject(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
+        return new Order(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
     }
 
     /** Method to assemble a payload for limit and stop order
@@ -954,7 +913,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link Order} object
      * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size) throws Exception {
-        return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size)));
+        return new Order(new JSONObject(createMarketOrderSize(side, productId, size)));
     }
 
     /** Request to create new market order
@@ -1001,7 +960,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size,
                                              Params extraBodyParams) throws Exception {
-        return assembleOrderObject(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
+        return new Order(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
     }
 
     /** Request to create new market order
@@ -1038,7 +997,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link Order} object
      * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds) throws Exception {
-        return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds)));
+        return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds)));
     }
 
     /** Request to create new market order
@@ -1082,7 +1041,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of creation a new market order as {@link Order} object
      * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds, Params extraBodyParams) throws Exception {
-        return assembleOrderObject(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
+        return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
     }
 
     /** Method to assemble a payload for market order
@@ -1145,7 +1104,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public Order createStopOrderObject(String side, String productId, double price, double size,
                                        double stopPrice) throws Exception {
-        return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice)));
+        return new Order(new JSONObject(createStopOrder(side, productId, price, size, stopPrice)));
     }
 
     /** Request to create new stop order
@@ -1199,7 +1158,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
                                        Params extraBodyParams) throws Exception {
-        return assembleOrderObject(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
+        return new Order(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
     }
 
     /** Request to get single order information
@@ -1229,7 +1188,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @return result of single order information as {@link Order} object
      * **/
     public Order getSingleOrderObject(String orderId) throws Exception {
-        return assembleOrderObject(new JSONObject(getSingleOrder(orderId)));
+        return new Order(new JSONObject(getSingleOrder(orderId)));
     }
 
     /** Request to cancel an order

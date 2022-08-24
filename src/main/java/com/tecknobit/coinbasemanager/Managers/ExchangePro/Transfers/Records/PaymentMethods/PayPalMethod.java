@@ -15,7 +15,7 @@ import static org.apache.commons.validator.routines.EmailValidator.getInstance;
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
-public class PayPalMethod extends PayMethod{
+public class PayPalMethod extends PayMethod {
 
     /**
      * {@code payPalBuysList} is instance that memorizes list of {@link PayPalDetails} for buys
@@ -44,14 +44,8 @@ public class PayPalMethod extends PayMethod{
      * **/
     private ArrayList<PayPalDetails> assemblePayPalDetailsList(JSONArray jsonPaypal) {
         ArrayList<PayPalDetails> payPalDetails = new ArrayList<>();
-        for (int j = 0; j < jsonPaypal.length(); j++) {
-            JSONObject payPalDetail = jsonPaypal.getJSONObject(j);
-            payPalDetails.add(new PayPalDetails(payPalDetail.getInt("period_in_days"),
-                    payPalDetail.getString("description"),
-                    payPalDetail.getString("label"),
-                    payPalDetail
-            ));
-        }
+        for (int j = 0; j < jsonPaypal.length(); j++)
+            payPalDetails.add(new PayPalDetails(jsonPaypal.getJSONObject(j)));
         return payPalDetails;
     }
 
@@ -162,6 +156,24 @@ public class PayPalMethod extends PayMethod{
             this.remaining = new Amount(remaining.getDouble("amount"), remaining.getString("currency"));
         }
 
+        /** Constructor to init a {@link PayPalDetails} object
+         * @param payPalDetails: PayPal's details as {@link JSONObject}
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public PayPalDetails(JSONObject payPalDetails) {
+            periodInDays = payPalDetails.getInt("period_in_days");
+            if(periodInDays < 0)
+                throw new IllegalArgumentException("Period in days value cannot be less than 0");
+            this.description = payPalDetails.getString("description");
+            this.label = payPalDetails.getString("label");
+            if(label == null || label.isEmpty())
+                throw new IllegalArgumentException("Label value cannot be empty or null");
+            JSONObject total = payPalDetails.getJSONObject("total");
+            this.total = new Amount(total.getDouble("amount"), total.getString("currency"));
+            JSONObject remaining = payPalDetails.getJSONObject("remaining");
+            this.remaining = new Amount(remaining.getDouble("amount"), remaining.getString("currency"));
+        }
+
         public int getPeriodInDays() {
             return periodInDays;
         }
@@ -268,6 +280,19 @@ public class PayPalMethod extends PayMethod{
             this.payPalEmail = payPalEmail;
             this.payPalOwner = payPalOwner;
             this.reauth = reauth;
+        }
+
+        /** Constructor to init a {@link PayPalPickerData} object
+         * @param symbol: symbol value
+         * @param paypalPicker: PayPal's picker details as {@link JSONObject}
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public PayPalPickerData(String symbol, JSONObject paypalPicker) {
+            super(symbol);
+            payoutOnly = paypalPicker.getBoolean("payout_only");
+            payPalEmail = paypalPicker.getString("paypal_email");
+            payPalOwner = paypalPicker.getString("paypal_owner");
+            reauth = paypalPicker.getBoolean("reauth");
         }
 
         public boolean isPayoutOnly() {

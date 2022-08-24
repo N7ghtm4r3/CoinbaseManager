@@ -112,6 +112,25 @@ public class CryptoAddress {
         this.warningsList = assembleWarningList(jsonWarnings);
     }
 
+    /** Constructor to init a {@link CryptoAddress} object
+     * @param address: crypto address details as {@link JSONObject}
+     * **/
+    public CryptoAddress(JSONObject address){
+        id = address.getString("id");
+        this.address = address.getString("address");
+        addressInfoList = assembleAddressInfo(address.getJSONObject("address_info"));
+        name = address.getString("name");
+        createdAt = address.getString("created_at");
+        updatedAt = address.getString("updated_at");
+        network = address.getString("network");
+        uriScheme = address.getString("uri_scheme");
+        resource = address.getString("resource");
+        resourcePath = address.getString("resource_path");
+        depositUri = address.getString("deposit_uri");
+        exchangeDepositAddress = address.getBoolean("exchange_deposit_address");
+        warningsList = assembleWarningList(address.getJSONArray("warnings"));
+    }
+
     /** Method to assemble an address info list
      * @param jsonAddressInfo: jsonObject obtained by response request
      * @return address info list as {@link ArrayList} of {@link AddressInfo}
@@ -129,15 +148,9 @@ public class CryptoAddress {
      * **/
     private ArrayList<Warning> assembleWarningList(JSONArray jsonWarnings){
         ArrayList<Warning> warnings = new ArrayList<>();
-        if(jsonWarnings != null){
-            for (int j = 0; j < jsonWarnings.length(); j++){
-                JSONObject warning = jsonWarnings.getJSONObject(j);
-                warnings.add(new Warning(warning.getString("title"),
-                        warning.getString("details"),
-                        warning.getString("image_url")
-                ));
-            }
-        }
+        if(jsonWarnings != null)
+            for (int j = 0; j < jsonWarnings.length(); j++)
+                warnings.add(new Warning(jsonWarnings.getJSONObject(j)));
         return warnings;
     }
 
@@ -321,6 +334,15 @@ public class CryptoAddress {
             this.title = title;
             this.details = details;
             this.imageUrl = imageUrl;
+        }
+
+        /** Constructor to init a {@link Warning} object
+         * @param warning: crypto address details as {@link JSONObject}
+         * **/
+        public Warning(JSONObject warning) {
+            this.title = warning.getString("title");
+            this.details = warning.getString("details");
+            this.imageUrl = warning.getString("image_url");
         }
 
         public String getTitle() {

@@ -171,10 +171,42 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
         else
             this.defaultPreferredMarket = defaultPreferredMarket;
         this.marginEligible = marginEligible;
-        assembleTestList(jsonHelper.getJSONArray("test_groups"));
+        assembleTestList(jsonHelper.getJSONArray("test_groups", new JSONArray()));
         country = new Country(jsonHelper.getJSONObject("country"));
         marginInformation = new MarginInformation(jsonHelper.getJSONObject("margin_information"));
         address = new Address(jsonHelper.getJSONObject("address"));
+    }
+
+    /** Constructor to init a {@link ExchangeLimits} object
+     * @param exchangeLimits: exchangeLimits details as {@link JSONObject}
+     * **/
+    public ExchangeLimits(JSONObject exchangeLimits) {
+        super(exchangeLimits);
+        termsAccepted = hUser.getString("terms_accepted");
+        stateCode = hUser.getString("state_code");
+        if(stateCode == null || stateCode.isEmpty())
+            throw new IllegalArgumentException("State code value cannot be empty or null");
+        accessPrivacyRights = hUser.getBoolean("access_privacy_rights");
+        twoFactorMethod = hUser.getString("two_factor_method");
+        analyticsProcessingEnabled = hUser.getBoolean("analytics_processing_enabled");
+        isPrime = hUser.getBoolean("is_prime");
+        hasProWbl = hUser.getBoolean("has_pro_wbl");
+        hasClawBack = hUser.getBoolean("has_clawback");
+        hasClawBackPaymentPending = hUser.getBoolean("has_clawback_payment_pending");
+        hasRestrictedAssets = hUser.getBoolean("has_restricted_assets");
+        legalName = hUser.getString("legal_name");
+        if(legalName == null || legalName.isEmpty())
+            throw new IllegalArgumentException("Legal name value cannot be empty or null");
+        whitelistingEnabled = hUser.getBoolean("whitelisting_enabled");
+        regionBankingSupport = hUser.getBoolean("region_banking_support");
+        defaultPreferredMarket = hUser.getString("default_preferred_market");
+        if(defaultPreferredMarket == null || defaultPreferredMarket.isEmpty())
+            throw new IllegalArgumentException("Default preferred market value cannot be empty or null");
+        marginEligible = hUser.getBoolean("margin_eligible");
+        assembleTestList(hUser.getJSONArray("test_groups", new JSONArray()));
+        country = new Country(hUser.getJSONObject("country"));
+        marginInformation = new MarginInformation(hUser.getJSONObject("margin_information"));
+        address = new Address(hUser.getJSONObject("address"));
     }
 
     /** Method to assemble a test list
@@ -183,13 +215,8 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
      * **/
     private void assembleTestList(JSONArray jsonTests){
         testGroupsList = new ArrayList<>();
-        for (int j=0; j < jsonTests.length(); j++){
-            JSONObject test = jsonTests.getJSONObject(j);
-            testGroupsList.add(new Test(test.getString("test"),
-                    test.getString("group"),
-                    test.getBoolean("forced")
-            ));
-        }
+        for (int j=0; j < jsonTests.length(); j++)
+            testGroupsList.add(new Test(jsonTests.getJSONObject(j)));
     }
 
     public String getTermsAccepted() {
@@ -398,7 +425,7 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
                 ", userType='" + userType + '\'' +
                 ", fullFillsNewRequirements=" + fullFillsNewRequirements +
                 ", hasDefault=" + hasDefault +
-                ", jsonUser=" + jsonUser +
+                ", hUser=" + hUser +
                 '}';
     }
 
@@ -433,6 +460,15 @@ public class ExchangeLimits extends ReportDetails.UserDetails {
             this.test = test;
             this.group = group;
             this.forced = forced;
+        }
+
+        /** Constructor to init a {@link Test} object
+         * @param test: test details as {@link JSONObject}
+         * **/
+        public Test(JSONObject test) {
+            this.test = test.getString("test");
+            group = test.getString("group");
+            forced = test.getBoolean("forced");
         }
 
         public String getTest() {

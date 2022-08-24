@@ -3,6 +3,8 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records;
 import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import org.json.JSONObject;
 
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code CoinbaseAccount} class is useful to format CoinbaseAccount object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">
@@ -114,6 +116,38 @@ public class CoinbaseAccount {
             depositInformation = null;
     }
 
+    /** Constructor to init a {@link CoinbaseAccount} object
+     * @param coinbaseAccount: Coinbase's coinbaseAccount details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public CoinbaseAccount(JSONObject coinbaseAccount){
+        balance = coinbaseAccount.getDouble("balance");
+        if(balance < 0)
+            throw new IllegalArgumentException("Balance value cannot be less than 0");
+        availableOnConsumer = coinbaseAccount.getBoolean("available_on_consumer");
+        name = coinbaseAccount.getString("name");
+        active = coinbaseAccount.getBoolean("active");
+        currency = coinbaseAccount.getString("currency");
+        if(currency == null || currency.isEmpty())
+            throw new IllegalArgumentException("Currency value cannot be empty or null");
+        id = coinbaseAccount.getString("id");
+        type = coinbaseAccount.getString("type");
+        if(type == null || type.isEmpty())
+            throw new IllegalArgumentException("Type value cannot be empty or null");
+        primary = coinbaseAccount.getBoolean("primary");
+        holdBalance = coinbaseAccount.getDouble("hold_balance");
+        if(holdBalance < 0)
+            throw new IllegalArgumentException("Hold balance value cannot be less than 0");
+        holdCurrency = coinbaseAccount.getString("hold_currency");
+        if(holdCurrency == null || holdCurrency.isEmpty())
+            throw new IllegalArgumentException("Hold currency value cannot be empty or null");
+        JSONObject depositInfo = JsonHelper.getJSONObject(coinbaseAccount, "sepa_deposit_information");
+        if(depositInfo != null)
+            depositInformation = new DepositInformation(depositInfo);
+        else
+            depositInformation = null;
+    }
+
     public double getBalance() {
         return balance;
     }
@@ -190,6 +224,15 @@ public class CoinbaseAccount {
 
     public double getHoldBalance() {
         return holdBalance;
+    }
+
+    /** Method to get {@link #holdBalance} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #holdBalance} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getHoldBalance(int decimals) {
+        return roundValue(holdBalance, decimals);
     }
 
     /** Method to set {@link #holdBalance}
@@ -347,24 +390,22 @@ public class CoinbaseAccount {
         }
 
         /** Constructor to init a {@link DepositInformation} object
-         * @param jsonDepositInformation: deposit information value in JSON format
-         * @throws IllegalArgumentException if parameters range is not respected
+         * @param depositInformation: deposit information as {@link JSONObject}
          * **/
-        public DepositInformation(JSONObject jsonDepositInformation) {
-            if(jsonDepositInformation != null) {
-                JsonHelper depositInformation = new JsonHelper(jsonDepositInformation);
-                this.reference = depositInformation.getString("reference");
-                this.iban = depositInformation.getString("iban");
-                this.accountName = depositInformation.getString("account_name");
-                this.bankName = depositInformation.getString("bank_name");
-                this.bankAddress = depositInformation.getString("bank_address");
-                this.accountAddress = depositInformation.getString("account_address");
-                this.swift = depositInformation.getString("swift");
-                JSONObject bankCountry = depositInformation.getJSONObject("bank_country");
+        public DepositInformation(JSONObject depositInformation) {
+            if(depositInformation != null) {
+                JsonHelper depositHInformation = new JsonHelper(depositInformation);
+                this.reference = depositHInformation.getString("reference");
+                this.iban = depositHInformation.getString("iban");
+                this.accountName = depositHInformation.getString("account_name");
+                this.bankName = depositHInformation.getString("bank_name");
+                this.bankAddress = depositHInformation.getString("bank_address");
+                this.accountAddress = depositHInformation.getString("account_address");
+                this.swift = depositHInformation.getString("swift");
+                JSONObject bankCountry = depositHInformation.getJSONObject("bank_country");
                 this.bankCountryCode = bankCountry.getString("code");
                 this.bankCountryName = bankCountry.getString("name");
-            }else
-                throw new IllegalArgumentException("Deposit information details not recoverable");
+            }
         }
 
         public String getReference() {

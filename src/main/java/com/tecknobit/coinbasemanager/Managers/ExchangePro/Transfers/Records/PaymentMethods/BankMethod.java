@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
+import org.json.JSONObject;
+
 /**
  * The {@code BankMethod} class is useful to format BankMethod object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
@@ -62,6 +64,27 @@ public class BankMethod extends PayMethod{
             if(swiftLength < 8 || swiftLength > 11)
                 throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
             this.swift = swift;
+        }
+
+        /** Constructor to init {@link BankPickerData} object
+         * @param symbol: symbol value
+         * @param bankPicker: bank picker details as {@link JSONObject}
+         * @throws IllegalArgumentException if parameters range is not respected
+         * **/
+        public BankPickerData(String symbol, JSONObject bankPicker) {
+            super(symbol);
+            iban = bankPicker.getString("iban");
+            if(iban == null || iban.isEmpty())
+                throw new IllegalArgumentException("Iban value cannot be empty or null");
+            institutionName = bankPicker.getString("institution_name");
+            if(institutionName == null || institutionName.isEmpty())
+                throw new IllegalArgumentException("Institution name value cannot be empty or null");
+            swift = bankPicker.getString("swift");
+            if(swift == null || swift.isEmpty())
+                throw new IllegalArgumentException("Swift value cannot be empty or null");
+            int swiftLength = swift.length();
+            if(swiftLength < 8 || swiftLength > 11)
+                throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
         }
 
         public String getIban() {

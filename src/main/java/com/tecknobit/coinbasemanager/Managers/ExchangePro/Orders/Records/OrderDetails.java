@@ -1,5 +1,10 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
+import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code OrderDetails} class is useful to format general OrderDetails object
  * @apiNote see official documentation at:
@@ -65,6 +70,11 @@ public class OrderDetails {
      * **/
     private final boolean settled;
 
+    /**
+     * {@code orderHelper} is instance that help to work with {@link OrderDetails}
+     * **/
+    protected final JsonHelper orderHelper;
+
     /** Constructor to init a {@link OrderDetails} object
      * @param createdAt: created at value
      * @param productId: product identifier value
@@ -83,6 +93,22 @@ public class OrderDetails {
         this.size = size;
         this.side = side;
         this.settled = settled;
+        orderHelper = null;
+    }
+
+    /** Constructor to init a {@link OrderDetails} object
+     * @param orderDetails: orderDetails details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public OrderDetails(JSONObject orderDetails) {
+        orderHelper = new JsonHelper(orderDetails);
+        createdAt = orderHelper.getString("created_at");
+        productId = orderHelper.getString("product_id");
+        profileId = orderHelper.getString("profile_id");
+        price = orderHelper.getDouble("price");
+        size = orderHelper.getDouble("size");
+        side = orderHelper.getString("side");
+        settled = orderHelper.getBoolean("settled");
     }
 
     public String getCreatedAt() {
@@ -101,8 +127,26 @@ public class OrderDetails {
         return price;
     }
 
+    /** Method to get {@link #price} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #price} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getPrice(int decimals) {
+        return roundValue(price, decimals);
+    }
+
     public double getSize() {
         return size;
+    }
+
+    /** Method to get {@link #size} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #size} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getSize(int decimals) {
+        return roundValue(size, decimals);
     }
 
     public String getSide() {

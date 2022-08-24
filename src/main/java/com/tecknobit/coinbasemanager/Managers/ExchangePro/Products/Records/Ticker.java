@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Ticker} class is useful to format Ticker object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
@@ -70,6 +74,20 @@ public class Ticker extends StatDetails {
         this.priceChangePercent = priceChangePercent;
     }
 
+    /** Constructor to init a {@link Ticker} object
+     * @param ticker: ticker details as {@link JSONObject}
+     * **/
+    public Ticker(String productId, double priceChangePercent, JSONObject ticker) {
+        super(ticker);
+        this.productId = productId;
+        baseAsset = ticker.getString("baseAsset");
+        quoteAsset = ticker.getString("quoteAsset");
+        bid = ticker.getDouble("bid");
+        ask = ticker.getDouble("ask");
+        volume = ticker.getDouble("volume");
+        this.priceChangePercent = priceChangePercent;
+    }
+
     public String getProductId() {
         return productId;
     }
@@ -86,16 +104,52 @@ public class Ticker extends StatDetails {
         return bid;
     }
 
+    /** Method to get {@link #bid} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #bid} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getBid(int decimals) {
+        return roundValue(bid, decimals);
+    }
+
     public double getAsk() {
         return ask;
+    }
+
+    /** Method to get {@link #ask} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #ask} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getAsk(int decimals) {
+        return roundValue(ask, decimals);
     }
 
     public double getVolume() {
         return volume;
     }
 
+    /** Method to get {@link #volume} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #volume} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getVolume(int decimals) {
+        return roundValue(volume, decimals);
+    }
+
     public double getPriceChangePercent() {
         return priceChangePercent;
+    }
+
+    /** Method to get {@link #priceChangePercent} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #priceChangePercent} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getPriceChangePercent(int decimals) {
+        return roundValue(priceChangePercent, decimals);
     }
 
     @Override

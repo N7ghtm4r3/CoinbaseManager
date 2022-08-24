@@ -1,6 +1,10 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records;
 
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods.PaymentMethod;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code TransferAction} class is useful to format general TransferAction object
@@ -69,6 +73,17 @@ public class TransferAction extends PaymentMethod.Amount {
         this.subTotal = subTotal;
     }
 
+    /** Constructor to init a {@link TransferAction} object
+     * @param transfer: transfer details as {@link JSONArray}
+     * **/
+    public TransferAction(JSONObject transfer) {
+        super(transfer);
+        id = transfer.getString("id");
+        payoutAt = transfer.getString("payout_at");
+        fee = transfer.getDouble("fee");
+        subTotal = transfer.getDouble("subtotal");
+    }
+
     public String getId() {
         return id;
     }
@@ -81,8 +96,26 @@ public class TransferAction extends PaymentMethod.Amount {
         return fee;
     }
 
+    /** Method to get {@link #fee} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #amount} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getFee(int decimals) {
+        return roundValue(fee, decimals);
+    }
+
     public double getSubTotal() {
         return subTotal;
+    }
+
+    /** Method to get {@link #subTotal} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #subTotal} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getSubTotal(int decimals) {
+        return roundValue(subTotal, decimals);
     }
 
     @Override

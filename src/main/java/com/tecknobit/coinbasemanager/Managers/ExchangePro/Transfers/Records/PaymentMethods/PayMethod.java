@@ -1,5 +1,8 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
+import com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.TransferAction;
+import org.json.JSONObject;
+
 /**
  * The {@code PayMethod} class is useful to format general PayMethod object
  * @apiNote see official documentation at:
@@ -69,6 +72,18 @@ public class PayMethod {
             throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
         else
             this.type = type;
+    }
+
+    /** Constructor to init a {@link TransferAction} object
+     * @param payment: candle details as {@link JSONObject}
+     * **/
+    public PayMethod(JSONObject payment) {
+        name = payment.getString("name");
+        if(name == null || name.isEmpty())
+            throw new IllegalArgumentException("Name value cannot be empty or null");
+        type = payment.getString("type");
+        if(!isTypeValid(type))
+            throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
     }
 
     public String getName() {

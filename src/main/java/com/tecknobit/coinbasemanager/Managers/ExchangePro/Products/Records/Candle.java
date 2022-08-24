@@ -2,6 +2,8 @@ package com.tecknobit.coinbasemanager.Managers.ExchangePro.Products.Records;
 
 import org.json.JSONArray;
 
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Candle} class is useful to format Candle object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
@@ -65,6 +67,15 @@ public class Candle extends Product {
         this.close = close;
     }
 
+    /** Constructor to init a {@link Candle} object
+     * @param candle: candle details as {@link JSONArray}
+     * **/
+    public Candle(JSONArray candle) {
+        super(candle.getLong(3), candle.getDouble(2), candle.getDouble(1), candle.getDouble(5));
+        time = candle.getLong(0);
+        close = candle.getDouble(4);
+    }
+
     public long getTime() {
         return time;
     }
@@ -73,18 +84,13 @@ public class Candle extends Product {
         return close;
     }
 
-    /** Method to assemble a candle object
-     * @param candle: jsonArray obtained by response request
-     * @return candle as {@link Candle}
+    /** Method to get {@link #close} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #close} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
      * **/
-    public static Candle assembleCandle(JSONArray candle){
-        return new Candle(candle.getLong(3),
-                candle.getDouble(2),
-                candle.getDouble(1),
-                candle.getDouble(5),
-                candle.getLong(0),
-                candle.getDouble(4)
-        );
+    public double getClose(int decimals) {
+        return roundValue(close, decimals);
     }
 
     @Override

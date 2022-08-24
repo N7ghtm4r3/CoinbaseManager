@@ -1,6 +1,5 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Account;
 
-import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.Account;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CoinbaseAccount;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Account.Records.CryptoAddress;
@@ -107,7 +106,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
         JSONArray jsonAccounts = new JSONArray(getAccountForProfile());
         ArrayList<Account> accounts = new ArrayList<>();
         for (int j = 0; j < jsonAccounts.length(); j++)
-            accounts.add(assembleAccountProfile(jsonAccounts.getJSONObject(j)));
+            accounts.add(new Account(jsonAccounts.getJSONObject(j)));
         return accounts;
     }
 
@@ -138,21 +137,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return one account from a profile as {@link Account} object
      * **/
     public Account getObjectAccountProfile(String accountId) throws Exception {
-        return assembleAccountProfile(new JSONObject(getAccountProfile(accountId)));
-    }
-
-    /** Method to assemble an Account object
-     * @param jsonAccount: jsonObject obtained by response request
-     * @return Account object as {@link Account}
-     * **/
-    private Account assembleAccountProfile(JSONObject jsonAccount){
-        return new Account(jsonAccount.getString("id"),
-                jsonAccount.getString("currency"),
-                jsonAccount.getDouble("balance"),
-                jsonAccount.getDouble("available"),
-                jsonAccount.getDouble("hold"),
-                jsonAccount.getString("profile_id"),
-                jsonAccount.getBoolean("trading_enabled"));
+        return new Account(new JSONObject(getAccountProfile(accountId)));
     }
 
     /** Request to get hold information from one profile
@@ -228,15 +213,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * **/
     private ArrayList<Hold> assembleHoldsList(JSONArray jsonHolds){
         ArrayList<Hold> holds = new ArrayList<>();
-        for (int j=0; j < jsonHolds.length(); j++){
-            JSONObject hold = jsonHolds.getJSONObject(j);
-            holds.add(new Hold(hold.getString("created_at"),
-                    hold.getString("id"),
-                    hold.getDouble("amount"),
-                    hold.getString("type"),
-                    hold.getString("ref")
-            ));
-        }
+        for (int j=0; j < jsonHolds.length(); j++)
+            holds.add(new Hold(jsonHolds.getJSONObject(j)));
         return holds;
     }
 
@@ -313,16 +291,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * **/
     private ArrayList<Ledger> assembleLedgersList(JSONArray jsonLedgers){
         ArrayList<Ledger> ledgers = new ArrayList<>();
-        for (int j=0; j < jsonLedgers.length(); j++){
-            JSONObject ledger = jsonLedgers.getJSONObject(j);
-            ledgers.add(new Ledger(ledger.getString("created_at"),
-                    ledger.getString("id"),
-                    ledger.getDouble("amount"),
-                    ledger.getString("type"),
-                    ledger.getDouble("balance"),
-                    ledger
-            ));
-        }
+        for (int j=0; j < jsonLedgers.length(); j++)
+            ledgers.add(new Ledger(jsonLedgers.getJSONObject(j)));
         return ledgers;
     }
 
@@ -422,21 +392,8 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     public ArrayList<CoinbaseAccount> getCoinbaseWalletsList() throws Exception {
         JSONArray jsonCoinbaseAccounts = new JSONArray(getJSONCoinbaseWallets());
         ArrayList<CoinbaseAccount> coinbaseAccounts = new ArrayList<>();
-        for (int j = 0; j < jsonCoinbaseAccounts.length(); j++){
-            JSONObject coinbaseAccount = jsonCoinbaseAccounts.getJSONObject(j);
-            coinbaseAccounts.add(new CoinbaseAccount(coinbaseAccount.getDouble("balance"),
-                    coinbaseAccount.getBoolean("available_on_consumer"),
-                    coinbaseAccount.getString("name"),
-                    coinbaseAccount.getBoolean("active"),
-                    coinbaseAccount.getString("currency"),
-                    coinbaseAccount.getString("id"),
-                    coinbaseAccount.getString("type"),
-                    coinbaseAccount.getBoolean("primary"),
-                    coinbaseAccount.getDouble("hold_balance"),
-                    coinbaseAccount.getString("hold_currency"),
-                    JsonHelper.getJSONObject(coinbaseAccount, "sepa_deposit_information")
-            ));
-        }
+        for (int j = 0; j < jsonCoinbaseAccounts.length(); j++)
+            coinbaseAccounts.add(new CoinbaseAccount(jsonCoinbaseAccounts.getJSONObject(j)));
         return coinbaseAccounts;
     }
 
@@ -467,21 +424,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @return response of generation one time crypto address for a deposit as {@link CryptoAddress} object
      * **/
     public CryptoAddress generateObjectCryptoAddress(String accountId) throws Exception {
-        JSONObject jsonCrypto = new JSONObject(generateCryptoAddress(accountId));
-        return new CryptoAddress(jsonCrypto.getString("id"),
-                jsonCrypto.getString("address"),
-                jsonCrypto.getJSONObject("address_info"),
-                jsonCrypto.getString("name"),
-                jsonCrypto.getString("created_at"),
-                jsonCrypto.getString("updated_at"),
-                jsonCrypto.getString("network"),
-                jsonCrypto.getString("uri_scheme"),
-                jsonCrypto.getString("resource"),
-                jsonCrypto.getString("resource_path"),
-                jsonCrypto.getString("deposit_uri"),
-                jsonCrypto.getBoolean("exchange_deposit_address"),
-                jsonCrypto.getJSONArray("warnings")
-        );
+        return new CryptoAddress(new JSONObject(generateCryptoAddress(accountId)));
     }
 
 }

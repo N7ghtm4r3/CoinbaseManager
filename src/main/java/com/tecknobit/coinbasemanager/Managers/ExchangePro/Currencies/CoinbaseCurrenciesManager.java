@@ -89,7 +89,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
         ArrayList<Currency> currencies = new ArrayList<>();
         JSONArray jsonCurrencies = new JSONArray(getAllKnownCurrencies());
         for (int j = 0; j < jsonCurrencies.length(); j++)
-            currencies.add(assembleCurrencyObject(jsonCurrencies.getJSONObject(j)));
+            currencies.add(new Currency(jsonCurrencies.getJSONObject(j)));
         return currencies;
     }
 
@@ -120,22 +120,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @return currency as {@link Currency} object
      * **/
     public Currency getCurrencyObject(String currencyId) throws Exception {
-        return assembleCurrencyObject(new JSONObject(getCurrency(currencyId)));
-    }
-
-    /** Method to assemble a Currency object
-     * @param jsonCurrency: jsonObject obtained by response request
-     * @return currency as {@link Currency} object
-     * **/
-    private Currency assembleCurrencyObject(JSONObject jsonCurrency){
-        return new Currency(jsonCurrency.getString("id"),
-                jsonCurrency.getString("name"),
-                jsonCurrency.getString("status"),
-                jsonCurrency.getDouble("min_size"),
-                jsonCurrency.getDouble("max_precision"),
-                jsonCurrency.getString("message"),
-                jsonCurrency
-        );
+        return new Currency(new JSONObject(getCurrency(currencyId)));
     }
 
 }

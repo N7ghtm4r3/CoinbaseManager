@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Orders.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code Fill} class is useful to format Fill object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
@@ -66,6 +70,19 @@ public class Fill extends OrderDetails {
         this.usdVolume = usdVolume;
     }
 
+    /** Constructor to init a {@link Fill} object
+     * @param fill: fill details as {@link JSONObject}
+     * **/
+    public Fill(JSONObject fill) {
+        super(fill);
+        tradeId = orderHelper.getLong("trade_id");
+        orderId = orderHelper.getString("order_id");
+        userId = orderHelper.getString("user_id");
+        liquidity = orderHelper.getString("liquidity");
+        fee = orderHelper.getDouble("fee");
+        usdVolume = orderHelper.getDouble("usd_volume");
+    }
+
     public long getTradeId() {
         return tradeId;
     }
@@ -86,8 +103,26 @@ public class Fill extends OrderDetails {
         return fee;
     }
 
+    /** Method to get {@link #fee} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #fee} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getFee(int decimals) {
+        return roundValue(fee, decimals);
+    }
+
     public double getUsdVolume() {
         return usdVolume;
+    }
+
+    /** Method to get {@link #usdVolume} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #usdVolume} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getUsdVolume(int decimals) {
+        return roundValue(usdVolume, decimals);
     }
 
     @Override

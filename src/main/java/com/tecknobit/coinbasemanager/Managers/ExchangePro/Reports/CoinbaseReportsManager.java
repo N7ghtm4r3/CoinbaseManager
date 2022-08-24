@@ -1,6 +1,5 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports;
 
-import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records.Report;
 import com.tecknobit.coinbasemanager.Managers.ExchangePro.Reports.Records.ReportDetails;
@@ -135,7 +134,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     private ArrayList<Report> assembleReportsList(JSONArray jsonReports){
         ArrayList<Report> reports = new ArrayList<>();
         for (int j=0; j < jsonReports.length(); j++)
-            reports.add(assembleReportObject(jsonReports.getJSONObject(j)));
+            reports.add(new Report(jsonReports.getJSONObject(j)));
         return reports;
     }
 
@@ -168,7 +167,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of general report as {@link ReportDetails} object
      * **/
     public ReportDetails createGeneralReportObject(String type) throws Exception {
-        return assembleReportDetails(new JSONObject(createGeneralReport(type)));
+        return new ReportDetails(new JSONObject(createGeneralReport(type)));
     }
 
     /** Request to create a general report
@@ -207,7 +206,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of general report as {@link ReportDetails} object
      * **/
     public ReportDetails createGeneralReportObject(String type, Params extraBodyParams) throws Exception {
-        return assembleReportDetails(new JSONObject(createGeneralReport(type, extraBodyParams)));
+        return new ReportDetails(new JSONObject(createGeneralReport(type, extraBodyParams)));
     }
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
@@ -237,7 +236,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
      * **/
     public ReportDetails create1099KReportObject(int year) throws Exception {
-        return assembleReportDetails(new JSONObject(create1099KReport(year)));
+        return new ReportDetails(new JSONObject(create1099KReport(year)));
     }
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
@@ -275,7 +274,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
      * **/
     public ReportDetails create1099KReportObject(int year, Params extraBodyParams) throws Exception {
-        return assembleReportDetails(new JSONObject(create1099KReport(year, extraBodyParams)));
+        return new ReportDetails(new JSONObject(create1099KReport(year, extraBodyParams)));
     }
 
     /** Method to assemble map of body params for {@linkplain #assemble1099KPayload(int)} method
@@ -316,7 +315,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createFillsReportObject(String productId) throws Exception {
-        return assembleReportDetails(new JSONObject(createFillsReport(productId)));
+        return new ReportDetails(new JSONObject(createFillsReport(productId)));
     }
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
@@ -354,7 +353,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createFillsReportObject(String productId, Params extraBodyParams) throws Exception {
-        return assembleReportDetails(new JSONObject(createFillsReport(productId, extraBodyParams)));
+        return new ReportDetails(new JSONObject(createFillsReport(productId, extraBodyParams)));
     }
 
     /** Method to assemble map of body params for {@linkplain #assembleFillsPayload(String)}} method
@@ -395,7 +394,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createAccountReportObject(String accountId) throws Exception {
-        return assembleReportDetails(new JSONObject(createAccountReport(accountId)));
+        return new ReportDetails(new JSONObject(createAccountReport(accountId)));
     }
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
@@ -433,7 +432,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createAccountReportObject(String accountId, Params extraBodyParams) throws Exception {
-        return assembleReportDetails(new JSONObject(createAccountReport(accountId, extraBodyParams)));
+        return new ReportDetails(new JSONObject(createAccountReport(accountId, extraBodyParams)));
     }
 
     /** Method to assemble map of body params for {@linkplain #assembleAccountPayload(String)} method
@@ -445,17 +444,6 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         bodyParams.addParam("type", Report.FILLS_REPORT_TYPE);
         bodyParams.addParam("account_id", accountId);
         return bodyParams;
-    }
-
-    /** Method to assemble report details object
-     * @param jsonReport: report details in JSON format
-     * @return {@link ReportDetails} object
-     * **/
-    private ReportDetails assembleReportDetails(JSONObject jsonReport){
-        return new ReportDetails(jsonReport.getString("id"),
-                jsonReport.getString("type"),
-                jsonReport.getString("status")
-        );
     }
 
     /** Request to get specific report
@@ -485,24 +473,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return specific report as {@link Report} object
      * **/
     public Report getReportObject(String reportId) throws Exception {
-        return assembleReportObject(new JSONObject(getReport(reportId)));
-    }
-
-    /** Method to assemble a Report object
-     * @param jsonReport: jsonObject obtained by response request
-     * @return report as {@link Report} object
-     * **/
-    private Report assembleReportObject(JSONObject jsonReport){
-        return new Report(jsonReport.getString("created_at"),
-                jsonReport.getString("completed_at"),
-                jsonReport.getString("expires_at"),
-                jsonReport.getString("id"),
-                jsonReport.getString("type"),
-                jsonReport.getString("status"),
-                jsonReport.getString("user_id"),
-                jsonReport.getString("file_url"),
-                new JsonHelper(jsonReport.getJSONObject("params"))
-        );
+        return new Report(new JSONObject(getReport(reportId)));
     }
 
 }

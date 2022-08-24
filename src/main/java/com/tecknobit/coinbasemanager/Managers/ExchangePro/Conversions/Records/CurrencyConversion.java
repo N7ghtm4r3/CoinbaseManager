@@ -1,5 +1,9 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Conversions.Records;
 
+import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code CurrencyConversion} class is useful to format CurrencyConversion object
  * @apiNote see official documentation at:
@@ -65,12 +69,33 @@ public class CurrencyConversion {
         this.to = to;
     }
 
+    /** Constructor to init a {@link CurrencyConversion} object
+     * @param currencyConversion: currency conversion details as {@link JSONObject}
+     * **/
+    public CurrencyConversion(JSONObject currencyConversion) {
+        this.id = currencyConversion.getString("id");
+        this.amount = currencyConversion.getDouble("amount");
+        this.fromAccountId = currencyConversion.getString("from_account_id");
+        this.toAccountId = currencyConversion.getString("to_account_id");
+        this.from = currencyConversion.getString("from");
+        this.to = currencyConversion.getString("to");
+    }
+
     public String getId() {
         return id;
     }
 
     public double getAmount() {
         return amount;
+    }
+
+    /** Method to get {@link #amount} instance
+     * @param decimals: number of digits to round final value
+     * @return {@link #amount} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     * **/
+    public double getAmount(int decimals) {
+        return roundValue(amount, decimals);
     }
 
     public String getFromAccountId() {

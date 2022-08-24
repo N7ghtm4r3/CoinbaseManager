@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Profiles.Records;
 
+import org.json.JSONObject;
+
 /**
  * The {@code Profile} class is useful to format Profile object
  * @apiNote see official documentation at:
@@ -91,6 +93,22 @@ public class Profile {
         this.isDefault = isDefault;
         this.createdAt = createdAt;
         this.hasMargin = hasMargin;
+    }
+
+    /** Constructor to init a {@link Profile} object
+     * @param profile: profile details as {@link JSONObject}
+     * @throws IllegalArgumentException if parameters range is not respected
+     * **/
+    public Profile(JSONObject profile) {
+        id = profile.getString("id");
+        userId = profile.getString("user_id");
+        name = profile.getString("name");
+        if(name == null || name.isEmpty())
+            throw new IllegalArgumentException("Name value cannot be empty or null");
+        active = profile.getBoolean("active");
+        isDefault = profile.getBoolean("is_default");
+        createdAt = profile.getString("created_at");
+        hasMargin = profile.getBoolean("has_margin");
     }
 
     public String getId() {

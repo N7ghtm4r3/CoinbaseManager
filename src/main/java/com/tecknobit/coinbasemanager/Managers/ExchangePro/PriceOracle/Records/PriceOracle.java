@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
+
 /**
  * The {@code PriceOracle} class is useful to format PriceOracle object
  * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
@@ -34,16 +36,30 @@ public class PriceOracle {
      * **/
     private final ArrayList<Price> prices;
 
-    /** Constructor to init a {@link PriceOracle} object
-     * @param timestamp: timestamp value
-     * @param jsonPriceOracle: price oracle details in JSON format
-     * **/
-    public PriceOracle(long timestamp, JSONObject jsonPriceOracle) {
+    /**
+     * Constructor to init a {@link PriceOracle} object
+     * @param timestamp: indicates when the latest datapoint was obtained
+     * @param messages: list of messages as {@link ArrayList} of {@link String}
+     * @param signatures: array of Ethereum-compatible ECDSA signatures for each message
+     * @param prices: contains human-readable asset prices
+     **/
+    public PriceOracle(long timestamp, ArrayList<String> messages, ArrayList<String> signatures, ArrayList<Price> prices) {
         this.timestamp = timestamp;
-        messages = assembleStringList(jsonPriceOracle.getJSONArray("messages"));
-        signatures = assembleStringList(jsonPriceOracle.getJSONArray("signatures"));
+        this.messages = messages;
+        this.signatures = signatures;
+        this.prices = prices;
+    }
+
+    /**
+     * Constructor to init a {@link PriceOracle} object
+     * @param priceOracle: price oracle details as {@link JSONObject}
+     **/
+    public PriceOracle(JSONObject priceOracle) {
+        this.timestamp = priceOracle.getLong("timestamp");
+        messages = assembleStringList(priceOracle.getJSONArray("messages"));
+        signatures = assembleStringList(priceOracle.getJSONArray("signatures"));
         prices = new ArrayList<>();
-        loadPricesList(jsonPriceOracle.getJSONObject("prices"));
+        loadPricesList(priceOracle.getJSONObject("prices"));
     }
 
     /** Method to assemble a string list
@@ -128,6 +144,15 @@ public class PriceOracle {
 
         public double getPrice() {
             return price;
+        }
+
+        /** Method to get {@link #price} instance
+         * @param decimals: number of digits to round final value
+         * @return {@link #price} instance rounded with decimal digits inserted
+         * @throws IllegalArgumentException if decimalDigits is negative
+         * **/
+        public double getPrice(int decimals) {
+            return roundValue(price, decimals);
         }
 
         /** Method to set {@link #price}

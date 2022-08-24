@@ -71,38 +71,52 @@ public class Currency {
      * @param minSize: minimum size value
      * @param maxPrecision: maximum precision value
      * @param message: message value
-     * @param jsonCurrencyDetails: currency detail in JSON format
+     * @param currency: currency detail in JSON format
      * **/
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
-                    JSONObject jsonCurrencyDetails) {
+                    JSONObject currency) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.minSize = minSize;
         this.maxPrecision = maxPrecision;
         this.message = message;
-        JsonHelper jsonHelper = new JsonHelper(jsonCurrencyDetails.getJSONObject("details"));
-        convertibleToCurrenciesList = loadDetailsList(JsonHelper.getJSONArray(jsonCurrencyDetails, "convertible_to"));
-        currencyDetails = new CurrencyDetails(jsonHelper.getString("symbol"),
-                jsonHelper.getDouble("min_withdrawal_amount"),
-                jsonHelper.getInt("network_confirmations"),
-                jsonHelper.getDouble("max_withdrawal_amount"),
-                jsonHelper.getString("crypto_address_link"),
-                jsonHelper.getString("type"),
-                jsonHelper.getInt("sort_order"),
-                jsonHelper.getString("crypto_transaction_link"),
-                jsonHelper.getString("display_name"),
-                jsonHelper.getString("processing_time_seconds"),
-                loadDetailsList(jsonHelper.getJSONArray("push_payment_methods")),
-                loadDetailsList(jsonHelper.getJSONArray("group_types"))
+        convertibleToCurrenciesList = loadDetailsList(JsonHelper.getJSONArray(currency, "convertible_to"));
+        JsonHelper currencyDetails = new JsonHelper(currency.getJSONObject("details"));
+        this.currencyDetails = new CurrencyDetails(currencyDetails.getString("symbol"),
+                currencyDetails.getDouble("min_withdrawal_amount"),
+                currencyDetails.getInt("network_confirmations"),
+                currencyDetails.getDouble("max_withdrawal_amount"),
+                currencyDetails.getString("crypto_address_link"),
+                currencyDetails.getString("type"),
+                currencyDetails.getInt("sort_order"),
+                currencyDetails.getString("crypto_transaction_link"),
+                currencyDetails.getString("display_name"),
+                currencyDetails.getString("processing_time_seconds"),
+                loadDetailsList(currencyDetails.getJSONArray("push_payment_methods")),
+                loadDetailsList(currencyDetails.getJSONArray("group_types"))
         );
+    }
+
+    /** Constructor to init a {@link Currency} object
+     * @param currency: currency details as {@link JSONObject}
+     * **/
+    public Currency(JSONObject currency) {
+        id = currency.getString("id");
+        name = currency.getString("name");
+        status = currency.getString("status");
+        minSize = currency.getDouble("min_size");
+        maxPrecision = currency.getDouble("max_precision");
+        message = currency.getString("message");
+        convertibleToCurrenciesList = loadDetailsList(JsonHelper.getJSONArray(currency, "convertible_to"));
+        currencyDetails = new CurrencyDetails(currency.getJSONObject("details"));
     }
 
     /** Method to assemble a string value list
      * @param jsonDetails: jsonObject obtained by response request
      * @return string values list as {@link ArrayList} of {@link String}
      * **/
-    private ArrayList<String> loadDetailsList(JSONArray jsonDetails){
+    private static ArrayList<String> loadDetailsList(JSONArray jsonDetails){
         ArrayList<String> details = new ArrayList<>();
         if(jsonDetails != null)
             for (int j=0; j < jsonDetails.length(); j++)
@@ -256,6 +270,25 @@ public class Currency {
             this.processingTimeSeconds = processingTimeSeconds;
             this.pushPaymentMethodsList = pushPaymentMethodsList;
             this.groupTypesList = groupTypesList;
+        }
+
+        /** Constructor to init a {@link Currency} object
+         * @param currencyDetails: currency details as {@link JSONObject}
+         * **/
+        public CurrencyDetails(JSONObject currencyDetails) {
+            JsonHelper currency = new JsonHelper(currencyDetails.getJSONObject("details"));
+            symbol = currency.getString("symbol");
+            minWithdrawalAmount = currency.getDouble("min_withdrawal_amount");
+            networksConfirmations = currency.getInt("network_confirmations");
+            maxWithdrawalAmount = currency.getDouble("max_withdrawal_amount");
+            cryptoAddressLink = currency.getString("crypto_address_link");
+            type = currency.getString("type");
+            sortOrder = currency.getInt("sort_order");
+            cryptoTransactionLink = currency.getString("crypto_transaction_link");
+            displayName = currency.getString("display_name");
+            processingTimeSeconds = currency.getString("processing_time_seconds");
+            pushPaymentMethodsList = loadDetailsList(currency.getJSONArray("push_payment_methods"));
+            groupTypesList = loadDetailsList(currency.getJSONArray("group_types"));
         }
 
         public String getSymbol() {

@@ -92,7 +92,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return result of conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount) throws Exception {
-        return assembleCurrencyConversion(new JSONObject(convertCurrency(from, to, amount)));
+        return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount)));
     }
 
     /** Request to convert one currency into another one
@@ -137,7 +137,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return result of conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount, Params extraParams) throws Exception {
-        return assembleCurrencyConversion(new JSONObject(convertCurrency(from, to, amount, extraParams)));
+        return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount, extraParams)));
     }
 
     /** Method to assemble map of body params
@@ -152,20 +152,6 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
         bodyParams.addParam("to", to);
         bodyParams.addParam("amount", amount);
         return bodyParams;
-    }
-
-    /** Method to assemble a CurrencyConversion object
-     * @param jsonCurrencyConversion: jsonObject obtained by response request
-     * @return currencyConversion as {@link CurrencyConversion} object
-     * **/
-    private CurrencyConversion assembleCurrencyConversion(JSONObject jsonCurrencyConversion){
-        return new CurrencyConversion(jsonCurrencyConversion.getString("id"),
-                jsonCurrencyConversion.getDouble("amount"),
-                jsonCurrencyConversion.getString("from_account_id"),
-                jsonCurrencyConversion.getString("to_account_id"),
-                jsonCurrencyConversion.getString("from"),
-                jsonCurrencyConversion.getString("to")
-        );
     }
 
     /** Request to get information about one conversion
@@ -195,7 +181,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return information about one conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId) throws Exception {
-        return assembleCurrencyConversion(new JSONObject(getCurrencyConversion(conversionId)));
+        return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId)));
     }
 
     /** Request to get information about one conversion
@@ -228,7 +214,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @return information about one conversion as {@link CurrencyConversion} object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId, String profileId) throws Exception {
-        return assembleCurrencyConversion(new JSONObject(getCurrencyConversion(conversionId, profileId)));
+        return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId, profileId)));
     }
 
 }

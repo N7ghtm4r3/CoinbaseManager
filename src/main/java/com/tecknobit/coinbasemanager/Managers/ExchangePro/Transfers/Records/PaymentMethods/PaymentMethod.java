@@ -1,7 +1,10 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro.Transfers.Records.PaymentMethods;
 
 import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code PayPalMethod} class is useful to format PaymentMethod object
@@ -189,6 +192,32 @@ public class PaymentMethod extends PayMethod{
         minimumPurchaseAmount = new Amount(jsonHelper.getJSONObject("minimum_purchase_amount"));
     }
 
+    /** Constructor to init a {@link PaymentMethod} object
+     * @param payment: payment details as {@link JSONArray}
+     * **/
+    public PaymentMethod(JSONObject payment) {
+        super(payment);
+        jsonHelper = new JsonHelper(payment);
+        id = payment.getString("id");
+        currency = payment.getString("currency");
+        primaryBuy = payment.getBoolean("primary_buy");
+        primarySell = payment.getBoolean("primary_sell");
+        instantBuy = payment.getBoolean("instant_buy");
+        instantSell = payment.getBoolean("instant_sell");
+        createdAt = payment.getString("created_at");
+        updatedAt = payment.getString("updated_at");
+        resource = payment.getString("resource");
+        resourcePath = payment.getString("resource_path");
+        allowBuy = payment.getBoolean("allow_buy");
+        allowSell = payment.getBoolean("allow_sell");
+        allowDeposit = payment.getBoolean("allow_deposit");
+        allowWithdraw = payment.getBoolean("allow_withdraw");
+        verified = payment.getBoolean("verified");
+        holdBusinessDays = jsonHelper.getInt("hold_business_days");
+        holdDays = jsonHelper.getInt("hold_days");
+        minimumPurchaseAmount = new Amount(jsonHelper.getJSONObject("minimum_purchase_amount"));
+    }
+
     public String getId() {
         return id;
     }
@@ -261,8 +290,8 @@ public class PaymentMethod extends PayMethod{
         return minimumPurchaseAmount;
     }
 
-    /** Method to get PayPal limits details
-     * any params required
+    /** Method to get PayPal limits details <br>
+     * Any params required
      * @return PayPal limits details as {@link PayPalMethod} object, if is not a PayPal method will return null value
      * **/
     public PayPalMethod getPayPalLimits(){
@@ -277,8 +306,8 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
-    /** Method to get PayPal picker data details
-     * any params required
+    /** Method to get PayPal picker data details <br>
+     * Any params required
      * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} object, if is not a PayPal method will return null value
      * **/
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
@@ -286,21 +315,15 @@ public class PaymentMethod extends PayMethod{
             payPalPickerData = jsonHelper.getJSONObject("picker_data");
         if(payPalPickerData != null){
             String symbol = payPalPickerData.getString("symbol");
-            if(symbol.equals(PAYPAL_TYPE)){
-                return new PayPalMethod.PayPalPickerData(symbol,
-                        payPalPickerData.getBoolean("payout_only"),
-                        payPalPickerData.getString("paypal_email"),
-                        payPalPickerData.getString("paypal_owner"),
-                        payPalPickerData.getBoolean("reauth")
-                );
-            }
+            if(symbol.equals(PAYPAL_TYPE))
+                return new PayPalMethod.PayPalPickerData(symbol, payPalPickerData);
             return null;
         }
         return null;
     }
 
-    /** Method to get Bank limits details
-     * any params required
+    /** Method to get Bank limits details <br>
+     * Any params required
      * @return Bank limits details as {@link BankMethod} object, if is not a Bank method will return null value
      * **/
     public BankMethod getBankLimits(){
@@ -315,8 +338,8 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
-    /** Method to get Bank picker data details
-     * any params required
+    /** Method to get Bank picker data details <br>
+     * Any params required
      * @return Bank picker data details as {@link BankMethod.BankPickerData} object, if is not a Bank method will return null value
      * **/
     public BankMethod.BankPickerData getBankPickerData(){
@@ -324,37 +347,28 @@ public class PaymentMethod extends PayMethod{
             bankPickerData = jsonHelper.getJSONObject("picker_data");
         if(bankPickerData != null){
             String symbol = bankPickerData.getString("symbol");
-            if(symbol.equals(BANK_TYPE)){
-                return new BankMethod.BankPickerData(symbol,
-                        bankPickerData.getString("iban"),
-                        bankPickerData.getString("institution_name"),
-                        bankPickerData.getString("swift")
-                );
-            }
+            if(symbol.equals(BANK_TYPE))
+                return new BankMethod.BankPickerData(symbol, bankPickerData);
             return null;
         }
         return null;
     }
 
-    /** Method to get Fiat Account details
-     * any params required
+    /** Method to get Fiat Account details <br>
+     * Any params required
      * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} object,
      * if is not a Fiat Account method will return null value
      * **/
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
         if(fiatAccountDetails == null)
             fiatAccountDetails = jsonHelper.getJSONObject(FIAT_ACCOUNT_TYPE);
-        if(fiatAccountDetails != null){
-            return new FiatAccountMethod.FiatAccountDetails(fiatAccountDetails.getString("id"),
-                    fiatAccountDetails.getString("resource"),
-                    fiatAccountDetails.getString("resource_path")
-            );
-        }
+        if(fiatAccountDetails != null)
+            return new FiatAccountMethod.FiatAccountDetails(fiatAccountDetails);
         return null;
     }
 
-    /** Method to get Fiat Account limits details
-     * any params required
+    /** Method to get Fiat Account limits details <br>
+     * Any params required
      * @return Fiat Account limits details as {@link FiatAccountMethod} object,
      * if is not a Fiat Account method will return null value
      * **/
@@ -370,8 +384,8 @@ public class PaymentMethod extends PayMethod{
         return null;
     }
 
-    /** Method to get Fiat Account picker data details
-     * any params required
+    /** Method to get Fiat Account picker data details <br>
+     * Any params required
      * @return  Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} object,
      * if is not a Fiat Account will return null value
      * **/
@@ -380,12 +394,8 @@ public class PaymentMethod extends PayMethod{
             fiatAccountPickerData = jsonHelper.getJSONObject("picker_data");
         if(fiatAccountPickerData != null){
             String symbol = fiatAccountPickerData.getString("type");
-            if(symbol.equals(FIAT_ACCOUNT_TYPE)){
-                return new FiatAccountMethod.FiatAccountPickerData(symbol,
-                        fiatAccountPickerData.getDouble("minimumPurchaseAmount"),
-                        fiatAccountDetails.getString("currency")
-                );
-            }
+            if(symbol.equals(FIAT_ACCOUNT_TYPE))
+                return new FiatAccountMethod.FiatAccountPickerData(symbol, fiatAccountPickerData);
             return null;
         }
         return null;
@@ -481,6 +491,15 @@ public class PaymentMethod extends PayMethod{
 
         public double getAmount() {
             return amount;
+        }
+
+        /** Method to get {@link #amount} instance
+         * @param decimals: number of digits to round final value
+         * @return {@link #amount} instance rounded with decimal digits inserted
+         * @throws IllegalArgumentException if decimalDigits is negative
+         * **/
+        public double getAmount(int decimals) {
+            return roundValue(amount, decimals);
         }
 
         /** Method to set {@link #amount}
