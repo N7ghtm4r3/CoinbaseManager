@@ -1,13 +1,14 @@
 package com.tecknobit.coinbasemanager.Constants;
 
 /**
- *  The {@code EndpointsList} class is a container class for all Coinbase's endpoints of the service API
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/">
- *      https://docs.cloud.coinbase.com/exchange/reference/</a>
- *  @author N7ghtm4r3 - Tecknobit
- * **/
+ * The {@code EndpointsList} class is a container class for all Coinbase's endpoints of the service API
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/">
+ * https://docs.cloud.coinbase.com/exchange/reference/</a>
+ **/
 
-public class EndpointsList {
+public abstract class EndpointsList {
 
     /**
      * {@code ACCOUNT_ENDPOINT} is constant for ACCOUNT_ENDPOINT's endpoint

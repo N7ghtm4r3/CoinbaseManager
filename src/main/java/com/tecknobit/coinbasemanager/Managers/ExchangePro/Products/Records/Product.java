@@ -10,26 +10,26 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
  <ul>
      <li>
          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
-     </li>
- </ul>
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
-public class Product {
+public abstract class Product {
 
     /**
      * {@code open} is instance that memorizes open value
-     * **/
+     **/
     protected final double open;
 
     /**
      * {@code high} is instance that memorizes high value
-     * **/
+     **/
     protected final double high;
 
     /**

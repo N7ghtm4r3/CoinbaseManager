@@ -23,26 +23,26 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
      </li>
      <li>
         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
-     </li>
-     <li>
-        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder</a>
-     </li>
- </ul>
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
-public class OrderDetails {
+public abstract class OrderDetails {
 
     /**
      * {@code createdAt} is instance that memorizes created at value
-     * **/
+     **/
     private final String createdAt;
 
     /**
      * {@code productId} is instance that memorizes product identifier value
-     * **/
+     **/
     private final String productId;
 
     /**

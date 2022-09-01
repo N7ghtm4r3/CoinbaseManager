@@ -29,20 +29,6 @@ public class TradingPair {
     private final String quoteCurrency;
 
     /**
-     * {@code baseMinSize} is instance that memorizes base minimum size value
-     * @deprecated This instance and correlated usages will be removed in the next update
-     * **/
-    @Deprecated
-    private final double baseMinSize;
-
-    /**
-     * {@code baseMaxSize} is instance that memorizes base maximum size value
-     * @deprecated This instance and correlated usages will be removed in the next update
-     * **/
-    @Deprecated
-    private final double baseMaxSize;
-
-    /**
      * {@code quoteIncrement} is instance that memorizes quote increment value
      * **/
     private final double quoteIncrement;
@@ -61,13 +47,6 @@ public class TradingPair {
      * {@code minMarketFunds} is instance that memorizes minimum market founds value
      * **/
     private final double minMarketFunds;
-
-    /**
-     * {@code maxMarketFunds} is instance that memorizes maximum market founds value
-     * @deprecated This instance and correlated usages will be removed in the next update
-     * **/
-    @Deprecated
-    private final double maxMarketFunds;
 
     /**
      * {@code maxMarketFunds} is flag that checks if margin is enabled
@@ -123,57 +102,6 @@ public class TradingPair {
      * @param id: identifier value
      * @param baseCurrency: base currency value
      * @param quoteCurrency: quote currency value
-     * @param baseMinSize: base minimum size value
-     * @param baseMaxSize: base maximum size value
-     * @param quoteIncrement: quote increment value
-     * @param baseIncrement: base increment value
-     * @param displayName: display name value
-     * @param minMarketFunds: minimum market founds value
-     * @param maxMarketFunds: maximum market founds value
-     * @param marginEnabled: flag that checks if margin is enabled
-     * @param postOnly: flag that checks if is only post
-     * @param limitOnly: flag that checks if is only limit
-     * @param cancelOnly: flag that checks if is only cancel
-     * @param status: status value
-     * @param statusMessage: status message value
-     * @param auctionMode: flag that checks if is auction mode
-     * @param tradingDisabled: indicates whether trading is currently restricted on this product, this includes whether both new orders and order cancelations are restricted
-     * @param fxStablecoin: indicates whether the currency pair is a Stable Pair
-     * @param maxSlippagePercentage: maximum slippage percentage
-     * @deprecated following instances will be removed in the next update: {@link #baseMinSize}, {@link #baseMaxSize} and {@link #maxMarketFunds}
-     * **/
-    @Deprecated
-    public TradingPair(String id, String baseCurrency, String quoteCurrency, double baseMinSize, double baseMaxSize,
-                       double quoteIncrement, double baseIncrement, String displayName, double minMarketFunds,
-                       double maxMarketFunds, boolean marginEnabled, boolean postOnly, boolean limitOnly, boolean cancelOnly,
-                       String status, String statusMessage, boolean auctionMode, boolean tradingDisabled, boolean fxStablecoin,
-                       double maxSlippagePercentage) {
-        this.id = id;
-        this.baseCurrency = baseCurrency;
-        this.quoteCurrency = quoteCurrency;
-        this.baseMinSize = baseMinSize;
-        this.baseMaxSize = baseMaxSize;
-        this.quoteIncrement = quoteIncrement;
-        this.baseIncrement = baseIncrement;
-        this.displayName = displayName;
-        this.minMarketFunds = minMarketFunds;
-        this.maxMarketFunds = maxMarketFunds;
-        this.marginEnabled = marginEnabled;
-        this.postOnly = postOnly;
-        this.limitOnly = limitOnly;
-        this.cancelOnly = cancelOnly;
-        this.status = status;
-        this.statusMessage = statusMessage;
-        this.auctionMode = auctionMode;
-        this.tradingDisabled = tradingDisabled;
-        this.fxStablecoin = fxStablecoin;
-        this.maxSlippagePercentage = maxSlippagePercentage;
-    }
-
-    /** Constructor to init a {@link TradingPair} object
-     * @param id: identifier value
-     * @param baseCurrency: base currency value
-     * @param quoteCurrency: quote currency value
      * @param quoteIncrement: quote increment value
      * @param baseIncrement: base increment value
      * @param displayName: display name value
@@ -210,9 +138,6 @@ public class TradingPair {
         this.tradingDisabled = tradingDisabled;
         this.fxStablecoin = fxStablecoin;
         this.maxSlippagePercentage = maxSlippagePercentage;
-        baseMinSize = -1;
-        baseMaxSize = -1;
-        maxMarketFunds = -1;
     }
 
     /** Constructor to init a {@link TradingPair} object
@@ -236,9 +161,6 @@ public class TradingPair {
         tradingDisabled = pair.getBoolean("trading_disabled");
         fxStablecoin = pair.getBoolean("fx_stablecoin");
         maxSlippagePercentage = pair.getDouble("max_slippage_percentage");
-        baseMinSize = -1;
-        baseMaxSize = -1;
-        maxMarketFunds = -1;
     }
 
     public String getId() {
@@ -251,18 +173,6 @@ public class TradingPair {
 
     public String getQuoteCurrency() {
         return quoteCurrency;
-    }
-
-    /**@deprecated This method and correlated instance {@link #baseMinSize} will be removed in the next update**/
-    @Deprecated
-    public double getBaseMinSize() {
-        return baseMinSize;
-    }
-
-    /**@deprecated This method and correlated instance {@link #baseMaxSize} will be removed in the next update**/
-    @Deprecated
-    public double getBaseMaxSize() {
-        return baseMaxSize;
     }
 
     public double getQuoteIncrement() {
@@ -279,12 +189,6 @@ public class TradingPair {
 
     public double getMinMarketFunds() {
         return minMarketFunds;
-    }
-
-    /**@deprecated This method and correlated instance {@link #maxMarketFunds} will be removed in the next update**/
-    @Deprecated
-    public double getMaxMarketFunds() {
-        return maxMarketFunds;
     }
 
     public boolean isMarginEnabled() {
@@ -342,13 +246,10 @@ public class TradingPair {
                 "id='" + id + '\'' +
                 ", baseCurrency='" + baseCurrency + '\'' +
                 ", quoteCurrency='" + quoteCurrency + '\'' +
-                ", baseMinSize=" + baseMinSize +
-                ", baseMaxSize=" + baseMaxSize +
                 ", quoteIncrement=" + quoteIncrement +
                 ", baseIncrement=" + baseIncrement +
                 ", displayName='" + displayName + '\'' +
                 ", minMarketFunds=" + minMarketFunds +
-                ", maxMarketFunds=" + maxMarketFunds +
                 ", marginEnabled=" + marginEnabled +
                 ", postOnly=" + postOnly +
                 ", limitOnly=" + limitOnly +

@@ -1,7 +1,6 @@
 package com.tecknobit.coinbasemanager.Managers.ExchangePro;
 
 import com.tecknobit.apimanager.Manager.APIRequest;
-import com.tecknobit.apimanager.Tools.Formatters.JsonHelper;
 import com.tecknobit.apimanager.Tools.Trading.TradingTools;
 
 import static com.tecknobit.apimanager.Manager.APIRequest.*;
@@ -65,11 +64,6 @@ public class CoinbaseManager {
      * {@code apiKey} is instance that memorizes api key user value
      * **/
     protected final String apiKey;
-
-    /**
-     * {@code jsonHelper} is instance useful to help to format JSON responses API
-     * **/
-    protected JsonHelper jsonHelper;
 
     /**
      * {@code keysInserted} is control flag
