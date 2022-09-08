@@ -7,10 +7,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Fee} class is useful to format Fee object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+ **/
 
 public class Fee {
 

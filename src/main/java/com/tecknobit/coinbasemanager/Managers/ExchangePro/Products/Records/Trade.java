@@ -4,10 +4,11 @@ import org.json.JSONObject;
 
 /**
  * The {@code Trade} class is useful to format Trade object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
+ **/
 
 public class Trade extends StatDetails {
 

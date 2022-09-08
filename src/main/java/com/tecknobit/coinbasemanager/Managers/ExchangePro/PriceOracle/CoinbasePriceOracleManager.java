@@ -9,10 +9,11 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.PRICE_ORACLE
 
 /**
  * The {@code CoinbasePriceOracleManager} class is useful to manage all Coinbase price oracle endpoints
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+ **/
 
 public class CoinbasePriceOracleManager extends CoinbaseManager {
 
@@ -58,8 +59,8 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /** Request to get signed prices
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
      * @return signed prices as {@link String}
      * **/
     public String getSignedPrices() throws Exception {
@@ -68,8 +69,8 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /** Request to get signed prices
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
      * @return signed prices as {@link JSONObject}
      * **/
     public JSONObject getSignedPricesJSON() throws Exception {
@@ -78,8 +79,8 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /** Request to get signed prices
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
      * @return signed prices as {@link PriceOracle} object
      * **/
     public PriceOracle getSignedPricesObject() throws Exception {

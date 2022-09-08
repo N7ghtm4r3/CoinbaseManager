@@ -6,10 +6,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Account} class is useful to format Account object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1</a>
+ **/
 
 public class Account {
 

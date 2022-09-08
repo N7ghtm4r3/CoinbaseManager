@@ -14,10 +14,11 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.*;
 
 /**
  * The {@code CoinbaseProductsManager} class is useful to manage all Coinbase products endpoints
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+ **/
 
 public class CoinbaseProductsManager extends CoinbaseManager {
 
@@ -73,8 +74,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs as {@link String}
      * **/
     public String getAllTradingPairs() throws Exception {
@@ -83,8 +84,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs as {@link JSONArray}
      * **/
     public JSONArray getAllTradingPairsJSON() throws Exception {
@@ -98,8 +99,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs list as {@link ArrayList} of {@link TradingPair}
      * **/
     public ArrayList<TradingPair> getAllTradingPairsList() throws Exception {
@@ -108,8 +109,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * @param type: type of trading pairs to fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs as {@link String}
      * **/
     public String getAllTradingPairs(String type) throws Exception {
@@ -118,8 +119,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * @param type: type of trading pairs to fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs as {@link JSONArray}
      * **/
     public JSONArray getAllTradingPairsJSON(String type) throws Exception {
@@ -128,8 +129,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get all trading pairs
      * @param type: type of trading pairs to fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      * @return all trading pairs as {@link ArrayList} of {@link TradingPair}
      * **/
     public ArrayList<TradingPair> getAllTradingPairsList(String type) throws Exception {
@@ -149,8 +150,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get single trading pair
      * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1</a>
      * @return single trading pair as {@link String}
      * **/
     public String getSingleTradingPair(String productId) throws Exception {
@@ -159,8 +160,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get single trading pair
      * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangere stapi_getproduct</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangere stapi_getproduct-1</a>
      * @return single trading pair as {@link JSONObject}
      * **/
     public JSONObject getSingleTradingPairJSON(String productId) throws Exception {
@@ -169,8 +170,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get single trading pair
      * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1</a>
      * @return single trading pair as {@link TradingPair} object
      * **/
     public TradingPair getSingleTradingPairObject(String productId) throws Exception {
@@ -179,8 +180,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link String}
      * **/
     public String getProductBook(String productId) throws Exception {
@@ -189,8 +190,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link JSONObject}
      * **/
     public JSONObject getProductBookJSON(String productId) throws Exception {
@@ -199,8 +200,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link Book} object
      * **/
     public Book getProductBookObject(String productId) throws Exception {
@@ -210,8 +211,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link String}
      * **/
     public String getProductBook(String productId, int level) throws Exception {
@@ -222,8 +223,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link JSONObject}
      * **/
     public JSONObject getProductBookJSON(String productId, int level) throws Exception {
@@ -233,8 +234,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get book details
      * @param productId: identifier of book es. BTC-USD
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return book details as {@link Book} object
      * **/
     public Book getProductBookObject(String productId, int level) throws Exception {
@@ -243,8 +244,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details as {@link String}
      * **/
     public String getAllProductsBook() throws Exception {
@@ -253,8 +254,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details as {@link JSONArray}
      * **/
     public JSONArray getAllProductsBookJSON() throws Exception {
@@ -269,8 +270,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details {@link ArrayList} of {@link Book}
      * **/
     public ArrayList<Book> getAllProductsBookList() throws Exception {
@@ -279,8 +280,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details as {@link String}
      * **/
     public String getAllProductsBook(int level) throws Exception {
@@ -289,8 +290,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details as {@link JSONArray}
      * **/
     public JSONArray getAllProductsBookJSON(int level) throws Exception {
@@ -305,8 +306,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products book details <br>
      * @param level: type of format for result
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
      * @return all products book details {@link ArrayList} of {@link Book}
      * **/
     public ArrayList<Book> getAllProductsBookList(int level) throws Exception {
@@ -328,8 +329,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get candles
      * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles as {@link String}
      * **/
     public String getProductCandles(String productId) throws Exception {
@@ -338,8 +339,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get candles
      * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles as {@link JSONArray}
      * **/
     public JSONArray getProductCandlesJSON(String productId) throws Exception {
@@ -348,8 +349,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get candles list
      * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles list as {@link ArrayList} of {@link Candle}
      * **/
     public ArrayList<Candle> getProductCandlesList(String productId) throws Exception {
@@ -359,9 +360,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get candles
      * @param productId: identifier of candle es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity,start,end)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @implSpec (keys accepted are granularity, start, end)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles as {@link String}
      * **/
     public String getProductCandles(String productId, Params queryParams) throws Exception {
@@ -372,9 +373,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get candles
      * @param productId: identifier of candle es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity,start,end)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @implSpec (keys accepted are granularity, start, end)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles as {@link JSONArray}
      * **/
     public JSONArray getProductCandlesJSON(String productId, Params queryParams) throws Exception {
@@ -384,9 +385,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get candles list
      * @param productId: identifier of candle es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity,start,end)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+     * @implSpec (keys accepted are granularity, start, end)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
      * @return candles list as {@link ArrayList} of {@link Candle}
      * **/
     public ArrayList<Candle> getProductCandlesList(String productId, Params queryParams) throws Exception {
@@ -406,8 +407,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product stats
      * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return product stats as {@link String}
      * **/
     public String getProductStats(String productId) throws Exception {
@@ -416,8 +417,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product stats
      * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return product stats as {@link JSONObject}
      * **/
     public JSONObject getProductStatsJSON(String productId) throws Exception {
@@ -426,8 +427,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product stats
      * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return product stats as {@link Stat} object
      * **/
     public Stat getProductStatsObject(String productId) throws Exception {
@@ -436,8 +437,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products stats <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return all products stats as {@link String}
      * **/
     public String getAllProductsStats() throws Exception {
@@ -446,8 +447,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products stats <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return all products stats as {@link JSONObject}
      * **/
     public JSONArray getAllProductsStatsJSON() throws Exception {
@@ -462,8 +463,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Custom request to get all products stats list <br>
      * Any params required
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
      * @return all products stats as {@link ArrayList} of {@link Stat}
      * **/
     public ArrayList<Stat> getAllProductsStatsList() throws Exception {
@@ -502,8 +503,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of product ticker es. BTC-USD
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return product stats as {@link String}
      * **/
     public String getProductTicker(String productId) throws Exception {
@@ -514,8 +515,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of product ticker es. BTC-USD
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return product stats as {@link JSONObject}
      * **/
     public JSONObject getProductTickerJSON(String productId) throws Exception {
@@ -537,8 +538,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of product ticker es. BTC-USD
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return product stats as {@link Ticker} object
      * **/
     public Ticker getProductTickerObject(String productId) throws Exception {
@@ -549,8 +550,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * any params required
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return all tickers list as {@link String}
      * **/
     public String getAllTickers() throws Exception {
@@ -561,8 +562,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * any params required
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return all tickers list as {@link JSONArray}
      * **/
     public JSONArray getAllTickersJSON() throws Exception {
@@ -580,8 +581,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * Any params required
      * @implNote this request add to the original json from Coinbase some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
      * @return all tickers list as {@link ArrayList} of {@link Ticker}
      * **/
     public ArrayList<Ticker> getAllTickersList() throws Exception {
@@ -623,8 +624,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades as {@link String}
      * **/
     public String getProductTrades(String productId) throws Exception {
@@ -633,8 +634,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades as {@link JSONArray}
      * **/
     public JSONArray getProductTradesJSON(String productId) throws Exception {
@@ -643,8 +644,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades list as {@link ArrayList} of {@link Trade}
      * **/
     public ArrayList<Trade> getProductTradesList(String productId) throws Exception {
@@ -654,9 +655,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit,before,after)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @implSpec (keys accepted are limit, before, after)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades as {@link String}
      * **/
     public String getProductTrades(String productId, Params queryParams) throws Exception {
@@ -667,9 +668,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit,before,after)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @implSpec (keys accepted are limit, before, after)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades as {@link JSONArray}
      * **/
     public JSONArray getProductTradesJSON(String productId, Params queryParams) throws Exception {
@@ -679,9 +680,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     /** Request to get product trades
      * @param productId: identifier of product trades es. BTC-USD
      * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit,before,after)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
+     * @implSpec (keys accepted are limit, before, after)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades as {@link ArrayList} of {@link Trade}
      * **/
     public ArrayList<Trade> getProductTradesList(String productId, Params queryParams) throws Exception {

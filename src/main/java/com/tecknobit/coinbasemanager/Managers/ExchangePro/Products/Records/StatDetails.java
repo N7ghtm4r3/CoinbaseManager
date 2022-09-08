@@ -6,17 +6,17 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code StatDetails} class is useful to format general StatDetails object
- * @apiNote see official documentation at:
- <ul>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades</a>
-     </li>
- </ul>
+ * @apiNote see the official documentation at:
+<ul>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

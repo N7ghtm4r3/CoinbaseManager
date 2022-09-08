@@ -6,10 +6,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Ledger} class is useful to format Ledger object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1</a>
+ **/
 
 public class Ledger extends AccountDetails {
 

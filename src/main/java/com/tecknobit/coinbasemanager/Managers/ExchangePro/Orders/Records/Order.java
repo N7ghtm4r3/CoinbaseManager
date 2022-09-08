@@ -6,25 +6,25 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Order} class is useful to format Order object
- * @apiNote see official documentation at:
- <ul>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder</a>
-     </li>
- </ul>
+ * @apiNote see the official documentation at:
+<ul>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

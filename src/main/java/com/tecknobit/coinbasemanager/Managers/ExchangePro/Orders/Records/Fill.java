@@ -6,10 +6,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Fill} class is useful to format Fill object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
+ **/
 
 public class Fill extends OrderDetails {
 

@@ -10,10 +10,11 @@ import static org.apache.commons.validator.routines.EmailValidator.getInstance;
 
 /**
  * The {@code PayPalMethod} class is useful to format PayPalMethod object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
+ **/
 
 public class PayPalMethod extends PayMethod {
 
@@ -103,8 +104,8 @@ public class PayPalMethod extends PayMethod {
 
     /**
      * The {@code PayPalDetails} class is useful to obtain and format PayPalDetails object for PayPalMethod
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
      * **/
     public static class PayPalDetails {
 
@@ -241,8 +242,8 @@ public class PayPalMethod extends PayMethod {
 
     /**
      * The {@code PayPalPickerData} class is useful to obtain and format PayPalPickerData object for PayPalMethod
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
      * **/
     public static class PayPalPickerData extends PickerData{
 

@@ -8,10 +8,11 @@ import java.util.ArrayList;
 
 /**
  * The {@code Book} class is useful to format Book object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
+ **/
 
 public class Book {
 

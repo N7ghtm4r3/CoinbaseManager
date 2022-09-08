@@ -9,11 +9,12 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.EXCHANGE_LIM
 import static com.tecknobit.coinbasemanager.Constants.EndpointsList.USERS_ENDPOINT;
 
 /**
- *  The {@code CoinbaseUsersManager} class is useful to manage all Coinbase users endpoints
- *  @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
- *      https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
- *  @author N7ghtm4r3 - Tecknobit
- * **/
+ * The {@code CoinbaseUsersManager} class is useful to manage all Coinbase users endpoints
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
+ **/
 
 public class CoinbaseUsersManager extends CoinbaseManager {
 
@@ -59,8 +60,8 @@ public class CoinbaseUsersManager extends CoinbaseManager {
 
     /** Request to get exchange user limits for a user
      * @param userId: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
      * @return exchange user limits for a user as {@link String}
      * **/
     public String getUserExchangeLimits(String userId) throws Exception {
@@ -69,8 +70,8 @@ public class CoinbaseUsersManager extends CoinbaseManager {
 
     /** Request to get exchange user limits for a user
      * @param userId: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
      * @return exchange user limits for a user as {@link JSONObject}
      * **/
     public JSONObject getUserExchangeLimitsJSON(String userId) throws Exception {
@@ -79,8 +80,8 @@ public class CoinbaseUsersManager extends CoinbaseManager {
 
     /** Request to get exchange user limits for a user
      * @param userId: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
      * @return exchange user limits for a user as {@link ExchangeLimits} object
      * **/
     public ExchangeLimits getUserExchangeLimitsObject(String userId) throws Exception {

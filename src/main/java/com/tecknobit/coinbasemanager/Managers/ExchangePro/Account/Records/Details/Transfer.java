@@ -7,21 +7,21 @@ import java.util.ArrayList;
 
 /**
  * The {@code Transfer} class is useful to format Transfer object
- * @apiNote see official documentation at:
- <ul>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers</a>
-     </li>
- </ul>
+ * @apiNote see the official documentation at:
+<ul>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 

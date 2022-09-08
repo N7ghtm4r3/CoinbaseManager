@@ -6,10 +6,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code TradingPair} class is useful to format TradingPair object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+ **/
 
 public class TradingPair {
 
@@ -179,8 +180,30 @@ public class TradingPair {
         return quoteIncrement;
     }
 
+    /**
+     * Method to get {@link #quoteIncrement} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #quoteIncrement} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getQuoteIncrement(int decimals) {
+        return roundValue(quoteIncrement, decimals);
+    }
+
     public double getBaseIncrement() {
         return baseIncrement;
+    }
+
+    /**
+     * Method to get {@link #baseIncrement} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #baseIncrement} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getBaseIncrement(int decimals) {
+        return roundValue(baseIncrement, decimals);
     }
 
     public String getDisplayName() {
@@ -189,6 +212,17 @@ public class TradingPair {
 
     public double getMinMarketFunds() {
         return minMarketFunds;
+    }
+
+    /**
+     * Method to get {@link #minMarketFunds} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #minMarketFunds} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getMinMarketFunds(int decimals) {
+        return roundValue(minMarketFunds, decimals);
     }
 
     public boolean isMarginEnabled() {

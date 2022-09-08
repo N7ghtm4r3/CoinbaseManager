@@ -6,15 +6,15 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Product} class is useful to format general Product object
- * @apiNote see official documentation at:
- <ul>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+ * @apiNote see the official documentation at:
+<ul>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
 </li>
 <li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats</a>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
 </li>
 </ul>
  * @author N7ghtm4r3 - Tecknobit

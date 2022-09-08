@@ -9,9 +9,10 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.textualizeAsse
 
 /**
  * The {@code CoinbaseManager} class is useful to manage all Coinbase endpoints giving basics methods for others Coinbase managers
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs">https://docs.cloud.coinbase.com/exchange/docs</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs-1">https://docs.cloud.coinbase.com/exchange/docs-1</a>
+ **/
 
 public class CoinbaseManager {
 
@@ -292,7 +293,7 @@ public class CoinbaseManager {
     /**
      * The {@code Params} class is useful to assemble params values for the request
      * @implNote this class can be used to assemble body payload or query request params
-     * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager">here</a>
+     * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager-1">here-1</a>
      * @see com.tecknobit.apimanager.Manager.APIRequest.Params
      * **/
 

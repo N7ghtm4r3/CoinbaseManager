@@ -1,5 +1,5 @@
 # CoinbaseManager
-**v1.0.8**
+**v1.0.9**
 
 This is a Java Based library useful to work with Coinbase's API service.
 
@@ -23,7 +23,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.0.8'
+	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.0.9'
 }
 ```
 
@@ -45,7 +45,7 @@ dependencies {
 <dependency>
     <groupId>com.github.N7ghtm4r3</groupId>
     <artifactId>CoinbaseManager</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 

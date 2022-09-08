@@ -14,10 +14,11 @@ import static com.tecknobit.coinbasemanager.Constants.EndpointsList.REPORTS_ENDP
 
 /**
  * The {@code CoinbaseReportsManager} class is useful to manage all Coinbase reports endpoints
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
+ **/
 
 public class CoinbaseReportsManager extends CoinbaseManager {
 
@@ -63,8 +64,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get all reports
      * @param type: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports as {@link String}
      * **/
     public String getAllReports(String type) throws Exception {
@@ -73,8 +74,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get all reports
      * @param type: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports as {@link JSONArray}
      * **/
     public JSONArray getAllReportsJSON(String type) throws Exception {
@@ -83,8 +84,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get all reports
      * @param type: type of report from fetch details
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports list as {@link ArrayList} of {@link Report}
      * **/
     public ArrayList<Report> getAllReportsList(String type) throws Exception {
@@ -94,9 +95,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to get all reports
      * @param type: type of report from fetch details
      * @param queryParams: query params of request
-     * @implSpec (keys accepted are portfolio_id,after,limit,ignore_expired)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @implSpec (keys accepted are portfolio_id, after, limit, ignore_expired)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports as {@link String}
      * **/
     public String getAllReports(String type, Params queryParams) throws Exception {
@@ -106,9 +107,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to get all reports
      * @param type: type of report from fetch details
      * @param queryParams: query params of request
-     * @implSpec (keys accepted are portfolio_id,after,limit,ignore_expired)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @implSpec (keys accepted are portfolio_id, after, limit, ignore_expired)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports as {@link JSONArray}
      * **/
     public JSONArray getAllReportsJSON(String type, Params queryParams) throws Exception {
@@ -118,9 +119,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to get all reports
      * @param type: type of report from fetch details
      * @param queryParams: query params of request
-     * @implSpec (keys accepted are portfolio_id,after,limit,ignore_expired)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports</a>
+     * @implSpec (keys accepted are portfolio_id, after, limit, ignore_expired)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
      * @return all reports as {@link ArrayList} of {@link Report}
      * **/
     public ArrayList<Report> getAllReportsList(String type, Params queryParams) throws Exception {
@@ -140,8 +141,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a general report
      * @param type: type of report to create
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link String}
      * **/
     public String createGeneralReport(String type) throws Exception {
@@ -152,8 +153,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a general report
      * @param type: type of report to create
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link JSONObject}
      * **/
     public JSONObject createGeneralReportJSON(String type) throws Exception {
@@ -162,8 +163,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a general report
      * @param type: type of report to create
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link ReportDetails} object
      * **/
     public ReportDetails createGeneralReportObject(String type) throws Exception {
@@ -173,9 +174,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a general report
      * @param type: type of report to create
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,year,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, year, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link String}
      * **/
     public String createGeneralReport(String type, Params extraBodyParams) throws Exception {
@@ -188,9 +189,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a general report
      * @param type: type of report to create
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,year,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, year, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link JSONObject}
      * **/
     public JSONObject createGeneralReportJSON(String type, Params extraBodyParams) throws Exception {
@@ -200,9 +201,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a general report
      * @param type: type of report to create
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,year,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, year, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link ReportDetails} object
      * **/
     public ReportDetails createGeneralReportObject(String type, Params extraBodyParams) throws Exception {
@@ -211,8 +212,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link String}
      * **/
     public String create1099KReport(int year) throws Exception {
@@ -221,8 +222,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link JSONObject}
      * **/
     public JSONObject create1099KReportJSON(int year) throws Exception {
@@ -231,8 +232,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
      * **/
     public ReportDetails create1099KReportObject(int year) throws Exception {
@@ -242,9 +243,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link String}
      * **/
     public String create1099KReport(int year, Params extraBodyParams) throws Exception {
@@ -256,9 +257,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link JSONObject}
      * **/
     public JSONObject create1099KReportJSON(int year, Params extraBodyParams) throws Exception {
@@ -268,9 +269,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
      * @param year: year to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,product_id,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, product_id, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
      * **/
     public ReportDetails create1099KReportObject(int year, Params extraBodyParams) throws Exception {
@@ -290,8 +291,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link String}
      * **/
     public String createFillsReport(String productId) throws Exception {
@@ -300,8 +301,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link JSONObject}
      * **/
     public JSONObject createFillsReportJSON(String productId) throws Exception {
@@ -310,8 +311,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createFillsReportObject(String productId) throws Exception {
@@ -321,9 +322,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link String}
      * **/
     public String createFillsReport(String productId, Params extraBodyParams) throws Exception {
@@ -335,9 +336,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link JSONObject}
      * **/
     public JSONObject createFillsReportJSON(String productId, Params extraBodyParams) throws Exception {
@@ -347,9 +348,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
      * @param productId: product identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,account_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, account_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createFillsReportObject(String productId, Params extraBodyParams) throws Exception {
@@ -369,8 +370,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link String}
      * **/
     public String createAccountReport(String accountId) throws Exception {
@@ -379,8 +380,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link JSONObject}
      * **/
     public JSONObject createAccountReportReportJSON(String accountId) throws Exception {
@@ -389,8 +390,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createAccountReportObject(String accountId) throws Exception {
@@ -400,9 +401,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,product_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, product_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link String}
      * **/
     public String createAccountReport(String accountId, Params extraBodyParams) throws Exception {
@@ -414,9 +415,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,product_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, product_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link JSONObject}
      * **/
     public JSONObject createAccountReportJSON(String accountId, Params extraBodyParams) throws Exception {
@@ -426,9 +427,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
      * @param accountId: account identifier to create report
      * @param extraBodyParams: query params of request
-     * @implSpec (keys accepted are start_date,end_date,format,year,product_id,email,profile_id)
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports</a>
+     * @implSpec (keys accepted are start_date, end_date, format, year, product_id, email, profile_id)
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
      * **/
     public ReportDetails createAccountReportObject(String accountId, Params extraBodyParams) throws Exception {
@@ -448,8 +449,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get specific report
      * @param reportId: identifier of report to fetch
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1</a>
      * @return specific report as {@link String}
      * **/
     public String getReport(String reportId) throws Exception {
@@ -458,8 +459,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get specific report
      * @param reportId: identifier of report to fetch
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1</a>
      * @return specific report as {@link JSONObject}
      * **/
     public JSONObject getReportJSON(String reportId) throws Exception {
@@ -468,8 +469,8 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /** Request to get specific report
      * @param reportId: identifier of report to fetch
-     * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport</a>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
+     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1</a>
      * @return specific report as {@link Report} object
      * **/
     public Report getReportObject(String reportId) throws Exception {

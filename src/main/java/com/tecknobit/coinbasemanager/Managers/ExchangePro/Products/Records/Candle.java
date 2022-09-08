@@ -6,10 +6,11 @@ import static com.tecknobit.apimanager.Tools.Trading.TradingTools.roundValue;
 
 /**
  * The {@code Candle} class is useful to format Candle object
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
- *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles</a>
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+ * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
+ **/
 
 public class Candle extends Product {
 

@@ -4,8 +4,8 @@ package com.tecknobit.coinbasemanager.Constants;
  * The {@code EndpointsList} class is a container class for all Coinbase's endpoints of the service API
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/">
- * https://docs.cloud.coinbase.com/exchange/reference/</a>
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference">
+ * https://docs.cloud.coinbase.com/exchange/reference</a>
  **/
 
 public abstract class EndpointsList {
@@ -142,12 +142,22 @@ public abstract class EndpointsList {
 
     /**
      * {@code USERS_ENDPOINT} is constant for USERS_ENDPOINT's endpoint
-     * **/
+     **/
     public static final String USERS_ENDPOINT = "/users";
 
     /**
      * {@code EXCHANGE_LIMITS_ENDPOINT} is constant for EXCHANGE_LIMITS_ENDPOINT's endpoint
-     * **/
+     **/
     public static final String EXCHANGE_LIMITS_ENDPOINT = "/exchange-limits";
+
+    /**
+     * {@code WRAPPED_ASSETS_ENDPOINT} is constant for WRAPPED_ASSETS_ENDPOINT's endpoint
+     **/
+    public static final String WRAPPED_ASSETS_ENDPOINT = "/wrapped-assets";
+
+    /**
+     * {@code CONVERSION_RATE_ENDPOINT} is constant for CONVERSION_RATE_ENDPOINT's endpoint
+     **/
+    public static final String CONVERSION_RATE_ENDPOINT = "/conversion-rate";
 
 }

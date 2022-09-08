@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 /**
  * The {@code Currency} class is useful to format Currency object
- * @apiNote see official documentation at:
- <ul>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies</a>
-     </li>
-     <li>
-         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
-            https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency</a>
-     </li>
- </ul>
+ * @apiNote see the official documentation at:
+<ul>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+</li>
+<li>
+<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
+https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1</a>
+</li>
+</ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
 
