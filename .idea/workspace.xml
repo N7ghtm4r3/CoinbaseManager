@@ -5,60 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4365f22a-e5d1-46ea-8174-7cd8c14d93e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Constants/EndpointsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/constants/EndpointsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/CoinbaseAccountManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/CoinbaseAccountManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/CoinbaseAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/CoinbaseAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/CryptoAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/CryptoAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/Details/AccountDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/details/AccountDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/Details/Hold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/details/Hold.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/Details/Ledger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/details/Ledger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Account/Records/Details/Transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/account/records/details/Transfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/CoinbaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/CoinbaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Conversions/CoinbaseConversionsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/conversions/CoinbaseConversionsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Conversions/Records/CurrencyConversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/conversions/records/CurrencyConversion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Currencies/CoinbaseCurrenciesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/currencies/CoinbaseCurrenciesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Currencies/Records/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/currencies/records/Currency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Fees/CoinbaseFeesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/fees/CoinbaseFeesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Fees/Records/Fee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/fees/records/Fee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Orders/CoinbaseOrdersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/orders/CoinbaseOrdersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Orders/Records/Fill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/orders/records/Fill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Orders/Records/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/orders/records/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Orders/Records/OrderDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/orders/records/OrderDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/PriceOracle/CoinbasePriceOracleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/priceoracle/CoinbasePriceOracleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/PriceOracle/Records/PriceOracle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/priceoracle/records/PriceOracle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/CoinbaseProductsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/CoinbaseProductsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Candle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Candle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Stat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Stat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/StatDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/StatDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Ticker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Ticker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/Trade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/Trade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Products/Records/TradingPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/products/records/TradingPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/CoinbaseProfileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/profiles/CoinbaseProfileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Profiles/Records/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/profiles/records/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/CoinbaseReportsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/reports/CoinbaseReportsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/reports/records/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Reports/Records/ReportDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/reports/records/ReportDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/CoinbaseTransfersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/CoinbaseTransfersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/BankMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/paymentmethods/BankMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/FiatAccountMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/paymentmethods/FiatAccountMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/paymentmethods/PayMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PayPalMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/paymentmethods/PayPalMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/PaymentMethods/PaymentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/paymentmethods/PaymentMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Transfers/Records/TransferAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/transfers/records/TransferAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/CoinbaseUsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/users/CoinbaseUsersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/Users/Records/ExchangeLimits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/users/records/ExchangeLimits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/Managers/ExchangePro/WrappedAssets/CoinbaseWrappedManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tecknobit/coinbasemanager/managers/exchangepro/wrappedassets/CoinbaseWrappedManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650207438683</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Upload first file">
-      <created>1650790536220</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1650790536220</updated>
     </task>
     <task id="LOCAL-00034" summary="Upload first file">
       <created>1650791223824</created>
@@ -504,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662667188139</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Massive reorganization of the library paths">
+      <created>1668629354407</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1668629354408</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -530,7 +478,8 @@
     <MESSAGE value="Optimized library workflow and added some methods" />
     <MESSAGE value="Optimized some classes" />
     <MESSAGE value="Added CoinbaseWrappedManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CoinbaseWrappedManager" />
+    <MESSAGE value="Massive reorganization of the library paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="Massive reorganization of the library paths" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
