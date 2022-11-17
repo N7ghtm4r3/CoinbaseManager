@@ -1,39 +1,39 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.profiles.records;
 
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONObject;
 
 /**
  * The {@code Profile} class is useful to format Profile object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+ * Get profiles</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
+ * Create a profile</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1">
+ * Transfer funds between profiles</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+ * Get profile by id</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+ * Rename a profile</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+ * Delete a profile</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public class Profile {
 
     /**
@@ -85,7 +85,7 @@ public class Profile {
                    boolean hasMargin) {
         this.id = id;
         this.userId = userId;
-        if(name == null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         else
             this.name = name;
@@ -95,83 +95,146 @@ public class Profile {
         this.hasMargin = hasMargin;
     }
 
-    /** Constructor to init a {@link Profile} object
+    /**
+     * Constructor to init a {@link Profile} object
+     *
      * @param profile: profile details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Profile(JSONObject profile) {
-        id = profile.getString("id");
-        userId = profile.getString("user_id");
-        name = profile.getString("name");
-        if(name == null || name.isEmpty())
-            throw new IllegalArgumentException("Name value cannot be empty or null");
-        active = profile.getBoolean("active");
-        isDefault = profile.getBoolean("is_default");
-        createdAt = profile.getString("created_at");
-        hasMargin = profile.getBoolean("has_margin");
+        this(profile.getString("id"), profile.getString("user_id"), profile.getString("name"),
+                profile.getBoolean("active"), profile.getBoolean("is_default"),
+                profile.getString("created_at"), profile.getBoolean("has_margin"));
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #userId} instance <br>
+     * Any params required
+     *
+     * @return {@link #userId} instance as {@link String}
+     **/
     public String getUserId() {
         return userId;
     }
 
+    /**
+     * Method to get {@link #name} instance <br>
+     * Any params required
+     *
+     * @return {@link #name} instance as {@link String}
+     **/
     public String getName() {
         return name;
     }
 
-    /** Method to set {@link #name}
+    /**
+     * Method to set {@link #name}
+     *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
-     * **/
+     **/
     public void setName(String name) {
-        if(name == null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         this.name = name;
     }
 
+    /**
+     * Method to get {@link #active} instance <br>
+     * Any params required
+     *
+     * @return {@link #active} instance as boolean
+     **/
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * Method to set {@link #active}
+     *
+     * @param active: flag that checks if profile is active
+     **/
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     * Method to get {@link #isDefault} instance <br>
+     * Any params required
+     *
+     * @return {@link #isDefault} instance as boolean
+     **/
     public boolean isDefault() {
         return isDefault;
     }
 
-    public void setDefault(boolean aDefault) {
-        isDefault = aDefault;
+    /**
+     * Method to set {@link #isDefault}
+     *
+     * @param isDefault: flag that checks if profile is default
+     **/
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
     }
 
+    /**
+     * Method to get {@link #createdAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} instance as {@link String}
+     **/
     public String getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Method to get {@link #createdAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} timestamp as long
+     **/
+    public long getCreatedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(createdAt);
+    }
+
+    /**
+     * Method to get {@link #hasMargin} instance <br>
+     * Any params required
+     *
+     * @return {@link #hasMargin} instance as boolean
+     **/
     public boolean isHasMargin() {
         return hasMargin;
     }
 
+    /**
+     * Method to set {@link #hasMargin}
+     *
+     * @param hasMargin: flag that checks if profile has margin
+     **/
     public void setHasMargin(boolean hasMargin) {
         this.hasMargin = hasMargin;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "Profile{" +
-                "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
-                ", active=" + active +
-                ", isDefault=" + isDefault +
-                ", createdAt='" + createdAt + '\'' +
-                ", hasMargin=" + hasMargin +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.account.records.details;
 
+import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,23 +10,19 @@ import java.util.ArrayList;
 /**
  * The {@code Transfer} class is useful to format Transfer object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers-1</a>
-</li>
-</ul>
+ * <ul>
+ *       <li>
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
+ *               Get a single account's transfers</a>
+ *       </li>
+ *       <li>
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
+ *               Get all transfers</a>
+ *       </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
+ * @see AccountDetails
  * **/
-
 public class Transfer extends AccountDetails {
 
     /**
@@ -65,97 +63,134 @@ public class Transfer extends AccountDetails {
         transferDetails = new TransferDetails(transfer);
     }
 
-    /** Method to assemble a transfer list
+    /**
+     * Method to assemble a transfer list
+     *
      * @param jsonTransfers: jsonArray obtained by response request
      * @return transfer list as {@link ArrayList} of {@link Transfer}
-     * **/
-    public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers){
+     **/
+    @Returner
+    public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers) {
         ArrayList<Transfer> transfers = new ArrayList<>();
         for (int j = 0; j < jsonTransfers.length(); j++)
             transfers.add(new Transfer(jsonTransfers.getJSONObject(j)));
         return transfers;
     }
 
+    /**
+     * Method to get {@link #completedAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #completedAt} instance as {@link String}
+     **/
     public String getCompletedAt() {
         return completedAt;
     }
 
+    /**
+     * Method to get {@link #completedAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #completedAt} timestamp as long
+     **/
+    public long getCompletedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(completedAt);
+    }
+
+    /**
+     * Method to get {@link #transferDetails} instance <br>
+     * Any params required
+     *
+     * @return {@link #transferDetails} instance as {@link TransferDetails}
+     **/
     public TransferDetails getTransferDetails() {
         return transferDetails;
     }
 
-    @Override
-    public String toString() {
-        return "Transfer{" +
-                "completedAt='" + completedAt + '\'' +
-                ", transferDetails=" + transferDetails.toString() +
-                ", createdAt='" + createdAt + '\'' +
-                ", id='" + id + '\'' +
-                ", amount=" + amount +
-                ", type='" + type + '\'' +
-                '}';
-    }
-
     /**
      * The {@code TransferDetails} class is useful to obtain and format TransferDetails object for Transfer
+     *
      * @author N7ghtm4r3 - Tecknobit
-     * **/
+     **/
     public static class TransferDetails {
 
         /**
-         * {@code coinbaseAccountId} is instance that memorizes Coinbase's account identifier value
+         * {@code coinbaseAccountId} is instance that memorizes {@code "Coinbase"}'s account identifier value
          * **/
         private final String coinbaseAccountId;
 
         /**
-         * {@code coinbaseTransactionId} is instance that memorizes Coinbase's transaction identifier value
+         * {@code coinbaseTransactionId} is instance that memorizes {@code "Coinbase"}'s transaction identifier value
          * **/
         private final String coinbaseTransactionId;
 
         /**
-         * {@code coinbasePaymentMethodId} is instance that memorizes Coinbase's payment method identifier value
+         * {@code coinbasePaymentMethodId} is instance that memorizes {@code "Coinbase"}'s payment method identifier value
          * **/
         private final String coinbasePaymentMethodId;
 
-        /** Constructor to init a {@link Transfer} object
-         * @param coinbaseAccountId: Coinbase's account identifier value
-         * @param coinbaseTransactionId: Coinbase's transaction identifier value
-         * @param coinbasePaymentMethodId: Coinbase's payment method identifier value
-         * **/
+        /**
+         * Constructor to init a {@link Transfer} object
+         *
+         * @param coinbaseAccountId:       {@code "Coinbase"}'s account identifier value
+         * @param coinbaseTransactionId:   {@code "Coinbase"}'s transaction identifier value
+         * @param coinbasePaymentMethodId: {@code "Coinbase"}'s payment method identifier value
+         **/
         public TransferDetails(String coinbaseAccountId, String coinbaseTransactionId, String coinbasePaymentMethodId) {
             this.coinbaseAccountId = coinbaseAccountId;
             this.coinbaseTransactionId = coinbaseTransactionId;
             this.coinbasePaymentMethodId = coinbasePaymentMethodId;
         }
 
-        /** Constructor to init a {@link TransferDetails} object
+        /**
+         * Constructor to init a {@link TransferDetails} object
+         *
          * @param transferDetails: transfer details as {@link JSONObject}
-         * **/
+         **/
         public TransferDetails(JSONObject transferDetails) {
-            coinbaseAccountId = transferDetails.getString("coinbase_account_id");
-            coinbaseTransactionId = transferDetails.getString("coinbase_transaction_id");
-            coinbasePaymentMethodId = transferDetails.getString("coinbase_payment_method_id");
+            this(transferDetails.getString("coinbase_account_id"), transferDetails.getString("coinbase_transaction_id"),
+                    transferDetails.getString("coinbase_payment_method_id"));
         }
 
+        /**
+         * Method to get {@link #coinbaseAccountId} instance <br>
+         * Any params required
+         *
+         * @return {@link #coinbaseAccountId} instance as {@link String}
+         **/
         public String getCoinbaseAccountId() {
             return coinbaseAccountId;
         }
 
+        /**
+         * Method to get {@link #coinbaseTransactionId} instance <br>
+         * Any params required
+         *
+         * @return {@link #coinbaseTransactionId} instance as {@link String}
+         **/
         public String getCoinbaseTransactionId() {
             return coinbaseTransactionId;
         }
 
+        /**
+         * Method to get {@link #coinbasePaymentMethodId} instance <br>
+         * Any params required
+         *
+         * @return {@link #coinbasePaymentMethodId} instance as {@link String}
+         **/
         public String getCoinbasePaymentMethodId() {
             return coinbasePaymentMethodId;
         }
 
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "TransferDetails{" +
-                    "coinbaseAccountId='" + coinbaseAccountId + '\'' +
-                    ", coinbaseTransactionId='" + coinbaseTransactionId + '\'' +
-                    ", coinbasePaymentMethodId='" + coinbasePaymentMethodId + '\'' +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

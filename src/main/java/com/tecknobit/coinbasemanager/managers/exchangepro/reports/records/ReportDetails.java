@@ -1,6 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.reports.records;
 
 import com.tecknobit.apimanager.formatters.JsonHelper;
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import com.tecknobit.coinbasemanager.managers.exchangepro.users.records.ExchangeLimits;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,19 +9,18 @@ import org.json.JSONObject;
 /**
  * The {@code ReportDetails} class is useful to format general ReportDetails object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+ * Get all reports</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+ * Get user exchange limits</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public class ReportDetails {
 
     /**
@@ -49,43 +49,72 @@ public class ReportDetails {
         this.status = status;
     }
 
-    /** Constructor to init a {@link ReportDetails} object
+    /**
+     * Constructor to init a {@link ReportDetails} object
+     *
      * @param report: report details as {@link JSONObject}
-     * **/
+     **/
     public ReportDetails(JSONObject report) {
-        id = report.getString("id");
-        type = report.getString("type");
-        status = report.getString("status");
+        this(report.getString("id"), report.getString("type"), report.getString("status"));
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #type} instance <br>
+     * Any params required
+     *
+     * @return {@link #type} instance as {@link String}
+     **/
     public String getType() {
         return type;
     }
 
+    /**
+     * Method to get {@link #status} instance <br>
+     * Any params required
+     *
+     * @return {@link #status} instance as {@link String}
+     **/
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "ReportDetails{" +
-                "id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return new JSONObject(this).toString();
     }
 
     /**
-     * The {@code UserDetails} class is useful to obtain and format general UserDetails object for {@link Report} and {@link ExchangeLimits} object
+     * The {@code UserDetails} class is useful to obtain and format a general user details for {@link Report} and
+     * {@link ExchangeLimits} object
      *
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1</a>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
+     * @author N7ghtm4r3 - Tecknobit
+     * @apiNote see the official documentation at:
+     * <ul>
+     * <li>
+     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * Get all reports</a>
+     * </li>
+     * <li>
+     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * Get user exchange limits</a>
+     * </li>
+     * </ul>
      **/
     public static class UserDetails {
 
@@ -149,10 +178,9 @@ public class ReportDetails {
          * @param userType: user type value
          * @param fullFillsNewRequirements: flag for full fills new requirements
          * @param hasDefault: flag for default check
-         * @param hUser: useful to help to format JSON
          * **/
         public UserDetails(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
-                           String userType, boolean fullFillsNewRequirements, boolean hasDefault, JsonHelper hUser) {
+                           String userType, boolean fullFillsNewRequirements, boolean hasDefault) {
             this.createdAt = createdAt;
             this.activeAt = activeAt;
             this.id = id;
@@ -162,7 +190,7 @@ public class ReportDetails {
             this.userType = userType;
             this.fullFillsNewRequirements = fullFillsNewRequirements;
             this.hasDefault = hasDefault;
-            this.hUser = hUser;
+            this.hUser = null;
         }
 
         /** Constructor to init a {@link UserDetails} object
@@ -181,80 +209,240 @@ public class ReportDetails {
             hasDefault = hUser.getBoolean("has_default");
         }
 
+        /**
+         * Method to get {@link #createdAt} instance <br>
+         * Any params required
+         *
+         * @return {@link #createdAt} instance as {@link String}
+         **/
         public String getCreatedAt() {
             return createdAt;
         }
 
+        /**
+         * Method to get {@link #createdAt} timestamp <br>
+         * Any params required
+         *
+         * @return {@link #createdAt} timestamp as long
+         **/
+        public long getCreatedAtTimestamp() {
+            return TimeFormatter.getDateTimestamp(createdAt);
+        }
+
+        /**
+         * Method to get {@link #activeAt} instance <br>
+         * Any params required
+         *
+         * @return {@link #activeAt} instance as {@link String}
+         **/
         public String getActiveAt() {
             return activeAt;
         }
 
+        /**
+         * Method to get {@link #activeAt} timestamp <br>
+         * Any params required
+         *
+         * @return {@link #activeAt} timestamp as long
+         **/
+        public long getActiveAtTimestamp() {
+            return TimeFormatter.getDateTimestamp(activeAt);
+        }
+
+        /**
+         * Method to get {@link #id} instance <br>
+         * Any params required
+         *
+         * @return {@link #id} instance as {@link String}
+         **/
         public String getId() {
             return id;
         }
 
+        /**
+         * Method to get {@link #name} instance <br>
+         * Any params required
+         *
+         * @return {@link #name} instance as {@link String}
+         **/
         public String getName() {
             return name;
         }
 
+        /**
+         * Method to get {@link #email} instance <br>
+         * Any params required
+         *
+         * @return {@link #email} instance as {@link String}
+         **/
         public String getEmail() {
             return email;
         }
 
+        /**
+         * Method to get {@link #isBanned} instance <br>
+         * Any params required
+         *
+         * @return {@link #isBanned} instance as boolean
+         **/
         public boolean isBanned() {
             return isBanned;
         }
 
+        /**
+         * Method to get {@link #userType} instance <br>
+         * Any params required
+         *
+         * @return {@link #userType} instance as {@link String}
+         **/
         public String getUserType() {
             return userType;
         }
 
-        public boolean isFullFillsNewRequirements() {
+        /**
+         * Method to get {@link #fullFillsNewRequirements} instance <br>
+         * Any params required
+         *
+         * @return {@link #fullFillsNewRequirements} instance as boolean
+         **/
+        public boolean areFullFillsNewRequirements() {
             return fullFillsNewRequirements;
         }
 
-        public boolean isHasDefault() {
+        /**
+         * Method to get {@link #hasDefault} instance <br>
+         * Any params required
+         *
+         * @return {@link #hasDefault} instance as boolean
+         **/
+        public boolean hasDefault() {
             return hasDefault;
         }
 
-        public String getTaxDomain(){
+        /**
+         * Method to get tax domain <br>
+         * Any params required
+         *
+         * @return tax domain as {@link String}
+         **/
+        public String getTaxDomain() {
             return hUser.getString("tax_domain");
         }
 
+        /**
+         * Method to get permissions <br>
+         * Any params required
+         *
+         * @return permissions as {@link JSONObject}
+         **/
         public JSONObject getPermissions() {
             return hUser.getJSONObject("permissions");
         }
 
+        /**
+         * Method to get permissions <br>
+         * Any params required
+         *
+         * @return permissions as {@link String}
+         * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
+         **/
+        public String getPermissionsStringed() {
+            return hUser.getJSONObject("permissions").toString();
+        }
+
+        /**
+         * Method to get flags <br>
+         * Any params required
+         *
+         * @return flags as {@link JSONObject}
+         **/
         public JSONObject getFlags() {
             return hUser.getJSONObject("flags");
         }
 
-        public JSONObject getPreferences(){
+        /**
+         * Method to get flags <br>
+         * Any params required
+         *
+         * @return flags as {@link String}
+         * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
+         **/
+        public String getFlagsStringed() {
+            return hUser.getJSONObject("flags").toString();
+        }
+
+        /**
+         * Method to get preferences <br>
+         * Any params required
+         *
+         * @return preferences as {@link JSONObject}
+         **/
+        public JSONObject getPreferences() {
             return hUser.getJSONObject("preferences");
         }
 
-        public JSONObject getCustomSnippet(String key){
+        /**
+         * Method to get preferences <br>
+         * Any params required
+         *
+         * @return preferences as {@link String}
+         * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
+         **/
+        public String getPreferencesStringed() {
+            return hUser.getJSONObject("preferences").toString();
+        }
+
+        /**
+         * Method to get a custom snippet
+         *
+         * @param key: key of the {@code "JSON"} snippet to fetch
+         * @return custom snippet as {@link JSONObject}
+         **/
+        public JSONObject getCustomSnippet(String key) {
             return hUser.getJSONObject(key);
         }
 
-        public JSONArray getCustomList(String key){
+        /**
+         * Method to get a custom snippet
+         *
+         * @param key: key of the {@code "JSON"} snippet to fetch
+         * @return custom snippet as {@link String}
+         * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
+         **/
+        public String getCustomSnippetStringed(String key) {
+            return hUser.getJSONObject(key).toString();
+        }
+
+        /**
+         * Method to get a custom list
+         *
+         * @param key: key of the {@code "JSON"} snippet to fetch
+         * @return custom list as {@link JSONArray}
+         **/
+        public JSONArray getCustomList(String key) {
             return hUser.getJSONArray(key);
         }
 
+        /**
+         * Method to get a custom list
+         *
+         * @param key: key of the {@code "JSON"} snippet to fetch
+         * @return custom list as {@link String}
+         * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
+         **/
+        public String getCustomListStringed(String key) {
+            return hUser.getJSONArray(key).toString();
+        }
+
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "UserDetails{" +
-                    "createdAt='" + createdAt + '\'' +
-                    ", activeAt='" + activeAt + '\'' +
-                    ", id='" + id + '\'' +
-                    ", name='" + name + '\'' +
-                    ", email='" + email + '\'' +
-                    ", isBanned=" + isBanned +
-                    ", userType='" + userType + '\'' +
-                    ", fullFillsNewRequirements=" + fullFillsNewRequirements +
-                    ", hasDefault=" + hasDefault +
-                    ", hUser=" + hUser +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

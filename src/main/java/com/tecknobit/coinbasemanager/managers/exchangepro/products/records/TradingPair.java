@@ -9,9 +9,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+ * Get all known trading pairs</a>
  **/
-
 public class TradingPair {
 
     /**
@@ -114,7 +113,8 @@ public class TradingPair {
      * @param status: status value
      * @param statusMessage: status message value
      * @param auctionMode: flag that checks if is auction mode
-     * @param tradingDisabled: indicates whether trading is currently restricted on this product, this includes whether both new orders and order cancelations are restricted
+     * @param tradingDisabled: indicates whether trading is currently restricted on this product, this includes whether
+     *                      both new orders and order cancellations are restricted
      * @param fxStablecoin: indicates whether the currency pair is a Stable Pair
      * @param maxSlippagePercentage: maximum slippage percentage
      * **/
@@ -145,37 +145,52 @@ public class TradingPair {
      * @param pair: trading pair details as {@link JSONObject}
      * **/
     public TradingPair(JSONObject pair) {
-        id = pair.getString("id");
-        baseCurrency = pair.getString("base_currency");
-        quoteCurrency = pair.getString("quote_currency");
-        quoteIncrement = pair.getDouble("quote_increment");
-        baseIncrement = pair.getDouble("base_increment");
-        displayName = pair.getString("display_name");
-        minMarketFunds = pair.getDouble("min_market_funds");
-        marginEnabled = pair.getBoolean("margin_enabled");
-        postOnly = pair.getBoolean("post_only");
-        limitOnly = pair.getBoolean("limit_only");
-        cancelOnly = pair.getBoolean("cancel_only");
-        status = pair.getString("status");
-        statusMessage = pair.getString("status_message");
-        auctionMode = pair.getBoolean("auction_mode");
-        tradingDisabled = pair.getBoolean("trading_disabled");
-        fxStablecoin = pair.getBoolean("fx_stablecoin");
-        maxSlippagePercentage = pair.getDouble("max_slippage_percentage");
+        this(pair.getString("id"), pair.getString("base_currency"), pair.getString("quote_currency"),
+                pair.getDouble("quote_increment"), pair.getDouble("base_increment"),
+                pair.getString("display_name"), pair.getDouble("min_market_funds"),
+                pair.getBoolean("margin_enabled"), pair.getBoolean("post_only"),
+                pair.getBoolean("limit_only"), pair.getBoolean("cancel_only"), pair.getString("status"),
+                pair.getString("status_message"), pair.getBoolean("auction_mode"),
+                pair.getBoolean("trading_disabled"), pair.getBoolean("fx_stablecoin"),
+                pair.getDouble("max_slippage_percentage"));
     }
 
+    /**
+     * Method to get {@link #id} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #id} timestamp as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #baseCurrency} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #baseCurrency} timestamp as {@link String}
+     **/
     public String getBaseCurrency() {
         return baseCurrency;
     }
 
+    /**
+     * Method to get {@link #quoteCurrency} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #quoteCurrency} timestamp as {@link String}
+     **/
     public String getQuoteCurrency() {
         return quoteCurrency;
     }
 
+    /**
+     * Method to get {@link #quoteIncrement} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #quoteIncrement} timestamp as double
+     **/
     public double getQuoteIncrement() {
         return quoteIncrement;
     }
@@ -191,6 +206,12 @@ public class TradingPair {
         return roundValue(quoteIncrement, decimals);
     }
 
+    /**
+     * Method to get {@link #baseIncrement} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #baseIncrement} timestamp as double
+     **/
     public double getBaseIncrement() {
         return baseIncrement;
     }
@@ -206,10 +227,22 @@ public class TradingPair {
         return roundValue(baseIncrement, decimals);
     }
 
+    /**
+     * Method to get {@link #displayName} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #displayName} timestamp as {@link String}
+     **/
     public String getDisplayName() {
         return displayName;
     }
 
+    /**
+     * Method to get {@link #minMarketFunds} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #minMarketFunds} timestamp as double
+     **/
     public double getMinMarketFunds() {
         return minMarketFunds;
     }
@@ -225,76 +258,126 @@ public class TradingPair {
         return roundValue(minMarketFunds, decimals);
     }
 
+    /**
+     * Method to get {@link #marginEnabled} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #marginEnabled} timestamp as boolean
+     **/
     public boolean isMarginEnabled() {
         return marginEnabled;
     }
 
+    /**
+     * Method to get {@link #marginEnabled} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #marginEnabled} timestamp as boolean
+     **/
     public boolean isPostOnly() {
         return postOnly;
     }
 
+    /**
+     * Method to get {@link #marginEnabled} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #marginEnabled} timestamp as boolean
+     **/
     public boolean isLimitOnly() {
         return limitOnly;
     }
 
+    /**
+     * Method to get {@link #marginEnabled} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #marginEnabled} timestamp as boolean
+     **/
     public boolean isCancelOnly() {
         return cancelOnly;
     }
 
+    /**
+     * Method to get {@link #status} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #status} timestamp as {@link String}
+     **/
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Method to get {@link #statusMessage} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #statusMessage} timestamp as {@link String}
+     **/
     public String getStatusMessage() {
         return statusMessage;
     }
 
+    /**
+     * Method to get {@link #auctionMode} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #auctionMode} timestamp as boolean
+     **/
     public boolean isAuctionMode() {
         return auctionMode;
     }
 
+    /**
+     * Method to get {@link #tradingDisabled} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #tradingDisabled} timestamp as boolean
+     **/
     public boolean isTradingDisabled() {
         return tradingDisabled;
     }
 
+    /**
+     * Method to get {@link #fxStablecoin} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #fxStablecoin} timestamp as boolean
+     **/
     public boolean isFxStablecoin() {
         return fxStablecoin;
     }
 
+    /**
+     * Method to get {@link #maxSlippagePercentage} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #maxSlippagePercentage} timestamp as double
+     **/
     public double getMaxSlippagePercentage() {
         return maxSlippagePercentage;
     }
 
-    /** Method to get {@link #maxSlippagePercentage} instance
+    /**
+     * Method to get {@link #maxSlippagePercentage} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #maxSlippagePercentage} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getMaxSlippagePercentage(int decimals) {
         return roundValue(maxSlippagePercentage, decimals);
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "TradingPair{" +
-                "id='" + id + '\'' +
-                ", baseCurrency='" + baseCurrency + '\'' +
-                ", quoteCurrency='" + quoteCurrency + '\'' +
-                ", quoteIncrement=" + quoteIncrement +
-                ", baseIncrement=" + baseIncrement +
-                ", displayName='" + displayName + '\'' +
-                ", minMarketFunds=" + minMarketFunds +
-                ", marginEnabled=" + marginEnabled +
-                ", postOnly=" + postOnly +
-                ", limitOnly=" + limitOnly +
-                ", cancelOnly=" + cancelOnly +
-                ", status='" + status + '\'' +
-                ", statusMessage='" + statusMessage + '\'' +
-                ", auctionMode=" + auctionMode +
-                ", tradingDisabled=" + tradingDisabled +
-                ", fxStablecoin=" + fxStablecoin +
-                ", maxSlippagePercentage=" + maxSlippagePercentage +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

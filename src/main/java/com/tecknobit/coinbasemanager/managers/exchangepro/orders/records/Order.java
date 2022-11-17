@@ -7,27 +7,27 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 /**
  * The {@code Order} class is useful to format Order object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+ * Get all orders</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+ * Cancel all orders</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+ * Create a new order</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+ * Get single order</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
+ * @see OrderDetails
  * **/
-
 public class Order extends OrderDetails {
 
     /**
@@ -281,77 +281,117 @@ public class Order extends OrderDetails {
         status = orderHelper.getString("status");
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #type} instance <br>
+     * Any params required
+     *
+     * @return {@link #type} instance as {@link String}
+     **/
     public String getType() {
         return type;
     }
 
+    /**
+     * Method to get {@link #timeInForce} instance <br>
+     * Any params required
+     *
+     * @return {@link #timeInForce} instance as {@link String}
+     **/
     public String getTimeInForce() {
         return timeInForce;
     }
 
+    /**
+     * Method to get {@link #postOnly} instance <br>
+     * Any params required
+     *
+     * @return {@link #postOnly} instance as boolean
+     **/
     public boolean isPostOnly() {
         return postOnly;
     }
 
+    /**
+     * Method to get {@link #fillFees} instance <br>
+     * Any params required
+     *
+     * @return {@link #fillFees} instance as double
+     **/
     public double getFillFees() {
         return fillFees;
     }
 
-    /** Method to get {@link #fillFees} instance
+    /**
+     * Method to get {@link #fillFees} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #fillFees} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getFillFees(int decimals) {
         return roundValue(fillFees, decimals);
     }
 
+    /**
+     * Method to get {@link #filledSize} instance <br>
+     * Any params required
+     *
+     * @return {@link #filledSize} instance as double
+     **/
     public double getFilledSize() {
         return filledSize;
     }
 
-    /** Method to get {@link #filledSize} instance
+    /**
+     * Method to get {@link #filledSize} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #filledSize} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getFilledSize(int decimals) {
         return roundValue(filledSize, decimals);
     }
 
+    /**
+     * Method to get {@link #executedValue} instance <br>
+     * Any params required
+     *
+     * @return {@link #executedValue} instance as double
+     **/
     public double getExecutedValue() {
         return executedValue;
     }
 
-    /** Method to get {@link #executedValue} instance
+    /**
+     * Method to get {@link #executedValue} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #executedValue} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getExecutedValue(int decimals) {
         return roundValue(executedValue, decimals);
     }
 
+    /**
+     * Method to get {@link #status} instance <br>
+     * Any params required
+     *
+     * @return {@link #status} instance as {@link String}
+     **/
     public String getStatus() {
         return status;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                ", timeInForce='" + timeInForce + '\'' +
-                ", postOnly=" + postOnly +
-                ", fillFees=" + fillFees +
-                ", filledSize=" + filledSize +
-                ", executedValue=" + executedValue +
-                ", status='" + status + '\'' +
-                '}';
     }
 
 }

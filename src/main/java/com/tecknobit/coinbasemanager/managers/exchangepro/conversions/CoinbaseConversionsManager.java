@@ -11,67 +11,97 @@ import static com.tecknobit.apimanager.apis.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CONVERSIONS_ENDPOINT;
 
 /**
- * The {@code CoinbaseConversionsManager} class is useful to manage all Coinbase conversion endpoints
+ * The {@code CoinbaseConversionsManager} class is useful to manage all {@code "Coinbase"} conversion endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+ * Conversions manager</a>
+ * @see CoinbaseManager
  **/
-
 public class CoinbaseConversionsManager extends CoinbaseManager {
 
-    /** Constructor to init a {@link CoinbaseConversionsManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseConversionsManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:             custom timeout for request
+     **/
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseConversionsManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * @param timeout: custom timeout for request
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseConversionsManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     * @param timeout:    custom timeout for request
+     **/
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseConversionsManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseConversionsManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * **/
+     **/
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a {@link CoinbaseConversionsManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseConversionsManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     **/
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
 
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
+    /**
+     * Constructor to init a {@link CoinbaseConversionsManager} <br>
+     * Any params required
+     *
+     * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
+     * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
+     * the credentials and is useful in those cases if you need to use different manager at the same time:
+     * <pre>
+     *     {@code
+     *        //You need to insert all credentials requested
+     *        CoinbaseManager firstManager = new CoinbaseManager("apiKey", "apiSecret", "passphrase");
+     *        //You don't need to insert all credentials to make manager work
+     *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
+     *     }
+     * </pre>
+     **/
+    public CoinbaseConversionsManager() {
+        super();
+    }
+
+    /**
+     * Request to convert one currency into another one
+     *
+     * @param from:   currency to convert
+     * @param to:     final currency to convert
      * @param amount: amount value to convert
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
      * @return result of conversion as {@link String}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     **/
     public String convertCurrency(String from, String to, double amount) throws Exception {
         return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, assembleConversionPayload(from, to, amount));
     }
-    
+
     /** Request to convert one currency into another one
      * @param from: currency to convert
      * @param to: final currency to convert

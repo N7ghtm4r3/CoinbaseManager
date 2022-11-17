@@ -7,9 +7,9 @@ import org.json.JSONObject;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds-1</a>
+ * Get a single account's holds</a>
+ * @see AccountDetails
  **/
-
 public class Hold extends AccountDetails {
 
     /**
@@ -30,28 +30,25 @@ public class Hold extends AccountDetails {
         this.ref = ref;
     }
 
-    /** Constructor to init a {@link Hold} object
+    /**
+     * Constructor to init a {@link Hold} object
+     *
      * @param hold: hold details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Hold(JSONObject hold) {
         super(hold);
         this.ref = hold.getString("ref");
     }
 
+    /**
+     * Method to get {@link #ref} instance <br>
+     * Any params required
+     *
+     * @return {@link #ref} instance as {@link String}
+     **/
     public String getRef() {
         return ref;
-    }
-
-    @Override
-    public String toString() {
-        return "Hold{" +
-                "ref='" + ref + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", id='" + id + '\'' +
-                ", amount=" + amount +
-                ", type='" + type + '\'' +
-                '}';
     }
 
 }

@@ -7,9 +7,9 @@ import org.json.JSONObject;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
+ * Get product trades</a>
+ * @see StatDetails
  **/
-
 public class Trade extends StatDetails {
 
     /**
@@ -29,27 +29,24 @@ public class Trade extends StatDetails {
         this.side = side;
     }
 
-    /** Constructor to init a {@link Trade} object
+    /**
+     * Constructor to init a {@link Trade} object
+     *
      * @param trade: trade details as {@link JSONObject}
-     * **/
+     **/
     public Trade(JSONObject trade) {
         super(trade);
         side = trade.getString("side");
     }
 
+    /**
+     * Method to get {@link #side} instance <br>
+     * Any params required
+     *
+     * @return {@link #side} instance as {@link String}
+     **/
     public String getSide() {
         return side;
-    }
-
-    @Override
-    public String toString() {
-        return "Trade{" +
-                "side='" + side + '\'' +
-                ", tradeId=" + tradeId +
-                ", price=" + price +
-                ", size=" + size +
-                ", time='" + time + '\'' +
-                '}';
     }
 
 }

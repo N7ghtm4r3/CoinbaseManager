@@ -1,9 +1,12 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.priceoracle.records;
 
+import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 
@@ -12,9 +15,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+ * Get signed prices</a>
  **/
-
 public class PriceOracle {
 
     /**
@@ -67,53 +69,92 @@ public class PriceOracle {
      * @param jsonList: jsonObject obtained by response request
      * @return string list as {@link ArrayList} of {@link String}
      * **/
-    private ArrayList<String> assembleStringList(JSONArray jsonList){
+    @Returner
+    private ArrayList<String> assembleStringList(JSONArray jsonList) {
         ArrayList<String> list = new ArrayList<>();
-        for (int j=0; j < jsonList.length(); j++)
+        for (int j = 0; j < jsonList.length(); j++)
             list.add(jsonList.getString(j));
         return list;
     }
 
-    /** Method to assemble a prices list
+    /**
+     * Method to assemble a prices list
+     *
      * @param jsonPrices: jsonObject obtained by response request
-     * any return
-     * **/
+     *                    any return
+     **/
     private void loadPricesList(JSONObject jsonPrices) {
         for (String key : jsonPrices.keySet())
             prices.add(new Price(key, jsonPrices.getDouble(key)));
     }
 
+    /**
+     * Method to get {@link #timestamp} instance <br>
+     * Any params required
+     *
+     * @return {@link #timestamp} instance as long
+     **/
     public long getTimestamp() {
         return timestamp;
     }
 
+    /**
+     * Method to get {@link #timestamp} instance <br>
+     * Any params required
+     *
+     * @return {@link #timestamp} instance as {@link Date}
+     **/
+    public Date getDate() {
+        return TimeFormatter.getDate(timestamp);
+    }
+
+    /**
+     * Method to get {@link #messages} instance <br>
+     * Any params required
+     *
+     * @return {@link #messages} instance as {@link ArrayList} of {@link String}
+     **/
     public ArrayList<String> getMessages() {
         return messages;
     }
 
+    /**
+     * Method to get {@link #signatures} instance <br>
+     * Any params required
+     *
+     * @return {@link #signatures} instance as {@link ArrayList} of {@link String}
+     **/
     public ArrayList<String> getSignatures() {
         return signatures;
     }
 
+    /**
+     * Method to get {@link #prices} instance <br>
+     * Any params required
+     *
+     * @return {@link #prices} instance as {@link ArrayList} of {@link Price}
+     **/
     public ArrayList<Price> getPrices() {
         return prices;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "PriceOracle{" +
-                "timestamp=" + timestamp +
-                ", messages=" + messages +
-                ", signatures=" + signatures +
-                ", prices=" + prices +
-                '}';
+        return new JSONObject(this).toString();
     }
 
     /**
      * The {@code Price} class is useful to obtain and format Price objects for PriceOracle
      * This class give info about each price in prices list
+     *
      * @author N7ghtm4r3 - Tecknobit
-     * **/
+     **/
     public static class Price{
 
         /**
@@ -133,45 +174,64 @@ public class PriceOracle {
          * **/
         public Price(String symbol, double price) {
             this.symbol = symbol;
-            if(price < 0)
+            if (price < 0)
                 throw new IllegalArgumentException("Price value cannot be less than 0");
             else
                 this.price = price;
         }
 
+        /**
+         * Method to get {@link #symbol} instance <br>
+         * Any params required
+         *
+         * @return {@link #symbol} instance as {@link String}
+         **/
         public String getSymbol() {
             return symbol;
         }
 
+        /**
+         * Method to get {@link #price} instance <br>
+         * Any params required
+         *
+         * @return {@link #price} instance as double
+         **/
         public double getPrice() {
             return price;
         }
 
-        /** Method to get {@link #price} instance
-         * @param decimals: number of digits to round final value
-         * @return {@link #price} instance rounded with decimal digits inserted
-         * @throws IllegalArgumentException if decimalDigits is negative
-         * **/
-        public double getPrice(int decimals) {
-            return roundValue(price, decimals);
-        }
-
-        /** Method to set {@link #price}
+        /**
+         * Method to set {@link #price}
+         *
          * @param price: price value
          * @throws IllegalArgumentException when price value is less than 0
-         * **/
+         **/
         public void setPrice(double price) {
-            if(price < 0)
+            if (price < 0)
                 throw new IllegalArgumentException("Price value cannot be less than 0");
             this.price = price;
         }
 
+        /**
+         * Method to get {@link #price} instance
+         *
+         * @param decimals: number of digits to round final value
+         * @return {@link #price} instance rounded with decimal digits inserted
+         * @throws IllegalArgumentException if decimalDigits is negative
+         **/
+        public double getPrice(int decimals) {
+            return roundValue(price, decimals);
+        }
+
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "Price{" +
-                    "symbol='" + symbol + '\'' +
-                    ", price=" + price +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

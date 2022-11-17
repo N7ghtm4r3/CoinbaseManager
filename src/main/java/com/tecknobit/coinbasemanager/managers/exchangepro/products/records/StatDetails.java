@@ -1,5 +1,6 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.products.records;
 
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
@@ -7,19 +8,18 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 /**
  * The {@code StatDetails} class is useful to format general StatDetails object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+ * Get product ticker</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+ * Get product trades</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public class StatDetails {
 
     /**
@@ -55,58 +55,97 @@ public class StatDetails {
         this.time = time;
     }
 
-    /** Constructor to init a {@link StatDetails} object
+    /**
+     * Constructor to init a {@link StatDetails} object
+     *
      * @param stat: stat details as {@link JSONObject}
-     * **/
+     **/
     public StatDetails(JSONObject stat) {
-        tradeId = stat.getLong("trade_id");
-        price = stat.getDouble("price");
-        size = stat.getDouble("size");
-        time = stat.getString("time");
+        this(stat.getLong("trade_id"), stat.getDouble("price"), stat.getDouble("size"),
+                stat.getString("time"));
     }
 
+    /**
+     * Method to get {@link #tradeId} instance <br>
+     * Any params required
+     *
+     * @return {@link #tradeId} instance as long
+     **/
     public long getTradeId() {
         return tradeId;
     }
 
+    /**
+     * Method to get {@link #price} instance <br>
+     * Any params required
+     *
+     * @return {@link #price} instance as double
+     **/
     public double getPrice() {
         return price;
     }
 
-    /** Method to get {@link #price} instance
+    /**
+     * Method to get {@link #price} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getPrice(int decimals) {
         return roundValue(price, decimals);
     }
 
+    /**
+     * Method to get {@link #size} instance <br>
+     * Any params required
+     *
+     * @return {@link #size} instance as double
+     **/
     public double getSize() {
         return size;
     }
 
-    /** Method to get {@link #size} instance
+    /**
+     * Method to get {@link #size} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getSize(int decimals) {
         return roundValue(size, decimals);
     }
 
+    /**
+     * Method to get {@link #time} instance <br>
+     * Any params required
+     *
+     * @return {@link #time} instance as {@link String}
+     **/
     public String getTime() {
         return time;
     }
 
+    /**
+     * Method to get {@link #time} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #time} timestamp as long
+     **/
+    public long getTimestamp() {
+        return TimeFormatter.getDateTimestamp(time);
+    }
+
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "StatDetails{" +
-                "tradeId=" + tradeId +
-                ", price=" + price +
-                ", size=" + size +
-                ", time='" + time + '\'' +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

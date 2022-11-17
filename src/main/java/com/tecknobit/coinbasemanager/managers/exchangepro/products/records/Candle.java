@@ -9,9 +9,9 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
+ * Get product candles</a>
+ * @see Product
  **/
-
 public class Candle extends Product {
 
     /**
@@ -68,42 +68,46 @@ public class Candle extends Product {
         this.close = close;
     }
 
-    /** Constructor to init a {@link Candle} object
+    /**
+     * Constructor to init a {@link Candle} object
+     *
      * @param candle: candle details as {@link JSONArray}
-     * **/
+     **/
     public Candle(JSONArray candle) {
         super(candle.getLong(3), candle.getDouble(2), candle.getDouble(1), candle.getDouble(5));
         time = candle.getLong(0);
         close = candle.getDouble(4);
     }
 
+    /**
+     * Method to get {@link #time} instance <br>
+     * Any params required
+     *
+     * @return {@link #time} instance as long
+     **/
     public long getTime() {
         return time;
     }
 
+    /**
+     * Method to get {@link #close} instance <br>
+     * Any params required
+     *
+     * @return {@link #close} instance as double
+     **/
     public double getClose() {
         return close;
     }
 
-    /** Method to get {@link #close} instance
+    /**
+     * Method to get {@link #close} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #close} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getClose(int decimals) {
         return roundValue(close, decimals);
-    }
-
-    @Override
-    public String toString() {
-        return "Candle{" +
-                "time=" + time +
-                ", close=" + close +
-                ", open=" + open +
-                ", high=" + high +
-                ", low=" + low +
-                ", volume=" + volume +
-                '}';
     }
 
 }

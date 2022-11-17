@@ -1,36 +1,34 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.transfers.records.paymentmethods;
 
-import com.tecknobit.coinbasemanager.managers.exchangepro.transfers.records.TransferAction;
 import org.json.JSONObject;
 
 /**
  * The {@code PayMethod} class is useful to format general PayMethod object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
+ * Deposit from {@code "Coinbase"} account</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod-1">
+ * Deposit from payment method</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount-1">
+ * Withdraw to {@code "Coinbase"} account</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto-1">
+ * Withdraw to crypto address</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod-1">
+ * Withdraw to payment method</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public class PayMethod {
 
     /**
@@ -64,101 +62,130 @@ public class PayMethod {
      * @throws IllegalArgumentException if parameters range is not respected
      * **/
     public PayMethod(String name, String type) {
-        if(name == null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         else
             this.name = name;
-        if(!isTypeValid(type))
+        if (!isTypeValid(type))
             throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
         else
             this.type = type;
     }
 
-    /** Constructor to init a {@link TransferAction} object
-     * @param payment: candle details as {@link JSONObject}
-     * **/
+    /**
+     * Constructor to init a {@link PayMethod} object
+     *
+     * @param payment: payment details as {@link JSONObject}
+     **/
     public PayMethod(JSONObject payment) {
-        name = payment.getString("name");
-        if(name == null || name.isEmpty())
-            throw new IllegalArgumentException("Name value cannot be empty or null");
-        type = payment.getString("type");
-        if(!isTypeValid(type))
-            throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
+        this(payment.getString("name"), payment.getString("type"));
     }
 
+    /**
+     * Method to get {@link #name} instance <br>
+     * Any params required
+     *
+     * @return {@link #name} instance as {@link String}
+     **/
     public String getName() {
         return name;
     }
 
-    /** Method to set {@link #name}
+    /**
+     * Method to set {@link #name}
+     *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
-     * **/
+     **/
     public void setName(String name) {
-        if(name == null || name.isEmpty())
+        if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         this.name = name;
     }
 
+    /**
+     * Method to get {@link #type} instance <br>
+     * Any params required
+     *
+     * @return {@link #type} instance as {@link String}
+     **/
     public String getType() {
         return type;
     }
 
-    /** Method to set {@link #type}
+    /**
+     * Method to set {@link #type}
+     *
      * @param type: type value
      * @throws IllegalArgumentException when type value is null or empty
-     * **/
+     **/
     public void setType(String type) {
-        if(!isTypeValid(type))
+        if (!isTypeValid(type))
             throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
         this.type = type;
     }
 
-    /** Method to check validity of {@link #type}
+    /**
+     * Method to check validity of {@link #type}
+     *
      * @param type: type value
      * @return validity of type as boolean
-     * **/
-    private boolean isTypeValid(String type){
+     **/
+    private boolean isTypeValid(String type) {
         return type != null && (type.equals(FIAT_ACCOUNT_TYPE) || type.equals(PAYPAL_TYPE) || type.equals(BANK_TYPE));
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "PayMethod{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return new JSONObject(this).toString();
     }
 
     /**
-     * The {@code PickerData} class is useful to obtain and format PickerData
+     * The {@code PickerData} class is useful to obtain and format a picker data
      *
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
+     * @author N7ghtm4r3 - Tecknobit
      **/
-    public static class PickerData{
+    public static class PickerData {
 
         /**
          * {@code symbol} is instance that memorizes symbol value
-         * **/
+         **/
         protected final String symbol;
 
-        /** Constructor to init {@link PickerData} object
+        /**
+         * Constructor to init {@link PickerData} object
+         *
          * @param symbol: symbol value
-         * **/
+         **/
         public PickerData(String symbol) {
             this.symbol = symbol;
         }
 
+        /**
+         * Method to get {@link #symbol} instance <br>
+         * Any params required
+         *
+         * @return {@link #symbol} instance as {@link String}
+         **/
         public String getSymbol() {
             return symbol;
         }
 
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "PickerData{" +
-                    "symbol='" + symbol + '\'' +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

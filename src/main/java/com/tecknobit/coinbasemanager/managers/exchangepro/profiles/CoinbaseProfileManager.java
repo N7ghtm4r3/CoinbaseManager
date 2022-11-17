@@ -11,110 +11,140 @@ import static com.tecknobit.apimanager.apis.APIRequest.*;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
 
 /**
- * The {@code CoinbaseProfileManager} class is useful to manage all Coinbase profiles endpoints
+ * The {@code CoinbaseProfileManager} class is useful to manage all {@code "Coinbase"} profiles endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+ * Profile manager</a>
+ * @see CoinbaseManager
  **/
-
 public class CoinbaseProfileManager extends CoinbaseManager {
 
-    /** Constructor to init a {@link CoinbaseProfileManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseProfileManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:             custom timeout for request
+     **/
     public CoinbaseProfileManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseProfileManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * @param timeout: custom timeout for request
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseProfileManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     * @param timeout:    custom timeout for request
+     **/
     public CoinbaseProfileManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseProfileManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseProfileManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * **/
+     **/
     public CoinbaseProfileManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a {@link CoinbaseProfileManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseProfileManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     **/
     public CoinbaseProfileManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /**
+     * Constructor to init a {@link CoinbaseProfileManager} <br>
+     * Any params required
+     *
+     * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
+     * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
+     * the credentials and is useful in those cases if you need to use different manager at the same time:
+     * <pre>
+     *     {@code
+     *        //You need to insert all credentials requested
+     *        CoinbaseManager firstManager = new CoinbaseManager("apiKey", "apiSecret", "passphrase");
+     *        //You don't need to insert all credentials to make manager work
+     *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
+     *     }
+     * </pre>
+     **/
+    public CoinbaseProfileManager() {
+        super();
+    }
+
+    /**
+     * Request to get profiles of a {@code "Coinbase"}'s account
      * any params required
+     *
+     * @return profiles of a {@code "Coinbase"}'s account as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account as {@link String}
-     * **/
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     **/
     public String getProfiles() throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /** Request to get profiles of a {@code "Coinbase"}'s account
      * any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account as {@link JSONArray}
+     * @return profiles of a {@code "Coinbase"}'s account as {@link JSONArray}
      * **/
     public JSONArray getProfilesJSON() throws Exception {
         return new JSONArray(getProfiles());
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /** Request to get profiles of a {@code "Coinbase"}'s account
      * any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account list as {@link ArrayList} of {@link Profile}
+     * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
      * **/
     public ArrayList<Profile> getProfilesList() throws Exception {
         return assembleProfilesList(new JSONArray(getProfiles()));
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /** Request to get profiles of a {@code "Coinbase"}'s account
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account as {@link String}
+     * @return profiles of a {@code "Coinbase"}'s account as {@link String}
      * **/
     public String getProfiles(boolean active) throws Exception {
         return sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET_METHOD);
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /** Request to get profiles of a {@code "Coinbase"}'s account
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account as {@link JSONArray}
+     * @return profiles of a {@code "Coinbase"}'s account as {@link JSONArray}
      * **/
     public JSONArray getProfilesJSON(boolean active) throws Exception {
         return new JSONArray(getProfiles(active));
     }
 
-    /** Request to get profiles of a Coinbase's account
+    /** Request to get profiles of a {@code "Coinbase"}'s account
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a Coinbase's account list as {@link ArrayList} of {@link Profile}
+     * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
      * **/
     public ArrayList<Profile> getProfilesList(boolean active) throws Exception {
         return assembleProfilesList(new JSONArray(getProfiles(active)));
@@ -181,7 +211,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
@@ -191,7 +221,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET_METHOD);
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
@@ -201,7 +231,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return new JSONObject(getProfileById(profileId));
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
@@ -211,7 +241,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return new Profile(new JSONObject(getProfileById(profileId)));
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
@@ -222,7 +252,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET_METHOD);
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
@@ -233,7 +263,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return new JSONObject(getProfileById(profileId, active));
     }
 
-    /** Request to get a single Coinbase's profile
+    /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">

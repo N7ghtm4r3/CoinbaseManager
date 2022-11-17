@@ -10,9 +10,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+ * Get fees</a>
  **/
-
 public class Fee {
 
     /**
@@ -41,62 +40,90 @@ public class Fee {
         this.usdVolume = usdVolume;
     }
 
-    /** Constructor to init a {@link Fee} object
+    /**
+     * Constructor to init a {@link Fee} object
+     *
      * @param fee: fee details as {@link JSONObject}
-     * **/
+     **/
     public Fee(JSONObject fee) {
         JsonHelper hFees = new JsonHelper(fee);
-        takerFeeRate = hFees.getDouble("taker_fee_rate");
-        makerFeeRate = hFees.getDouble("maker_fee_rate");
-        usdVolume = hFees.getDouble("usd_volume");
+        takerFeeRate = hFees.getDouble("taker_fee_rate", 0);
+        makerFeeRate = hFees.getDouble("maker_fee_rate", 0);
+        usdVolume = hFees.getDouble("usd_volume", 0);
     }
 
+    /**
+     * Method to get {@link #takerFeeRate} instance <br>
+     * Any params required
+     *
+     * @return {@link #takerFeeRate} instance as double
+     **/
     public double getTakerFeeRate() {
         return takerFeeRate;
     }
 
-    /** Method to get {@link #takerFeeRate} instance
+    /**
+     * Method to get {@link #takerFeeRate} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #takerFeeRate} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getTakerFeeRate(int decimals) {
         return roundValue(takerFeeRate, decimals);
     }
 
+    /**
+     * Method to get {@link #makerFeeRate} instance <br>
+     * Any params required
+     *
+     * @return {@link #makerFeeRate} instance as double
+     **/
     public double getMakerFeeRate() {
         return makerFeeRate;
     }
 
-    /** Method to get {@link #makerFeeRate} instance
+    /**
+     * Method to get {@link #makerFeeRate} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #makerFeeRate} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getMakerFeeRate(int decimals) {
         return roundValue(makerFeeRate, decimals);
     }
 
+    /**
+     * Method to get {@link #usdVolume} instance <br>
+     * Any params required
+     *
+     * @return {@link #usdVolume} instance as double
+     **/
     public double getUsdVolume() {
         return usdVolume;
     }
 
-    /** Method to get {@link #usdVolume} instance
+    /**
+     * Method to get {@link #usdVolume} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #usdVolume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getUsdVolume(int decimals) {
         return roundValue(usdVolume, decimals);
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "Fee{" +
-                "takerFeeRate=" + takerFeeRate +
-                ", makerFeeRate=" + makerFeeRate +
-                ", usdVolume=" + usdVolume +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

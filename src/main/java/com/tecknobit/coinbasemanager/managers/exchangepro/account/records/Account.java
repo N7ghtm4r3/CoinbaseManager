@@ -9,9 +9,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1</a>
+ *     Get all accounts for a profile</a>
  **/
-
 public class Account {
 
     /**
@@ -74,7 +73,7 @@ public class Account {
             throw new IllegalArgumentException("Available value cannot be less than 0");
         else
             this.available = available;
-        if(hold < 0)
+        if (hold < 0)
             throw new IllegalArgumentException("Hold value cannot be less than 0");
         else
             this.hold = hold;
@@ -82,138 +81,203 @@ public class Account {
         this.tradingEnable = tradingEnable;
     }
 
-    /** Constructor to init a {@link Account} object
+    /**
+     * Constructor to init a {@link Account} object
+     *
      * @param account: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
-    public Account(JSONObject account){
-        id = account.getString("id");
-        currency = account.getString("currency");
-        if(currency == null || currency.isEmpty())
-            throw new IllegalArgumentException("Currency value cannot be empty or null");
-        balance = account.getDouble("balance");
-        if(balance < 0)
-            throw new IllegalArgumentException("Balance value cannot be less than 0");
-        available = account.getDouble("available");
-        if(available < 0)
-            throw new IllegalArgumentException("Available value cannot be less than 0");
-        hold = account.getDouble("hold");
-        if(hold < 0)
-            throw new IllegalArgumentException("Hold value cannot be less than 0");
-        profileId = account.getString("profile_id");
-        tradingEnable = account.getBoolean("trading_enabled");
+     **/
+    public Account(JSONObject account) {
+        this(account.getString("id"), account.getString("currency"), account.getDouble("balance"),
+                account.getDouble("available"), account.getDouble("hold"), account.getString("profile_id"),
+                account.getBoolean("trading_enabled"));
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #currency} instance <br>
+     * Any params required
+     *
+     * @return {@link #currency} instance as {@link String}
+     **/
     public String getCurrency() {
         return currency;
     }
 
-    /** Method to set {@link #currency}
+    /**
+     * Method to set {@link #currency}
+     *
      * @param currency: currency value
      * @throws IllegalArgumentException when currency value is null or empty
-     * **/
+     **/
     public void setCurrency(String currency) {
-        if(currency == null || currency.isEmpty())
+        if (currency == null || currency.isEmpty())
             throw new IllegalArgumentException("Currency value cannot be empty or null");
         this.currency = currency;
     }
 
+    /**
+     * Method to get {@link #balance} instance <br>
+     * Any params required
+     *
+     * @return {@link #balance} instance as double
+     **/
     public double getBalance() {
         return balance;
     }
 
-    /** Method to get {@link #balance} instance
-     * @param decimals: number of digits to round final value
-     * @return {@link #balance} instance rounded with decimal digits inserted
-     * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
-    public double getBalance(int decimals) {
-        return roundValue(balance, decimals);
-    }
-
-    /** Method to set {@link #balance}
+    /**
+     * Method to set {@link #balance}
+     *
      * @param balance: balance value
      * @throws IllegalArgumentException when balance value is less than 0
-     * **/
+     **/
     public void setBalance(double balance) {
-        if(balance < 0)
+        if (balance < 0)
             throw new IllegalArgumentException("Balance value cannot be less than 0");
         this.balance = balance;
     }
 
+    /**
+     * Method to get {@link #balance} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #balance} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getBalance(int decimals) {
+        return roundValue(balance, decimals);
+    }
+
+    /**
+     * Method to get {@link #available} instance <br>
+     * Any params required
+     *
+     * @return {@link #available} instance as double
+     **/
     public double getAvailable() {
         return available;
     }
 
-    /** Method to get {@link #available} instance
-     * @param decimals: number of digits to round final value
-     * @return {@link #available} instance rounded with decimal digits inserted
-     * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
-    public double getAvailable(int decimals) {
-        return roundValue(available, decimals);
-    }
-
-    /** Method to set {@link #available}
+    /**
+     * Method to set {@link #available}
+     *
      * @param available: available value
      * @throws IllegalArgumentException when available value is less than 0
-     * **/
+     **/
     public void setAvailable(double available) {
-        if(available < 0)
+        if (available < 0)
             throw new IllegalArgumentException("Available value cannot be less than 0");
         this.available = available;
     }
 
+    /**
+     * Method to get {@link #available} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #available} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getAvailable(int decimals) {
+        return roundValue(available, decimals);
+    }
+
+    /**
+     * Method to get {@link #hold} instance <br>
+     * Any params required
+     *
+     * @return {@link #hold} instance as double
+     **/
     public double getHold() {
         return hold;
     }
 
-    /** Method to get {@link #hold} instance
+    /**
+     * Method to get {@link #hold} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #hold} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getHold(int decimals) {
         return roundValue(hold, decimals);
     }
 
-    /** Method to set {@link #hold}
+    /**
+     * Method to set {@link #hold}
+     *
      * @param hold: hold value
      * @throws IllegalArgumentException when hold value is less than 0
-     * **/
+     **/
     public void setHold(double hold) {
-        if(hold < 0)
+        if (hold < 0)
             throw new IllegalArgumentException("Hold value cannot be less than 0");
         this.hold = hold;
     }
 
+    /**
+     * Method to get {@link #profileId} instance <br>
+     * Any params required
+     *
+     * @return {@link #profileId} instance as {@link String}
+     **/
     public String getProfileId() {
         return profileId;
     }
 
+    /**
+     * Method to get {@link #tradingEnable} instance <br>
+     * Any params required
+     *
+     * @return {@link #tradingEnable} instance as boolean
+     **/
     public boolean isTradingEnable() {
         return tradingEnable;
     }
 
+    /**
+     * Method to set {@link #tradingEnable} instance
+     *
+     * @param tradingEnable: is flag that checks if trading is enabled
+     **/
     public void setTradingEnable(boolean tradingEnable) {
         this.tradingEnable = tradingEnable;
     }
 
+    /**
+     * Method to set {@link #tradingEnable} instance on {@code "true"} <br>
+     * Any params required
+     **/
+    public void enableTrading() {
+        tradingEnable = true;
+    }
+
+    /**
+     * Method to set {@link #tradingEnable} instance on {@code "false"} <br>
+     * Any params required
+     **/
+    public void disableTrading() {
+        tradingEnable = false;
+    }
+
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "Account{" +
-                "id='" + id + '\'' +
-                ", currency='" + currency + '\'' +
-                ", balance=" + balance +
-                ", available=" + available +
-                ", hold=" + hold +
-                ", profileId='" + profileId + '\'' +
-                ", tradingEnable=" + tradingEnable +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

@@ -9,9 +9,9 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
+ * Get product ticker</a>
+ * @see StatDetails
  **/
-
 public class Ticker extends StatDetails {
 
     /**
@@ -75,95 +75,134 @@ public class Ticker extends StatDetails {
         this.priceChangePercent = priceChangePercent;
     }
 
-    /** Constructor to init a {@link Ticker} object
+    /**
+     * Constructor to init a {@link Ticker} object
+     *
      * @param ticker: ticker details as {@link JSONObject}
-     * **/
-    public Ticker(String productId, double priceChangePercent, JSONObject ticker) {
+     **/
+    public Ticker(JSONObject ticker) {
         super(ticker);
-        this.productId = productId;
+        productId = ticker.getString("productIt");
         baseAsset = ticker.getString("baseAsset");
         quoteAsset = ticker.getString("quoteAsset");
         bid = ticker.getDouble("bid");
         ask = ticker.getDouble("ask");
         volume = ticker.getDouble("volume");
-        this.priceChangePercent = priceChangePercent;
+        priceChangePercent = ticker.getDouble("priceChangePercent");
     }
 
+    /**
+     * Method to get {@link #productId} instance <br>
+     * Any params required
+     *
+     * @return {@link #productId} instance as {@link String}
+     **/
     public String getProductId() {
         return productId;
     }
 
+    /**
+     * Method to get {@link #baseAsset} instance <br>
+     * Any params required
+     *
+     * @return {@link #baseAsset} instance as {@link String}
+     **/
     public String getBaseAsset() {
         return baseAsset;
     }
 
+    /**
+     * Method to get {@link #quoteAsset} instance <br>
+     * Any params required
+     *
+     * @return {@link #quoteAsset} instance as {@link String}
+     **/
     public String getQuoteAsset() {
         return quoteAsset;
     }
 
+    /**
+     * Method to get {@link #bid} instance <br>
+     * Any params required
+     *
+     * @return {@link #bid} instance as double
+     **/
     public double getBid() {
         return bid;
     }
 
-    /** Method to get {@link #bid} instance
+    /**
+     * Method to get {@link #bid} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #bid} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getBid(int decimals) {
         return roundValue(bid, decimals);
     }
 
+    /**
+     * Method to get {@link #ask} instance <br>
+     * Any params required
+     *
+     * @return {@link #ask} instance as double
+     **/
     public double getAsk() {
         return ask;
     }
 
-    /** Method to get {@link #ask} instance
+    /**
+     * Method to get {@link #ask} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #ask} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getAsk(int decimals) {
         return roundValue(ask, decimals);
     }
 
+    /**
+     * Method to get {@link #volume} instance <br>
+     * Any params required
+     *
+     * @return {@link #volume} instance as double
+     **/
     public double getVolume() {
         return volume;
     }
 
-    /** Method to get {@link #volume} instance
+    /**
+     * Method to get {@link #volume} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getVolume(int decimals) {
         return roundValue(volume, decimals);
     }
 
+    /**
+     * Method to get {@link #priceChangePercent} instance <br>
+     * Any params required
+     *
+     * @return {@link #priceChangePercent} instance as double
+     **/
     public double getPriceChangePercent() {
         return priceChangePercent;
     }
 
-    /** Method to get {@link #priceChangePercent} instance
+    /**
+     * Method to get {@link #priceChangePercent} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #priceChangePercent} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getPriceChangePercent(int decimals) {
         return roundValue(priceChangePercent, decimals);
-    }
-
-    @Override
-    public String toString() {
-        return "Ticker{" +
-                "productId='" + productId + '\'' +
-                ", baseAsset='" + baseAsset + '\'' +
-                ", quoteAsset='" + quoteAsset + '\'' +
-                ", bid=" + bid +
-                ", ask=" + ask +
-                ", volume=" + volume +
-                ", priceChangePercent=" + priceChangePercent +
-                '}';
     }
 
 }

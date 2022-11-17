@@ -1,29 +1,30 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.transfers.records.paymentmethods;
 
 import com.tecknobit.apimanager.formatters.JsonHelper;
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 
 /**
- * The {@code PayPalMethod} class is useful to format PaymentMethod object
+ * The {@code PayPalMethod} class is useful to format a payment method
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
+ * Get all payment methods</a>
+ * @see PayMethod
  **/
-
-public class PaymentMethod extends PayMethod{
+public class PaymentMethod extends PayMethod {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     **/
     private final String id;
 
     /**
      * {@code currency} is instance that memorizes currency value
-     * **/
+     **/
     private final String currency;
 
     /**
@@ -102,9 +103,9 @@ public class PaymentMethod extends PayMethod{
     private final int holdDays;
 
     /**
-     * {@code jsonHelper} is instance useful to help to format JSON responses API
-     * **/
-    private final JsonHelper jsonHelper;
+     * {@code hPayment} is instance useful to help to format JSON responses API
+     **/
+    private final JsonHelper hPayment;
 
     /**
      * {@code minimumPurchaseAmount} is instance that memorizes minimum purchase amount value
@@ -164,15 +165,16 @@ public class PaymentMethod extends PayMethod{
      * @param allowDeposit: flag that checks if deposit is allowed
      * @param allowWithdraw: flag that checks if withdraw is allowed
      * @param verified: flag that checks if this method is verified
-     * @param jsonPayment: payment details in JSON format
+     * @param holdBusinessDays: hold business days value
+     * @param holdDays: hold days values
+     * @param minimumPurchaseAmount: minimum purchase amount value
      * @throws IllegalArgumentException if parameters range is not respected
      * **/
     public PaymentMethod(String id, String type, String name, String currency, boolean primaryBuy, boolean primarySell,
                          boolean instantBuy, boolean instantSell, String createdAt, String updatedAt, String resource,
                          String resourcePath, boolean allowBuy, boolean allowSell, boolean allowDeposit, boolean allowWithdraw,
-                         boolean verified, JSONObject jsonPayment) {
+                         boolean verified, int holdBusinessDays, int holdDays, Amount minimumPurchaseAmount) {
         super(name, type);
-        jsonHelper = new JsonHelper(jsonPayment);
         this.id = id;
         this.currency = currency;
         this.primaryBuy = primaryBuy;
@@ -188,9 +190,10 @@ public class PaymentMethod extends PayMethod{
         this.allowDeposit = allowDeposit;
         this.allowWithdraw = allowWithdraw;
         this.verified = verified;
-        this.holdBusinessDays = jsonHelper.getInt("hold_business_days");
-        this.holdDays = jsonHelper.getInt("hold_days");
-        minimumPurchaseAmount = new Amount(jsonHelper.getJSONObject("minimum_purchase_amount"));
+        this.holdBusinessDays = holdBusinessDays;
+        this.holdDays = holdDays;
+        this.minimumPurchaseAmount = minimumPurchaseAmount;
+        hPayment = null;
     }
 
     /** Constructor to init a {@link PaymentMethod} object
@@ -198,7 +201,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public PaymentMethod(JSONObject payment) {
         super(payment);
-        jsonHelper = new JsonHelper(payment);
+        hPayment = new JsonHelper(payment);
         id = payment.getString("id");
         currency = payment.getString("currency");
         primaryBuy = payment.getBoolean("primary_buy");
@@ -214,96 +217,222 @@ public class PaymentMethod extends PayMethod{
         allowDeposit = payment.getBoolean("allow_deposit");
         allowWithdraw = payment.getBoolean("allow_withdraw");
         verified = payment.getBoolean("verified");
-        holdBusinessDays = jsonHelper.getInt("hold_business_days");
-        holdDays = jsonHelper.getInt("hold_days");
-        minimumPurchaseAmount = new Amount(jsonHelper.getJSONObject("minimum_purchase_amount"));
+        holdBusinessDays = hPayment.getInt("hold_business_days");
+        holdDays = hPayment.getInt("hold_days");
+        minimumPurchaseAmount = new Amount(hPayment.getJSONObject("minimum_purchase_amount"));
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #currency} instance <br>
+     * Any params required
+     *
+     * @return {@link #currency} instance as {@link String}
+     **/
     public String getCurrency() {
         return currency;
     }
 
+    /**
+     * Method to get {@link #primaryBuy} instance <br>
+     * Any params required
+     *
+     * @return {@link #primaryBuy} instance as boolean
+     **/
     public boolean isPrimaryBuy() {
         return primaryBuy;
     }
 
+    /**
+     * Method to get {@link #primarySell} instance <br>
+     * Any params required
+     *
+     * @return {@link #primarySell} instance as boolean
+     **/
     public boolean isPrimarySell() {
         return primarySell;
     }
 
+    /**
+     * Method to get {@link #instantBuy} instance <br>
+     * Any params required
+     *
+     * @return {@link #instantBuy} instance as boolean
+     **/
     public boolean isInstantBuy() {
         return instantBuy;
     }
 
+    /**
+     * Method to get {@link #instantSell} instance <br>
+     * Any params required
+     *
+     * @return {@link #instantSell} instance as boolean
+     **/
     public boolean isInstantSell() {
         return instantSell;
     }
 
+    /**
+     * Method to get {@link #createdAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} instance as {@link String}
+     **/
     public String getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Method to get {@link #createdAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} timestamp as long
+     **/
+    public long getCreatedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(createdAt);
+    }
+
+    /**
+     * Method to get {@link #updatedAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #updatedAt} instance as {@link String}
+     **/
     public String getUpdatedAt() {
         return updatedAt;
     }
 
+    /**
+     * Method to get {@link #updatedAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #updatedAt} timestamp as long
+     **/
+    public long getUpdatedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(updatedAt);
+    }
+
+    /**
+     * Method to get {@link #resource} instance <br>
+     * Any params required
+     *
+     * @return {@link #resource} instance as {@link String}
+     **/
     public String getResource() {
         return resource;
     }
 
+    /**
+     * Method to get {@link #resourcePath} instance <br>
+     * Any params required
+     *
+     * @return {@link #resourcePath} instance as {@link String}
+     **/
     public String getResourcePath() {
         return resourcePath;
     }
 
-    public boolean isAllowBuy() {
+    /**
+     * Method to get {@link #allowBuy} instance <br>
+     * Any params required
+     *
+     * @return {@link #allowBuy} instance as boolean
+     **/
+    public boolean isAllowedBuy() {
         return allowBuy;
     }
 
-    public boolean isAllowSell() {
+    /**
+     * Method to get {@link #allowSell} instance <br>
+     * Any params required
+     *
+     * @return {@link #allowSell} instance as boolean
+     **/
+    public boolean isAllowedSell() {
         return allowSell;
     }
 
-    public boolean isAllowDeposit() {
+    /**
+     * Method to get {@link #allowDeposit} instance <br>
+     * Any params required
+     *
+     * @return {@link #allowDeposit} instance as boolean
+     **/
+    public boolean isAllowedDeposit() {
         return allowDeposit;
     }
 
-    public boolean isAllowWithdraw() {
+    /**
+     * Method to get {@link #allowWithdraw} instance <br>
+     * Any params required
+     *
+     * @return {@link #allowWithdraw} instance as boolean
+     **/
+    public boolean isAllowedWithdraw() {
         return allowWithdraw;
     }
 
+    /**
+     * Method to get {@link #verified} instance <br>
+     * Any params required
+     *
+     * @return {@link #verified} instance as boolean
+     **/
     public boolean isVerified() {
         return verified;
     }
 
+    /**
+     * Method to get {@link #holdBusinessDays} instance <br>
+     * Any params required
+     *
+     * @return {@link #holdBusinessDays} instance as int
+     **/
     public int getHoldBusinessDays() {
         return holdBusinessDays;
     }
 
+    /**
+     * Method to get {@link #holdDays} instance <br>
+     * Any params required
+     *
+     * @return {@link #holdDays} instance as int
+     **/
     public int getHoldDays() {
         return holdDays;
     }
 
+    /**
+     * Method to get {@link #minimumPurchaseAmount} instance <br>
+     * Any params required
+     *
+     * @return {@link #minimumPurchaseAmount} instance as {@link Amount}
+     **/
     public Amount getMinimumPurchaseAmount() {
         return minimumPurchaseAmount;
     }
 
-    /** Method to get PayPal limits details <br>
+    /**
+     * Method to get PayPal limits details <br>
      * Any params required
+     *
      * @return PayPal limits details as {@link PayPalMethod} object, if is not a PayPal method will return null value
-     * **/
-    public PayPalMethod getPayPalLimits(){
-        if(payPalLimits == null)
-            payPalLimits = jsonHelper.getJSONObject("limits");
-        if(payPalLimits != null) {
-            String type = payPalLimits.getString("type");
-            if(type.equals(PAYPAL_TYPE))
-                return new PayPalMethod(payPalLimits.getString("name"), type, payPalLimits);
-            return null;
-        }
+     **/
+    public PayPalMethod getPayPalLimits() {
+        if (payPalLimits == null)
+            payPalLimits = hPayment.getJSONObject("limits");
+        if (payPalLimits != null && payPalLimits.getString("type").equals(PAYPAL_TYPE))
+            return new PayPalMethod(payPalLimits);
         return null;
     }
 
@@ -313,11 +442,11 @@ public class PaymentMethod extends PayMethod{
      * **/
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
         if(payPalPickerData == null)
-            payPalPickerData = jsonHelper.getJSONObject("picker_data");
+            payPalPickerData = hPayment.getJSONObject("picker_data");
         if(payPalPickerData != null){
             String symbol = payPalPickerData.getString("symbol");
             if(symbol.equals(PAYPAL_TYPE))
-                return new PayPalMethod.PayPalPickerData(symbol, payPalPickerData);
+                return new PayPalMethod.PayPalPickerData(payPalPickerData.put("symbol", symbol));
             return null;
         }
         return null;
@@ -327,15 +456,11 @@ public class PaymentMethod extends PayMethod{
      * Any params required
      * @return Bank limits details as {@link BankMethod} object, if is not a Bank method will return null value
      * **/
-    public BankMethod getBankLimits(){
-        if(bankLimits == null)
-            bankLimits = jsonHelper.getJSONObject("limits");
-        if(bankLimits != null){
-            String type = bankLimits.getString("type");
-            if(type.equals(BANK_TYPE))
-                return new BankMethod(bankLimits.getString("name"), type);
-            return null;
-        }
+    public BankMethod getBankLimits() {
+        if (bankLimits == null)
+            bankLimits = hPayment.getJSONObject("limits");
+        if (bankLimits != null && bankLimits.getString("type").equals(BANK_TYPE))
+            return new BankMethod(bankLimits.getString("name"));
         return null;
     }
 
@@ -345,11 +470,11 @@ public class PaymentMethod extends PayMethod{
      * **/
     public BankMethod.BankPickerData getBankPickerData(){
         if(bankPickerData == null)
-            bankPickerData = jsonHelper.getJSONObject("picker_data");
+            bankPickerData = hPayment.getJSONObject("picker_data");
         if(bankPickerData != null){
             String symbol = bankPickerData.getString("symbol");
             if(symbol.equals(BANK_TYPE))
-                return new BankMethod.BankPickerData(symbol, bankPickerData);
+                return new BankMethod.BankPickerData(bankPickerData.put("symbol", symbol));
             return null;
         }
         return null;
@@ -362,7 +487,7 @@ public class PaymentMethod extends PayMethod{
      * **/
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
         if(fiatAccountDetails == null)
-            fiatAccountDetails = jsonHelper.getJSONObject(FIAT_ACCOUNT_TYPE);
+            fiatAccountDetails = hPayment.getJSONObject(FIAT_ACCOUNT_TYPE);
         if(fiatAccountDetails != null)
             return new FiatAccountMethod.FiatAccountDetails(fiatAccountDetails);
         return null;
@@ -373,15 +498,11 @@ public class PaymentMethod extends PayMethod{
      * @return Fiat Account limits details as {@link FiatAccountMethod} object,
      * if is not a Fiat Account method will return null value
      * **/
-    public FiatAccountMethod getFiatAccountLimit(){
-        if(fiatAccountLimit == null)
-            fiatAccountLimit = jsonHelper.getJSONObject("limits");
-        if(fiatAccountLimit != null){
-            String type = fiatAccountLimit.getString("type");
-            if(type.equals(FIAT_ACCOUNT_TYPE))
-                return new FiatAccountMethod(fiatAccountLimit.getString("name"), type);
-            return null;
-        }
+    public FiatAccountMethod getFiatAccountLimit() {
+        if (fiatAccountLimit == null)
+            fiatAccountLimit = hPayment.getJSONObject("limits");
+        if (fiatAccountLimit != null && fiatAccountLimit.getString("type").equals(FIAT_ACCOUNT_TYPE))
+            return new FiatAccountMethod(fiatAccountLimit.getString("name"));
         return null;
     }
 
@@ -392,11 +513,11 @@ public class PaymentMethod extends PayMethod{
      * **/
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
         if(fiatAccountPickerData == null)
-            fiatAccountPickerData = jsonHelper.getJSONObject("picker_data");
+            fiatAccountPickerData = hPayment.getJSONObject("picker_data");
         if(fiatAccountPickerData != null){
             String symbol = fiatAccountPickerData.getString("type");
             if(symbol.equals(FIAT_ACCOUNT_TYPE))
-                return new FiatAccountMethod.FiatAccountPickerData(symbol, fiatAccountPickerData);
+                return new FiatAccountMethod.FiatAccountPickerData(fiatAccountPickerData.put("symbol", symbol));
             return null;
         }
         return null;
@@ -407,47 +528,15 @@ public class PaymentMethod extends PayMethod{
      * @return snippet of details as {@link JSONObject}
      * **/
     public JSONObject getSnippetDetail(String key){
-        return jsonHelper.getJSONObject(key);
-    }
-
-    @Override
-    public String toString() {
-        return "PaymentMethod{" +
-                "id='" + id + '\'' +
-                ", currency='" + currency + '\'' +
-                ", primaryBuy=" + primaryBuy +
-                ", primarySell=" + primarySell +
-                ", instantBuy=" + instantBuy +
-                ", instantSell=" + instantSell +
-                ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                ", resource='" + resource + '\'' +
-                ", resourcePath='" + resourcePath + '\'' +
-                ", allowBuy=" + allowBuy +
-                ", allowSell=" + allowSell +
-                ", allowDeposit=" + allowDeposit +
-                ", allowWithdraw=" + allowWithdraw +
-                ", verified=" + verified +
-                ", holdBusinessDays=" + holdBusinessDays +
-                ", holdDays=" + holdDays +
-                ", jsonHelper=" + jsonHelper +
-                ", minimumPurchaseAmount=" + minimumPurchaseAmount.toString() +
-                ", payPalLimits=" + payPalLimits +
-                ", bankLimits=" + bankLimits +
-                ", payPalPickerData=" + payPalPickerData +
-                ", bankPickerData=" + bankPickerData +
-                ", fiatAccountLimit=" + fiatAccountLimit +
-                ", fiatAccountDetails=" + fiatAccountDetails +
-                ", fiatAccountPickerData=" + fiatAccountPickerData +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return hPayment.getJSONObject(key);
     }
 
     /**
-     * The {@code Amount} class is useful to obtain and format Amount object for PaymentMethod
+     * The {@code Amount} class is useful to obtain and format an amount for a {@link PaymentMethod}
+     *
+     * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1</a>
+     * Get all payment methods</a>
      * **/
     public static class Amount {
 
@@ -467,72 +556,95 @@ public class PaymentMethod extends PayMethod{
          * @throws IllegalArgumentException if parameters range is not respected
          * **/
         public Amount(double amount, String currency) {
-            if(amount < 0)
+            if (amount < 0)
                 throw new IllegalArgumentException("Amount value cannot be less than 0");
             else
                 this.amount = amount;
-            if(currency == null || currency.isEmpty())
+            if (currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");
             else
                 this.currency = currency;
         }
 
-        /** Constructor to init a {@link Amount} object
-         * @param jsonDetails: amount details in JSON format
-         * **/
-        public Amount(JSONObject jsonDetails){
-            if(jsonDetails != null){
-                amount = jsonDetails.getDouble("minimumPurchaseAmount");
-                currency = jsonDetails.getString("currency");
-            }else{
+        /**
+         * Constructor to init a {@link Amount} object
+         *
+         * @param jAmount: amount details as {@link JSONObject}
+         **/
+        public Amount(JSONObject jAmount) {
+            if (jAmount != null) {
+                amount = jAmount.getDouble("minimumPurchaseAmount");
+                currency = jAmount.getString("currency");
+            } else {
                 amount = -1;
                 currency = null;
             }
         }
 
+        /**
+         * Method to get {@link #amount} instance <br>
+         * Any params required
+         *
+         * @return {@link #amount} instance as double
+         **/
         public double getAmount() {
             return amount;
         }
 
-        /** Method to get {@link #amount} instance
-         * @param decimals: number of digits to round final value
-         * @return {@link #amount} instance rounded with decimal digits inserted
-         * @throws IllegalArgumentException if decimalDigits is negative
-         * **/
-        public double getAmount(int decimals) {
-            return roundValue(amount, decimals);
-        }
-
-        /** Method to set {@link #amount}
+        /**
+         * Method to set {@link #amount}
+         *
          * @param amount: amount value
          * @throws IllegalArgumentException when amount value is less than 0
-         * **/
+         **/
         public void setAmount(double amount) {
-            if(amount < 0)
+            if (amount < 0)
                 throw new IllegalArgumentException("Amount value cannot be less than 0");
             this.amount = amount;
         }
 
+        /**
+         * Method to get {@link #amount} instance
+         *
+         * @param decimals: number of digits to round final value
+         * @return {@link #amount} instance rounded with decimal digits inserted
+         * @throws IllegalArgumentException if decimalDigits is negative
+         **/
+        public double getAmount(int decimals) {
+            return roundValue(amount, decimals);
+        }
+
+        /**
+         * Method to get {@link #currency} instance <br>
+         * Any params required
+         *
+         * @return {@link #currency} instance as {@link String}
+         **/
         public String getCurrency() {
             return currency;
         }
 
-        /** Method to set {@link #currency}
+        /**
+         * Method to set {@link #currency}
+         *
          * @param currency: currency value
          * @throws IllegalArgumentException when currency value is null or empty
-         * **/
+         **/
         public void setCurrency(String currency) {
-            if(currency == null || currency.isEmpty())
+            if (currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");
             this.currency = currency;
         }
 
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "Amount{" +
-                    "amount=" + amount +
-                    ", currency='" + currency + '\'' +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

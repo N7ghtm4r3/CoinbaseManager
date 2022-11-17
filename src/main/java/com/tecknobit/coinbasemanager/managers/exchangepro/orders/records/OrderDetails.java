@@ -1,6 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.orders.records;
 
 import com.tecknobit.apimanager.formatters.JsonHelper;
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
@@ -8,31 +9,30 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 /**
  * The {@code OrderDetails} class is useful to format general OrderDetails object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+ * Get all fills</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+ * Get all orders</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+ * Cancel all orders</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+ * Create a new order</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+ * Get single order</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public abstract class OrderDetails {
 
     /**
@@ -98,7 +98,6 @@ public abstract class OrderDetails {
 
     /** Constructor to init a {@link OrderDetails} object
      * @param orderDetails: orderDetails details as {@link JSONObject}
-     * @throws IllegalArgumentException if parameters range is not respected
      * **/
     public OrderDetails(JSONObject orderDetails) {
         orderHelper = new JsonHelper(orderDetails);
@@ -111,63 +110,117 @@ public abstract class OrderDetails {
         settled = orderHelper.getBoolean("settled");
     }
 
+    /**
+     * Method to get {@link #createdAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} instance as {@link String}
+     **/
     public String getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Method to get {@link #createdAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} timestamp as long
+     **/
+    public long getCreatedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(createdAt);
+    }
+
+    /**
+     * Method to get {@link #productId} instance <br>
+     * Any params required
+     *
+     * @return {@link #productId} instance as {@link String}
+     **/
     public String getProductId() {
         return productId;
     }
 
+    /**
+     * Method to get {@link #profileId} instance <br>
+     * Any params required
+     *
+     * @return {@link #profileId} instance as {@link String}
+     **/
     public String getProfileId() {
         return profileId;
     }
 
+    /**
+     * Method to get {@link #price} instance <br>
+     * Any params required
+     *
+     * @return {@link #price} instance as double
+     **/
     public double getPrice() {
         return price;
     }
 
-    /** Method to get {@link #price} instance
+    /**
+     * Method to get {@link #price} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getPrice(int decimals) {
         return roundValue(price, decimals);
     }
 
+    /**
+     * Method to get {@link #size} instance <br>
+     * Any params required
+     *
+     * @return {@link #size} instance as double
+     **/
     public double getSize() {
         return size;
     }
 
-    /** Method to get {@link #size} instance
+    /**
+     * Method to get {@link #size} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getSize(int decimals) {
         return roundValue(size, decimals);
     }
 
+    /**
+     * Method to get {@link #side} instance <br>
+     * Any params required
+     *
+     * @return {@link #side} instance as {@link String}
+     **/
     public String getSide() {
         return side;
     }
 
+    /**
+     * Method to get {@link #settled} instance <br>
+     * Any params required
+     *
+     * @return {@link #settled} instance as boolean
+     **/
     public boolean isSettled() {
         return settled;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "OrderDetails{" +
-                "createdAt='" + createdAt + '\'' +
-                ", productId='" + productId + '\'' +
-                ", profileId='" + profileId + '\'' +
-                ", price=" + price +
-                ", size=" + size +
-                ", side='" + side + '\'' +
-                ", settled=" + settled +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

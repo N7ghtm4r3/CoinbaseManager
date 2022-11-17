@@ -19,61 +19,88 @@ import static com.tecknobit.coinbasemanager.constants.EndpointsList.COINBASE_ACC
 import static com.tecknobit.coinbasemanager.managers.exchangepro.account.records.details.Transfer.assembleTransfersList;
 
 /**
- * The {@code CoinbaseAccountManager} class is useful to manage all Coinbase account endpoints
- * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1</a>
-</li>
-</ul>
+ * The {@code CoinbaseAccountManager} class is useful to manage all {@code "Coinbase"} account endpoints
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
-
+ * @apiNote see the official documentation at:
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1">
+ * Account manager</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
+ * Account manager</a>
+ * </li>
+ * </ul>
+ * @see CoinbaseManager
+ **/
 public class CoinbaseAccountManager extends CoinbaseManager {
 
-    /** Constructor to init a {@link CoinbaseAccountManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseAccountManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:             custom timeout for request
+     **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
     /** Constructor to init a {@link CoinbaseAccountManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+     * @param apiKey: your {@code "Coinbase"} api key
+     * @param apiSecret: your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout: custom timeout for request
      * **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseAccountManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseAccountManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * **/
+     **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a {@link CoinbaseAccountManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseAccountManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     **/
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
+    }
+
+    /**
+     * Constructor to init a {@link CoinbaseAccountManager} <br>
+     * Any params required
+     *
+     * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
+     * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
+     * the credentials and is useful in those cases if you need to use different manager at the same time:
+     * <pre>
+     *     {@code
+     *        //You need to insert all credentials requested
+     *        CoinbaseManager firstManager = new CoinbaseManager("apiKey", "apiSecret", "passphrase");
+     *        //You don't need to insert all credentials to make manager work
+     *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
+     *     }
+     * </pre>
+     **/
+    public CoinbaseAccountManager() {
+        super();
     }
 
     /**
@@ -365,31 +392,31 @@ public class CoinbaseAccountManager extends CoinbaseManager {
         return assembleTransfersList(new JSONArray(getAccountTransfers(accountId, queryParams)));
     }
 
-    /** Request to get all Coinbase's users wallets available
+    /** Request to get all {@code "Coinbase"}'s users wallets available
      * any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1</a>
-     * @return all Coinbase's users wallets available as {@link String}
+     * @return all {@code "Coinbase"}'s users wallets available as {@link String}
      * **/
     public String getCoinbaseWallets() throws Exception {
         return sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get all Coinbase's users wallets available
+    /** Request to get all {@code "Coinbase"}'s users wallets available
      * any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1</a>
-     * @return all Coinbase's users wallets available as {@link JSONArray}
+     * @return all {@code "Coinbase"}'s users wallets available as {@link JSONArray}
      * **/
     public JSONArray getJSONCoinbaseWallets() throws Exception {
         return new JSONArray(getCoinbaseWallets());
     }
 
-    /** Request to get all Coinbase's users wallets available
+    /** Request to get all {@code "Coinbase"}'s users wallets available
      * any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1</a>
-     * @return all Coinbase's users wallets available as list {@link ArrayList} of {@link CoinbaseAccount}
+     * @return all {@code "Coinbase"}'s users wallets available as list {@link ArrayList} of {@link CoinbaseAccount}
      * **/
     public ArrayList<CoinbaseAccount> getCoinbaseWalletsList() throws Exception {
         JSONArray jsonCoinbaseAccounts = new JSONArray(getJSONCoinbaseWallets());

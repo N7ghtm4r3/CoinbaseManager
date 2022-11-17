@@ -9,9 +9,9 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1</a>
+ * Get a single account's ledger</a>
+ * @see AccountDetails
  **/
-
 public class Ledger extends AccountDetails {
 
     /**
@@ -42,49 +42,54 @@ public class Ledger extends AccountDetails {
         );
     }
 
-    /** Constructor to init a {@link Ledger} object
+    /**
+     * Constructor to init a {@link Ledger} object
+     *
      * @param ledger: ledger details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Ledger(JSONObject ledger) {
         super(ledger);
         balance = ledger.getDouble("balance");
         details = new Details(ledger);
     }
 
+    /**
+     * Method to get {@link #balance} instance <br>
+     * Any params required
+     *
+     * @return {@link #balance} instance as double
+     **/
     public double getBalance() {
         return balance;
     }
 
-    /** Method to get {@link #balance} instance
+    /**
+     * Method to get {@link #balance} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #balance} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getBalance(int decimals) {
         return roundValue(balance, decimals);
     }
 
+    /**
+     * Method to get {@link #details} instance <br>
+     * Any params required
+     *
+     * @return {@link #details} instance as {@link Details}
+     **/
     public Details getDetails() {
         return details;
     }
 
-    @Override
-    public String toString() {
-        return "Ledger{" +
-                "balance=" + balance +
-                ", details=" + details.toString() +
-                ", createdAt='" + createdAt + '\'' +
-                ", id='" + id + '\'' +
-                ", amount=" + amount +
-                ", type='" + type + '\'' +
-                '}';
-    }
-
     /**
      * The {@code Details} class is useful to obtain and format Details object for ledger
+     *
      * @author N7ghtm4r3 - Tecknobit
-     * **/
+     **/
     public static class Details {
 
         /**
@@ -114,35 +119,56 @@ public class Ledger extends AccountDetails {
             this.profileTransferId = profileTransferId;
         }
 
-        /** Constructor to init a {@link Details} object
+        /**
+         * Constructor to init a {@link Details} object
+         *
          * @param details: details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         **/
         public Details(JSONObject details) {
-            to = details.getString("to");
-            from = details.getString("from");
-            profileTransferId = details.getString("profile_transfer_id");
+            this(details.getString("to"), details.getString("from"),
+                    details.getString("profile_transfer_id"));
         }
 
+        /**
+         * Method to get {@link #to} instance <br>
+         * Any params required
+         *
+         * @return {@link #to} instance as {@link String}
+         **/
         public String getTo() {
             return to;
         }
 
+        /**
+         * Method to get {@link #from} instance <br>
+         * Any params required
+         *
+         * @return {@link #from} instance as {@link String}
+         **/
         public String getFrom() {
             return from;
         }
 
+        /**
+         * Method to get {@link #profileTransferId} instance <br>
+         * Any params required
+         *
+         * @return {@link #profileTransferId} instance as {@link String}
+         **/
         public String getProfileTransferId() {
             return profileTransferId;
         }
 
+        /**
+         * Returns a string representation of the object <br>
+         * Any params required
+         *
+         * @return a string representation of the object as {@link String}
+         */
         @Override
         public String toString() {
-            return "Details{" +
-                    "to='" + to + '\'' +
-                    ", from='" + from + '\'' +
-                    ", profileTransferId='" + profileTransferId + '\'' +
-                    '}';
+            return new JSONObject(this).toString();
         }
 
     }

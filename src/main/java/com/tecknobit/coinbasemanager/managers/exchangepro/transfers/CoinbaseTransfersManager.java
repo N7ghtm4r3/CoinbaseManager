@@ -15,13 +15,13 @@ import static com.tecknobit.apimanager.apis.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
 
 /**
- * The {@code CoinbaseTransfersManager} class is useful to manage all Coinbase transfers endpoints
+ * The {@code CoinbaseTransfersManager} class is useful to manage all {@code "Coinbase"} transfers endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1</a>
+ * Transfers manager</a>
+ * @see CoinbaseManager
  **/
-
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /**
@@ -31,68 +31,98 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /**
      * {@code PAYMENT_METHOD} is constant for payment identifier method type
-     * **/
+     **/
     public static final String PAYMENT_METHOD = "payment_method_id";
 
     /**
      * {@code CRYPTO_ADDRESS_METHOD} is constant for crypto address method type
-     * **/
+     **/
     public static final String CRYPTO_ADDRESS_METHOD = "crypto_address";
 
-    /** Constructor to init a {@link CoinbaseTransfersManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseTransfersManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:             custom timeout for request
+     **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseTransfersManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * @param timeout: custom timeout for request
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseTransfersManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     * @param timeout:    custom timeout for request
+     **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseTransfersManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
+    /**
+     * Constructor to init a {@link CoinbaseTransfersManager}
+     *
+     * @param apiKey:              your {@code "Coinbase"} api key
+     * @param apiSecret:           your {@code "Coinbase"} api secret
+     * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * **/
+     **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
 
-    /** Constructor to init a {@link CoinbaseTransfersManager}
-     * @param apiKey: your Coinbase api key
-     * @param apiSecret: your Coinbase api secret
-     * @param passphrase: your Coinbase api passphrase
-     * **/
+    /**
+     * Constructor to init a {@link CoinbaseTransfersManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
+     * @param passphrase: your {@code "Coinbase"} api passphrase
+     **/
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
 
-    /** Request to deposit from a Coinbase's account
-     * @param amount: amount to deposit
+    /**
+     * Constructor to init a {@link CoinbaseTransfersManager} <br>
+     * Any params required
+     *
+     * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
+     * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
+     * the credentials and is useful in those cases if you need to use different manager at the same time:
+     * <pre>
+     *     {@code
+     *        //You need to insert all credentials requested
+     *        CoinbaseManager firstManager = new CoinbaseManager("apiKey", "apiSecret", "passphrase");
+     *        //You don't need to insert all credentials to make manager work
+     *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
+     *     }
+     * </pre>
+     **/
+    public CoinbaseTransfersManager() {
+        super();
+    }
+
+    /**
+     * Request to deposit from a {@code "Coinbase"}'s account
+     *
+     * @param amount:            amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
-     * @param currencyId: identifier of currency used in deposit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1</a>
+     * @param currencyId:        identifier of currency used in deposit
      * @return result of deposit as {@link String}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1</a>
+     **/
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
         return sendBodyParamsAPIRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
     }
 
-    /** Request to deposit from a Coinbase's account
+    /** Request to deposit from a {@code "Coinbase"}'s account
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
@@ -104,7 +134,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId));
     }
 
-    /** Request to deposit from a Coinbase's account
+    /** Request to deposit from a {@code "Coinbase"}'s account
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
@@ -116,7 +146,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new TransferAction(new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
     }
 
-    /** Request to deposit from a Coinbase's account
+    /** Request to deposit from a {@code "Coinbase"}'s account
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
@@ -131,7 +161,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
     }
 
-    /** Request to deposit from a Coinbase's account
+    /** Request to deposit from a {@code "Coinbase"}'s account
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
@@ -145,7 +175,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(depositFromCoinbaseAccount(amount, coinbaseAccountId, currencyId, profileId));
     }
 
-    /** Request to deposit from a Coinbase's account
+    /** Request to deposit from a {@code "Coinbase"}'s account
      * @param amount: amount to deposit
      * @param coinbaseAccountId: identifier of coinbase account from deposit
      * @param currencyId: identifier of currency used in deposit
@@ -368,7 +398,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new Transfer(new JSONObject(getSingleTransfer(transferId)));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
@@ -381,7 +411,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
@@ -393,7 +423,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
@@ -405,7 +435,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new TransferAction(new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId)));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
@@ -420,7 +450,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
                 COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw
@@ -434,7 +464,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         return new JSONObject(withdrawToCoinbaseAccount(amount, coinbaseAccountId, currencyId, profileId));
     }
 
-    /** Request to withdraw to a Coinbase's account
+    /** Request to withdraw to a {@code "Coinbase"}'s account
      * @param amount: amount to withdraw
      * @param coinbaseAccountId: identifier of coinbase account in withdraw
      * @param currencyId: identifier of currency used in withdraw

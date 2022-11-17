@@ -9,9 +9,9 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
+ * Get all fills</a>
+ * @see OrderDetails
  **/
-
 public class Fill extends OrderDetails {
 
     /**
@@ -84,58 +84,86 @@ public class Fill extends OrderDetails {
         usdVolume = orderHelper.getDouble("usd_volume");
     }
 
+    /**
+     * Method to get {@link #tradeId} instance <br>
+     * Any params required
+     *
+     * @return {@link #tradeId} instance as long
+     **/
     public long getTradeId() {
         return tradeId;
     }
 
+    /**
+     * Method to get {@link #orderId} instance <br>
+     * Any params required
+     *
+     * @return {@link #orderId} instance as {@link String}
+     **/
     public String getOrderId() {
         return orderId;
     }
 
+    /**
+     * Method to get {@link #userId} instance <br>
+     * Any params required
+     *
+     * @return {@link #userId} instance as {@link String}
+     **/
     public String getUserId() {
         return userId;
     }
 
+    /**
+     * Method to get {@link #liquidity} instance <br>
+     * Any params required
+     *
+     * @return {@link #liquidity} instance as {@link String}
+     **/
     public String getLiquidity() {
         return liquidity;
     }
 
+    /**
+     * Method to get {@link #fee} instance <br>
+     * Any params required
+     *
+     * @return {@link #fee} instance as double
+     **/
     public double getFee() {
         return fee;
     }
 
-    /** Method to get {@link #fee} instance
+    /**
+     * Method to get {@link #fee} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #fee} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getFee(int decimals) {
         return roundValue(fee, decimals);
     }
 
+    /**
+     * Method to get {@link #usdVolume} instance <br>
+     * Any params required
+     *
+     * @return {@link #usdVolume} instance as double
+     **/
     public double getUsdVolume() {
         return usdVolume;
     }
 
-    /** Method to get {@link #usdVolume} instance
+    /**
+     * Method to get {@link #usdVolume} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #usdVolume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getUsdVolume(int decimals) {
         return roundValue(usdVolume, decimals);
-    }
-
-    @Override
-    public String toString() {
-        return "Fill{" +
-                "tradeId=" + tradeId +
-                ", orderId='" + orderId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", liquidity='" + liquidity + '\'' +
-                ", fee=" + fee +
-                ", usdVolume=" + usdVolume +
-                '}';
     }
 
 }

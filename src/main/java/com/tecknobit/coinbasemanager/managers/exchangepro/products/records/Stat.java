@@ -8,10 +8,10 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Stat} class is useful to format Stat object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
- * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+ * Get product stats</a>
+ * @see Product
  **/
-
 public class Stat extends Product {
 
     /**
@@ -45,57 +45,68 @@ public class Stat extends Product {
         this.volume30Day = volume30Day;
     }
 
-    /** Constructor to init a {@link Stat} object
+    /**
+     * Constructor to init a {@link Stat} object
+     *
      * @param stat: stat details as {@link JSONObject}
      **/
-    public Stat(String productId, JSONObject stat) {
+    public Stat(JSONObject stat) {
         super(stat);
-        this.productId = productId;
-        this.last = stat.getDouble("last");
-        this.volume30Day = stat.getDouble("volume_30day");
+        productId = stat.getString("productId");
+        last = stat.getDouble("last");
+        volume30Day = stat.getDouble("volume_30day");
     }
 
+    /**
+     * Method to get {@link #productId} instance <br>
+     * Any params required
+     *
+     * @return {@link #productId} instance as {@link String}
+     **/
     public String getProductId() {
         return productId;
     }
 
+    /**
+     * Method to get {@link #last} instance <br>
+     * Any params required
+     *
+     * @return {@link #last} instance as double
+     **/
     public double getLast() {
         return last;
     }
 
-    /** Method to get {@link #last} instance
+    /**
+     * Method to get {@link #last} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #last} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getLast(int decimals) {
         return roundValue(last, decimals);
     }
 
+    /**
+     * Method to get {@link #volume30Day} instance <br>
+     * Any params required
+     *
+     * @return {@link #volume30Day} instance as double
+     **/
     public double getVolume30Day() {
         return volume30Day;
     }
 
-    /** Method to get {@link #volume30Day} instance
+    /**
+     * Method to get {@link #volume30Day} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #volume30Day} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getVolume30Day(int decimals) {
         return roundValue(volume30Day, decimals);
-    }
-
-    @Override
-    public String toString() {
-        return "Stat{" +
-                "productId='" + productId + '\'' +
-                ", last=" + last +
-                ", volume30Day=" + volume30Day +
-                ", open=" + open +
-                ", high=" + high +
-                ", low=" + low +
-                ", volume=" + volume +
-                '}';
     }
 
 }

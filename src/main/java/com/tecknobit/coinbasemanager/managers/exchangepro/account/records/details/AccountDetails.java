@@ -1,14 +1,34 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.account.records.details;
 
+import com.tecknobit.apimanager.formatters.TimeFormatter;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 
 /**
- * The {@code AccountDetails} class is useful to format all base data of Coinbase account objects
+ * The {@code AccountDetails} class is useful to format all base data of {@code "Coinbase"} account objects
+ *
  * @author N7ghtm4r3 - Tecknobit
- * **/
-
+ * @apiNote see the official documentation at:
+ * <ul>
+ *     <li>
+ *        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds-1">
+ *            Get a single account's holds</a>
+ *     </li>
+ *     <li>
+ *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1">
+ *             Get a single account's ledger</a>
+ *     </li>
+ *      <li>
+ *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
+ *              Get a single account's transfers</a>
+ *     </li>
+ *      <li>
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
+ *               Get all transfers</a>
+ *       </li>
+ * </ul>
+ **/
 public class AccountDetails {
 
     /**
@@ -41,84 +61,121 @@ public class AccountDetails {
     public AccountDetails(String createdAt, String id, double amount, String type) {
         this.createdAt = createdAt;
         this.id = id;
-        if(amount < 0)
+        if (amount < 0)
             throw new IllegalArgumentException("Amount value cannot be less than 0");
         else
             this.amount = amount;
-        if(type == null || type.isEmpty())
+        if (type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");
         else
             this.type = type;
     }
 
-    /** Constructor to init a {@link AccountDetails} object
+    /**
+     * Constructor to init a {@link AccountDetails} object
+     *
      * @param accountDetails: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public AccountDetails(JSONObject accountDetails) {
-        createdAt = accountDetails.getString("created_at");
-        id = accountDetails.getString("id");
-        amount = accountDetails.getDouble("amount");
-        if(amount < 0)
-            throw new IllegalArgumentException("Amount value cannot be less than 0");
-        type = accountDetails.getString("type");
-        if(type == null || type.isEmpty())
-            throw new IllegalArgumentException("Type value cannot be empty or null");
+        this(accountDetails.getString("created_at"), accountDetails.getString("id"),
+                accountDetails.getDouble("amount"), accountDetails.getString("type"));
     }
 
+    /**
+     * Method to get {@link #createdAt} instance <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} instance as {@link String}
+     **/
     public String getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Method to get {@link #createdAt} timestamp <br>
+     * Any params required
+     *
+     * @return {@link #createdAt} timestamp as long
+     **/
+    public long getCreatedAtTimestamp() {
+        return TimeFormatter.getDateTimestamp(createdAt);
+    }
+
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #amount} instance <br>
+     * Any params required
+     *
+     * @return {@link #amount} instance as long
+     **/
     public double getAmount() {
         return amount;
     }
 
-    /** Method to get {@link #amount} instance
-     * @param decimals: number of digits to round final value
-     * @return {@link #amount} instance rounded with decimal digits inserted
-     * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
-    public double getAmount(int decimals) {
-        return roundValue(amount, decimals);
-    }
-
-    /** Method to set {@link #amount}
+    /**
+     * Method to set {@link #amount}
+     *
      * @param amount: amount value
      * @throws IllegalArgumentException when amount value is less than 0
-     * **/
+     **/
     public void setAmount(double amount) {
-        if(amount < 0)
+        if (amount < 0)
             throw new IllegalArgumentException("Amount value cannot be less than 0");
         this.amount = amount;
     }
 
+    /**
+     * Method to get {@link #amount} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #amount} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getAmount(int decimals) {
+        return roundValue(amount, decimals);
+    }
+
+    /**
+     * Method to get {@link #type} instance <br>
+     * Any params required
+     *
+     * @return {@link #type} instance as {@link String}
+     **/
     public String getType() {
         return type;
     }
 
-    /** Method to set {@link #type}
+    /**
+     * Method to set {@link #type}
+     *
      * @param type: type value
      * @throws IllegalArgumentException when type value null or is empty
-     * **/
+     **/
     public void setType(String type) {
-        if(type == null || type.isEmpty())
+        if (type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");
         this.type = type;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "AccountDetails{" +
-                "createdAt='" + createdAt + '\'' +
-                ", id='" + id + '\'' +
-                ", amount=" + amount +
-                ", type='" + type + '\'' +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

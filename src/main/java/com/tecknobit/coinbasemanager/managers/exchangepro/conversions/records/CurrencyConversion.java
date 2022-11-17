@@ -7,19 +7,18 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 /**
  * The {@code CurrencyConversion} class is useful to format CurrencyConversion object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-</li>
-</ul>
+ * <ul>
+ *     <li>
+ *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+ *             Convert currency</a>
+ *      </li>
+ *      <li>
+ *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+ *             Get a conversion</a>
+ *     </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public class CurrencyConversion {
 
     /**
@@ -69,61 +68,97 @@ public class CurrencyConversion {
         this.to = to;
     }
 
-    /** Constructor to init a {@link CurrencyConversion} object
+    /**
+     * Constructor to init a {@link CurrencyConversion} object
+     *
      * @param currencyConversion: currency conversion details as {@link JSONObject}
-     * **/
+     **/
     public CurrencyConversion(JSONObject currencyConversion) {
-        this.id = currencyConversion.getString("id");
-        this.amount = currencyConversion.getDouble("amount");
-        this.fromAccountId = currencyConversion.getString("from_account_id");
-        this.toAccountId = currencyConversion.getString("to_account_id");
-        this.from = currencyConversion.getString("from");
-        this.to = currencyConversion.getString("to");
+        this(currencyConversion.getString("id"), currencyConversion.getDouble("amount"),
+                currencyConversion.getString("from_account_id"), currencyConversion.getString("to_account_id"),
+                currencyConversion.getString("from"), currencyConversion.getString("to"));
     }
 
+    /**
+     * Method to get {@link #id} instance <br>
+     * Any params required
+     *
+     * @return {@link #id} instance as {@link String}
+     **/
     public String getId() {
         return id;
     }
 
+    /**
+     * Method to get {@link #amount} instance <br>
+     * Any params required
+     *
+     * @return {@link #amount} instance as double
+     **/
     public double getAmount() {
         return amount;
     }
 
-    /** Method to get {@link #amount} instance
+    /**
+     * Method to get {@link #amount} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getAmount(int decimals) {
         return roundValue(amount, decimals);
     }
 
+    /**
+     * Method to get {@link #fromAccountId} instance <br>
+     * Any params required
+     *
+     * @return {@link #fromAccountId} instance as {@link String}
+     **/
     public String getFromAccountId() {
         return fromAccountId;
     }
 
+    /**
+     * Method to get {@link #toAccountId} instance <br>
+     * Any params required
+     *
+     * @return {@link #toAccountId} instance as {@link String}
+     **/
     public String getToAccountId() {
         return toAccountId;
     }
 
+    /**
+     * Method to get {@link #from} instance <br>
+     * Any params required
+     *
+     * @return {@link #from} instance as {@link String}
+     **/
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Method to get {@link #to} instance <br>
+     * Any params required
+     *
+     * @return {@link #to} instance as {@link String}
+     **/
     public String getTo() {
         return to;
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "CurrencyConversion{" +
-                "id='" + id + '\'' +
-                ", amount=" + amount +
-                ", fromAccountId='" + fromAccountId + '\'' +
-                ", toAccountId='" + toAccountId + '\'' +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }

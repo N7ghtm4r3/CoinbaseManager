@@ -7,19 +7,18 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 /**
  * The {@code Product} class is useful to format general Product object
  * @apiNote see the official documentation at:
-<ul>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-</li>
-<li>
-<a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-</li>
-</ul>
+ * <ul>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+ * Get product candles</a>
+ * </li>
+ * <li>
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+ * Get product stats</a>
+ * </li>
+ * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * **/
-
 public abstract class Product {
 
     /**
@@ -55,76 +54,109 @@ public abstract class Product {
         this.volume = volume;
     }
 
-    /** Constructor to init a {@link Product} object
+    /**
+     * Constructor to init a {@link Product} object
+     *
      * @param product: product details as {@link JSONObject}
-     * **/
+     **/
     public Product(JSONObject product) {
-        this.open = product.getDouble("open");
-        this.high = product.getDouble("high");
-        this.low = product.getDouble("low");
-        this.volume = product.getDouble("volume");
+        this(product.getDouble("open"), product.getDouble("high"), product.getDouble("low"),
+                product.getDouble("volume"));
     }
 
+    /**
+     * Method to get {@link #open} instance <br>
+     * Any params required
+     *
+     * @return {@link #open} instance as double
+     **/
     public double getOpen() {
         return open;
     }
 
-    /** Method to get {@link #open} instance
+    /**
+     * Method to get {@link #open} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #open} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getOpen(int decimals) {
         return roundValue(open, decimals);
     }
 
+    /**
+     * Method to get {@link #high} instance <br>
+     * Any params required
+     *
+     * @return {@link #high} instance as double
+     **/
     public double getHigh() {
         return high;
     }
 
-    /** Method to get {@link #high} instance
+    /**
+     * Method to get {@link #high} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #high} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getHigh(int decimals) {
         return roundValue(high, decimals);
     }
 
+    /**
+     * Method to get {@link #low} instance <br>
+     * Any params required
+     *
+     * @return {@link #low} instance as double
+     **/
     public double getLow() {
         return low;
     }
 
-    /** Method to get {@link #low} instance
+    /**
+     * Method to get {@link #low} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #low} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getLow(int decimals) {
         return roundValue(low, decimals);
     }
 
+    /**
+     * Method to get {@link #volume} instance <br>
+     * Any params required
+     *
+     * @return {@link #volume} instance as double
+     **/
     public double getVolume() {
         return volume;
     }
 
-    /** Method to get {@link #volume} instance
+    /**
+     * Method to get {@link #volume} instance
+     *
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
+     **/
     public double getVolume(int decimals) {
         return roundValue(volume, decimals);
     }
 
+    /**
+     * Returns a string representation of the object <br>
+     * Any params required
+     *
+     * @return a string representation of the object as {@link String}
+     */
     @Override
     public String toString() {
-        return "Product{" +
-                "open=" + open +
-                ", high=" + high +
-                ", low=" + low +
-                ", volume=" + volume +
-                '}';
+        return new JSONObject(this).toString();
     }
 
 }
