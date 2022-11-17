@@ -89,7 +89,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /**
      * Request to get list of all currencies
-     * any params required
+     * Any params required
      *
      * @return list of all currencies as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
@@ -99,22 +99,26 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
         return sendAPIRequest(CURRENCIES_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get list of all currencies
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+    /**
+     * Request to get list of all currencies
+     * Any params required
+     *
      * @return list of all currencies as {@link JSONArray}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+     **/
     public JSONArray getJSONAllKnownCurrencies() throws Exception {
         return new JSONArray(getAllKnownCurrencies());
     }
 
-    /** Request to get list of all currencies
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+    /**
+     * Request to get list of all currencies
+     * Any params required
+     *
      * @return list of all currencies as {@link ArrayList} of {@link Currency}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+     **/
     public ArrayList<Currency> getAllKnownCurrenciesList() throws Exception {
         ArrayList<Currency> currencies = new ArrayList<>();
         JSONArray jsonCurrencies = new JSONArray(getAllKnownCurrencies());
@@ -147,7 +151,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param currencyId: identifier of a currency es. BTC
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1</a>
-     * @return currency as {@link Currency} object
+     * @return currency as {@link Currency} custom object
      * **/
     public Currency getCurrencyObject(String currencyId) throws Exception {
         return new Currency(new JSONObject(getCurrency(currencyId)));

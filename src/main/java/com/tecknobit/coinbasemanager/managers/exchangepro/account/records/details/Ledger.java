@@ -16,23 +16,25 @@ public class Ledger extends AccountDetails {
 
     /**
      * {@code balance} is instance that memorizes balance value
-     * **/
+     **/
     private final double balance;
 
     /**
      * {@code details} is instance that memorizes details value
-     * **/
+     **/
     private final Details details;
 
-    /** Constructor to init a {@link Ledger} object
+    /**
+     * Constructor to init a {@link Ledger} custom object
+     *
      * @param createdAt: created at value
-     * @param id: identifier value
-     * @param amount: amount value
-     * @param type: type value
-     * @param balance: ref value
-     * @param details: ledger details in JSO format
+     * @param id:        identifier value
+     * @param amount:    amount value
+     * @param type:      type value
+     * @param balance:   ref value
+     * @param details:   ledger details in JSO format
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Ledger(String createdAt, String id, double amount, String type, double balance, JSONObject details) {
         super(createdAt, id, amount, type);
         this.balance = balance;
@@ -43,7 +45,7 @@ public class Ledger extends AccountDetails {
     }
 
     /**
-     * Constructor to init a {@link Ledger} object
+     * Constructor to init a {@link Ledger} custom object
      *
      * @param ledger: ledger details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
@@ -107,7 +109,7 @@ public class Ledger extends AccountDetails {
          * **/
         private final String profileTransferId;
 
-        /** Constructor to init a {@link Details} object
+        /** Constructor to init a {@link Details} custom object
          * @param to: to at value
          * @param from: from value
          * @param profileTransferId: profile transfer identifier value
@@ -120,7 +122,7 @@ public class Ledger extends AccountDetails {
         }
 
         /**
-         * Constructor to init a {@link Details} object
+         * Constructor to init a {@link Details} custom object
          *
          * @param details: details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected

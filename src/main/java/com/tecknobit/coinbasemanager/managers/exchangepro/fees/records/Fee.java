@@ -21,19 +21,21 @@ public class Fee {
 
     /**
      * {@code makerFeeRate} is instance that memorizes maker fee rate value
-     * **/
+     **/
     private final double makerFeeRate;
 
     /**
      * {@code usdVolume} is instance that memorizes usd volume value
-     * **/
+     **/
     private final double usdVolume;
 
-    /** Constructor to init a {@link Fee} object
+    /**
+     * Constructor to init a {@link Fee} custom object
+     *
      * @param takerFeeRate: taker fee rate value
      * @param makerFeeRate: maker fee rate value
-     * @param usdVolume: usd volume value
-     * **/
+     * @param usdVolume:    usd volume value
+     **/
     public Fee(double takerFeeRate, double makerFeeRate, double usdVolume) {
         this.takerFeeRate = takerFeeRate;
         this.makerFeeRate = makerFeeRate;
@@ -41,7 +43,7 @@ public class Fee {
     }
 
     /**
-     * Constructor to init a {@link Fee} object
+     * Constructor to init a {@link Fee} custom object
      *
      * @param fee: fee details as {@link JSONObject}
      **/

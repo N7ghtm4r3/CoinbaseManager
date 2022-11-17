@@ -101,7 +101,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Request to get all trading pairs
-     * any params required
+     * Any params required
      *
      * @return all trading pairs as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
@@ -111,27 +111,31 @@ public class CoinbaseProductsManager extends CoinbaseManager {
         return sendAPIRequest(PRODUCTS_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get all trading pairs
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+    /**
+     * Request to get all trading pairs
+     * Any params required
+     *
      * @return all trading pairs as {@link JSONArray}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+     **/
     public JSONArray getAllTradingPairsJSON() throws Exception {
         long actualTimestamp = System.currentTimeMillis();
-        if(tradingPairsList.isEmpty() || ((actualTimestamp - previousLoadPairsList) >= (3600 * 1000))){
+        if (tradingPairsList.isEmpty() || ((actualTimestamp - previousLoadPairsList) >= (3600 * 1000))) {
             previousLoadPairsList = actualTimestamp;
             return tradingPairsList = new JSONArray(getAllTradingPairs());
         }
         return tradingPairsList;
     }
 
-    /** Request to get all trading pairs
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+    /**
+     * Request to get all trading pairs
+     * Any params required
+     *
      * @return all trading pairs list as {@link ArrayList} of {@link TradingPair}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+     **/
     public ArrayList<TradingPair> getAllTradingPairsList() throws Exception {
         return assembleTradingPairsList(new JSONArray(getAllTradingPairs()));
     }
@@ -201,7 +205,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of trading pair es. BTC-USD
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1</a>
-     * @return single trading pair as {@link TradingPair} object
+     * @return single trading pair as {@link TradingPair} custom object
      * **/
     public TradingPair getSingleTradingPairObject(String productId) throws Exception {
         return new TradingPair(new JSONObject(getSingleTradingPair(productId)));
@@ -231,7 +235,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of book es. BTC-USD
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link Book} object
+     * @return book details as {@link Book} custom object
      * **/
     public Book getProductBookObject(String productId) throws Exception {
         return new Book(new JSONObject(getProductBook(productId)).put("productId", productId));
@@ -265,7 +269,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param level: type of format for result
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link Book} object
+     * @return book details as {@link Book} custom object
      * **/
     public Book getProductBookObject(String productId, int level) throws Exception {
         return new Book(new JSONObject(getProductBook(productId, level)).put("productId", productId));
@@ -458,7 +462,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @param productId: identifier of product stats es. BTC-USD
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return product stats as {@link Stat} object
+     * @return product stats as {@link Stat} custom object
      * **/
     public Stat getProductStatsObject(String productId) throws Exception {
         return new Stat(new JSONObject(getProductStats(productId)).put("productId", productId));
@@ -569,14 +573,14 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * quote asset and price change percent value.
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return product stats as {@link Ticker} object
+     * @return product stats as {@link Ticker} custom object
      * **/
     public Ticker getProductTickerObject(String productId) throws Exception {
         return assembleTickerObject(getProductTickerJSON(productId));
     }
 
     /** Custom request to get product all tickers list
-     * any params required
+     * Any params required
      * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
@@ -588,7 +592,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     }
 
     /** Custom request to get product all tickers list
-     * any params required
+     * Any params required
      * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
      * quote asset and price change percent value.
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">

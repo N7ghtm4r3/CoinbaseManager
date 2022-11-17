@@ -95,7 +95,7 @@ public class ExchangeLimits extends UserDetails {
     private ArrayList<Test> testGroupsList;
 
     /**
-     * Constructor to init {@link ExchangeLimits} object
+     * Constructor to init {@link ExchangeLimits} custom object
      *
      * @param createdAt:                  created at value
      * @param activeAt:                   active at value
@@ -166,14 +166,16 @@ public class ExchangeLimits extends UserDetails {
         this.address = address;
     }
 
-    /** Constructor to init a {@link ExchangeLimits} object
+    /**
+     * Constructor to init a {@link ExchangeLimits} custom object
+     *
      * @param exchangeLimits: exchangeLimits details as {@link JSONObject}
-     * **/
+     **/
     public ExchangeLimits(JSONObject exchangeLimits) {
         super(exchangeLimits);
         termsAccepted = hUser.getString("terms_accepted");
         stateCode = hUser.getString("state_code");
-        if(stateCode == null || stateCode.isEmpty())
+        if (stateCode == null || stateCode.isEmpty())
             throw new IllegalArgumentException("State code value cannot be empty or null");
         accessPrivacyRights = hUser.getBoolean("access_privacy_rights");
         twoFactorMethod = hUser.getString("two_factor_method");
@@ -465,7 +467,7 @@ public class ExchangeLimits extends UserDetails {
         private final boolean forced;
 
         /**
-         * Constructor to init {@link Test} object
+         * Constructor to init {@link Test} custom object
          *
          * @param test:   test value
          * @param group:  group value
@@ -478,7 +480,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * Constructor to init a {@link Test} object
+         * Constructor to init a {@link Test} custom object
          *
          * @param jTest: test details as {@link JSONObject}
          **/
@@ -553,12 +555,14 @@ public class ExchangeLimits extends UserDetails {
          * **/
         private final boolean isInEurope;
 
-        /** Constructor to init {@link Country} object
-         * @param code: code value
-         * @param name: name value
+        /**
+         * Constructor to init {@link Country} custom object
+         *
+         * @param code:       code value
+         * @param name:       name value
          * @param isInEurope: flag that checks if account is in Europe
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         **/
         public Country(String code, String name, boolean isInEurope) {
             if (code == null || code.isEmpty())
                 throw new IllegalArgumentException("Code value cannot be empty or null");
@@ -572,7 +576,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * Constructor to init {@link Country} object
+         * Constructor to init {@link Country} custom object
          *
          * @param jCountry: country details in JSON format
          **/
@@ -662,7 +666,7 @@ public class ExchangeLimits extends UserDetails {
          * **/
         private String name;
 
-        /** Constructor to init {@link Address} object
+        /** Constructor to init {@link Address} custom object
          * @param line1: line1 value
          * @param city: city value
          * @param state: state value
@@ -681,7 +685,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * Constructor to init {@link Address} object
+         * Constructor to init {@link Address} custom object
          *
          * @param jAddress: address details in JSON format
          **/
@@ -865,7 +869,7 @@ public class ExchangeLimits extends UserDetails {
         private final String tier;
 
         /**
-         * Constructor to init {@link MarginInformation} object
+         * Constructor to init {@link MarginInformation} custom object
          *
          * @param eligible: flag for eligible value
          * @param enabled:  flag for enabled value
@@ -882,7 +886,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * Constructor to init {@link MarginInformation} object
+         * Constructor to init {@link MarginInformation} custom object
          *
          * @param jMargin: margin information details in JSON format
          **/

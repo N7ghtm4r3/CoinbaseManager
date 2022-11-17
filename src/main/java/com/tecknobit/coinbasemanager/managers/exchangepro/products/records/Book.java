@@ -47,7 +47,7 @@ public class Book {
     private final ArrayList<Double> bids;
 
     /**
-     * Constructor to init a {@link Book} object
+     * Constructor to init a {@link Book} custom object
      *
      * @param productId:   book identifier value
      * @param sequence:    sequence value
@@ -67,7 +67,7 @@ public class Book {
     }
 
     /**
-     * Constructor to init a {@link Book} object
+     * Constructor to init a {@link Book} custom object
      *
      * @param book: book details as {@link JSONObject}
      **/

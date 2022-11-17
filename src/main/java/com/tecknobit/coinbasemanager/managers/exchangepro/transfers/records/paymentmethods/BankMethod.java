@@ -13,7 +13,7 @@ import org.json.JSONObject;
 public class BankMethod extends PayMethod {
 
     /**
-     * Constructor to init a {@link BankMethod} object
+     * Constructor to init a {@link BankMethod} custom object
      *
      * @param name: pay method name
      **/
@@ -42,19 +42,21 @@ public class BankMethod extends PayMethod {
 
         /**
          * {@code swift} is instance that memorizes swift name value
-         * **/
+         **/
         private String swift;
 
-        /** Constructor to init {@link BankPickerData} object
-         * @param symbol: symbol value
-         * @param iban: iban value
+        /**
+         * Constructor to init {@link BankPickerData} custom object
+         *
+         * @param symbol:          symbol value
+         * @param iban:            iban value
          * @param institutionName: institution name value
-         * @param swift: swift value
+         * @param swift:           swift value
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         **/
         public BankPickerData(String symbol, String iban, String institutionName, String swift) {
             super(symbol);
-            if(iban == null || iban.isEmpty())
+            if (iban == null || iban.isEmpty())
                 throw new IllegalArgumentException("Iban value cannot be empty or null");
             else
                 this.iban = iban;
@@ -71,7 +73,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Constructor to init {@link BankPickerData} object
+         * Constructor to init {@link BankPickerData} custom object
          *
          * @param bankPicker: bank picker details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected

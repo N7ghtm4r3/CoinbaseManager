@@ -48,19 +48,21 @@ public class PayMethod {
 
     /**
      * {@code name} is instance that memorizes name value
-     * **/
+     **/
     protected String name;
 
     /**
      * {@code type} is instance that memorizes type value
-     * **/
+     **/
     protected String type;
 
-    /** Constructor to init a {@link PayMethod} object
+    /**
+     * Constructor to init a {@link PayMethod} custom object
+     *
      * @param name: pay method name
      * @param type: pay method type
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public PayMethod(String name, String type) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -73,7 +75,7 @@ public class PayMethod {
     }
 
     /**
-     * Constructor to init a {@link PayMethod} object
+     * Constructor to init a {@link PayMethod} custom object
      *
      * @param payment: payment details as {@link JSONObject}
      **/
@@ -159,7 +161,7 @@ public class PayMethod {
         protected final String symbol;
 
         /**
-         * Constructor to init {@link PickerData} object
+         * Constructor to init {@link PickerData} custom object
          *
          * @param symbol: symbol value
          **/

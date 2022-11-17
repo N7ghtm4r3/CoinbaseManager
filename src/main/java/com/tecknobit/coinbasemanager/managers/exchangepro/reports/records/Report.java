@@ -75,7 +75,7 @@ public class Report extends ReportDetails {
     private final JsonHelper hReport;
 
     /**
-     * Constructor to init a {@link Report} object
+     * Constructor to init a {@link Report} custom object
      *
      * @param id:           identifier value
      * @param type:         type value
@@ -99,9 +99,11 @@ public class Report extends ReportDetails {
         hReport = null;
     }
 
-    /** Constructor to init a {@link Report} object
+    /**
+     * Constructor to init a {@link Report} custom object
+     *
      * @param report: Report details as {@link JSONObject}
-     * **/
+     **/
     public Report(JSONObject report) {
         super(report);
         hReport = new JsonHelper(report);
@@ -273,7 +275,7 @@ public class Report extends ReportDetails {
         private final JsonHelper hParamsReport;
 
         /**
-         * Constructor to init a {@link ParamsReport} object
+         * Constructor to init a {@link ParamsReport} custom object
          *
          * @param startDate:    start date value
          * @param endDate:      end date value
@@ -299,9 +301,11 @@ public class Report extends ReportDetails {
             hParamsReport = null;
         }
 
-        /** Constructor to init a {@link ParamsReport} object
+        /**
+         * Constructor to init a {@link ParamsReport} custom object
+         *
          * @param paramsReport: params report details as {@link JSONObject}
-         * **/
+         **/
         public ParamsReport(JSONObject paramsReport) {
             hParamsReport = new JsonHelper(paramsReport);
             startDate = hParamsReport.getString("start_date");
@@ -471,7 +475,7 @@ public class Report extends ReportDetails {
              * **/
             private final String oauthClient;
 
-            /** Constructor to init {@link UserReport} object
+            /** Constructor to init {@link UserReport} custom object
              * @param createdAt: created at value
              * @param activeAt: active at value
              * @param id: identifier value
@@ -490,7 +494,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Constructor to init a {@link UserReport} object
+             * Constructor to init a {@link UserReport} custom object
              *
              * @param userReport: user report report details as {@link JSONObject}
              **/

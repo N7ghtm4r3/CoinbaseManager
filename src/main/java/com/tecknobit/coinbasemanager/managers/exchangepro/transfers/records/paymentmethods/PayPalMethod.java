@@ -30,7 +30,7 @@ public class PayPalMethod extends PayMethod {
     private ArrayList<PayPalDetails> payPalDepositsList;
 
     /**
-     * Constructor to init a {@link PayMethod} object
+     * Constructor to init a {@link PayMethod} custom object
      *
      * @param name                : pay method name
      * @param payPalBuysList:     list of {@link PayPalDetails} for buys
@@ -44,7 +44,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * Constructor to init a {@link PayPalMethod} object
+     * Constructor to init a {@link PayPalMethod} custom object
      *
      * @param payment : payment details as {@link JSONObject}
      **/
@@ -205,7 +205,7 @@ public class PayPalMethod extends PayMethod {
         private Amount remaining;
 
         /**
-         * Constructor to init a {@link PayPalDetails} object
+         * Constructor to init a {@link PayPalDetails} custom object
          *
          * @param periodInDays: period in days value
          * @param description:  description value
@@ -228,13 +228,15 @@ public class PayPalMethod extends PayMethod {
             this.remaining = remaining;
         }
 
-        /** Constructor to init a {@link PayPalDetails} object
+        /**
+         * Constructor to init a {@link PayPalDetails} custom object
+         *
          * @param payPalDetails: PayPal's details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         **/
         public PayPalDetails(JSONObject payPalDetails) {
             periodInDays = payPalDetails.getInt("period_in_days");
-            if(periodInDays < 0)
+            if (periodInDays < 0)
                 throw new IllegalArgumentException("Period in days value cannot be less than 0");
             this.description = payPalDetails.getString("description");
             this.label = payPalDetails.getString("label");
@@ -389,14 +391,16 @@ public class PayPalMethod extends PayMethod {
          * **/
         private boolean reauth;
 
-        /** Constructor to init a {@link PayPalPickerData} object
-         * @param symbol: symbol value
-         * @param payoutOnly: flag for check out payout only
+        /**
+         * Constructor to init a {@link PayPalPickerData} custom object
+         *
+         * @param symbol:      symbol value
+         * @param payoutOnly:  flag for check out payout only
          * @param payPalEmail: PayPal's email value
          * @param payPalOwner: PayPal's owner value
-         * @param reauth: flag for reauth
+         * @param reauth:      flag for reauth
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         **/
         public PayPalPickerData(String symbol, boolean payoutOnly, String payPalEmail, String payPalOwner, boolean reauth) {
             super(symbol);
             this.payoutOnly = payoutOnly;
@@ -406,7 +410,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * Constructor to init a {@link PayPalPickerData} object
+         * Constructor to init a {@link PayPalPickerData} custom object
          *
          * @param paypalPicker: PayPal's picker details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected

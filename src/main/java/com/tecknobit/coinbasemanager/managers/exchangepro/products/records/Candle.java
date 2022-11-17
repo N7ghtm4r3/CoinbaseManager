@@ -46,22 +46,24 @@ public class Candle extends Product {
 
     /**
      * {@code time} is instance that memorizes time value
-     * **/
+     **/
     private final long time;
 
     /**
      * {@code close} is instance that memorizes close value
-     * **/
+     **/
     private final double close;
 
-    /** Constructor to init a {@link Candle} object
-     * @param open: open value
-     * @param high: high value
-     * @param low: low value
+    /**
+     * Constructor to init a {@link Candle} custom object
+     *
+     * @param open:   open value
+     * @param high:   high value
+     * @param low:    low value
      * @param volume: volume value
-     * @param time: time value
-     * @param close: close value
-     * **/
+     * @param time:   time value
+     * @param close:  close value
+     **/
     public Candle(double open, double high, double low, double volume, long time, double close) {
         super(open, high, low, volume);
         this.time = time;
@@ -69,7 +71,7 @@ public class Candle extends Product {
     }
 
     /**
-     * Constructor to init a {@link Candle} object
+     * Constructor to init a {@link Candle} custom object
      *
      * @param candle: candle details as {@link JSONArray}
      **/

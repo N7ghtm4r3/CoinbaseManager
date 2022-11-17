@@ -181,22 +181,26 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
 
-    /** Request to create a general report
+    /**
+     * Request to create a general report
+     *
      * @param type: type of report to create
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
      * @return result of creation of general report as {@link JSONObject}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
+     **/
     public JSONObject createGeneralReportJSON(String type) throws Exception {
         return new JSONObject(createGeneralReport(type));
     }
 
-    /** Request to create a general report
+    /**
+     * Request to create a general report
+     *
      * @param type: type of report to create
+     * @return result of creation of general report as {@link ReportDetails} custom object
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of general report as {@link ReportDetails} object
-     * **/
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
+     **/
     public ReportDetails createGeneralReportObject(String type) throws Exception {
         return new ReportDetails(new JSONObject(createGeneralReport(type)));
     }
@@ -234,7 +238,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @implSpec (keys accepted are start_date, end_date, year, format, product_id, account_id, email, profile_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of general report as {@link ReportDetails} object
+     * @return result of creation of general report as {@link ReportDetails} custom object
      * **/
     public ReportDetails createGeneralReportObject(String type, Params extraBodyParams) throws Exception {
         return new ReportDetails(new JSONObject(createGeneralReport(type, extraBodyParams)));
@@ -264,7 +268,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param year: year to create report
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails create1099KReportObject(int year) throws Exception {
         return new ReportDetails(new JSONObject(create1099KReport(year)));
@@ -302,7 +306,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @implSpec (keys accepted are start_date, end_date, format, product_id, account_id, email, profile_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails create1099KReportObject(int year, Params extraBodyParams) throws Exception {
         return new ReportDetails(new JSONObject(create1099KReport(year, extraBodyParams)));
@@ -343,7 +347,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param productId: product identifier to create report
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails createFillsReportObject(String productId) throws Exception {
         return new ReportDetails(new JSONObject(createFillsReport(productId)));
@@ -381,7 +385,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @implSpec (keys accepted are start_date, end_date, format, year, account_id, email, profile_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails createFillsReportObject(String productId, Params extraBodyParams) throws Exception {
         return new ReportDetails(new JSONObject(createFillsReport(productId, extraBodyParams)));
@@ -422,7 +426,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param accountId: account identifier to create report
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails createAccountReportObject(String accountId) throws Exception {
         return new ReportDetails(new JSONObject(createAccountReport(accountId)));
@@ -460,7 +464,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @implSpec (keys accepted are start_date, end_date, format, year, product_id, email, profile_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1</a>
-     * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} object
+     * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link ReportDetails} custom object
      * **/
     public ReportDetails createAccountReportObject(String accountId, Params extraBodyParams) throws Exception {
         return new ReportDetails(new JSONObject(createAccountReport(accountId, extraBodyParams)));
@@ -501,7 +505,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param reportId: identifier of report to fetch
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1</a>
-     * @return specific report as {@link Report} object
+     * @return specific report as {@link Report} custom object
      * **/
     public Report getReportObject(String reportId) throws Exception {
         return new Report(new JSONObject(getReport(reportId)));

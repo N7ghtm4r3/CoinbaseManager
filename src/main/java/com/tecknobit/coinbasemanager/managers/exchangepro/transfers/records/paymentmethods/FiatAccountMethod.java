@@ -15,7 +15,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 public class FiatAccountMethod extends PayMethod {
 
     /**
-     * Constructor to init a {@link FiatAccountMethod} object
+     * Constructor to init a {@link FiatAccountMethod} custom object
      *
      * @param name: pay method name
      **/
@@ -39,19 +39,21 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * {@code resource} is instance that memorizes resource value
-         * **/
+         **/
         private final String resource;
 
         /**
          * {@code resourcePath} is instance that memorizes resource path value
-         * **/
+         **/
         private final String resourcePath;
 
-        /** Constructor to init {@link FiatAccountDetails} object
-         * @param id: identifier value
-         * @param resource: resource value
+        /**
+         * Constructor to init {@link FiatAccountDetails} custom object
+         *
+         * @param id:           identifier value
+         * @param resource:     resource value
          * @param resourcePath: resource path value
-         * **/
+         **/
         public FiatAccountDetails(String id, String resource, String resourcePath) {
             this.id = id;
             this.resource = resource;
@@ -59,7 +61,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * Constructor to init {@link FiatAccountDetails} object
+         * Constructor to init {@link FiatAccountDetails} custom object
          *
          * @param fiatAccount: fiat account details as {@link JSONObject}
          **/
@@ -130,7 +132,7 @@ public class FiatAccountMethod extends PayMethod {
          **/
         private String currency;
 
-        /** Constructor to init {@link BankMethod.BankPickerData} object
+        /** Constructor to init {@link BankMethod.BankPickerData} custom object
          * @param symbol: symbol value
          * @param amount: amount value
          * @param currency: currency name value
@@ -149,7 +151,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * Constructor to init {@link FiatAccountPickerData} object
+         * Constructor to init {@link FiatAccountPickerData} custom object
          *
          * @param fiatPickerData: fiat picker details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected

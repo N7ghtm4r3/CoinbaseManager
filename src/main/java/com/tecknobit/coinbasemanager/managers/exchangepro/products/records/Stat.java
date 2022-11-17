@@ -21,21 +21,23 @@ public class Stat extends Product {
 
     /**
      * {@code last} is instance that memorizes last value
-     * **/
+     **/
     private final double last;
 
     /**
      * {@code volume30Day} is instance that memorizes thirty days volume value
-     * **/
+     **/
     private final double volume30Day;
 
-    /** Constructor to init a {@link Stat} object
-     * @param productId: Stat identifier value
-     * @param open: open value
-     * @param high: high value
-     * @param low: low value
-     * @param volume: volume value
-     * @param last: last value
+    /**
+     * Constructor to init a {@link Stat} custom object
+     *
+     * @param productId:   Stat identifier value
+     * @param open:        open value
+     * @param high:        high value
+     * @param low:         low value
+     * @param volume:      volume value
+     * @param last:        last value
      * @param volume30Day: thirty days volume value
      **/
     public Stat(String productId, double open, double high, double low, double volume, double last, double volume30Day) {
@@ -46,7 +48,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Constructor to init a {@link Stat} object
+     * Constructor to init a {@link Stat} custom object
      *
      * @param stat: stat details as {@link JSONObject}
      **/

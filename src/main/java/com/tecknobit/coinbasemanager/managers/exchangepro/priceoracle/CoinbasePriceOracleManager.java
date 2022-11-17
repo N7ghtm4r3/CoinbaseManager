@@ -87,7 +87,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /**
      * Request to get signed prices
-     * any params required
+     * Any params required
      *
      * @return signed prices as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
@@ -97,22 +97,26 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
         return sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get signed prices
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+    /**
+     * Request to get signed prices
+     * Any params required
+     *
      * @return signed prices as {@link JSONObject}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+     **/
     public JSONObject getSignedPricesJSON() throws Exception {
         return new JSONObject(getSignedPrices());
     }
 
-    /** Request to get signed prices
-     * any params required
+    /**
+     * Request to get signed prices
+     * Any params required
+     *
+     * @return signed prices as {@link PriceOracle} custom object
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
-     * @return signed prices as {@link PriceOracle} object
-     * **/
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+     **/
     public PriceOracle getSignedPricesObject() throws Exception {
         return new PriceOracle(new JSONObject(getSignedPrices()));
     }

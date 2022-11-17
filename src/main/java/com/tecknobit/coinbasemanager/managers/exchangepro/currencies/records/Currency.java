@@ -67,7 +67,7 @@ public class Currency {
     private final CurrencyDetails currencyDetails;
 
     /**
-     * Constructor to init a {@link Currency} object
+     * Constructor to init a {@link Currency} custom object
      *
      * @param id:                          identifier value
      * @param name:                        name value
@@ -90,9 +90,11 @@ public class Currency {
         this.currencyDetails = currencyDetails;
     }
 
-    /** Constructor to init a {@link Currency} object
+    /**
+     * Constructor to init a {@link Currency} custom object
+     *
      * @param currency: currency details as {@link JSONObject}
-     * **/
+     **/
     public Currency(JSONObject currency) {
         id = currency.getString("id");
         name = currency.getString("name");
@@ -287,7 +289,7 @@ public class Currency {
          * **/
         private final ArrayList<String> groupTypesList;
 
-        /** Constructor to init a {@link CurrencyDetails} object
+        /** Constructor to init a {@link CurrencyDetails} custom object
          * @param symbol: symbol value
          * @param minWithdrawalAmount: minimum withdrawal amount value
          * @param networksConfirmations: networks confirmations value
@@ -319,9 +321,11 @@ public class Currency {
             this.groupTypesList = groupTypesList;
         }
 
-        /** Constructor to init a {@link Currency} object
+        /**
+         * Constructor to init a {@link Currency} custom object
+         *
          * @param currencyDetails: currency details as {@link JSONObject}
-         * **/
+         **/
         public CurrencyDetails(JSONObject currencyDetails) {
             JsonHelper hCurrency = new JsonHelper(currencyDetails.getJSONObject("details"));
             symbol = hCurrency.getString("symbol");

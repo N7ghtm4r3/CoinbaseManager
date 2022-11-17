@@ -82,7 +82,7 @@ public class CryptoAddress {
     private ArrayList<Warning> warningsList;
 
     /**
-     * Constructor to init a {@link CryptoAddress} object
+     * Constructor to init a {@link CryptoAddress} custom object
      *
      * @param id:                     identifier value
      * @param address:                address value
@@ -117,7 +117,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Constructor to init a {@link CryptoAddress} object
+     * Constructor to init a {@link CryptoAddress} custom object
      *
      * @param jAddress: crypto address details as {@link JSONObject}
      **/
@@ -425,7 +425,7 @@ public class CryptoAddress {
         private final String valueInfo;
 
         /**
-         * Constructor to init a {@link AddressInfo} object
+         * Constructor to init a {@link AddressInfo} custom object
          *
          * @param titleInfo: title info
          * @param valueInfo: info value
@@ -482,19 +482,21 @@ public class CryptoAddress {
 
         /**
          * {@code details} is instance that memorizes details value
-         * **/
+         **/
         private final String details;
 
         /**
          * {@code imageUrl} is instance that memorizes image url value
-         * **/
+         **/
         private final String imageUrl;
 
-        /** Constructor to init a {@link Warning} object
-         * @param title: title value
-         * @param details: details value
+        /**
+         * Constructor to init a {@link Warning} custom object
+         *
+         * @param title:    title value
+         * @param details:  details value
          * @param imageUrl: image url value
-         * **/
+         **/
         public Warning(String title, String details, String imageUrl) {
             this.title = title;
             this.details = details;
@@ -502,7 +504,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Constructor to init a {@link Warning} object
+         * Constructor to init a {@link Warning} custom object
          *
          * @param warning: crypto address details as {@link JSONObject}
          **/

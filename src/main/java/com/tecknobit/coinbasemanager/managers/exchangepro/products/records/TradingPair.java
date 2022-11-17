@@ -98,7 +98,7 @@ public class TradingPair {
      * **/
     private final double maxSlippagePercentage;
 
-    /** Constructor to init a {@link TradingPair} object
+    /** Constructor to init a {@link TradingPair} custom object
      * @param id: identifier value
      * @param baseCurrency: base currency value
      * @param quoteCurrency: quote currency value
@@ -141,9 +141,11 @@ public class TradingPair {
         this.maxSlippagePercentage = maxSlippagePercentage;
     }
 
-    /** Constructor to init a {@link TradingPair} object
+    /**
+     * Constructor to init a {@link TradingPair} custom object
+     *
      * @param pair: trading pair details as {@link JSONObject}
-     * **/
+     **/
     public TradingPair(JSONObject pair) {
         this(pair.getString("id"), pair.getString("base_currency"), pair.getString("quote_currency"),
                 pair.getDouble("quote_increment"), pair.getDouble("base_increment"),

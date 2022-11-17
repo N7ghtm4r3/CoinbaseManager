@@ -33,20 +33,22 @@ public abstract class Product {
 
     /**
      * {@code low} is instance that memorizes low value
-     * **/
+     **/
     protected final double low;
 
     /**
      * {@code volume} is instance that memorizes volume value
-     * **/
+     **/
     protected final double volume;
 
-    /** Constructor to init a {@link Product} object
-     * @param open: open value
-     * @param high: high value
-     * @param low: low value
+    /**
+     * Constructor to init a {@link Product} custom object
+     *
+     * @param open:   open value
+     * @param high:   high value
+     * @param low:    low value
      * @param volume: volume value
-     * **/
+     **/
     public Product(double open, double high, double low, double volume) {
         this.open = open;
         this.high = high;
@@ -55,7 +57,7 @@ public abstract class Product {
     }
 
     /**
-     * Constructor to init a {@link Product} object
+     * Constructor to init a {@link Product} custom object
      *
      * @param product: product details as {@link JSONObject}
      **/

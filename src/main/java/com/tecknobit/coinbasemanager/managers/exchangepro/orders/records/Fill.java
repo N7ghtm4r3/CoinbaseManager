@@ -44,7 +44,7 @@ public class Fill extends OrderDetails {
      * **/
     private final double usdVolume;
 
-    /** Constructor to init a {@link Fill} object
+    /** Constructor to init a {@link Fill} custom object
      * @param createdAt: created at value
      * @param productId: product identifier value
      * @param profileId: profile identifier value
@@ -71,9 +71,11 @@ public class Fill extends OrderDetails {
         this.usdVolume = usdVolume;
     }
 
-    /** Constructor to init a {@link Fill} object
+    /**
+     * Constructor to init a {@link Fill} custom object
+     *
      * @param fill: fill details as {@link JSONObject}
-     * **/
+     **/
     public Fill(JSONObject fill) {
         super(fill);
         tradeId = orderHelper.getLong("trade_id");

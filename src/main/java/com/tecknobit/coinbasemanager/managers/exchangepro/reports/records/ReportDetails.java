@@ -30,19 +30,21 @@ public class ReportDetails {
 
     /**
      * {@code type} is instance that memorizes type value
-     * **/
+     **/
     protected final String type;
 
     /**
      * {@code status} is instance that memorizes status value
-     * **/
+     **/
     protected final String status;
 
-    /** Constructor to init a {@link ReportDetails} object
-     * @param id: identifier value
-     * @param type: type value
+    /**
+     * Constructor to init a {@link ReportDetails} custom object
+     *
+     * @param id:     identifier value
+     * @param type:   type value
      * @param status: status value
-     * **/
+     **/
     public ReportDetails(String id, String type, String status) {
         this.id = id;
         this.type = type;
@@ -50,7 +52,7 @@ public class ReportDetails {
     }
 
     /**
-     * Constructor to init a {@link ReportDetails} object
+     * Constructor to init a {@link ReportDetails} custom object
      *
      * @param report: report details as {@link JSONObject}
      **/
@@ -101,7 +103,7 @@ public class ReportDetails {
 
     /**
      * The {@code UserDetails} class is useful to obtain and format a general user details for {@link Report} and
-     * {@link ExchangeLimits} object
+     * {@link ExchangeLimits} custom object
      *
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at:
@@ -168,7 +170,7 @@ public class ReportDetails {
          * **/
         protected final JsonHelper hUser;
 
-        /** Constructor to init {@link UserDetails} object
+        /** Constructor to init {@link UserDetails} custom object
          * @param createdAt: created at value
          * @param activeAt: active at value
          * @param id: identifier value
@@ -193,7 +195,7 @@ public class ReportDetails {
             this.hUser = null;
         }
 
-        /** Constructor to init a {@link UserDetails} object
+        /** Constructor to init a {@link UserDetails} custom object
          * @param userDetails: user details as {@link JSONObject}
          * **/
         public UserDetails(JSONObject userDetails) {

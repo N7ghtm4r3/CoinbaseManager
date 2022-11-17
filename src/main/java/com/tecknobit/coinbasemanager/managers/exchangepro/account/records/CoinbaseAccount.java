@@ -71,7 +71,7 @@ public class CoinbaseAccount {
     private DepositInformation depositInformation;
 
     /**
-     * Constructor to init a {@link CoinbaseAccount} object
+     * Constructor to init a {@link CoinbaseAccount} custom object
      *
      * @param balance:             balance value
      * @param availableOnConsumer: is flag that checks available on consumer
@@ -117,7 +117,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Constructor to init a {@link CoinbaseAccount} object
+     * Constructor to init a {@link CoinbaseAccount} custom object
      *
      * @param coinbaseAccount: {@code "Coinbase"}'s coinbaseAccount details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
@@ -410,7 +410,7 @@ public class CoinbaseAccount {
          * **/
         private String bankCountryName;
 
-        /** Constructor to init a {@link DepositInformation} object
+        /** Constructor to init a {@link DepositInformation} custom object
          * @param reference: reference value
          * @param iban: iban value
          * @param accountName: account value
@@ -454,19 +454,21 @@ public class CoinbaseAccount {
             if(swiftLength < 8 || swiftLength > 11)
                 throw new IllegalArgumentException("Insert a valid swift value (8 or 11 characters)");
             this.swift = swift;
-            if(bankCountryCode == null || bankCountryCode.isEmpty())
+            if (bankCountryCode == null || bankCountryCode.isEmpty())
                 throw new IllegalArgumentException("Bank country code value cannot be empty or null");
             else
                 this.bankCountryCode = bankCountryCode;
-            if(bankCountryName == null || bankCountryName.isEmpty())
+            if (bankCountryName == null || bankCountryName.isEmpty())
                 throw new IllegalArgumentException("Bank country name value cannot be empty or null");
             else
                 this.bankCountryName = bankCountryName;
         }
 
-        /** Constructor to init a {@link DepositInformation} object
+        /**
+         * Constructor to init a {@link DepositInformation} custom object
+         *
          * @param depositInformation: deposit information as {@link JSONObject}
-         * **/
+         **/
         public DepositInformation(JSONObject depositInformation) {
             JsonHelper hDepositInformation = new JsonHelper(depositInformation);
             this.reference = hDepositInformation.getString("reference");

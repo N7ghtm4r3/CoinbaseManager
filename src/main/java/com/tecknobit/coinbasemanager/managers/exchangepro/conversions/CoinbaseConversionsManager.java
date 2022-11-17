@@ -114,14 +114,16 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
         return new JSONObject(convertCurrency(from, to, amount));
     }
 
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
+    /**
+     * Request to convert one currency into another one
+     *
+     * @param from:   currency to convert
+     * @param to:     final currency to convert
      * @param amount: amount value to convert
+     * @return result of conversion as {@link CurrencyConversion} custom object
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-     * @return result of conversion as {@link CurrencyConversion} object
-     * **/
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount) throws Exception {
         return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount)));
     }
@@ -157,16 +159,18 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
         return new JSONObject(convertCurrency(from, to, amount, extraParams));
     }
 
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
-     * @param amount: amount value to convert
+    /**
+     * Request to convert one currency into another one
+     *
+     * @param from:        currency to convert
+     * @param to:          final currency to convert
+     * @param amount:      amount value to convert
      * @param extraParams: extra body params of request
+     * @return result of conversion as {@link CurrencyConversion} custom object
      * @implSpec (keys accepted are profile_id, nonce)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-     * @return result of conversion as {@link CurrencyConversion} object
-     * **/
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     **/
     public CurrencyConversion convertCurrencyObject(String from, String to, double amount, Params extraParams) throws Exception {
         return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount, extraParams)));
     }
@@ -209,7 +213,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param conversionId: identifier of conversion to fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link CurrencyConversion} object
+     * @return information about one conversion as {@link CurrencyConversion} custom object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId) throws Exception {
         return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId)));
@@ -242,7 +246,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param profileId: identifier of account to fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link CurrencyConversion} object
+     * @return information about one conversion as {@link CurrencyConversion} custom object
      * **/
     public CurrencyConversion getCurrencyConversionObject(String conversionId, String profileId) throws Exception {
         return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId, profileId)));

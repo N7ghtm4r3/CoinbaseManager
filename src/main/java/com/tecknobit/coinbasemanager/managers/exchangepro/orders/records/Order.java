@@ -235,7 +235,7 @@ public class Order extends OrderDetails {
      * **/
     private final String status;
 
-    /** Constructor to init a {@link Order} object
+    /** Constructor to init a {@link Order} custom object
      * @param createdAt: created at value
      * @param productId: product identifier value
      * @param profileId: profile identifier value
@@ -266,7 +266,9 @@ public class Order extends OrderDetails {
         this.status = status;
     }
 
-    /** Constructor to init a {@link Order} object
+    /**
+     * Constructor to init a {@link Order} custom object
+     *
      * @param order: order details as {@link JSONObject}
      **/
     public Order(JSONObject order) {

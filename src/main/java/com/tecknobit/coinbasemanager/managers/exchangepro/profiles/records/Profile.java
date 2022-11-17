@@ -63,24 +63,26 @@ public class Profile {
 
     /**
      * {@code createdAt} is instance that memorizes profile created at value
-     * **/
+     **/
     private final String createdAt;
 
     /**
      * {@code hasMargin} is flag that checks if profile has margin
-     * **/
+     **/
     private boolean hasMargin;
 
-    /** Constructor to init a {@link Profile} object
-     * @param id: identifier value
-     * @param userId: user identifier value
-     * @param name: name value
-     * @param active: flag that checks if profile is active
+    /**
+     * Constructor to init a {@link Profile} custom object
+     *
+     * @param id:        identifier value
+     * @param userId:    user identifier value
+     * @param name:      name value
+     * @param active:    flag that checks if profile is active
      * @param isDefault: flag that checks if profile is default
      * @param createdAt: created at value
      * @param hasMargin: has margin
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Profile(String id, String userId, String name, boolean active, boolean isDefault, String createdAt,
                    boolean hasMargin) {
         this.id = id;
@@ -96,7 +98,7 @@ public class Profile {
     }
 
     /**
-     * Constructor to init a {@link Profile} object
+     * Constructor to init a {@link Profile} custom object
      *
      * @param profile: profile details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected

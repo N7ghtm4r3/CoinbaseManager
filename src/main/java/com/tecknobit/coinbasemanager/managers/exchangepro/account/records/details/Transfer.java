@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.account.records.detai
 
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.formatters.TimeFormatter;
+import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,23 +28,25 @@ public class Transfer extends AccountDetails {
 
     /**
      * {@code completedAt} is instance that memorizes completed at value
-     * **/
+     **/
     private final String completedAt;
 
     /**
      * {@code transferDetails} is instance that memorizes transfer details value
-     * **/
+     **/
     private final TransferDetails transferDetails;
 
-    /** Constructor to init a {@link Transfer} object
-     * @param createdAt: created at value
-     * @param id: identifier value
-     * @param amount: amount value
-     * @param type: type value
+    /**
+     * Constructor to init a {@link Transfer} custom object
+     *
+     * @param createdAt:   created at value
+     * @param id:          identifier value
+     * @param amount:      amount value
+     * @param type:        type value
      * @param completedAt: completed at value
-     * @param details: transfer details value in JSON format
+     * @param details:     transfer details value in JSON format
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Transfer(String createdAt, String id, double amount, String type, String completedAt, JSONObject details) {
         super(createdAt, id, amount, type);
         this.completedAt = completedAt;
@@ -53,14 +56,39 @@ public class Transfer extends AccountDetails {
         );
     }
 
-    /** Constructor to init a {@link Transfer} object
+    /**
+     * Constructor to init a {@link Transfer} custom object
+     *
      * @param transfer: transfer details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Transfer(JSONObject transfer) {
         super(transfer);
         completedAt = transfer.getString("created_at");
         transferDetails = new TransferDetails(transfer);
+    }
+
+    /**
+     * Method to assemble a transfers list
+     *
+     * @param transfersResponse : transfers list response to format
+     * @param format            :                 return type formatter -> {@link ReturnFormat}
+     * @return transfers list response as {"format"} defines
+     **/
+    @Returner
+    public static <T> T returnTransfersList(String transfersResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(transfersResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Transfer> transfers = new ArrayList<>();
+                JSONArray jTransfers = new JSONArray(transfersResponse);
+                for (int j = 0; j < jTransfers.length(); j++)
+                    transfers.add(new Transfer(jTransfers.getJSONObject(j)));
+                return (T) transfers;
+            default:
+                return (T) transfersResponse;
+        }
     }
 
     /**
@@ -130,7 +158,7 @@ public class Transfer extends AccountDetails {
         private final String coinbasePaymentMethodId;
 
         /**
-         * Constructor to init a {@link Transfer} object
+         * Constructor to init a {@link Transfer} custom object
          *
          * @param coinbaseAccountId:       {@code "Coinbase"}'s account identifier value
          * @param coinbaseTransactionId:   {@code "Coinbase"}'s transaction identifier value
@@ -143,7 +171,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * Constructor to init a {@link TransferDetails} object
+         * Constructor to init a {@link TransferDetails} custom object
          *
          * @param transferDetails: transfer details as {@link JSONObject}
          **/

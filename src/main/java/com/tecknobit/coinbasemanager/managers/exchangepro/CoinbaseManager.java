@@ -277,18 +277,31 @@ public class CoinbaseManager {
         return apiRequest.getErrorResponse();
     }
 
-    /** Method to print error response of request <br>
+    /**
+     * Method to get error response of request <br>
      * Any params required
-     * **/
-    public void printErrorResponse(){
+     *
+     * @return error response of the request formatted as {@code "JSON"} or as {@link String}
+     **/
+    public <T> T getJSONErrorResponse() {
+        return apiRequest.getJSONErrorResponse();
+    }
+
+    /**
+     * Method to print error response of request <br>
+     * Any params required
+     **/
+    public void printErrorResponse() {
         apiRequest.printErrorResponse();
     }
 
-    /** Method to get status code of request response <br>
+    /**
+     * Method to get status code of request response <br>
      * Any params required
+     *
      * @return status code of request response
-     * **/
-    public int getStatusResponse(){
+     **/
+    public int getStatusResponse() {
         return apiRequest.getResponseStatusCode();
     }
 
@@ -341,7 +354,7 @@ public class CoinbaseManager {
     }
 
     /** Method to get {@code "Coinbase"} api key
-     * any params required
+     * Any params required
      * @return api key as {@link String}
      * **/
     public String getApiKey() {
@@ -349,7 +362,7 @@ public class CoinbaseManager {
     }
 
     /** Method to get {@code "Coinbase"} api secret
-     * any params required
+     * Any params required
      * @return api secret as {@link String}
      * **/
     public String getApiSecret() {
@@ -358,7 +371,7 @@ public class CoinbaseManager {
 
     /**
      * Method to get {@code "Coinbase"} api passphrase
-     * any params required
+     * Any params required
      *
      * @return api passphrase as {@link String}
      **/

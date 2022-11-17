@@ -34,20 +34,22 @@ public class StatDetails {
 
     /**
      * {@code size} is instance that memorizes size value
-     * **/
+     **/
     protected final double size;
 
     /**
      * {@code time} is instance that memorizes time value
-     * **/
+     **/
     protected final String time;
 
-    /** Constructor to init a {@link StatDetails} object
+    /**
+     * Constructor to init a {@link StatDetails} custom object
+     *
      * @param tradeId: trade identifier value
-     * @param price: price value
-     * @param size: size value
-     * @param time: time value
-     * **/
+     * @param price:   price value
+     * @param size:    size value
+     * @param time:    time value
+     **/
     public StatDetails(long tradeId, double price, double size, String time) {
         this.tradeId = tradeId;
         this.price = price;
@@ -56,7 +58,7 @@ public class StatDetails {
     }
 
     /**
-     * Constructor to init a {@link StatDetails} object
+     * Constructor to init a {@link StatDetails} custom object
      *
      * @param stat: stat details as {@link JSONObject}
      **/

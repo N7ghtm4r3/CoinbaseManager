@@ -67,23 +67,25 @@ public abstract class OrderDetails {
 
     /**
      * {@code settled} is flag that checks if order is settled
-     * **/
+     **/
     private final boolean settled;
 
     /**
      * {@code orderHelper} is instance that help to work with {@link OrderDetails}
-     * **/
+     **/
     protected final JsonHelper orderHelper;
 
-    /** Constructor to init a {@link OrderDetails} object
+    /**
+     * Constructor to init a {@link OrderDetails} custom object
+     *
      * @param createdAt: created at value
      * @param productId: product identifier value
      * @param profileId: profile identifier value
-     * @param price: price value
-     * @param size: size value
-     * @param side: side value (buy or sell)
-     * @param settled: flag that checks if order is settled
-     * **/
+     * @param price:     price value
+     * @param size:      size value
+     * @param side:      side value (buy or sell)
+     * @param settled:   flag that checks if order is settled
+     **/
     public OrderDetails(String createdAt, String productId, String profileId, double price, double size, String side,
                         boolean settled) {
         this.createdAt = createdAt;
@@ -96,7 +98,7 @@ public abstract class OrderDetails {
         orderHelper = null;
     }
 
-    /** Constructor to init a {@link OrderDetails} object
+    /** Constructor to init a {@link OrderDetails} custom object
      * @param orderDetails: orderDetails details as {@link JSONObject}
      * **/
     public OrderDetails(JSONObject orderDetails) {

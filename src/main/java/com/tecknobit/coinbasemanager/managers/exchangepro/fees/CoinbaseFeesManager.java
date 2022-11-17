@@ -87,7 +87,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /**
      * Request to get fees rates and 30 days trailing volume
-     * any params required
+     * Any params required
      *
      * @return fees rates and 30 days trailing volume as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
@@ -97,23 +97,27 @@ public class CoinbaseFeesManager extends CoinbaseManager {
         return sendAPIRequest(FEES_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get fees rates and 30 days trailing volume
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+    /**
+     * Request to get fees rates and 30 days trailing volume
+     * Any params required
+     *
      * @return fees rates and 30 days trailing volume as {@link JSONObject}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+     **/
     public JSONObject getFeesJSON() throws Exception {
         return new JSONObject(getFees());
     }
 
-    /** Request to get fees rates and 30 days trailing volume
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
-     * @return fees rates and 30 days trailing volume as {@link Fee} object, if some values are null in response
+    /**
+     * Request to get fees rates and 30 days trailing volume
+     * Any params required
+     *
+     * @return fees rates and 30 days trailing volume as {@link Fee} custom object, if some values are null in response
      * will be returned as -1 value
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+     **/
     public Fee getFeesObject() throws Exception {
         return new Fee(new JSONObject(getFees()));
     }

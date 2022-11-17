@@ -720,35 +720,39 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting: ascending or descending order criteria (asc or desc)
      * @return map of sorting criteria params as {@link HashMap} <{@link String} ,{@link Object}>
      * **/
-    private Params assembleSortCriteria(String sortedBy, String sorting){
+    private Params assembleSortCriteria(String sortedBy, String sorting) {
         Params criteria = new Params();
         criteria.addParam("sortedBy", sortedBy);
         criteria.addParam("sorting", sorting);
         return criteria;
     }
 
-    /** Request to cancel all orders
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+    /**
+     * Request to cancel all orders
+     * Any params required
+     *
      * @return result list of cancelled id orders as {@link String}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+     **/
     public String cancelAllOpenOrders() throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT, DELETE_METHOD);
     }
 
-    /** Request to cancel all orders
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+    /**
+     * Request to cancel all orders
+     * Any params required
+     *
      * @return result list of cancelled id orders as {@link JSONArray}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+     **/
     public JSONArray cancelAllOpenOrdersJSON() throws Exception {
         return new JSONArray(cancelAllOpenOrders());
     }
 
     /** Request to cancel all orders
-     * any params required
+     * Any params required
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
      * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
@@ -835,7 +839,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param size: amount of base currency used in the order
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} object
+     * @return result of creation a new limit order as {@link Order} custom object
      * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size) throws Exception {
         return new Order(new JSONObject(createLimitOrder(side, productId, price, size)));
@@ -884,7 +888,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} object
+     * @return result of creation a new limit order as {@link Order} custom object
      * **/
     public Order createNewLimitOrderObject(String side, String productId, double price, double size,
                                            Params extraBodyParams) throws Exception {
@@ -941,7 +945,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param size: amount of base currency used in the order
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} object
+     * @return result of creation a new market order as {@link Order} custom object
      * **/
     public Order createMarketOrderSizeObject(String side, String productId, double size) throws Exception {
         return new Order(new JSONObject(createMarketOrderSize(side, productId, size)));
@@ -1025,7 +1029,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param founds: amount of quote currency used in the order
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} object
+     * @return result of creation a new market order as {@link Order} custom object
      * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds) throws Exception {
         return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds)));
@@ -1069,7 +1073,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, size)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} object
+     * @return result of creation a new market order as {@link Order} custom object
      * **/
     public Order createMarketOrderFoundsObject(String side, String productId, double founds, Params extraBodyParams) throws Exception {
         return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
@@ -1131,7 +1135,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param stopPrice: price when stop order will be placed on the book
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} object
+     * @return result of creation a new limit order as {@link Order} custom object
      * **/
     public Order createStopOrderObject(String side, String productId, double price, double size,
                                        double stopPrice) throws Exception {
@@ -1185,7 +1189,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, client_oid)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} object
+     * @return result of creation a new limit order as {@link Order} custom object
      * **/
     public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
                                        Params extraBodyParams) throws Exception {
@@ -1216,7 +1220,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param orderId: identifier of order from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
-     * @return result of single order information as {@link Order} object
+     * @return result of single order information as {@link Order} custom object
      * **/
     public Order getSingleOrderObject(String orderId) throws Exception {
         return new Order(new JSONObject(getSingleOrder(orderId)));

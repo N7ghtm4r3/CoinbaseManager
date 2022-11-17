@@ -40,11 +40,12 @@ public class PriceOracle {
     private final ArrayList<Price> prices;
 
     /**
-     * Constructor to init a {@link PriceOracle} object
-     * @param timestamp: indicates when the latest datapoint was obtained
-     * @param messages: list of messages as {@link ArrayList} of {@link String}
+     * Constructor to init a {@link PriceOracle} custom object
+     *
+     * @param timestamp:  indicates when the latest datapoint was obtained
+     * @param messages:   list of messages as {@link ArrayList} of {@link String}
      * @param signatures: array of Ethereum-compatible ECDSA signatures for each message
-     * @param prices: contains human-readable asset prices
+     * @param prices:     contains human-readable asset prices
      **/
     public PriceOracle(long timestamp, ArrayList<String> messages, ArrayList<String> signatures, ArrayList<Price> prices) {
         this.timestamp = timestamp;
@@ -54,7 +55,8 @@ public class PriceOracle {
     }
 
     /**
-     * Constructor to init a {@link PriceOracle} object
+     * Constructor to init a {@link PriceOracle} custom object
+     *
      * @param priceOracle: price oracle details as {@link JSONObject}
      **/
     public PriceOracle(JSONObject priceOracle) {
@@ -167,7 +169,7 @@ public class PriceOracle {
          * **/
         private double price;
 
-        /** Constructor to init a {@link Price} object
+        /** Constructor to init a {@link Price} custom object
          * @param symbol: symbol value
          * @param price: price value
          * @throws IllegalArgumentException if parameters range is not respected

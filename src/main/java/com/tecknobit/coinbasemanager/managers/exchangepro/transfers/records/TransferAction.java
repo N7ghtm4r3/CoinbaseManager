@@ -48,23 +48,25 @@ public class TransferAction extends Amount {
 
     /**
      * {@code fee} is instance that memorizes fee value
-     * **/
+     **/
     private final double fee;
 
     /**
      * {@code subTotal} is instance that memorizes subtotal value
-     * **/
+     **/
     private final double subTotal;
 
-    /** Constructor to init a {@link TransferAction} object
-     * @param id: identifier value
-     * @param amount: amount value
+    /**
+     * Constructor to init a {@link TransferAction} custom object
+     *
+     * @param id:       identifier value
+     * @param amount:   amount value
      * @param currency: currency value
      * @param payoutAt: payout at value
-     * @param fee: fee value
+     * @param fee:      fee value
      * @param subTotal: subtotal value
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public TransferAction(String id, double amount, String currency, String payoutAt, double fee, double subTotal) {
         super(amount, currency);
         this.id = id;
@@ -73,7 +75,7 @@ public class TransferAction extends Amount {
         this.subTotal = subTotal;
     }
 
-    /** Constructor to init a {@link TransferAction} object
+    /** Constructor to init a {@link TransferAction} custom object
      * @param transfer: transfer details as {@link JSONArray}
      * **/
     public TransferAction(JSONObject transfer) {

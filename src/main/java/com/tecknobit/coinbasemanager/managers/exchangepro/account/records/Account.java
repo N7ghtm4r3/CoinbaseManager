@@ -40,28 +40,30 @@ public class Account {
 
     /**
      * {@code profileId} is instance that memorizes profile identifier value
-     * **/
+     **/
     private final String profileId;
 
     /**
      * {@code tradingEnable} is flag that checks if trading is enabled
-     * **/
+     **/
     private boolean tradingEnable;
 
-    /** Constructor to init a {@link Account} object
-     * @param id: identifier value
-     * @param currency: currency value
-     * @param balance: balance value
-     * @param available: available value
-     * @param hold: hold value
-     * @param profileId: profile identifier value
+    /**
+     * Constructor to init a {@link Account} custom object
+     *
+     * @param id:            identifier value
+     * @param currency:      currency value
+     * @param balance:       balance value
+     * @param available:     available value
+     * @param hold:          hold value
+     * @param profileId:     profile identifier value
      * @param tradingEnable: flag that checks if trading is enabled
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public Account(String id, String currency, double balance, double available, double hold, String profileId,
                    boolean tradingEnable) {
         this.id = id;
-        if(currency == null || currency.isEmpty())
+        if (currency == null || currency.isEmpty())
             throw new IllegalArgumentException("Currency value cannot be empty or null");
         else
             this.currency = currency;
@@ -82,7 +84,7 @@ public class Account {
     }
 
     /**
-     * Constructor to init a {@link Account} object
+     * Constructor to init a {@link Account} custom object
      *
      * @param account: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected

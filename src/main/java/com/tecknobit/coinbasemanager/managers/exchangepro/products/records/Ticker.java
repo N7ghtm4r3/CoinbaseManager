@@ -50,7 +50,7 @@ public class Ticker extends StatDetails {
     private final double priceChangePercent;
 
     /**
-     * Constructor to init a {@link Ticker} object
+     * Constructor to init a {@link Ticker} custom object
      * @param tradeId: ticker identifier value
      * @param price: price value
      * @param size: size value
@@ -76,7 +76,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Constructor to init a {@link Ticker} object
+     * Constructor to init a {@link Ticker} custom object
      *
      * @param ticker: ticker details as {@link JSONObject}
      **/

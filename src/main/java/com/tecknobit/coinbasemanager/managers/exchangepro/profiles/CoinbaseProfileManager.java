@@ -90,7 +90,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
 
     /**
      * Request to get profiles of a {@code "Coinbase"}'s account
-     * any params required
+     * Any params required
      *
      * @return profiles of a {@code "Coinbase"}'s account as {@link String}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
@@ -100,22 +100,26 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         return sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD);
     }
 
-    /** Request to get profiles of a {@code "Coinbase"}'s account
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+    /**
+     * Request to get profiles of a {@code "Coinbase"}'s account
+     * Any params required
+     *
      * @return profiles of a {@code "Coinbase"}'s account as {@link JSONArray}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     **/
     public JSONArray getProfilesJSON() throws Exception {
         return new JSONArray(getProfiles());
     }
 
-    /** Request to get profiles of a {@code "Coinbase"}'s account
-     * any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+    /**
+     * Request to get profiles of a {@code "Coinbase"}'s account
+     * Any params required
+     *
      * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
-     * **/
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     **/
     public ArrayList<Profile> getProfilesList() throws Exception {
         return assembleProfilesList(new JSONArray(getProfiles()));
     }
@@ -187,7 +191,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param name: name of profile to create
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1</a>
-     * @return result of creation profile as {@link Profile} object
+     * @return result of creation profile as {@link Profile} custom object
      * **/
     public Profile createProfileObject(String name) throws Exception {
         return new Profile(new JSONObject(createProfile(name)));
@@ -235,7 +239,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param profileId: identifier of profile from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link Profile} object
+     * @return single profile as {@link Profile} custom object
      * **/
     public Profile getProfileByIdObject(String profileId) throws Exception {
         return new Profile(new JSONObject(getProfileById(profileId)));
@@ -268,7 +272,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link Profile} object
+     * @return single profile as {@link Profile} custom object
      * **/
     public Profile getProfileByIdObject(String profileId, boolean active) throws Exception {
         return new Profile(new JSONObject(getProfileById(profileId, active)));
@@ -304,7 +308,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param name: name to assign at profile to change
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
      *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1</a>
-     * @return result of renaming as {@link Profile} object
+     * @return result of renaming as {@link Profile} custom object
      * **/
     public Profile renameProfileObject(String profileId, String name) throws Exception {
         return new Profile(new JSONObject(renameProfile(profileId, name)));

@@ -43,22 +43,24 @@ public class CurrencyConversion {
 
     /**
      * {@code from} is instance that memorizes from value
-     * **/
+     **/
     private final String from;
 
     /**
      * {@code to} is instance that memorizes to value
-     * **/
+     **/
     private final String to;
 
-    /** Constructor to init a {@link CurrencyConversion} object
-     * @param id: identifier value
-     * @param amount: amount value
+    /**
+     * Constructor to init a {@link CurrencyConversion} custom object
+     *
+     * @param id:            identifier value
+     * @param amount:        amount value
      * @param fromAccountId: from account identifier value
-     * @param toAccountId: to account identifier value
-     * @param from: from value
-     * @param to: to value
-     * **/
+     * @param toAccountId:   to account identifier value
+     * @param from:          from value
+     * @param to:            to value
+     **/
     public CurrencyConversion(String id, double amount, String fromAccountId, String toAccountId, String from, String to) {
         this.id = id;
         this.amount = amount;
@@ -69,7 +71,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Constructor to init a {@link CurrencyConversion} object
+     * Constructor to init a {@link CurrencyConversion} custom object
      *
      * @param currencyConversion: currency conversion details as {@link JSONObject}
      **/

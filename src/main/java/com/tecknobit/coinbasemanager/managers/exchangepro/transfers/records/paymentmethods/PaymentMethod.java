@@ -147,7 +147,7 @@ public class PaymentMethod extends PayMethod {
      * **/
     private JSONObject fiatAccountPickerData;
 
-    /** Constructor to init a {@link PaymentMethod} object
+    /** Constructor to init a {@link PaymentMethod} custom object
      * @param name: pay method name
      * @param type: pay method type
      * @param id: identifier value
@@ -196,9 +196,11 @@ public class PaymentMethod extends PayMethod {
         hPayment = null;
     }
 
-    /** Constructor to init a {@link PaymentMethod} object
+    /**
+     * Constructor to init a {@link PaymentMethod} custom object
+     *
      * @param payment: payment details as {@link JSONArray}
-     * **/
+     **/
     public PaymentMethod(JSONObject payment) {
         super(payment);
         hPayment = new JsonHelper(payment);
@@ -426,7 +428,7 @@ public class PaymentMethod extends PayMethod {
      * Method to get PayPal limits details <br>
      * Any params required
      *
-     * @return PayPal limits details as {@link PayPalMethod} object, if is not a PayPal method will return null value
+     * @return PayPal limits details as {@link PayPalMethod} custom object, if is not a PayPal method will return null value
      **/
     public PayPalMethod getPayPalLimits() {
         if (payPalLimits == null)
@@ -436,10 +438,12 @@ public class PaymentMethod extends PayMethod {
         return null;
     }
 
-    /** Method to get PayPal picker data details <br>
+    /**
+     * Method to get PayPal picker data details <br>
      * Any params required
-     * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} object, if is not a PayPal method will return null value
-     * **/
+     *
+     * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} custom object, if is not a PayPal method will return null value
+     **/
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
         if(payPalPickerData == null)
             payPalPickerData = hPayment.getJSONObject("picker_data");
@@ -454,7 +458,7 @@ public class PaymentMethod extends PayMethod {
 
     /** Method to get Bank limits details <br>
      * Any params required
-     * @return Bank limits details as {@link BankMethod} object, if is not a Bank method will return null value
+     * @return Bank limits details as {@link BankMethod} custom object, if is not a Bank method will return null value
      * **/
     public BankMethod getBankLimits() {
         if (bankLimits == null)
@@ -466,7 +470,7 @@ public class PaymentMethod extends PayMethod {
 
     /** Method to get Bank picker data details <br>
      * Any params required
-     * @return Bank picker data details as {@link BankMethod.BankPickerData} object, if is not a Bank method will return null value
+     * @return Bank picker data details as {@link BankMethod.BankPickerData} custom object, if is not a Bank method will return null value
      * **/
     public BankMethod.BankPickerData getBankPickerData(){
         if(bankPickerData == null)
@@ -482,7 +486,7 @@ public class PaymentMethod extends PayMethod {
 
     /** Method to get Fiat Account details <br>
      * Any params required
-     * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} object,
+     * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} custom object,
      * if is not a Fiat Account method will return null value
      * **/
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
@@ -495,7 +499,7 @@ public class PaymentMethod extends PayMethod {
 
     /** Method to get Fiat Account limits details <br>
      * Any params required
-     * @return Fiat Account limits details as {@link FiatAccountMethod} object,
+     * @return Fiat Account limits details as {@link FiatAccountMethod} custom object,
      * if is not a Fiat Account method will return null value
      * **/
     public FiatAccountMethod getFiatAccountLimit() {
@@ -508,7 +512,7 @@ public class PaymentMethod extends PayMethod {
 
     /** Method to get Fiat Account picker data details <br>
      * Any params required
-     * @return  Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} object,
+     * @return Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} custom object,
      * if is not a Fiat Account will return null value
      * **/
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
@@ -550,7 +554,7 @@ public class PaymentMethod extends PayMethod {
          * **/
         protected String currency;
 
-        /** Constructor to init a {@link Amount} object
+        /** Constructor to init a {@link Amount} custom object
          * @param amount: amount value
          * @param currency: currency value
          * @throws IllegalArgumentException if parameters range is not respected
@@ -567,7 +571,7 @@ public class PaymentMethod extends PayMethod {
         }
 
         /**
-         * Constructor to init a {@link Amount} object
+         * Constructor to init a {@link Amount} custom object
          *
          * @param jAmount: amount details as {@link JSONObject}
          **/

@@ -43,21 +43,23 @@ public class AccountDetails {
 
     /**
      * {@code amount} is instance that memorizes amount value
-     * **/
+     **/
     protected double amount;
 
     /**
      * {@code type} is instance that memorizes type value
-     * **/
+     **/
     protected String type;
 
-    /** Constructor to init a {@link AccountDetails} object
+    /**
+     * Constructor to init a {@link AccountDetails} custom object
+     *
      * @param createdAt: created at value
-     * @param id: identifier value
-     * @param amount: amount value
-     * @param type: type value
+     * @param id:        identifier value
+     * @param amount:    amount value
+     * @param type:      type value
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     **/
     public AccountDetails(String createdAt, String id, double amount, String type) {
         this.createdAt = createdAt;
         this.id = id;
@@ -72,7 +74,7 @@ public class AccountDetails {
     }
 
     /**
-     * Constructor to init a {@link AccountDetails} object
+     * Constructor to init a {@link AccountDetails} custom object
      *
      * @param accountDetails: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
