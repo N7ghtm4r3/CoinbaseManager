@@ -36,6 +36,11 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 public abstract class OrderDetails {
 
     /**
+     * {@code orderHelper} is instance that help to work with {@link OrderDetails}
+     **/
+    protected final JsonHelper orderHelper;
+
+    /**
      * {@code createdAt} is instance that memorizes created at value
      **/
     private final String createdAt;
@@ -57,23 +62,16 @@ public abstract class OrderDetails {
 
     /**
      * {@code size} is instance that memorizes size value
-     * **/
+     **/
     private final double size;
-
     /**
      * {@code side} is instance that memorizes side value (buy or sell)
-     * **/
-    private final String side;
-
+     **/
+    private final Side side;
     /**
      * {@code settled} is flag that checks if order is settled
      **/
     private final boolean settled;
-
-    /**
-     * {@code orderHelper} is instance that help to work with {@link OrderDetails}
-     **/
-    protected final JsonHelper orderHelper;
 
     /**
      * Constructor to init a {@link OrderDetails} custom object
@@ -86,7 +84,7 @@ public abstract class OrderDetails {
      * @param side:      side value (buy or sell)
      * @param settled:   flag that checks if order is settled
      **/
-    public OrderDetails(String createdAt, String productId, String profileId, double price, double size, String side,
+    public OrderDetails(String createdAt, String productId, String profileId, double price, double size, Side side,
                         boolean settled) {
         this.createdAt = createdAt;
         this.productId = productId;
@@ -98,9 +96,11 @@ public abstract class OrderDetails {
         orderHelper = null;
     }
 
-    /** Constructor to init a {@link OrderDetails} custom object
+    /**
+     * Constructor to init a {@link OrderDetails} custom object
+     *
      * @param orderDetails: orderDetails details as {@link JSONObject}
-     * **/
+     **/
     public OrderDetails(JSONObject orderDetails) {
         orderHelper = new JsonHelper(orderDetails);
         createdAt = orderHelper.getString("created_at");
@@ -108,8 +108,18 @@ public abstract class OrderDetails {
         profileId = orderHelper.getString("profile_id");
         price = orderHelper.getDouble("price");
         size = orderHelper.getDouble("size");
-        side = orderHelper.getString("side");
+        side = Side.valueOf(orderHelper.getString("side", Side.buy.toString()));
         settled = orderHelper.getBoolean("settled");
+    }
+
+    /**
+     * Method to get {@link #side} instance <br>
+     * Any params required
+     *
+     * @return {@link #side} instance as {@link String}
+     **/
+    public Side getSide() {
+        return side;
     }
 
     /**
@@ -195,13 +205,20 @@ public abstract class OrderDetails {
     }
 
     /**
-     * Method to get {@link #side} instance <br>
-     * Any params required
-     *
-     * @return {@link #side} instance as {@link String}
+     * {@code Side} list of sides available for an order
      **/
-    public String getSide() {
-        return side;
+    public enum Side {
+
+        /**
+         * {@code "buy"} side
+         **/
+        buy,
+
+        /**
+         * {@code "sell"} side
+         **/
+        sell
+
     }
 
     /**

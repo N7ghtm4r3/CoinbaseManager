@@ -174,7 +174,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     public String createProfile(String name) throws Exception {
         Params bodyParams = new Params();
         bodyParams.addParam("name", name);
-        return sendBodyParamsAPIRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
+        return sendPayloadedRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
     }
 
     /** Request to create a profile
@@ -212,7 +212,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         bodyParams.addParam("to", to);
         bodyParams.addParam("currency", currency);
         bodyParams.addParam("amount", amount);
-        return sendBodyParamsAPIRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
+        return sendPayloadedRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
     }
 
     /** Request to get a single {@code "Coinbase"}'s profile
@@ -289,7 +289,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         Params bodyParams = new Params();
         bodyParams.addParam("profileId", profileId);
         bodyParams.addParam("name", name);
-        return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, bodyParams);
+        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, bodyParams);
     }
 
     /** Request to rename a profile
@@ -325,7 +325,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
         Params bodyParams = new Params();
         bodyParams.addParam("profileId", profileId);
         bodyParams.addParam("to", to);
-        return sendBodyParamsAPIRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
+        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
                 , PUT_METHOD, bodyParams).equals("{}");
     }
 

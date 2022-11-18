@@ -1,18 +1,26 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.orders;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.orders.records.Fill;
 import com.tecknobit.coinbasemanager.managers.exchangepro.orders.records.Order;
+import com.tecknobit.coinbasemanager.managers.exchangepro.orders.records.OrderDetails.Side;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static com.tecknobit.apimanager.apis.APIRequest.*;
 import static com.tecknobit.apimanager.formatters.ScientificNotationParser.sNotationParse;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.GET_ALL_FILLS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.ORDERS_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.orders.records.Order.*;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.orders.records.Order.OrderType.*;
 import static java.util.Arrays.asList;
 
 /**
@@ -96,514 +104,1111 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     /**
      * Request to get all filled orders
      *
-     * @param orderId: identifier of order from get fill details
-     * @return all filled orders as {@link String}
+     * @param order: order from get fill details
+     * @return all filled orders list as {@link ArrayList} of {@link Fill}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
+     * Get all fills</a>
      **/
-    public String getAllFillsByOrderId(String orderId) throws Exception {
-        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?order_id=" + orderId, GET_METHOD);
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByOrderId(Order order) throws Exception {
+        return getAllFillsByOrderId(order.getId(), LIBRARY_OBJECT);
     }
 
-    /** Request to get all filled orders
-     * @param orderId: identifier of order from get fill details
+    /**
+     * Request to get all filled orders
+     *
+     * @param order:  order from get fill details
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllFillsByOrderIdJSON(String orderId) throws Exception {
-        return new JSONArray(getAllFillsByOrderId(orderId));
+     * Get all fills</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByOrderId(Order order, ReturnFormat format) throws Exception {
+        return getAllFillsByOrderId(order.getId(), format);
     }
 
-    /** Request to get all filled orders
+    /**
+     * Request to get all filled orders
+     *
      * @param orderId: identifier of order from get fill details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
-     * **/
-    public ArrayList<Fill> getAllFillsListByOrderId(String orderId) throws Exception {
-        return assembleFillsList(new JSONArray(getAllFillsByOrderId(orderId)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByOrderId(String orderId) throws Exception {
+        return getAllFillsByOrderId(orderId, LIBRARY_OBJECT);
     }
 
-    /** Request to get all filled orders
+    /**
+     * Request to get all filled orders
+     *
      * @param orderId: identifier of order from get fill details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are product_id, profile_id, before, after, limit)
+     * @param format:  return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link String}
-     * **/
-    public String getAllFillsByOrderId(String orderId, Params queryParams) throws Exception {
-        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?order_id=" + orderId,
-                        queryParams), GET_METHOD);
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByOrderId(String orderId, ReturnFormat format) throws Exception {
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?order_id=" + orderId, GET_METHOD),
+                format);
     }
 
-    /** Request to get all filled orders
-     * @param orderId: identifier of order from get fill details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are product_id, profile_id, before, after, limit)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllFillsByOrderIdJSON(String orderId, Params queryParams) throws Exception {
-        return new JSONArray(getAllFillsByOrderId(orderId, queryParams));
-    }
-
-    /** Request to get all filled orders
-     * @param orderId: identifier of order from get fill details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are product_id, profile_id, before, after, limit)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
+    /**
+     * Request to get all filled orders
+     *
+     * @param order:       order from get fill details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
-     * **/
-    public ArrayList<Fill> getAllFillsListByOrderId(String orderId, Params queryParams) throws Exception {
-        return assembleFillsList(new JSONArray(getAllFillsByOrderId(orderId, queryParams)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByOrderId(Order order, Params queryParams) throws Exception {
+        return getAllFillsByOrderId(order.getId(), queryParams, LIBRARY_OBJECT);
     }
 
-    /** Request to get all filled orders
-     * @param productId: identifier of product to get details
+    /**
+     * Request to get all filled orders
+     *
+     * @param order:       order from get fill details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link String}
-     * **/
-    public String getAllFillsByProductId(String productId) throws Exception {
-        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?product_id=" + productId, GET_METHOD);
+     * Get all fills</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByOrderId(Order order, Params queryParams, ReturnFormat format) throws Exception {
+        return getAllFillsByOrderId(order.getId(), queryParams, format);
     }
 
-    /** Request to get all filled orders
-     * @param productId: identifier of product to get details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllFillsByProductIdJSON(String productId) throws Exception {
-        return new JSONArray(getAllFillsByProductId(productId));
-    }
-
-    /** Request to get all filled orders
-     * @param productId: identifier of product to get details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
+    /**
+     * Request to get all filled orders
+     *
+     * @param orderId:     identifier of order from get fill details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
-     * **/
-    public ArrayList<Fill> getAllFillsListByProductId(String productId) throws Exception {
-        return assembleFillsList(new JSONArray(getAllFillsByProductId(productId)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByOrderId(String orderId, Params queryParams) throws Exception {
+        return getAllFillsByOrderId(orderId, queryParams, LIBRARY_OBJECT);
     }
 
-    /** Request to get all filled orders
-     * @param productId: identifier of product to get details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are order_id, profile_id, before, after, limit)
+    /**
+     * Request to get all filled orders
+     *
+     * @param orderId:     identifier of order from get fill details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link String}
-     * **/
-    public String getAllFillsByProductId(String productId, Params queryParams) throws Exception {
-        return sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?product_id=" + productId,
-                        queryParams), GET_METHOD);
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByOrderId(String orderId, Params queryParams, ReturnFormat format) throws Exception {
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?order_id="
+                + orderId, queryParams), GET_METHOD), format);
     }
 
-    /** Request to get all filled orders
+    /**
+     * Request to get all filled orders
+     *
      * @param productId: identifier of product to get details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are order_id, profile_id, before, after, limit)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
-     * @return all filled orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllFillsByProductIdJSON(String productId, Params queryParams) throws Exception {
-        return new JSONArray(getAllFillsByProductId(productId, queryParams));
-    }
-
-    /** Request to get all filled orders
-     * @param productId: identifier of product to get details
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are order_id, profile_id, before, after, limit)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1</a>
      * @return all filled orders list as {@link ArrayList} of {@link Fill}
-     * **/
-    public ArrayList<Fill> getAllFillsListByProductId(String productId, Params queryParams) throws Exception {
-        return assembleFillsList(new JSONArray(getAllFillsByProductId(productId, queryParams)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByProductId(String productId) throws Exception {
+        return getAllFillsByProductId(productId, LIBRARY_OBJECT);
     }
 
-    /** Method to assemble a fills list
-     * @param jsonFills: jsonArray obtained by response request
-     * @return fills list as {@link ArrayList} of {@link Fill}
-     * **/
-    private ArrayList<Fill> assembleFillsList(JSONArray jsonFills){
-        ArrayList<Fill> fills = new ArrayList<>();
-        for (int j = 0; j < jsonFills.length(); j++)
-            fills.add(new Fill(jsonFills.getJSONObject(j)));
-        return fills;
+    /**
+     * Request to get all filled orders
+     *
+     * @param productId: identifier of product to get details
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByProductId(String productId, ReturnFormat format) throws Exception {
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?product_id=" + productId, GET_METHOD),
+                format);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
+    /**
+     * Request to get all filled orders
+     *
+     * @param productId:   identifier of product to get details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
+     * @return all filled orders list as {@link ArrayList} of {@link Fill}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public ArrayList<Fill> getAllFillsByProductId(String productId, Params queryParams) throws Exception {
+        return getAllFillsByProductId(productId, queryParams, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get all filled orders
+     *
+     * @param productId:   identifier of product to get details
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> get results for a specific profile - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "market_type"} -> market type which the order was filled in - [string, default spot]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all filled orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * Get all fills</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/fills")
+    public <T> T getAllFillsByProductId(String productId, Params queryParams, ReturnFormat format) throws Exception {
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?product_id="
+                + productId, queryParams), GET_METHOD), format);
+    }
+
+    /**
+     * Method to assemble a fills list
+     *
+     * @param fillsResponse: fills list response to format
+     * @param format:        return type formatter -> {@link ReturnFormat}
+     * @return fills list response as {"format"} defines
+     **/
+    @Returner
+    private <T> T returnFillsList(String fillsResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(fillsResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Fill> fills = new ArrayList<>();
+                JSONArray jFills = new JSONArray(fillsResponse);
+                for (int j = 0; j < jFills.length(); j++)
+                    fills.add(new Fill(jFills.getJSONObject(j)));
+                return (T) fills;
+            default:
+                return (T) fillsResponse;
+        }
+    }
+
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
-        String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
-        params += apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
-        return sendAPIRequest(ORDERS_ENDPOINT + params, GET_METHOD);
-    }
-
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses));
-    }
-
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status[]}
      * @return all orders list as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting,
+                                         Status[] statuses) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), LIBRARY_OBJECT);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String[]}
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status[]}
+     * @param format:   return type formatter -> {@link ReturnFormat}
+     * @return all orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String[] statuses) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(statuses)));
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
+                              ReturnFormat format) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), format);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String[]}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String[] statuses) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses));
-    }
-
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String[]}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Collection}
      * @return all orders list as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String[] statuses) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting,
+                                         Collection<Status> statuses) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, statuses, LIBRARY_OBJECT);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Collection}
+     * @param format:   return type formatter -> {@link ReturnFormat}
+     * @return all orders list as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                               Params queryParams) throws Exception {
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                              ReturnFormat format) throws Exception {
         String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
-        params += apiRequest.concatenateParamsList("&","status", new ArrayList<>(statuses));
-        return sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams), GET_METHOD);
+        params += apiRequest.concatenateParamsList("&", "status", new ArrayList<>(statuses));
+        return returnOrdersList(sendAPIRequest(ORDERS_ENDPOINT + params, GET_METHOD), format);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                      Params queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams));
-    }
-
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link ArrayList}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status} array
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
      * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                             Params queryParams) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
-    }
-
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String} array
-     * @param queryParams: query params of request
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String[] statuses,
-                               Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(statuses)), queryParams);
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
+                                         Params queryParams) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, LIBRARY_OBJECT);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String} array
-     * @param queryParams: query params of request
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status} array
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String[] statuses,
-                                      Params queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams));
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
+                              Params queryParams, ReturnFormat format) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, LIBRARY_OBJECT);
     }
 
-    /** Request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String} array
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Collection}
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
      * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String[] statuses,
-                                             Params queryParams) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, queryParams)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                                         Params queryParams) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams, LIBRARY_OBJECT);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+    /**
+     * Request to get all open orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Collection}
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String status) throws Exception {
-        return getAllOrdersJSON(limit, sortedBy, sorting, status).toString();
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                              Params queryParams, ReturnFormat format) throws Exception {
+        String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
+        params += apiRequest.concatenateParamsList("&", "status", new ArrayList<>(statuses));
+        return returnOrdersList(sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams),
+                GET_METHOD), format);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status))));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param status:   orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status) throws Exception {
-        return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String status,
-                               Params queryParams) throws Exception {
-        return getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams).toString();
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), LIBRARY_OBJECT);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:    number of returns
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @param status:   orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
+     * @param format:   return type formatter -> {@link ReturnFormat}
+     * @return all orders as as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status,
-                                      Params queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams));
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
+                              ReturnFormat format) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), format);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param status:      orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status,
-                                             Params queryParams) throws Exception {
-        return assembleOrdersList(getAllOrdersJSON(limit, sortedBy, sorting, status, queryParams));
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
+                                         Params queryParams) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), queryParams, LIBRARY_OBJECT);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param status:      orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
+                              Params queryParams, ReturnFormat format) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), queryParams, format);
+    }
+
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:     number of returns
+     * @param sortedBy:  sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:   ascending or descending order criteria (asc or desc)
+     * @param statuses:  orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @param productId: identifier of product from fetch details es. BTC-ETH
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                               String productId) throws Exception {
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                                         String productId) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, statuses, productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:     number of returns
+     * @param sortedBy:  sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:   ascending or descending order criteria (asc or desc)
+     * @param statuses:  orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param productId: identifier of product from fetch details es. BTC-ETH
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                              String productId, ReturnFormat format) throws Exception {
         Params productIdPayload = new Params();
         productIdPayload.addParam("product_id", productId);
-        return getAllOrders(limit, sortedBy, sorting, statuses, productIdPayload);
+        return getAllOrders(limit, sortedBy, sorting, statuses, productIdPayload, format);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                      String productId) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param productId:   identifier of product from fetch details es. BTC-ETH
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
      * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                             String productId) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                                         String productId, Params queryParams) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams, LIBRARY_OBJECT);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param statuses:    orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param productId:   identifier of product from fetch details es. BTC-ETH
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                               String productId, Params queryParams) throws Exception {
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
+                              String productId, Params queryParams, ReturnFormat format) throws Exception {
         Params productIdPayload = new Params();
         productIdPayload.addParam("product_id", productId);
         queryParams.mergeParams(productIdPayload);
-        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams);
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                      String productId, Params queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, ArrayList<String> statuses,
-                                             String productId, Params queryParams) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams)));
+        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams, format);
     }
 
     /** Custom request to get all orders
@@ -613,114 +1218,170 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @param productId: identifier of product from fetch details es. BTC-ETH
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
+     *     Get all orders</a>
+     * @return all orders as {@link ArrayList} of {@link Order}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrder(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
+                                        String productId) throws Exception {
+        return getAllOrder(limit, sortedBy, sorting, status, productId, LIBRARY_OBJECT);
+    }
+
+    /** Custom request to get all orders
+     * @param limit: number of returns
+     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting: ascending or descending order criteria (asc or desc)
+     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
+     * @param productId: identifier of product from fetch details es. BTC-ETH
+     * @param format:        return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     *     Get all orders</a>
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrder(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
+                             String productId, ReturnFormat format) throws Exception {
         Params productIdPayload = new Params();
         productIdPayload.addParam("product_id", productId);
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), productIdPayload);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), productIdPayload, format);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param status:      orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
+     * @param productId:   identifier of product from fetch details es. BTC-ETH
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
      * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status, String productId) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId)));
-    }
-
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link String}
-     * **/
-    public String getAllOrders(int limit, String sortedBy, String sorting, String status, String productId,
-                               Params queryParams) throws Exception {
-        Params productIdPayload = new Params();
-        productIdPayload.addParam("product_id", productId);
-        queryParams.mergeParams(productIdPayload);
-        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams);
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status, String productId,
+                                         Params queryParams) throws Exception {
+        return getAllOrders(limit, sortedBy, sorting, status, productId, queryParams, LIBRARY_OBJECT);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
+    /**
+     * Custom request to get all orders
+     *
+     * @param limit:       number of returns
+     * @param sortedBy:    sort criteria for results (created_at, price, size, order_id, side or type)
+     * @param sorting:     ascending or descending order criteria (asc or desc)
+     * @param status:      orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
+     * @param productId:   identifier of product from fetch details es. BTC-ETH
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "start_date"} -> filter results by minimum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end_date"} -> filter results by maximum posted date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return all orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link JSONArray}
-     * **/
-    public JSONArray getAllOrdersJSON(int limit, String sortedBy, String sorting, String status, String productId,
-                                      Params queryParams) throws Exception {
-        return new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams));
+     * Get all orders</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status, String productId,
+                              Params queryParams, ReturnFormat format) throws Exception {
+        Params payload = new Params();
+        payload.addParam("product_id", productId);
+        queryParams.mergeParams(payload);
+        return getAllOrders(limit, sortedBy, sorting, new ArrayList<>(asList(status)), queryParams, format);
     }
 
-    /** Custom request to get all orders
-     * @param limit: number of returns
+    /**
+     * Method to assemble map of sorting criteria
+     *
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
-     * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, before, after, start_date, end_date)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1</a>
-     * @return all orders as {@link ArrayList} of {@link Order}
-     * **/
-    public ArrayList<Order> getAllOrdersList(int limit, String sortedBy, String sorting, String status, String productId,
-                                             Params queryParams) throws Exception {
-        return assembleOrdersList(new JSONArray(getAllOrders(limit, sortedBy, sorting, status, productId, queryParams)));
-    }
-
-    /** Method to assemble an orders list
-     * @param jsonOrders: jsonArray obtained by response request
-     * @return orders list as {@link ArrayList} of {@link Order}
-     * **/
-    private ArrayList<Order> assembleOrdersList(JSONArray jsonOrders){
-        ArrayList<Order> orders = new ArrayList<>();
-        for (int j = 0; j < jsonOrders.length(); j++)
-            orders.add(new Order(jsonOrders.getJSONObject(j)));
-        return orders;
-    }
-
-    /** Method to assemble map of sorting criteria
-     * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
-     * @param sorting: ascending or descending order criteria (asc or desc)
-     * @return map of sorting criteria params as {@link HashMap} <{@link String} ,{@link Object}>
-     * **/
-    private Params assembleSortCriteria(String sortedBy, String sorting) {
+     * @param sorting:  ascending or descending order criteria (asc or desc)
+     * @return map of sorting criteria params as {@link Params}
+     **/
+    private Params assembleSortCriteria(Sorter sortedBy, SortingOrder sorting) {
         Params criteria = new Params();
         criteria.addParam("sortedBy", sortedBy);
         criteria.addParam("sorting", sorting);
@@ -728,121 +1389,191 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     /**
-     * Request to cancel all orders
-     * Any params required
+     * Method to assemble an orders list
      *
-     * @return result list of cancelled id orders as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+     * @param ordersResponse: orders list response to format
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return orders list response as {"format"} defines
      **/
-    public String cancelAllOpenOrders() throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT, DELETE_METHOD);
+    @Returner
+    private <T> T returnOrdersList(String ordersResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(ordersResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Order> orders = new ArrayList<>();
+                JSONArray jOrders = new JSONArray(ordersResponse);
+                for (int j = 0; j < jOrders.length(); j++)
+                    orders.add(new Order(jOrders.getJSONObject(j)));
+                return (T) orders;
+            default:
+                return (T) ordersResponse;
+        }
     }
 
     /**
-     * Request to cancel all orders
+     * Request to cancel all orders <br>
      * Any params required
      *
-     * @return result list of cancelled id orders as {@link JSONArray}
+     * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+     * Cancel all orders</a>
      **/
-    public JSONArray cancelAllOpenOrdersJSON() throws Exception {
-        return new JSONArray(cancelAllOpenOrders());
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<String> cancelAllOpenOrders() throws Exception {
+        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT, DELETE_METHOD), LIBRARY_OBJECT);
     }
 
     /** Request to cancel all orders
-     * Any params required
+     *
+     * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
+     *     Cancel all orders</a>
+     * @return result list of cancelled id orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T cancelAllOpenOrders(ReturnFormat format) throws Exception {
+        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT, DELETE_METHOD), format);
+    }
+
+    /** Request to cancel all orders
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     *     Cancel all orders</a>
      * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public ArrayList<String> cancelAllOpenOrdersList() throws Exception {
-        return assembleCancelOrdersList(new JSONArray(cancelAllOpenOrders()));
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public ArrayList<String> cancelAllOpenOrders(Params queryParams) throws Exception {
+        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(),
+                DELETE_METHOD), LIBRARY_OBJECT);
     }
 
     /** Request to cancel all orders
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, product_id)
+     * @param queryParams: query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "product_id"} -> product identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
-     * @return result list of cancelled id orders as {@link String}
+     *     Cancel all orders</a>
+     * @return result list of cancelled id orders as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public String cancelAllOpenOrders(Params queryParams) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(), DELETE_METHOD);
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T cancelAllOpenOrders(Params queryParams, ReturnFormat format) throws Exception {
+        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(),
+                DELETE_METHOD), format);
     }
 
-    /** Request to cancel all orders
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
-     * @return result list of cancelled id orders as {@link JSONArray}
-     * **/
-    public JSONArray cancelAllOpenOrdersJSON(Params queryParams) throws Exception {
-        return new JSONArray(cancelAllOpenOrders(queryParams));
+    /**
+     * Method to assemble a canceled orders list
+     *
+     * @param ordersResponse: canceled orders list response to format
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return canceled orders list response as {"format"} defines
+     **/
+    @Returner
+    private <T> T returnCanceledOrdersList(String ordersResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(ordersResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<String> ordersId = new ArrayList<>();
+                JSONArray jOrders = new JSONArray(ordersResponse);
+                for (int j = 0; j < jOrders.length(); j++)
+                    ordersId.add(jOrders.getString(j));
+                return (T) ordersId;
+            default:
+                return (T) ordersResponse;
+        }
     }
 
-    /** Request to cancel all orders
-     * @param queryParams: query params of request
-     * @implSpec (keys accepted are profile_id, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1</a>
-     * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
-     * **/
-    public ArrayList<String> cancelAllOpenOrdersList(Params queryParams) throws Exception {
-        return assembleCancelOrdersList(new JSONArray(cancelAllOpenOrders(queryParams)));
-    }
-
-    /** Method to assemble a cancelled id orders list
-     * @param jsonOrders: jsonArray obtained by response request
-     * @return cancelled id orders list as {@link ArrayList} of {@link String}
-     * **/
-    private ArrayList<String> assembleCancelOrdersList(JSONArray jsonOrders){
-        ArrayList<String> ordersId = new ArrayList<>();
-        for (int j = 0; j < jsonOrders.length(); j++)
-            ordersId.add(jsonOrders.getString(j));
-        return ordersId;
-    }
-
-    /** Request to create new limit order
-     * @param side: side of the order (buy or sell)
+    /**
+     * Request to create new limit order
+     *
+     * @param side:      side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link String}
-     * **/
-    public String createLimitOrder(String side, String productId, double price, double size) throws Exception {
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleOrderPayload(side, productId, price,
-                size, Order.LIMIT_TYPE));
-    }
-
-    /** Request to create new limit order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link JSONObject}
-     * **/
-    public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size) throws Exception {
-        return new JSONObject(createLimitOrder(side, productId, price, size));
-    }
-
-    /** Request to create new limit order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
+     * @param price:     price per unit of product es. price for one unit of BTC in USD base
+     * @param size:      amount of base currency used in the order
      * @return result of creation a new limit order as {@link Order} custom object
-     * **/
-    public Order createNewLimitOrderObject(String side, String productId, double price, double size) throws Exception {
-        return new Order(new JSONObject(createLimitOrder(side, productId, price, size)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * Create a new order</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createNewLimitOrder(Side side, String productId, double price, double size) throws Exception {
+        return createNewLimitOrder(side, productId, price, size, LIBRARY_OBJECT);
     }
 
     /** Request to create new limit order
@@ -850,17 +1581,28 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid)
+     * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link String}
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public String createLimitOrder(String side, String productId, double price, double size,
-                                   Params extraBodyParams) throws Exception {
-        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.LIMIT_TYPE);
-        bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createNewLimitOrder(Side side, String productId, double price, double size,
+                                     ReturnFormat format) throws Exception {
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, createOrderPayload(side, productId,
+                price, size, OrderType.limit)), format);
     }
 
     /** Request to create new limit order
@@ -868,31 +1610,610 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid)
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link JSONObject}
-     * **/
-    public JSONObject createNewLimitOrderJSON(String side, String productId, double price, double size,
-                                              Params extraBodyParams) throws Exception {
-        return new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams));
-    }
-
-    /** Request to create new limit order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
+     *     Create a new order</a>
      * @return result of creation a new limit order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public Order createNewLimitOrderObject(String side, String productId, double price, double size,
-                                           Params extraBodyParams) throws Exception {
-        return new Order(new JSONObject(createLimitOrder(side, productId, price, size, extraBodyParams)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createNewLimitOrder(Side side, String productId, double price, double size,
+                                     Params extraBodyParams) throws Exception {
+        return createNewLimitOrder(side, productId, price, size, extraBodyParams, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new limit order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param price: price per unit of product es. price for one unit of BTC in USD base
+     * @param size: amount of base currency used in the order
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createNewLimitOrder(Side side, String productId, double price, double size,
+                                     Params extraBodyParams, ReturnFormat format) throws Exception {
+        Params payload = createOrderPayload(side, productId, price, size, limit);
+        payload.mergeParams(extraBodyParams);
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param size: amount of base currency used in the order
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createMarketOrderSize(Side side, String productId, double size) throws Exception {
+        return createMarketOrderSize(side, productId, size, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param size: amount of base currency used in the order
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createMarketOrderSize(Side side, String productId, double size, ReturnFormat format) throws Exception {
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, createMarketOrderPayload(side,
+                productId, "size", size)), format);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param size: amount of base currency used in the order
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {@link Order}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createMarketOrderSize(Side side, String productId, double size, Params extraBodyParams) throws Exception {
+        return createMarketOrderSize(side, productId, size, extraBodyParams, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param size: amount of base currency used in the order
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createMarketOrderSize(Side side, String productId, double size, Params extraBodyParams,
+                                       ReturnFormat format) throws Exception {
+        Params payload = createMarketOrderPayload(side, productId, "size", size);
+        payload.mergeParams(extraBodyParams);
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param founds: amount of quote currency used in the order
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createMarketOrderFounds(Side side, String productId, double founds) throws Exception {
+        return createMarketOrderFounds(side, productId, founds, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param founds: amount of quote currency used in the order
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createMarketOrderFounds(Side side, String productId, double founds, ReturnFormat format) throws Exception {
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, createMarketOrderPayload(side, productId,
+                "founds", founds)), format);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param founds: amount of quote currency used in the order
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createMarketOrderFounds(Side side, String productId, double founds, Params extraBodyParams) throws Exception {
+        return createMarketOrderFounds(side, productId, founds, extraBodyParams, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param founds: amount of quote currency used in the order
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new market order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createMarketOrderFounds(Side side, String productId, double founds, Params extraBodyParams,
+                                         ReturnFormat format) throws Exception {
+        Params payload = createMarketOrderPayload(side, productId, "founds", founds);
+        payload.mergeParams(extraBodyParams);
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
+    }
+
+    /** Method to assemble a payload for market order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param key: size of funds parameter
+     * @param keyValue: value of key
+     * @return payload for a new market order as {@link Params}
+     * **/
+    private Params createMarketOrderPayload(Side side, String productId, String key, double keyValue) {
+        Params payload = new Params();
+        payload.addParam("side", side);
+        payload.addParam("product_id", productId);
+        payload.addParam(key, sNotationParse(8, keyValue));
+        payload.addParam("type", market);
+        return payload;
+    }
+
+    /** Request to create new stop order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param price: price per unit of product es. price for one unit of BTC in USD base
+     * @param size: amount of base currency used in the order
+     * @param stopPrice: price when stop order will be placed on the book
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createStopOrder(Side side, String productId, double price, double size, double stopPrice) throws Exception {
+        return createStopOrder(side, productId, price, size, stopPrice, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new stop order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param price: price per unit of product es. price for one unit of BTC in USD base
+     * @param size: amount of base currency used in the order
+     * @param stopPrice: price when stop order will be placed on the book
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createStopOrder(Side side, String productId, double price, double size, double stopPrice,
+                                 ReturnFormat format) throws Exception {
+        Params payload = createOrderPayload(side, productId, price, size, stop);
+        payload.addParam("stop_price", stopPrice);
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
+    }
+
+    /** Request to create new stop order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param price: price per unit of product es. price for one unit of BTC in USD base
+     * @param size: amount of base currency used in the order
+     * @param stopPrice: price when stop order will be placed on the book
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public Order createStopOrder(Side side, String productId, double price, double size, double stopPrice,
+                                 Params extraBodyParams) throws Exception {
+        return createStopOrder(side, productId, price, size, stopPrice, extraBodyParams, LIBRARY_OBJECT);
+    }
+
+    /** Request to create new stop order
+     * @param side: side of the order (buy or sell)
+     * @param productId: identifier of product to buy or sell es. BTC-USD
+     * @param price: price per unit of product es. price for one unit of BTC in USD base
+     * @param size: amount of base currency used in the order
+     * @param stopPrice: price when stop order will be placed on the book
+     * @param extraBodyParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "time_in_force"} -> time in force, constant available: {@link TimeInForce} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "cancel_after"} -> cancel after, constant available: {@link CancelAfter} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stp"} -> stp, constant available: {@link STP} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "stop"} -> stop, constant available: {@link StopType} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "post_only"} -> if {@code "true"}, order will only execute as a
+     *                              {@code "maker"} order - [boolean, default false]
+     *                          </li>
+     *                          <li>
+     *                              {@code "client_oid"} -> optional Order ID selected by the user or the frontend
+     *                              client to identify their order - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     *     Create a new order</a>
+     * @return result of creation a new limit order as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders")
+    public <T> T createStopOrder(Side side, String productId, double price, double size, double stopPrice,
+                                 Params extraBodyParams, ReturnFormat format) throws Exception {
+        Params payload = createOrderPayload(side, productId, price, size, stop);
+        payload.addParam("stop_price", stopPrice);
+        payload.mergeParams(extraBodyParams);
+        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
     }
 
     /** Method to assemble a payload for limit and stop order
@@ -901,350 +2222,187 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
      * @param type: type of the order (limit or stop)
-     * @return payload for a new order as {@link HashMap} <{@link String} ,{@link Object}>
+     * @return payload for a new order as {@link Params}
      * **/
-    private Params assembleOrderPayload(String side, String productId, double price, double size,
-                                                         String type){
-        Params bodyParams = new Params();
-        bodyParams.addParam("side", side);
-        bodyParams.addParam("product_id", productId);
-        bodyParams.addParam("price", price);
-        bodyParams.addParam("size", sNotationParse(8, size));
-        bodyParams.addParam("type", type);
-        return bodyParams;
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link String}
-     * **/
-    public String createMarketOrderSize(String side, String productId, double size) throws Exception {
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
-                "size", size));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link JSONObject}
-     * **/
-    public JSONObject createMarketOrderSizeJSON(String side, String productId, double size) throws Exception {
-        return new JSONObject(createMarketOrderSize(side, productId, size));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} custom object
-     * **/
-    public Order createMarketOrderSizeObject(String side, String productId, double size) throws Exception {
-        return new Order(new JSONObject(createMarketOrderSize(side, productId, size)));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, funds)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link String}
-     * **/
-    public String createMarketOrderSize(String side, String productId, double size,
-                                        Params extraBodyParams) throws Exception {
-        Params bodyParams = assembleMarketOrderPayload(side, productId, "size", size);
-        bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, funds)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link JSONObject}
-     * **/
-    public JSONObject createMarketOrderSizeJSON(String side, String productId, double size,
-                                                Params extraBodyParams) throws Exception {
-        return new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, funds)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order}
-     * **/
-    public Order createMarketOrderSizeObject(String side, String productId, double size,
-                                             Params extraBodyParams) throws Exception {
-        return new Order(new JSONObject(createMarketOrderSize(side, productId, size, extraBodyParams)));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link String}
-     * **/
-    public String createMarketOrderFounds(String side, String productId, double founds) throws Exception {
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, assembleMarketOrderPayload(side, productId,
-                "founds", founds));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link JSONObject}
-     * **/
-    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds) throws Exception {
-        return new JSONObject(createMarketOrderFounds(side, productId, founds));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} custom object
-     * **/
-    public Order createMarketOrderFoundsObject(String side, String productId, double founds) throws Exception {
-        return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds)));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, size)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link String}
-     * **/
-    public String createMarketOrderFounds(String side, String productId, double founds, Params extraBodyParams) throws Exception {
-        Params bodyParams = assembleMarketOrderPayload(side, productId, "founds", founds);
-        bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, size)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link JSONObject}
-     * **/
-    public JSONObject createMarketOrderFoundsJSON(String side, String productId, double founds, Params extraBodyParams) throws Exception {
-        return new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams));
-    }
-
-    /** Request to create new market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param founds: amount of quote currency used in the order
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, post_only, client_oid, size)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new market order as {@link Order} custom object
-     * **/
-    public Order createMarketOrderFoundsObject(String side, String productId, double founds, Params extraBodyParams) throws Exception {
-        return new Order(new JSONObject(createMarketOrderFounds(side, productId, founds, extraBodyParams)));
-    }
-
-    /** Method to assemble a payload for market order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param key: size of funds parameter
-     * @param keyValue: value of key
-     * @return payload for a new market order as {@link HashMap} <{@link String} ,{@link Object}>
-     * **/
-    private Params assembleMarketOrderPayload(String side, String productId, String key, double keyValue){
-        Params bodyParams = new Params();
-        bodyParams.addParam("side", side);
-        bodyParams.addParam("product_id", productId);
-        bodyParams.addParam(key, sNotationParse(8, keyValue));
-        bodyParams.addParam("type", Order.MARKET_TYPE);
-        return bodyParams;
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link String}
-     * **/
-    public String createStopOrder(String side, String productId, double price, double size,
-                                  double stopPrice) throws Exception {
-        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
-        bodyParams.addParam("stop_price", stopPrice);
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link JSONObject}
-     * **/
-    public JSONObject createStopOrderJSON(String side, String productId, double price, double size,
-                                          double stopPrice) throws Exception {
-        return new JSONObject(createStopOrder(side, productId, price, size, stopPrice));
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} custom object
-     * **/
-    public Order createStopOrderObject(String side, String productId, double price, double size,
-                                       double stopPrice) throws Exception {
-        return new Order(new JSONObject(createStopOrder(side, productId, price, size, stopPrice)));
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, client_oid)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link String}
-     * **/
-    public String createStopOrder(String side, String productId, double price, double size, double stopPrice,
-                                  Params extraBodyParams) throws Exception {
-        Params bodyParams = assembleOrderPayload(side, productId, price, size, Order.STOP_TYPE);
-        bodyParams.addParam("stop_price", stopPrice);
-        bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(ORDERS_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, client_oid)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link JSONObject}
-     * **/
-    public JSONObject createStopOrderJSON(String side, String productId, double price, double size, double stopPrice,
-                                          Params extraBodyParams) throws Exception {
-        return new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams));
-    }
-
-    /** Request to create new stop order
-     * @param side: side of the order (buy or sell)
-     * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param stopPrice: price when stop order will be placed on the book
-     * @param extraBodyParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, time_in_force, cancel_after, stp, stop, client_oid)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1</a>
-     * @return result of creation a new limit order as {@link Order} custom object
-     * **/
-    public Order createStopOrderObject(String side, String productId, double price, double size, double stopPrice,
-                                       Params extraBodyParams) throws Exception {
-        return new Order(new JSONObject(createStopOrder(side, productId, price, size, stopPrice, extraBodyParams)));
+    private Params createOrderPayload(Side side, String productId, double price, double size, OrderType type) {
+        Params payload = new Params();
+        payload.addParam("side", side);
+        payload.addParam("product_id", productId);
+        payload.addParam("price", price);
+        payload.addParam("size", sNotationParse(8, size));
+        payload.addParam("type", type);
+        return payload;
     }
 
     /** Request to get single order information
      * @param orderId: identifier of order from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
-     * @return result of single order information as {@link String}
-     * **/
-    public String getSingleOrder(String orderId) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId, GET_METHOD);
-    }
-
-    /** Request to get single order information
-     * @param orderId: identifier of order from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
-     * @return result of single order information as {@link JSONObject}
-     * **/
-    public JSONObject getSingleOrderJSON(String orderId) throws Exception {
-        return new JSONObject(getSingleOrder(orderId));
-    }
-
-    /** Request to get single order information
-     * @param orderId: identifier of order from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1</a>
+     *     Get single order</a>
      * @return result of single order information as {@link Order} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public Order getSingleOrderObject(String orderId) throws Exception {
-        return new Order(new JSONObject(getSingleOrder(orderId)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
+    public Order getSingleOrder(String orderId) throws Exception {
+        return getSingleOrder(orderId, LIBRARY_OBJECT);
     }
 
-    /** Request to cancel an order
-     * @param orderId: identifier of order to cancel
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1</a>
-     * @return result of order cancellation as {@link String}
+    /** Request to get single order information
+     * @param orderId: identifier of order from fetch details
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+     *     Get single order</a>
+     * @return result of single order information as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
+    public <T> T getSingleOrder(String orderId, ReturnFormat format) throws Exception {
+        return returnOrder(sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId, GET_METHOD), format);
+    }
+
+    /**
+     * Method to assemble an order object
+     *
+     * @param orderResponse: order response to format
+     * @param format:        return type formatter -> {@link ReturnFormat}
+     * @return order response as {"format"} defines
+     **/
+    @Returner
+    private <T> T returnOrder(String orderResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(orderResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Order(new JSONObject(orderResponse));
+            default:
+                return (T) orderResponse;
+        }
+    }
+
+    /**
+     * Request to cancel an order
+     *
+     * @param orderId: identifier of order to cancel
+     * @return result of order cancellation as {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * Cancel an order</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public String cancelOrder(String orderId) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId, DELETE_METHOD);
     }
 
-    /** Request to get an order
-     * @param orderId: identifier of order to cancel
+    /**
+     * Request to get an order
+     *
+     * @param orderId:   identifier of order to cancel
      * @param profileId: identifier of account where delete an order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1</a>
      * @return result of order cancellation as {@link String}
-     * **/
-    public String cancelOrder(String orderId, String profileId) throws Exception {
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * Cancel an order</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
+    public String cancelOrderByProfile(String orderId, String profileId) throws Exception {
         return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId, DELETE_METHOD);
+    }
+
+    /**
+     * Request to get an order
+     *
+     * @param orderId:   identifier of order to cancel
+     * @param productId: identifier of product from delete an order
+     * @return result of order cancellation as {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * Cancel an order</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
+    public String cancelOrderByProduct(String orderId, String productId) throws Exception {
+        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?product_id=" + productId, DELETE_METHOD);
+    }
+
+    /**
+     * Request to cancel an order
+     *
+     * @param orderId:   identifier of order to cancel
+     * @param profileId: identifier of account where delete an order
+     * @param productId: identifier of product from delete an order
+     * @return result of order cancellation as {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * Cancel an order</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/orders/{order_id}")
+    public String cancelOrder(String orderId, String profileId, String productId) throws Exception {
+        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId +
+                "&product_id=" + productId, DELETE_METHOD);
     }
 
 }

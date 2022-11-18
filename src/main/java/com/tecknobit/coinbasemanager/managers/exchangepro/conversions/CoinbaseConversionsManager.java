@@ -141,7 +141,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      **/
     @RequestPath(path = "https://api.exchange.coinbase.com/conversions")
     public <T> T convertCurrency(String from, String to, double amount, ReturnFormat format) throws Exception {
-        return returnCurrencyConversion(sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD,
+        return returnCurrencyConversion(sendPayloadedRequest(CONVERSIONS_ENDPOINT, POST_METHOD,
                 getConversionPayload(from, to, amount)), format);
     }
 
@@ -217,7 +217,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     public <T> T convertCurrency(String from, String to, double amount, Params extraParams,
                                  ReturnFormat format) throws Exception {
         extraParams.mergeParams(getConversionPayload(from, to, amount));
-        return returnCurrencyConversion(sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, extraParams), format);
+        return returnCurrencyConversion(sendPayloadedRequest(CONVERSIONS_ENDPOINT, POST_METHOD, extraParams), format);
     }
 
     /** Method to assemble map of body params

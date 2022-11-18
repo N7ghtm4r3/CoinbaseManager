@@ -178,7 +178,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public String createGeneralReport(String type) throws Exception {
         Params bodyParams = new Params();
         bodyParams.addParam("type", type);
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
+        return sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
 
     /**
@@ -217,7 +217,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         Params bodyParams = new Params();
         bodyParams.addParam("type", type);
         bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
+        return sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
 
     /** Request to create a general report
@@ -251,7 +251,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#REPORT_TYPE_1099K} report as {@link String}
      * **/
     public String create1099KReport(int year) throws Exception {
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, assemble1099KPayload(year));
+        return sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, assemble1099KPayload(year));
     }
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
@@ -285,7 +285,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public String create1099KReport(int year, Params extraBodyParams) throws Exception {
         Params bodyParams = assemble1099KPayload(year);
         bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
+        return sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, bodyParams);
     }
 
     /** Request to create a {@link Report#REPORT_TYPE_1099K} report
@@ -330,7 +330,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#FILLS_REPORT_TYPE} report as {@link String}
      * **/
     public String createFillsReport(String productId) throws Exception {
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, assembleFillsPayload(productId));
+        return sendPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, assembleFillsPayload(productId));
     }
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
@@ -364,7 +364,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public String createFillsReport(String productId, Params extraBodyParams) throws Exception {
         Params bodyParams = assembleFillsPayload(productId);
         bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
+        return sendPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
     /** Request to create a {@link Report#FILLS_REPORT_TYPE} report
@@ -409,7 +409,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return result of creation of {@link Report#ACCOUNT_REPORT_TYPE} report as {@link String}
      * **/
     public String createAccountReport(String accountId) throws Exception {
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, assembleAccountPayload(accountId));
+        return sendPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, assembleAccountPayload(accountId));
     }
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report
@@ -443,7 +443,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public String createAccountReport(String accountId, Params extraBodyParams) throws Exception {
         Params bodyParams = assembleAccountPayload(accountId);
         bodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
+        return sendPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams);
     }
 
     /** Request to create a {@link Report#ACCOUNT_REPORT_TYPE} report

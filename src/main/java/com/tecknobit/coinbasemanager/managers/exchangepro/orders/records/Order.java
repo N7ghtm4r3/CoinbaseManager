@@ -31,209 +31,37 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 public class Order extends OrderDetails {
 
     /**
-     * {@code STATUS_OPEN} is constant for open status
-     * **/
-    public static final String STATUS_OPEN = "open";
-
-    /**
-     * {@code STATUS_PENDING} is constant for pending status
-     * **/
-    public static final String STATUS_PENDING = "pending";
-
-    /**
-     * {@code STATUS_REJECTED} is constant for rejected status
-     * **/
-    public static final String STATUS_REJECTED = "rejected";
-
-    /**
-     * {@code STATUS_DONE} is constant for done status
-     * **/
-    public static final String STATUS_DONE = "done";
-
-    /**
-     * {@code STATUS_ACTIVE} is constant for active status
-     * **/
-    public static final String STATUS_ACTIVE = "active";
-
-    /**
-     * {@code STATUS_RECEIVED} is constant for received status
-     * **/
-    public static final String STATUS_RECEIVED = "received";
-
-    /**
-     * {@code STATUS_ALL} is constant for all status
-     * **/
-    public static final String STATUS_ALL = "all";
-
-    /**
-     * {@code CREATED_AT_SORTER} is constant for created at sorter
-     * **/
-    public static final String CREATED_AT_SORTER = "created_at";
-
-    /**
-     * {@code price} is constant for price sorter
-     * **/
-    public static final String PRICE_SORTER = "price";
-
-    /**
-     * {@code SIZE_SORTER} is constant for size sorter
-     * **/
-    public static final String SIZE_SORTER = "size";
-
-    /**
-     * {@code ORDER_ID_SORTER} is constant for order identifier sorter
-     * **/
-    public static final String ORDER_ID_SORTER = "order_id";
-
-    /**
-     * {@code SIDE_SORTER} is constant for side sorter
-     * **/
-    public static final String SIDE_SORTER = "side";
-
-    /**
-     * {@code TYPE_SORTER} is constant for type sorter
-     * **/
-    public static final String TYPE_SORTER = "type";
-
-    /**
-     * {@code DESC_SORTING_ORDER} is constant for desc order
-     * **/
-    public static final String DESC_SORTING_ORDER = "desc";
-
-    /**
-     * {@code ASC_SORTING_ORDER} is constant for asc order
-     * **/
-    public static final String ASC_SORTING_ORDER = "asc";
-
-    /**
-     * {@code LIMIT_TYPE} is constant for limit type
-     * **/
-    public static final String LIMIT_TYPE = "limit";
-
-    /**
-     * {@code MARKET_TYPE} is constant for market type
-     * **/
-    public static final String MARKET_TYPE = "market";
-
-    /**
-     * {@code STOP_TYPE} is constant for stop type
-     * **/
-    public static final String STOP_TYPE = "stop";
-
-    /**
-     * {@code BUY_SIDE} is constant for buy side
-     * **/
-    public static final String BUY_SIDE = "buy";
-
-    /**
-     * {@code SELL_SIDE} is constant for sell side
-     * **/
-    public static final String SELL_SIDE = "sell";
-
-    /**
-     * {@code STP_DC} is constant for stp dc
-     * **/
-    public static final String STP_DC = "dc";
-
-    /**
-     * {@code STP_CO} is constant for stp co
-     * **/
-    public static final String STP_CO = "co";
-
-    /**
-     * {@code STP_CN} is constant for stp cn
-     * **/
-    public static final String STP_CN = "cn";
-
-    /**
-     * {@code STP_CB} is constant for stp cb
-     * **/
-    public static final String STP_CB = "cb";
-
-    /**
-     * {@code STOP_LOSS} is constant for loss value
-     * **/
-    public static final String STOP_LOSS = "loss";
-
-    /**
-     * {@code STOP_ENTRY} is constant for entry value
-     * **/
-    public static final String STOP_ENTRY = "entry";
-
-    /**
-     * {@code GTC_TIME_IN_FORCE} is constant for GTC time in force
-     * **/
-    public static final String GTC_TIME_IN_FORCE = "GTC";
-
-    /**
-     * {@code GTT_TIME_IN_FORCE} is constant for GTT time in force
-     * **/
-    public static final String GTT_TIME_IN_FORCE = "GTT";
-
-    /**
-     * {@code IOC_TIME_IN_FORCE} is constant for IOC time in force
-     * **/
-    public static final String IOC_TIME_IN_FORCE = "IOC";
-
-    /**
-     * {@code FOK_TIME_IN_FORCE} is constant for FOK time in force
-     * **/
-    public static final String FOK_TIME_IN_FORCE = "FOK";
-
-    /**
-     * {@code CANCEL_AFTER_MINUTE} is constant to cancel after minute
-     * **/
-    public static final String CANCEL_AFTER_MINUTE = "min";
-
-    /**
-     * {@code CANCEL_AFTER_HOUR} is constant to cancel after hour
-     * **/
-    public static final String CANCEL_AFTER_HOUR = "hour";
-
-    /**
-     * {@code CANCEL_AFTER_DAY} is constant to cancel after day
-     * **/
-    public static final String CANCEL_AFTER_DAY = "day";
-
-    /**
-     * {@code id} is instance that memorizes identifier value
-     * **/
-    private final String id;
-
-    /**
      * {@code type} is instance that memorizes type value
-     * **/
-    private final String type;
-
+     **/
+    private final OrderType type;
     /**
      * {@code timeInForce} is instance that memorizes time in force value
-     * **/
-    private final String timeInForce;
-
-    /**
-     * {@code postOnly} is flag that checks if is post only
-     * **/
-    private final boolean postOnly;
-
-    /**
-     * {@code fillFees} is instance that memorizes fill fees value
-     * **/
-    private final double fillFees;
-
-    /**
-     * {@code filledSize} is instance that memorizes filled size value
-     * **/
-    private final double filledSize;
-
-    /**
-     * {@code executedValue} is instance that memorizes executed value
-     * **/
-    private final double executedValue;
-
+     **/
+    private final TimeInForce timeInForce;
     /**
      * {@code status} is instance that memorizes status value
-     * **/
-    private final String status;
+     **/
+    private final Status status;
+    /**
+     * {@code id} is instance that memorizes identifier value
+     **/
+    private final String id;
+    /**
+     * {@code postOnly} is flag that checks if is post only
+     **/
+    private final boolean postOnly;
+    /**
+     * {@code fillFees} is instance that memorizes fill fees value
+     **/
+    private final double fillFees;
+    /**
+     * {@code filledSize} is instance that memorizes filled size value
+     **/
+    private final double filledSize;
+    /**
+     * {@code executedValue} is instance that memorizes executed value
+     **/
+    private final double executedValue;
 
     /** Constructor to init a {@link Order} custom object
      * @param createdAt: created at value
@@ -252,9 +80,9 @@ public class Order extends OrderDetails {
      * @param executedValue: executed value
      * @param status: status value
      * **/
-    public Order(String createdAt, String productId, String profileId, double price, double size, String side,
-                 boolean settled, String id, String type, String timeInForce, boolean postOnly, double fillFees,
-                 double filledSize, double executedValue, String status) {
+    public Order(String createdAt, String productId, String profileId, double price, double size, Side side,
+                 boolean settled, String id, OrderType type, TimeInForce timeInForce, boolean postOnly, double fillFees,
+                 double filledSize, double executedValue, Status status) {
         super(createdAt, productId, profileId, price, size, side, settled);
         this.id = id;
         this.type = type;
@@ -274,13 +102,43 @@ public class Order extends OrderDetails {
     public Order(JSONObject order) {
         super(order);
         id = orderHelper.getString("id");
-        type = orderHelper.getString("type");
-        timeInForce = orderHelper.getString("time_in_force");
+        type = OrderType.valueOf(orderHelper.getString("type", OrderType.market.name()));
+        timeInForce = TimeInForce.valueOf(orderHelper.getString("time_in_force", TimeInForce.GTC.name()));
         postOnly = orderHelper.getBoolean("post_only");
         fillFees = orderHelper.getDouble("fill_fees");
         filledSize = orderHelper.getDouble("filled_size");
         executedValue = orderHelper.getDouble("executed_value");
-        status = orderHelper.getString("status");
+        status = Status.valueOf(orderHelper.getString("status", Status.all.name()));
+    }
+
+    /**
+     * Method to get {@link #type} instance <br>
+     * Any params required
+     *
+     * @return {@link #type} instance as {@link String}
+     **/
+    public OrderType getType() {
+        return type;
+    }
+
+    /**
+     * Method to get {@link #timeInForce} instance <br>
+     * Any params required
+     *
+     * @return {@link #timeInForce} instance as {@link String}
+     **/
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    /**
+     * Method to get {@link #status} instance <br>
+     * Any params required
+     *
+     * @return {@link #status} instance as {@link Status}
+     **/
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -294,23 +152,192 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
-     * Any params required
-     *
-     * @return {@link #type} instance as {@link String}
+     * {@code Status} list of statuses available for an order
      **/
-    public String getType() {
-        return type;
+    public enum Status {
+
+        /**
+         * {@code "open"} status
+         **/
+        open,
+
+        /**
+         * {@code "pending"} status
+         **/
+        pending,
+
+        /**
+         * {@code "rejected"} status
+         **/
+        rejected,
+
+        /**
+         * {@code "done"} status
+         **/
+        done,
+
+        /**
+         * {@code "active"} status
+         **/
+        active,
+
+        /**
+         * {@code "received"} status
+         **/
+        received,
+
+        /**
+         * {@code "all"} status
+         **/
+        all
+
     }
 
     /**
-     * Method to get {@link #timeInForce} instance <br>
-     * Any params required
-     *
-     * @return {@link #timeInForce} instance as {@link String}
+     * {@code Sorter} list of sorters available for an order
      **/
-    public String getTimeInForce() {
-        return timeInForce;
+    public enum Sorter {
+
+        /**
+         * {@code "created_at"} sorter
+         **/
+        created_at,
+
+        /**
+         * {@code "price"} sorter
+         **/
+        price,
+
+        /**
+         * {@code "size"} sorter
+         **/
+        size,
+
+        /**
+         * {@code "order_id"} sorter
+         **/
+        order_id,
+
+        /**
+         * {@code "side"} sorter
+         **/
+        side,
+
+        /**
+         * {@code "type"} sorter
+         **/
+        type
+
+    }
+
+    /**
+     * {@code SortingOrder} list of sorting order available
+     **/
+    public enum SortingOrder {
+
+        /**
+         * {@code "desc"} sorting order
+         **/
+        desc,
+
+        /**
+         * {@code "asc"} sorting order
+         **/
+        asc
+
+    }
+
+    /**
+     * {@code OrderType} list of order types available
+     **/
+    public enum OrderType {
+
+        /**
+         * {@code "limit"} order type
+         **/
+        limit,
+
+        /**
+         * {@code "market"} order type
+         **/
+        market,
+
+        /**
+         * {@code "stop"} order type
+         **/
+        stop
+
+    }
+
+    /**
+     * {@code STP} list of stps types available
+     **/
+    public enum STP {
+
+        /**
+         * {@code "dc"} stp type
+         **/
+        dc,
+
+        /**
+         * {@code "co"} stp type
+         **/
+        co,
+
+        /**
+         * {@code "cn"} stp type
+         **/
+        cn,
+
+        /**
+         * {@code "cb"} stp type
+         **/
+        cb
+
+    }
+
+    /**
+     * {@code StopType} list of stop types available
+     **/
+    public enum StopType {
+
+        /**
+         * {@code "loss"} stop type
+         **/
+        loss,
+
+        /**
+         * {@code "entry"} stop type
+         **/
+        entry
+
+    }
+
+    /**
+     * {@code TimeInForce} list of time in force available
+     **/
+    public enum TimeInForce {
+
+        /**
+         * {@code "GTC"} time in force -> {@code "Good Till Canceled"}
+         **/
+        GTC,
+
+        /**
+         * {@code "GTT"} time in force -> {@code "Good Till Time"}
+         **/
+        GTT,
+
+        /**
+         * {@code "IOC"} time in force -> {@code "Immediate Or Cancel"}
+         **/
+        IOC,
+
+        /**
+         * {@code "FOK"} time in force -> {@code "Fill Or Kill"}
+         **/
+        FOK,
+
     }
 
     /**
@@ -387,13 +414,25 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #status} instance <br>
-     * Any params required
-     *
-     * @return {@link #status} instance as {@link String}
+     * {@code CancelAfter} list of cancel after types available
      **/
-    public String getStatus() {
-        return status;
+    public enum CancelAfter {
+
+        /**
+         * {@code "min"} cancel after minute type
+         **/
+        min,
+
+        /**
+         * {@code "hour"} cancel after hour type
+         **/
+        hour,
+
+        /**
+         * {@code "day"} cancel after day type
+         **/
+        day
+
     }
 
 }

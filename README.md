@@ -1,7 +1,7 @@
 # CoinbaseManager
 **v1.0.9**
 
-This is a Java Based library useful to work with {@code "Coinbase"}'s API service.
+This is a Java Based library useful to work with Coinbase's API service.
 
 ## Implementation
 

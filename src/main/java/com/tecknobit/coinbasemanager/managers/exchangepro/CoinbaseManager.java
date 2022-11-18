@@ -236,7 +236,7 @@ public class CoinbaseManager {
      * @param bodyParams: params to insert in the http body post request
      * @return response as {@link String}
      **/
-    public String sendBodyParamsAPIRequest(String endpoint, String method, Params bodyParams) throws Exception {
+    public String sendPayloadedRequest(String endpoint, String method, Params bodyParams) throws Exception {
         if (method.equals(POST_METHOD) || method.equals(APIRequest.PUT_METHOD)) {
             setRequestHeaders(method, endpoint, apiRequest.encodeBodyParams(bodyParams));
             apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, bodyParams);

@@ -118,7 +118,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1</a>
      **/
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
     }
 
@@ -159,7 +159,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public String depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                              String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
     }
 
@@ -203,7 +203,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of deposit as {@link String}
      * **/
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, null));
     }
 
@@ -242,7 +242,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public String depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                            String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
     }
 
@@ -411,7 +411,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, null));
     }
 
@@ -450,7 +450,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public String withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                             String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD, assembleTransferActionPayload(amount,
+        return sendPayloadedRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST_METHOD, assembleTransferActionPayload(amount,
                 COINBASE_ACCOUNT_METHOD, coinbaseAccountId, currencyId, profileId));
     }
 
@@ -492,7 +492,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @return result of withdraw as {@link String}
      * **/
     public String withdrawToCrypto(double amount, String cryptoAddress, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD, cryptoAddress, currencyId, null));
     }
 
@@ -535,7 +535,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
         Params mandatoryBodyParams = assembleTransferActionPayload(amount, CRYPTO_ADDRESS_METHOD,
                 cryptoAddress, currencyId, null);
         mandatoryBodyParams.mergeParams(extraBodyParams);
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD, mandatoryBodyParams);
+        return sendPayloadedRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST_METHOD, mandatoryBodyParams);
     }
 
     /** Request to withdraw to crypto address
@@ -648,7 +648,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod-1</a>
      **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, null));
     }
 
@@ -687,7 +687,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * **/
     public String withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                             String profileId) throws Exception {
-        return sendBodyParamsAPIRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
+        return sendPayloadedRequest(WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT, POST_METHOD,
                 assembleTransferActionPayload(amount, PAYMENT_METHOD, paymentMethodId, currencyId, profileId));
     }
 

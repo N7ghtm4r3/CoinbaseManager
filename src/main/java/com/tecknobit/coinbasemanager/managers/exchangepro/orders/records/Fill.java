@@ -59,7 +59,7 @@ public class Fill extends OrderDetails {
      * @param fee: fee value
      * @param usdVolume: usd volume value
      * **/
-    public Fill(String createdAt, String productId, String profileId, double price, double size, String side,
+    public Fill(String createdAt, String productId, String profileId, double price, double size, Side side,
                 boolean settled, long tradeId, String orderId, String userId, String liquidity, double fee,
                 double usdVolume) {
         super(createdAt, productId, profileId, price, size, side, settled);
