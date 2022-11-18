@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.users;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.users.records.ExchangeLimits;
 import org.json.JSONObject;
@@ -7,6 +9,7 @@ import org.json.JSONObject;
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.EXCHANGE_LIMITS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.USERS_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseUsersManager} class is useful to manage all {@code "Coinbase"} users endpoints
@@ -90,36 +93,61 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * Request to get exchange user limits for a user
      *
      * @param userId: type of report from fetch details
-     * @return exchange user limits for a user as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
-     **/
-    public String getUserExchangeLimits(String userId) throws Exception {
-        return sendAPIRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get exchange user limits for a user
-     *
-     * @param userId: type of report from fetch details
-     * @return exchange user limits for a user as {@link JSONObject}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
-     **/
-    public JSONObject getUserExchangeLimitsJSON(String userId) throws Exception {
-        return new JSONObject(getUserExchangeLimits(userId));
-    }
-
-    /**
-     * Request to get exchange user limits for a user
-     *
-     * @param userId: type of report from fetch details
      * @return exchange user limits for a user as {@link ExchangeLimits} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1</a>
+     * Get user exchange limits</a>
      **/
-    public ExchangeLimits getUserExchangeLimitsObject(String userId) throws Exception {
-        return new ExchangeLimits(getUserExchangeLimitsJSON(userId));
+    @RequestPath(path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
+    public ExchangeLimits getUserExchangeLimits(String userId) throws Exception {
+        return getUserExchangeLimits(userId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get exchange user limits for a user
+     *
+     * @param userId: type of report from fetch details
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return exchange user limits for a user as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * Get user exchange limits</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
+    public <T> T getUserExchangeLimits(String userId, ReturnFormat format) throws Exception {
+        String exchangeLimitsResponse = sendAPIRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT,
+                GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(exchangeLimitsResponse);
+            case LIBRARY_OBJECT:
+                return (T) new ExchangeLimits(new JSONObject(exchangeLimitsResponse));
+            default:
+                return (T) exchangeLimitsResponse;
+        }
     }
 
 }

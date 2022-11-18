@@ -1,14 +1,15 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.conversions;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.conversions.records.CurrencyConversion;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.apis.APIRequest.POST_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CONVERSIONS_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseConversionsManager} class is useful to manage all {@code "Coinbase"} conversion endpoints
@@ -94,24 +95,25 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param from:   currency to convert
      * @param to:     final currency to convert
      * @param amount: amount value to convert
-     * @return result of conversion as {@link String}
+     * @return result of conversion as {@link CurrencyConversion} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     * Convert currency</a>
      **/
-    public String convertCurrency(String from, String to, double amount) throws Exception {
-        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, assembleConversionPayload(from, to, amount));
-    }
-
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
-     * @param amount: amount value to convert
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-     * @return result of conversion as {@link JSONObject}
-     * **/
-    public JSONObject convertCurrencyJSON(String from, String to, double amount) throws Exception {
-        return new JSONObject(convertCurrency(from, to, amount));
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions")
+    public CurrencyConversion convertCurrency(String from, String to, double amount) throws Exception {
+        return convertCurrency(from, to, amount, LIBRARY_OBJECT);
     }
 
     /**
@@ -120,43 +122,27 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param from:   currency to convert
      * @param to:     final currency to convert
      * @param amount: amount value to convert
-     * @return result of conversion as {@link CurrencyConversion} custom object
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return result of conversion as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     * Convert currency</a>
      **/
-    public CurrencyConversion convertCurrencyObject(String from, String to, double amount) throws Exception {
-        return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount)));
-    }
-
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
-     * @param amount: amount value to convert
-     * @param extraParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, nonce)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-     * @return result of conversion as {@link String}
-     * **/
-    public String convertCurrency(String from, String to, double amount, Params extraParams) throws Exception {
-        Params bodyParams = assembleConversionPayload(from, to, amount);
-        for (String key : extraParams.getParamsKeys())
-            bodyParams.addParam(key, extraParams.getParam(key));
-        return sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to convert one currency into another one
-     * @param from: currency to convert
-     * @param to: final currency to convert
-     * @param amount: amount value to convert
-     * @param extraParams: extra body params of request
-     * @implSpec (keys accepted are profile_id, nonce)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
-     * @return result of conversion as {@link JSONObject}
-     * **/
-    public JSONObject convertCurrencyJSON(String from, String to, double amount, Params extraParams) throws Exception {
-        return new JSONObject(convertCurrency(from, to, amount, extraParams));
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions")
+    public <T> T convertCurrency(String from, String to, double amount, ReturnFormat format) throws Exception {
+        return returnCurrencyConversion(sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD,
+                getConversionPayload(from, to, amount)), format);
     }
 
     /**
@@ -165,91 +151,204 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param from:        currency to convert
      * @param to:          final currency to convert
      * @param amount:      amount value to convert
-     * @param extraParams: extra body params of request
+     * @param extraParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "nonce"} -> nonce value - [string]
+     *                          </li>
+     *                     </ul>
      * @return result of conversion as {@link CurrencyConversion} custom object
-     * @implSpec (keys accepted are profile_id, nonce)
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1</a>
+     * Convert currency</a>
      **/
-    public CurrencyConversion convertCurrencyObject(String from, String to, double amount, Params extraParams) throws Exception {
-        return new CurrencyConversion(new JSONObject(convertCurrency(from, to, amount, extraParams)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions")
+    public CurrencyConversion convertCurrency(String from, String to, double amount, Params extraParams) throws Exception {
+        return convertCurrency(from, to, amount, extraParams, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to convert one currency into another one
+     *
+     * @param from:        currency to convert
+     * @param to:          final currency to convert
+     * @param amount:      amount value to convert
+     * @param extraParams: extra body params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "profile_id"} -> profile identifier - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "nonce"} -> nonce value - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:            return type formatter -> {@link ReturnFormat}
+     * @return result of conversion as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * Convert currency</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions")
+    public <T> T convertCurrency(String from, String to, double amount, Params extraParams,
+                                 ReturnFormat format) throws Exception {
+        extraParams.mergeParams(getConversionPayload(from, to, amount));
+        return returnCurrencyConversion(sendBodyParamsAPIRequest(CONVERSIONS_ENDPOINT, POST_METHOD, extraParams), format);
     }
 
     /** Method to assemble map of body params
      * @param from: currency to convert
      * @param to: final currency to convert
      * @param amount: amount value to convert
-     * @return map of body params as {@link HashMap} <{@link String} ,{@link Object}>
+     * @return map of body params as {@link Params}
      * **/
-    private Params assembleConversionPayload(String from, String to, double amount){
-        Params bodyParams = new Params();
-        bodyParams.addParam("from", from);
-        bodyParams.addParam("to", to);
-        bodyParams.addParam("amount", amount);
-        return bodyParams;
+    private Params getConversionPayload(String from, String to, double amount) {
+        Params payload = new Params();
+        payload.addParam("from", from);
+        payload.addParam("to", to);
+        payload.addParam("amount", amount);
+        return payload;
     }
 
     /** Request to get information about one conversion
      * @param conversionId: identifier of conversion to fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link String}
-     * **/
-    public String getCurrencyConversion(String conversionId) throws Exception {
-        return sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId, GET_METHOD);
-    }
-
-    /** Request to get information about one conversion
-     * @param conversionId: identifier of conversion to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link JSONObject}
-     * **/
-    public JSONObject getCurrencyConversionJSON(String conversionId) throws Exception {
-        return new JSONObject(getCurrencyConversion(conversionId));
-    }
-
-    /** Request to get information about one conversion
-     * @param conversionId: identifier of conversion to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
+     *     Get a conversion</a>
      * @return information about one conversion as {@link CurrencyConversion} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public CurrencyConversion getCurrencyConversionObject(String conversionId) throws Exception {
-        return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
+    public CurrencyConversion getCurrencyConversion(String conversionId) throws Exception {
+        return getCurrencyConversion(conversionId, LIBRARY_OBJECT);
+    }
+
+    /** Request to get information about one conversion
+     * @param conversionId: identifier of conversion to fetch details
+     * @param format:            return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     *     Get a conversion</a>
+     * @return information about one conversion as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
+    public <T> T getCurrencyConversion(String conversionId, ReturnFormat format) throws Exception {
+        return returnCurrencyConversion(sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId, GET_METHOD),
+                format);
     }
 
     /** Request to get information about one conversion
      * @param conversionId: identifier of conversion to fetch details
      * @param profileId: identifier of account to fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link String}
-     * **/
-    public String getCurrencyConversion(String conversionId, String profileId) throws Exception {
-        return sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId + "?profile_id=" + profileId, GET_METHOD);
-    }
-
-    /** Request to get information about one conversion
-     * @param conversionId: identifier of conversion to fetch details
-     * @param profileId: identifier of account to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
-     * @return information about one conversion as {@link JSONObject}
-     * **/
-    public JSONObject getCurrencyConversionJSON(String conversionId, String profileId) throws Exception {
-        return new JSONObject(getCurrencyConversion(conversionId, profileId));
-    }
-
-    /** Request to get information about one conversion
-     * @param conversionId: identifier of conversion to fetch details
-     * @param profileId: identifier of account to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1</a>
+     *     Get a conversion</a>
      * @return information about one conversion as {@link CurrencyConversion} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public CurrencyConversion getCurrencyConversionObject(String conversionId, String profileId) throws Exception {
-        return new CurrencyConversion(new JSONObject(getCurrencyConversion(conversionId, profileId)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
+    public CurrencyConversion getCurrencyConversion(String conversionId, String profileId) throws Exception {
+        return getCurrencyConversion(conversionId, profileId, LIBRARY_OBJECT);
+    }
+
+    /** Request to get information about one conversion
+     * @param conversionId: identifier of conversion to fetch details
+     * @param profileId: identifier of account to fetch details
+     * @param format:            return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     *     Get a conversion</a>
+     * @return information about one conversion as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
+    public <T> T getCurrencyConversion(String conversionId, String profileId, ReturnFormat format) throws Exception {
+        return returnCurrencyConversion(sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId + "?profile_id="
+                + profileId, GET_METHOD), format);
+    }
+
+    /**
+     * Method to assemble a conversion
+     *
+     * @param conversionResponse: conversion response to format
+     * @param format:             return type formatter -> {@link ReturnFormat}
+     * @return conversion response as {"format"} defines
+     **/
+    @Returner
+    private <T> T returnCurrencyConversion(String conversionResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(conversionResponse);
+            case LIBRARY_OBJECT:
+                return (T) new CurrencyConversion(new JSONObject(conversionResponse));
+            default:
+                return (T) conversionResponse;
+        }
     }
 
 }

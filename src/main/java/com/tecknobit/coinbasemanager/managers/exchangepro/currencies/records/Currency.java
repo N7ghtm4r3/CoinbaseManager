@@ -327,14 +327,15 @@ public class Currency {
          * @param currencyDetails: currency details as {@link JSONObject}
          **/
         public CurrencyDetails(JSONObject currencyDetails) {
-            JsonHelper hCurrency = new JsonHelper(currencyDetails.getJSONObject("details"));
+            System.out.println(currencyDetails);
+            JsonHelper hCurrency = new JsonHelper(currencyDetails);
             symbol = hCurrency.getString("symbol");
-            minWithdrawalAmount = hCurrency.getDouble("min_withdrawal_amount");
-            networksConfirmations = hCurrency.getInt("network_confirmations");
-            maxWithdrawalAmount = hCurrency.getDouble("max_withdrawal_amount");
+            minWithdrawalAmount = hCurrency.getDouble("min_withdrawal_amount", 0);
+            networksConfirmations = hCurrency.getInt("network_confirmations", 0);
+            maxWithdrawalAmount = hCurrency.getDouble("max_withdrawal_amount", 0);
             cryptoAddressLink = hCurrency.getString("crypto_address_link");
             type = hCurrency.getString("type");
-            sortOrder = hCurrency.getInt("sort_order");
+            sortOrder = hCurrency.getInt("sort_order", 0);
             cryptoTransactionLink = hCurrency.getString("crypto_transaction_link");
             displayName = hCurrency.getString("display_name");
             processingTimeSeconds = hCurrency.getString("processing_time_seconds");

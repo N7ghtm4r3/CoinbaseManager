@@ -1,11 +1,14 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.priceoracle;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.priceoracle.records.PriceOracle;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.PRICE_ORACLE_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbasePriceOracleManager} class is useful to manage all {@code "Coinbase"} price oracle endpoints
@@ -86,39 +89,62 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get signed prices
-     * Any params required
-     *
-     * @return signed prices as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
-     **/
-    public String getSignedPrices() throws Exception {
-        return sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get signed prices
-     * Any params required
-     *
-     * @return signed prices as {@link JSONObject}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
-     **/
-    public JSONObject getSignedPricesJSON() throws Exception {
-        return new JSONObject(getSignedPrices());
-    }
-
-    /**
-     * Request to get signed prices
+     * Request to get signed prices <br>
      * Any params required
      *
      * @return signed prices as {@link PriceOracle} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1</a>
+     * Get signed prices</a>
      **/
-    public PriceOracle getSignedPricesObject() throws Exception {
-        return new PriceOracle(new JSONObject(getSignedPrices()));
+    @RequestPath(path = "https://api.exchange.coinbase.com/oracle")
+    public PriceOracle getSignedPrices() throws Exception {
+        return getSignedPrices(LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get signed prices
+     *
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return signed prices as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     * Get signed prices</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/oracle")
+    public <T> T getSignedPrices(ReturnFormat format) throws Exception {
+        String signedPricesResponse = sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(signedPricesResponse);
+            case LIBRARY_OBJECT:
+                return (T) new PriceOracle(new JSONObject(signedPricesResponse));
+            default:
+                return (T) signedPricesResponse;
+        }
     }
 
 }

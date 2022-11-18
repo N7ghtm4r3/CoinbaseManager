@@ -1,11 +1,14 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.fees;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.fees.records.Fee;
 import org.json.JSONObject;
 
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.FEES_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseFeesManager} class is useful to manage all {@code "Coinbase"} fees endpoints
@@ -86,40 +89,62 @@ public class CoinbaseFeesManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get fees rates and 30 days trailing volume
+     * Request to get fees rates and 30 days trailing volume <br>
      * Any params required
      *
-     * @return fees rates and 30 days trailing volume as {@link String}
+     * @return fees rates and 30 days trailing volume as {@link Fee} custom objectì
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+     * Get fees</a>
      **/
-    public String getFees() throws Exception {
-        return sendAPIRequest(FEES_ENDPOINT, GET_METHOD);
+    @RequestPath(path = "https://api.exchange.coinbase.com/fees")
+    public Fee getFees() throws Exception {
+        return getFees(LIBRARY_OBJECT);
     }
 
     /**
      * Request to get fees rates and 30 days trailing volume
      * Any params required
      *
-     * @return fees rates and 30 days trailing volume as {@link JSONObject}
+     * @return fees rates and 30 days trailing volume as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
+     * Get fees</a>
      **/
-    public JSONObject getFeesJSON() throws Exception {
-        return new JSONObject(getFees());
-    }
-
-    /**
-     * Request to get fees rates and 30 days trailing volume
-     * Any params required
-     *
-     * @return fees rates and 30 days trailing volume as {@link Fee} custom object, if some values are null in response
-     * will be returned as -1 value
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1</a>
-     **/
-    public Fee getFeesObject() throws Exception {
-        return new Fee(new JSONObject(getFees()));
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/fees")
+    public <T> T getFees(ReturnFormat format) throws Exception {
+        String feeResponse = sendAPIRequest(FEES_ENDPOINT, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(feeResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Fee(new JSONObject(feeResponse));
+            default:
+                return (T) feeResponse;
+        }
     }
 
 }

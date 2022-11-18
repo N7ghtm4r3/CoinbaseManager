@@ -20,8 +20,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
 public class PriceOracle {
 
     /**
-     * {@code timestamp} is instance that memorizes timestamp value
-     * **/
+     * {@code timestamp} is instance that memorizes timestamp in <b>seconds</b> format
+     **/
     private final long timestamp;
 
     /**
@@ -42,7 +42,7 @@ public class PriceOracle {
     /**
      * Constructor to init a {@link PriceOracle} custom object
      *
-     * @param timestamp:  indicates when the latest datapoint was obtained
+     * @param timestamp:  indicates when the latest datapoint was obtained in <b>seconds</b> format
      * @param messages:   list of messages as {@link ArrayList} of {@link String}
      * @param signatures: array of Ethereum-compatible ECDSA signatures for each message
      * @param prices:     contains human-readable asset prices
@@ -91,7 +91,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #timestamp} instance <br>
+     * Method to get {@link #timestamp} <b>seconds</b> format <br>
      * Any params required
      *
      * @return {@link #timestamp} instance as long
@@ -104,10 +104,10 @@ public class PriceOracle {
      * Method to get {@link #timestamp} instance <br>
      * Any params required
      *
-     * @return {@link #timestamp} instance as {@link Date}
+     * @return {@link #timestamp} instance as {@link Date} with {@link #timestamp} in <b>milliseconds</b> format
      **/
     public Date getDate() {
-        return TimeFormatter.getDate(timestamp);
+        return TimeFormatter.getDate(timestamp * 1000);
     }
 
     /**

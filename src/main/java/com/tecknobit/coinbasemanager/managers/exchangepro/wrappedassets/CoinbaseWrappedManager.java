@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.wrappedassets;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CONVERSION_RATE_ENDPOINT;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.WRAPPED_ASSETS_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseWrappedManager} class is useful to manage all {@code "Coinbase"} wrapped assets endpoints
@@ -92,65 +95,63 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * Request to get a list of all supported wrapped asset IDs <br>
      * Any params required
      *
-     * @return list of all supported wrapped asset IDs as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets</a>
-     **/
-    public String getAllWrappedAssets() throws Exception {
-        return sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get a list of all supported wrapped asset IDs <br>
-     * Any params required
-     *
-     * @return list of all supported wrapped asset IDs as {@link JSONObject}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets</a>
-     **/
-    public JSONObject getAllWrappedAssetsJSON() throws Exception {
-        return new JSONObject(getAllWrappedAssets());
-    }
-
-    /**
-     * Request to get a list of all supported wrapped asset IDs <br>
-     * Any params required
-     *
      * @return list of all supported wrapped asset IDs as {@link ArrayList} of {@link String}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets</a>
+     * Get all wrapped assets</a>
      **/
-    public ArrayList<String> getAllWrappedAssetsList() throws Exception {
-        JSONArray assetsList = new JSONObject(getAllWrappedAssets()).getJSONArray("wrapped_asset_ids");
-        ArrayList<String> wrappedAssets = new ArrayList<>();
-        for (int j = 0; j < assetsList.length(); j++)
-            wrappedAssets.add(assetsList.getString(j));
-        return wrappedAssets;
+    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets")
+    public ArrayList<String> getAllWrappedAssets() throws Exception {
+        return getAllWrappedAssets(LIBRARY_OBJECT);
     }
 
     /**
-     * Request to get the conversion rate of a wrapped asset to its corresponding staked asset
+     * Request to get a list of all supported wrapped asset IDs
      *
-     * @param wrappedAssetId: wrapped asset identifier es. CBETH
-     * @return conversion rate of a wrapped asset to its corresponding staked asset as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate</a>
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return list of all supported wrapped asset IDs as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
+     * Get all wrapped assets</a>
      **/
-    public String getWrappedConversionRate(String wrappedAssetId) throws Exception {
-        return sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId + "/"
-                + CONVERSION_RATE_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get the conversion rate of a wrapped asset to its corresponding staked asset
-     *
-     * @param wrappedAssetId: wrapped asset identifier es. CBETH
-     * @return conversion rate of a wrapped asset to its corresponding staked asset as {@link JSONObject}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate</a>
-     **/
-    public JSONObject getWrappedConversionRateJSON(String wrappedAssetId) throws Exception {
-        return new JSONObject(getWrappedConversionRate(wrappedAssetId));
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets")
+    public <T> T getAllWrappedAssets(ReturnFormat format) throws Exception {
+        String wrappedAssetsResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(wrappedAssetsResponse);
+            case LIBRARY_OBJECT:
+                JSONArray assetsList = new JSONObject(wrappedAssetsResponse).getJSONArray("wrapped_asset_ids");
+                ArrayList<String> wrappedAssets = new ArrayList<>();
+                for (int j = 0; j < assetsList.length(); j++)
+                    wrappedAssets.add(assetsList.getString(j));
+                return (T) wrappedAssets;
+            default:
+                return (T) wrappedAssetsResponse;
+        }
     }
 
     /**
@@ -158,11 +159,24 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *
      * @param wrappedAssetId: wrapped asset identifier es. CBETH
      * @return conversion rate of a wrapped asset to its corresponding staked asset as double
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate</a>
+     * Get conversion rate of wrapped asset</a>
      **/
-    public double getWrappedConversionRateValue(String wrappedAssetId) throws Exception {
-        return new JSONObject(getWrappedConversionRate(wrappedAssetId)).getDouble("amount");
+    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    public double getWrappedConversionRate(String wrappedAssetId) throws Exception {
+        return Double.parseDouble(getWrappedConversionRate(wrappedAssetId, LIBRARY_OBJECT));
     }
 
     /**
@@ -171,12 +185,61 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param wrappedAssetId: wrapped asset identifier es. CBETH
      * @param decimals:       number of digits to round final value
      * @return conversion rate of a wrapped asset to its corresponding staked asset as double
-     * @throws IllegalArgumentException if decimalDigits is negative
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate</a>
+     * Get conversion rate of wrapped asset</a>
      **/
-    public double getWrappedConversionRateValue(String wrappedAssetId, int decimals) throws Exception {
-        return roundValue(getWrappedConversionRateValue(wrappedAssetId), decimals);
+    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    public double getWrappedConversionRate(String wrappedAssetId, int decimals) throws Exception {
+        return roundValue(Double.parseDouble(getWrappedConversionRate(wrappedAssetId, LIBRARY_OBJECT)), decimals);
+    }
+
+    /**
+     * Request to get the conversion rate of a wrapped asset to its corresponding staked asset
+     *
+     * @param wrappedAssetId: wrapped asset identifier es. CBETH
+     * @return conversion rate of a wrapped asset to its corresponding staked asset as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
+     * Get conversion rate of wrapped asset</a>
+     * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the conversion rate,
+     * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    public <T> T getWrappedConversionRate(String wrappedAssetId, ReturnFormat format) throws Exception {
+        String conversionRateResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId + "/"
+                + CONVERSION_RATE_ENDPOINT, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(conversionRateResponse);
+            case LIBRARY_OBJECT:
+                return (T) new JSONObject(conversionRateResponse).getString("amount");
+            default:
+                return (T) conversionRateResponse;
+        }
     }
 
 }

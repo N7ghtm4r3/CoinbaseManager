@@ -1,5 +1,7 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.currencies;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.currencies.records.Currency;
 import org.json.JSONArray;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CURRENCIES_ENDPOINT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseCurrenciesManager} class is useful to manage all {@code "Coinbase"} currencies endpoints
@@ -88,73 +91,122 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get list of all currencies
-     * Any params required
-     *
-     * @return list of all currencies as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
-     **/
-    public String getAllKnownCurrencies() throws Exception {
-        return sendAPIRequest(CURRENCIES_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get list of all currencies
-     * Any params required
-     *
-     * @return list of all currencies as {@link JSONArray}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
-     **/
-    public JSONArray getJSONAllKnownCurrencies() throws Exception {
-        return new JSONArray(getAllKnownCurrencies());
-    }
-
-    /**
-     * Request to get list of all currencies
+     * Request to get list of all currencies<br>
      * Any params required
      *
      * @return list of all currencies as {@link ArrayList} of {@link Currency}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1</a>
+     * Get all known currencies</a>
      **/
-    public ArrayList<Currency> getAllKnownCurrenciesList() throws Exception {
-        ArrayList<Currency> currencies = new ArrayList<>();
-        JSONArray jsonCurrencies = new JSONArray(getAllKnownCurrencies());
-        for (int j = 0; j < jsonCurrencies.length(); j++)
-            currencies.add(new Currency(jsonCurrencies.getJSONObject(j)));
-        return currencies;
+    @RequestPath(path = "https://api.exchange.coinbase.com/currencies")
+    public ArrayList<Currency> getAllKnownCurrencies() throws Exception {
+        return getAllKnownCurrencies(LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get list of all currencies
+     *
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return list of all currencies as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+     * Get all known currencies</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/currencies")
+    public <T> T getAllKnownCurrencies(ReturnFormat format) throws Exception {
+        String currenciesResponse = sendAPIRequest(CURRENCIES_ENDPOINT, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(currenciesResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Currency> currencies = new ArrayList<>();
+                JSONArray jCurrencies = new JSONArray(currenciesResponse);
+                for (int j = 0; j < jCurrencies.length(); j++)
+                    currencies.add(new Currency(jCurrencies.getJSONObject(j)));
+                return (T) currencies;
+            default:
+                return (T) currenciesResponse;
+        }
     }
 
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1</a>
-     * @return currency as {@link String}
-     * **/
-    public String getCurrency(String currencyId) throws Exception {
-        return sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET_METHOD);
-    }
-
-    /** Request to get one currency
-     * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1</a>
-     * @return currency as {@link JSONObject}
-     * **/
-    public JSONObject getJSONCurrency(String currencyId) throws Exception {
-        return new JSONObject(getCurrency(currencyId));
-    }
-
-    /** Request to get one currency
-     * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1</a>
+     *     Get a currency</a>
      * @return currency as {@link Currency} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public Currency getCurrencyObject(String currencyId) throws Exception {
-        return new Currency(new JSONObject(getCurrency(currencyId)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
+    public Currency getCurrency(String currencyId) throws Exception {
+        return getCurrency(currencyId, LIBRARY_OBJECT);
+    }
+
+    /** Request to get one currency
+     * @param currencyId: identifier of a currency es. BTC
+     * @param format:            return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
+     *     Get a currency</a>
+     * @return currency as {"format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
+    public <T> T getCurrency(String currencyId, ReturnFormat format) throws Exception {
+        String currencyResponse = sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(currencyResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Currency(new JSONObject(currencyResponse));
+            default:
+                return (T) currencyResponse;
+        }
     }
 
 }

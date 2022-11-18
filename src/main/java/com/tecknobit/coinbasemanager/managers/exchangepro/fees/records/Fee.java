@@ -51,7 +51,11 @@ public class Fee {
         JsonHelper hFees = new JsonHelper(fee);
         takerFeeRate = hFees.getDouble("taker_fee_rate", 0);
         makerFeeRate = hFees.getDouble("maker_fee_rate", 0);
-        usdVolume = hFees.getDouble("usd_volume", 0);
+        String sUsdVolume = hFees.getString("usd_volume");
+        if (sUsdVolume != null)
+            usdVolume = Double.parseDouble(sUsdVolume);
+        else
+            usdVolume = 0;
     }
 
     /**
