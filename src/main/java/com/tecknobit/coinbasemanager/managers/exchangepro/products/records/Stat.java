@@ -60,7 +60,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Method to get {@link #productId} instance <br>
+     * MethodId to get {@link #productId} instance <br>
      * Any params required
      *
      * @return {@link #productId} instance as {@link String}
@@ -70,7 +70,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Method to get {@link #last} instance <br>
+     * MethodId to get {@link #last} instance <br>
      * Any params required
      *
      * @return {@link #last} instance as double
@@ -80,7 +80,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Method to get {@link #last} instance
+     * MethodId to get {@link #last} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #last} instance rounded with decimal digits inserted
@@ -91,7 +91,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Method to get {@link #volume30Day} instance <br>
+     * MethodId to get {@link #volume30Day} instance <br>
      * Any params required
      *
      * @return {@link #volume30Day} instance as double
@@ -101,7 +101,7 @@ public class Stat extends Product {
     }
 
     /**
-     * Method to get {@link #volume30Day} instance
+     * MethodId to get {@link #volume30Day} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #volume30Day} instance rounded with decimal digits inserted

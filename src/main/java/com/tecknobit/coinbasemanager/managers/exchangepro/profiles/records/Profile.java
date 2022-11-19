@@ -110,7 +110,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -120,7 +120,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #userId} instance <br>
+     * MethodId to get {@link #userId} instance <br>
      * Any params required
      *
      * @return {@link #userId} instance as {@link String}
@@ -130,7 +130,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #name} instance <br>
+     * MethodId to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -140,7 +140,7 @@ public class Profile {
     }
 
     /**
-     * Method to set {@link #name}
+     * MethodId to set {@link #name}
      *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
@@ -152,7 +152,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #active} instance <br>
+     * MethodId to get {@link #active} instance <br>
      * Any params required
      *
      * @return {@link #active} instance as boolean
@@ -162,7 +162,7 @@ public class Profile {
     }
 
     /**
-     * Method to set {@link #active}
+     * MethodId to set {@link #active}
      *
      * @param active: flag that checks if profile is active
      **/
@@ -171,7 +171,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #isDefault} instance <br>
+     * MethodId to get {@link #isDefault} instance <br>
      * Any params required
      *
      * @return {@link #isDefault} instance as boolean
@@ -181,7 +181,7 @@ public class Profile {
     }
 
     /**
-     * Method to set {@link #isDefault}
+     * MethodId to set {@link #isDefault}
      *
      * @param isDefault: flag that checks if profile is default
      **/
@@ -190,7 +190,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #createdAt} instance <br>
+     * MethodId to get {@link #createdAt} instance <br>
      * Any params required
      *
      * @return {@link #createdAt} instance as {@link String}
@@ -200,7 +200,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #createdAt} timestamp <br>
+     * MethodId to get {@link #createdAt} timestamp <br>
      * Any params required
      *
      * @return {@link #createdAt} timestamp as long
@@ -210,7 +210,7 @@ public class Profile {
     }
 
     /**
-     * Method to get {@link #hasMargin} instance <br>
+     * MethodId to get {@link #hasMargin} instance <br>
      * Any params required
      *
      * @return {@link #hasMargin} instance as boolean
@@ -220,7 +220,7 @@ public class Profile {
     }
 
     /**
-     * Method to set {@link #hasMargin}
+     * MethodId to set {@link #hasMargin}
      *
      * @param hasMargin: flag that checks if profile has margin
      **/

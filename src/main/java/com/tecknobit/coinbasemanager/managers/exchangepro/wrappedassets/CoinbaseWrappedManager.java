@@ -120,7 +120,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * Request to get a list of all supported wrapped asset IDs
      *
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return list of all supported wrapped asset IDs as {"format"} defines
+     * @return list of all supported wrapped asset IDs as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>

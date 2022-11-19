@@ -353,15 +353,15 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     @RequestPath(path = "https://api.exchange.coinbase.com/accounts/{account_id}/holds")
     public <T> T getAccountProfileHolds(String accountId, Params queryParams, ReturnFormat format) throws Exception {
         return returnHoldsList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds" +
-                assembleQueryParams("?", queryParams), GET_METHOD), format);
+                queryParams.createQueryString(), GET_METHOD), format);
     }
 
     /**
-     * Method to assemble an holds list
+     * MethodId to assemble an holds list
      *
      * @param holdsListResponse: holds list response to format
      * @param format:            return type formatter -> {@link ReturnFormat}
-     * @return holds list response as {"format"} defines
+     * @return holds list response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnHoldsList(String holdsListResponse, ReturnFormat format) {
@@ -522,15 +522,15 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     @RequestPath(path = "https://api.exchange.coinbase.com/accounts/account_id/ledger")
     public <T> T getAccountProfileLedgers(String accountId, Params queryParams, ReturnFormat format) throws Exception {
         return returnLedgersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger" +
-                assembleQueryParams("?", queryParams), GET_METHOD), format);
+                queryParams.createQueryString(), GET_METHOD), format);
     }
 
     /**
-     * Method to assemble an ledgers list
+     * MethodId to assemble an ledgers list
      *
      * @param holdsLedgersResponse: ledgers list response to format
      * @param format:               return type formatter -> {@link ReturnFormat}
-     * @return ledgers list response as {"format"} defines
+     * @return ledgers list response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnLedgersList(String holdsLedgersResponse, ReturnFormat format) {
@@ -679,7 +679,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
     @RequestPath(path = "https://api.exchange.coinbase.com/accounts/account_id/transfers")
     public <T> T getAccountProfileTransfers(String accountId, Params queryParams, ReturnFormat format) throws Exception {
         return returnTransfersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers" +
-                assembleQueryParams("?", queryParams), GET_METHOD), format);
+                queryParams.createQueryString(), GET_METHOD), format);
     }
 
     /**

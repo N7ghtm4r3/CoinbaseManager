@@ -67,10 +67,12 @@ public class PriceOracle {
         loadPricesList(priceOracle.getJSONObject("prices"));
     }
 
-    /** Method to assemble a string list
+    /**
+     * MethodId to assemble a string list
+     *
      * @param jsonList: jsonObject obtained by response request
      * @return string list as {@link ArrayList} of {@link String}
-     * **/
+     **/
     @Returner
     private ArrayList<String> assembleStringList(JSONArray jsonList) {
         ArrayList<String> list = new ArrayList<>();
@@ -80,7 +82,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to assemble a prices list
+     * MethodId to assemble a prices list
      *
      * @param jsonPrices: jsonObject obtained by response request
      *                    any return
@@ -91,7 +93,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #timestamp} <b>seconds</b> format <br>
+     * MethodId to get {@link #timestamp} <b>seconds</b> format <br>
      * Any params required
      *
      * @return {@link #timestamp} instance as long
@@ -101,7 +103,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #timestamp} instance <br>
+     * MethodId to get {@link #timestamp} instance <br>
      * Any params required
      *
      * @return {@link #timestamp} instance as {@link Date} with {@link #timestamp} in <b>milliseconds</b> format
@@ -111,7 +113,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #messages} instance <br>
+     * MethodId to get {@link #messages} instance <br>
      * Any params required
      *
      * @return {@link #messages} instance as {@link ArrayList} of {@link String}
@@ -121,7 +123,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #signatures} instance <br>
+     * MethodId to get {@link #signatures} instance <br>
      * Any params required
      *
      * @return {@link #signatures} instance as {@link ArrayList} of {@link String}
@@ -131,7 +133,7 @@ public class PriceOracle {
     }
 
     /**
-     * Method to get {@link #prices} instance <br>
+     * MethodId to get {@link #prices} instance <br>
      * Any params required
      *
      * @return {@link #prices} instance as {@link ArrayList} of {@link Price}
@@ -183,7 +185,7 @@ public class PriceOracle {
         }
 
         /**
-         * Method to get {@link #symbol} instance <br>
+         * MethodId to get {@link #symbol} instance <br>
          * Any params required
          *
          * @return {@link #symbol} instance as {@link String}
@@ -193,7 +195,7 @@ public class PriceOracle {
         }
 
         /**
-         * Method to get {@link #price} instance <br>
+         * MethodId to get {@link #price} instance <br>
          * Any params required
          *
          * @return {@link #price} instance as double
@@ -203,7 +205,7 @@ public class PriceOracle {
         }
 
         /**
-         * Method to set {@link #price}
+         * MethodId to set {@link #price}
          *
          * @param price: price value
          * @throws IllegalArgumentException when price value is less than 0
@@ -215,7 +217,7 @@ public class PriceOracle {
         }
 
         /**
-         * Method to get {@link #price} instance
+         * MethodId to get {@link #price} instance
          *
          * @param decimals: number of digits to round final value
          * @return {@link #price} instance rounded with decimal digits inserted

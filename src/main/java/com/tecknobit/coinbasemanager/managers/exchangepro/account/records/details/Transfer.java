@@ -69,11 +69,11 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * Method to assemble a transfers list
+     * MethodId to assemble a transfers list
      *
      * @param transfersResponse : transfers list response to format
      * @param format            :                 return type formatter -> {@link ReturnFormat}
-     * @return transfers list response as {"format"} defines
+     * @return transfers list response as {@code "format"} defines
      **/
     @Returner
     public static <T> T returnTransfersList(String transfersResponse, ReturnFormat format) {
@@ -92,21 +92,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * Method to assemble a transfer list
-     *
-     * @param jsonTransfers: jsonArray obtained by response request
-     * @return transfer list as {@link ArrayList} of {@link Transfer}
-     **/
-    @Returner
-    public static ArrayList<Transfer> assembleTransfersList(JSONArray jsonTransfers) {
-        ArrayList<Transfer> transfers = new ArrayList<>();
-        for (int j = 0; j < jsonTransfers.length(); j++)
-            transfers.add(new Transfer(jsonTransfers.getJSONObject(j)));
-        return transfers;
-    }
-
-    /**
-     * Method to get {@link #completedAt} instance <br>
+     * MethodId to get {@link #completedAt} instance <br>
      * Any params required
      *
      * @return {@link #completedAt} instance as {@link String}
@@ -116,7 +102,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #completedAt} timestamp <br>
+     * MethodId to get {@link #completedAt} timestamp <br>
      * Any params required
      *
      * @return {@link #completedAt} timestamp as long
@@ -126,13 +112,30 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #transferDetails} instance <br>
+     * MethodId to get {@link #transferDetails} instance <br>
      * Any params required
      *
      * @return {@link #transferDetails} instance as {@link TransferDetails}
      **/
     public TransferDetails getTransferDetails() {
         return transferDetails;
+    }
+
+    /**
+     * {@code TransferType} list of transfer type available
+     **/
+    public enum TransferType {
+
+        /**
+         * {@code "deposit"} transfer type
+         **/
+        deposit,
+
+        /**
+         * {@code "withdraw"} transfer type
+         **/
+        withdraw,
+
     }
 
     /**
@@ -181,7 +184,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #coinbaseAccountId} instance <br>
+         * MethodId to get {@link #coinbaseAccountId} instance <br>
          * Any params required
          *
          * @return {@link #coinbaseAccountId} instance as {@link String}
@@ -191,7 +194,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #coinbaseTransactionId} instance <br>
+         * MethodId to get {@link #coinbaseTransactionId} instance <br>
          * Any params required
          *
          * @return {@link #coinbaseTransactionId} instance as {@link String}
@@ -201,7 +204,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #coinbasePaymentMethodId} instance <br>
+         * MethodId to get {@link #coinbasePaymentMethodId} instance <br>
          * Any params required
          *
          * @return {@link #coinbasePaymentMethodId} instance as {@link String}

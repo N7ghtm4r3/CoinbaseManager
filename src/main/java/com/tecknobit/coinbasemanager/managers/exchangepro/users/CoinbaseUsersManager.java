@@ -119,7 +119,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *
      * @param userId: type of report from fetch details
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return exchange user limits for a user as {"format"} defines
+     * @return exchange user limits for a user as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>

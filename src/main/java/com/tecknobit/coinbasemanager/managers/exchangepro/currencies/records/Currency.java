@@ -107,7 +107,7 @@ public class Currency {
     }
 
     /**
-     * Method to assemble a string value list
+     * MethodId to assemble a string value list
      *
      * @param jsonDetails: jsonObject obtained by response request
      * @return string values list as {@link ArrayList} of {@link String}
@@ -121,7 +121,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -131,7 +131,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #name} instance <br>
+     * MethodId to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -141,7 +141,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #status} instance <br>
+     * MethodId to get {@link #status} instance <br>
      * Any params required
      *
      * @return {@link #status} instance as {@link String}
@@ -151,7 +151,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #minSize} instance <br>
+     * MethodId to get {@link #minSize} instance <br>
      * Any params required
      *
      * @return {@link #minSize} instance as double
@@ -161,7 +161,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #maxPrecision} instance <br>
+     * MethodId to get {@link #maxPrecision} instance <br>
      * Any params required
      *
      * @return {@link #maxPrecision} instance as double
@@ -171,7 +171,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #message} instance <br>
+     * MethodId to get {@link #message} instance <br>
      * Any params required
      *
      * @return {@link #message} instance as {@link String}
@@ -181,7 +181,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #convertibleToCurrenciesList} instance <br>
+     * MethodId to get {@link #convertibleToCurrenciesList} instance <br>
      * Any params required
      *
      * @return {@link #convertibleToCurrenciesList} instance as {@link ArrayList} of {@link String}
@@ -191,7 +191,7 @@ public class Currency {
     }
 
     /**
-     * Method to get a convertible currency from {@link #convertibleToCurrenciesList}
+     * MethodId to get a convertible currency from {@link #convertibleToCurrenciesList}
      *
      * @param index: index of the convertible currency to get
      * @return convertible currency as {@link String}
@@ -201,7 +201,7 @@ public class Currency {
     }
 
     /**
-     * Method to get {@link #currencyDetails} instance <br>
+     * MethodId to get {@link #currencyDetails} instance <br>
      * Any params required
      *
      * @return {@link #currencyDetails} instance as {@link CurrencyDetails}
@@ -344,7 +344,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #symbol} instance <br>
+         * MethodId to get {@link #symbol} instance <br>
          * Any params required
          *
          * @return {@link #symbol} instance as {@link String}
@@ -354,7 +354,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #minWithdrawalAmount} instance <br>
+         * MethodId to get {@link #minWithdrawalAmount} instance <br>
          * Any params required
          *
          * @return {@link #minWithdrawalAmount} instance as double
@@ -364,7 +364,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #networksConfirmations} instance <br>
+         * MethodId to get {@link #networksConfirmations} instance <br>
          * Any params required
          *
          * @return {@link #networksConfirmations} instance as int
@@ -374,7 +374,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #maxWithdrawalAmount} instance <br>
+         * MethodId to get {@link #maxWithdrawalAmount} instance <br>
          * Any params required
          *
          * @return {@link #maxWithdrawalAmount} instance as double
@@ -384,7 +384,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #cryptoAddressLink} instance <br>
+         * MethodId to get {@link #cryptoAddressLink} instance <br>
          * Any params required
          *
          * @return {@link #cryptoAddressLink} instance as {@link String}
@@ -394,7 +394,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #type} instance <br>
+         * MethodId to get {@link #type} instance <br>
          * Any params required
          *
          * @return {@link #type} instance as {@link String}
@@ -404,7 +404,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #sortOrder} instance <br>
+         * MethodId to get {@link #sortOrder} instance <br>
          * Any params required
          *
          * @return {@link #sortOrder} instance as int
@@ -414,7 +414,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #cryptoTransactionLink} instance <br>
+         * MethodId to get {@link #cryptoTransactionLink} instance <br>
          * Any params required
          *
          * @return {@link #cryptoTransactionLink} instance as {@link String}
@@ -424,7 +424,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #displayName} instance <br>
+         * MethodId to get {@link #displayName} instance <br>
          * Any params required
          *
          * @return {@link #displayName} instance as {@link String}
@@ -434,7 +434,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #processingTimeSeconds} instance <br>
+         * MethodId to get {@link #processingTimeSeconds} instance <br>
          * Any params required
          *
          * @return {@link #processingTimeSeconds} instance as {@link String}
@@ -444,7 +444,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #pushPaymentMethodsList} instance <br>
+         * MethodId to get {@link #pushPaymentMethodsList} instance <br>
          * Any params required
          *
          * @return {@link #pushPaymentMethodsList} instance as {@link ArrayList} of {@link String}
@@ -454,7 +454,7 @@ public class Currency {
         }
 
         /**
-         * Method to get a push payment method from {@link #pushPaymentMethodsList}
+         * MethodId to get a push payment method from {@link #pushPaymentMethodsList}
          *
          * @param index: index of the push payment method to get
          * @return push payment method as {@link String}
@@ -464,7 +464,7 @@ public class Currency {
         }
 
         /**
-         * Method to get {@link #groupTypesList} instance <br>
+         * MethodId to get {@link #groupTypesList} instance <br>
          * Any params required
          *
          * @return {@link #groupTypesList} instance as {@link ArrayList} of {@link String}
@@ -474,7 +474,7 @@ public class Currency {
         }
 
         /**
-         * Method to get a group type from {@link #groupTypesList}
+         * MethodId to get a group type from {@link #groupTypesList}
          *
          * @param index: index of the group type to get
          * @return group type as {@link String}

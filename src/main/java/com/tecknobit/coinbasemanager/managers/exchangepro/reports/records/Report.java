@@ -15,31 +15,6 @@ import org.json.JSONObject;
 public class Report extends ReportDetails {
 
     /**
-     * {@code FILLS_REPORT_TYPE} is constant for fills report type
-     * **/
-    public static final String FILLS_REPORT_TYPE = "fills";
-
-    /**
-     * {@code ACCOUNT_REPORT_TYPE} is constant for account report type
-     * **/
-    public static final String ACCOUNT_REPORT_TYPE = "account";
-
-    /**
-     * {@code OTC_FILLS_REPORT_TYPE} is constant for otc fills report type
-     * **/
-    public static final String OTC_FILLS_REPORT_TYPE = "otc_fills";
-
-    /**
-     * {@code REPORT_TYPE_1099K} is constant for type 1099k transaction history report type
-     * **/
-    public static final String REPORT_TYPE_1099K = "type_1099k_transaction_history";
-
-    /**
-     * {@code TAX_INVOICE_REPORT_TYPE} is constant for tax invoice report type
-     * **/
-    public static final String TAX_INVOICE_REPORT_TYPE = "tax_invoice";
-
-    /**
      * {@code createdAt} is instance that memorizes created at value
      * **/
     private final String createdAt;
@@ -87,7 +62,7 @@ public class Report extends ReportDetails {
      * @param fileUrl:      file url value
      * @param paramsReport: params for report
      **/
-    public Report(String id, String type, String status, String createdAt, String completedAt, String expiresAt,
+    public Report(String id, ReportType type, String status, String createdAt, String completedAt, String expiresAt,
                   String userId, String fileUrl, ParamsReport paramsReport) {
         super(id, type, status);
         this.createdAt = createdAt;
@@ -116,7 +91,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #createdAt} instance <br>
+     * MethodId to get {@link #createdAt} instance <br>
      * Any params required
      *
      * @return {@link #createdAt} instance as {@link String}
@@ -126,7 +101,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #createdAt} timestamp <br>
+     * MethodId to get {@link #createdAt} timestamp <br>
      * Any params required
      *
      * @return {@link #createdAt} timestamp as long
@@ -136,7 +111,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #completedAt} instance <br>
+     * MethodId to get {@link #completedAt} instance <br>
      * Any params required
      *
      * @return {@link #completedAt} instance as {@link String}
@@ -146,7 +121,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #completedAt} timestamp <br>
+     * MethodId to get {@link #completedAt} timestamp <br>
      * Any params required
      *
      * @return {@link #completedAt} timestamp as long
@@ -156,7 +131,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #expiresAt} instance <br>
+     * MethodId to get {@link #expiresAt} instance <br>
      * Any params required
      *
      * @return {@link #expiresAt} instance as {@link String}
@@ -166,7 +141,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #expiresAt} timestamp <br>
+     * MethodId to get {@link #expiresAt} timestamp <br>
      * Any params required
      *
      * @return {@link #expiresAt} timestamp as long
@@ -176,7 +151,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #userId} instance <br>
+     * MethodId to get {@link #userId} instance <br>
      * Any params required
      *
      * @return {@link #userId} instance as {@link String}
@@ -186,7 +161,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #fileUrl} instance <br>
+     * MethodId to get {@link #fileUrl} instance <br>
      * Any params required
      *
      * @return {@link #fileUrl} instance as {@link String}
@@ -196,7 +171,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get {@link #paramsReport} instance <br>
+     * MethodId to get {@link #paramsReport} instance <br>
      * Any params required
      *
      * @return {@link #paramsReport} instance as {@link ParamsReport}
@@ -206,7 +181,7 @@ public class Report extends ReportDetails {
     }
 
     /**
-     * Method to get file count <br>
+     * MethodId to get file count <br>
      * Any params required
      *
      * @return file count as {@link String}
@@ -320,7 +295,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #startDate} instance <br>
+         * MethodId to get {@link #startDate} instance <br>
          * Any params required
          *
          * @return {@link #startDate} instance as {@link String}
@@ -330,7 +305,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #startDate} timestamp <br>
+         * MethodId to get {@link #startDate} timestamp <br>
          * Any params required
          *
          * @return {@link #startDate} timestamp as long
@@ -340,7 +315,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #endDate} instance <br>
+         * MethodId to get {@link #endDate} instance <br>
          * Any params required
          *
          * @return {@link #endDate} instance as {@link String}
@@ -350,7 +325,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #endDate} timestamp <br>
+         * MethodId to get {@link #endDate} timestamp <br>
          * Any params required
          *
          * @return {@link #endDate} timestamp as long
@@ -360,7 +335,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #format} instance <br>
+         * MethodId to get {@link #format} instance <br>
          * Any params required
          *
          * @return {@link #format} instance as {@link String}
@@ -370,7 +345,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #productId} instance <br>
+         * MethodId to get {@link #productId} instance <br>
          * Any params required
          *
          * @return {@link #productId} instance as {@link String}
@@ -380,7 +355,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #accountId} instance <br>
+         * MethodId to get {@link #accountId} instance <br>
          * Any params required
          *
          * @return {@link #accountId} instance as {@link String}
@@ -390,7 +365,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #profileId} instance <br>
+         * MethodId to get {@link #profileId} instance <br>
          * Any params required
          *
          * @return {@link #profileId} instance as {@link String}
@@ -400,7 +375,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #email} instance <br>
+         * MethodId to get {@link #email} instance <br>
          * Any params required
          *
          * @return {@link #email} instance as {@link String}
@@ -410,7 +385,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #newYorkState} instance <br>
+         * MethodId to get {@link #newYorkState} instance <br>
          * Any params required
          *
          * @return {@link #newYorkState} instance as boolean
@@ -420,7 +395,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get {@link #userReport} instance <br>
+         * MethodId to get {@link #userReport} instance <br>
          * Any params required
          *
          * @return {@link #userReport} instance as {@link UserReport}
@@ -430,7 +405,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get default profile id instance <br>
+         * MethodId to get default profile id instance <br>
          * Any params required
          *
          * @return default profile id as {@link String}
@@ -440,7 +415,7 @@ public class Report extends ReportDetails {
         }
 
         /**
-         * Method to get if is brokerage <br>
+         * MethodId to get if is brokerage <br>
          * Any params required
          *
          * @return is brokerage as boolean
@@ -504,7 +479,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Method to get roles <br>
+             * MethodId to get roles <br>
              * Any params required
              *
              * @return roles as {@link JSONObject}
@@ -514,7 +489,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Method to get roles <br>
+             * MethodId to get roles <br>
              * Any params required
              *
              * @return roles as {@link String}
@@ -525,7 +500,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Method to get details <br>
+             * MethodId to get details <br>
              * Any params required
              *
              * @return details as {@link JSONObject}
@@ -535,7 +510,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Method to get details <br>
+             * MethodId to get details <br>
              * Any params required
              *
              * @return details as {@link String}
@@ -546,7 +521,7 @@ public class Report extends ReportDetails {
             }
 
             /**
-             * Method to get {@link #oauthClient} instance <br>
+             * MethodId to get {@link #oauthClient} instance <br>
              * Any params required
              *
              * @return {@link #oauthClient} instance as {@link String}

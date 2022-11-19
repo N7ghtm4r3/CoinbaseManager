@@ -82,7 +82,7 @@ public class Book {
     }
 
     /**
-     * Method to assemble a doubles list
+     * MethodId to assemble a doubles list
      *
      * @param jsonList: jsonArray obtained by response request
      * @return doubles list as {@link ArrayList} of {@link Double}
@@ -99,7 +99,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #productId} instance <br>
+     * MethodId to get {@link #productId} instance <br>
      * Any params required
      *
      * @return {@link #productId} instance as {@link String}
@@ -109,7 +109,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #sequence} instance <br>
+     * MethodId to get {@link #sequence} instance <br>
      * Any params required
      *
      * @return {@link #sequence} instance as long
@@ -119,7 +119,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #auctionMode} instance <br>
+     * MethodId to get {@link #auctionMode} instance <br>
      * Any params required
      *
      * @return {@link #auctionMode} instance as boolean
@@ -129,7 +129,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #auction} instance <br>
+     * MethodId to get {@link #auction} instance <br>
      * Any params required
      *
      * @return {@link #auction} instance as {@link String}
@@ -139,7 +139,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #asks} instance <br>
+     * MethodId to get {@link #asks} instance <br>
      * Any params required
      *
      * @return {@link #asks} instance as {@link ArrayList} of {@link Double}
@@ -149,7 +149,7 @@ public class Book {
     }
 
     /**
-     * Method to get an ask from {@link #asks}
+     * MethodId to get an ask from {@link #asks}
      *
      * @param index: index of the ask to get
      * @return ask as double
@@ -159,7 +159,7 @@ public class Book {
     }
 
     /**
-     * Method to get {@link #bids} instance <br>
+     * MethodId to get {@link #bids} instance <br>
      * Any params required
      *
      * @return {@link #bids} instance as {@link ArrayList} of {@link Double}
@@ -169,7 +169,7 @@ public class Book {
     }
 
     /**
-     * Method to get an bid from {@link #bids}
+     * MethodId to get an bid from {@link #bids}
      *
      * @param index: index of the bid to get
      * @return bid as double

@@ -82,7 +82,7 @@ public class Ticker extends StatDetails {
      **/
     public Ticker(JSONObject ticker) {
         super(ticker);
-        productId = ticker.getString("productIt");
+        productId = ticker.getString("productId");
         baseAsset = ticker.getString("baseAsset");
         quoteAsset = ticker.getString("quoteAsset");
         bid = ticker.getDouble("bid");
@@ -92,7 +92,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #productId} instance <br>
+     * MethodId to get {@link #productId} instance <br>
      * Any params required
      *
      * @return {@link #productId} instance as {@link String}
@@ -102,7 +102,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #baseAsset} instance <br>
+     * MethodId to get {@link #baseAsset} instance <br>
      * Any params required
      *
      * @return {@link #baseAsset} instance as {@link String}
@@ -112,7 +112,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #quoteAsset} instance <br>
+     * MethodId to get {@link #quoteAsset} instance <br>
      * Any params required
      *
      * @return {@link #quoteAsset} instance as {@link String}
@@ -122,7 +122,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #bid} instance <br>
+     * MethodId to get {@link #bid} instance <br>
      * Any params required
      *
      * @return {@link #bid} instance as double
@@ -132,7 +132,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #bid} instance
+     * MethodId to get {@link #bid} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #bid} instance rounded with decimal digits inserted
@@ -143,7 +143,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #ask} instance <br>
+     * MethodId to get {@link #ask} instance <br>
      * Any params required
      *
      * @return {@link #ask} instance as double
@@ -153,7 +153,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #ask} instance
+     * MethodId to get {@link #ask} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #ask} instance rounded with decimal digits inserted
@@ -164,7 +164,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #volume} instance <br>
+     * MethodId to get {@link #volume} instance <br>
      * Any params required
      *
      * @return {@link #volume} instance as double
@@ -174,7 +174,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #volume} instance
+     * MethodId to get {@link #volume} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
@@ -185,7 +185,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #priceChangePercent} instance <br>
+     * MethodId to get {@link #priceChangePercent} instance <br>
      * Any params required
      *
      * @return {@link #priceChangePercent} instance as double
@@ -195,7 +195,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * Method to get {@link #priceChangePercent} instance
+     * MethodId to get {@link #priceChangePercent} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #priceChangePercent} instance rounded with decimal digits inserted

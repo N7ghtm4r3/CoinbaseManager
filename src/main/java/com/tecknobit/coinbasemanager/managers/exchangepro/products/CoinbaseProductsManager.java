@@ -1,16 +1,22 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.products;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.products.records.*;
+import com.tecknobit.coinbasemanager.managers.exchangepro.products.records.Candle.Granularity;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
 import static com.tecknobit.apimanager.trading.TradingTools.computeTPTOPIndex;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.JSON;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseProductsManager} class is useful to manage all {@code "Coinbase"} products endpoints
@@ -20,16 +26,6 @@ import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
  * Products manager</a>
  **/
 public class CoinbaseProductsManager extends CoinbaseManager {
-
-    /**
-     * {@code tradingPairsList} is instance that memorizes all trading pairs list
-     **/
-    private static JSONArray tradingPairsList = new JSONArray();
-
-    /**
-     * {@code previousLoadPairsList} is instance that memorizes previous timestamp of loading {@link #tradingPairsList}
-     **/
-    private long previousLoadPairsList;
 
     /**
      * Constructor to init a {@link CoinbaseProductsManager}
@@ -100,670 +96,1091 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get all trading pairs
-     * Any params required
-     *
-     * @return all trading pairs as {@link String}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
-     **/
-    public String getAllTradingPairs() throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT, GET_METHOD);
-    }
-
-    /**
-     * Request to get all trading pairs
-     * Any params required
-     *
-     * @return all trading pairs as {@link JSONArray}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
-     **/
-    public JSONArray getAllTradingPairsJSON() throws Exception {
-        long actualTimestamp = System.currentTimeMillis();
-        if (tradingPairsList.isEmpty() || ((actualTimestamp - previousLoadPairsList) >= (3600 * 1000))) {
-            previousLoadPairsList = actualTimestamp;
-            return tradingPairsList = new JSONArray(getAllTradingPairs());
-        }
-        return tradingPairsList;
-    }
-
-    /**
-     * Request to get all trading pairs
+     * Request to get all trading pairs <br>
      * Any params required
      *
      * @return all trading pairs list as {@link ArrayList} of {@link TradingPair}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+     * Get all known trading pairs</a>
      **/
-    public ArrayList<TradingPair> getAllTradingPairsList() throws Exception {
-        return assembleTradingPairsList(new JSONArray(getAllTradingPairs()));
-    }
-
-    /** Request to get all trading pairs
-     * @param type: type of trading pairs to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
-     * @return all trading pairs as {@link String}
-     * **/
-    public String getAllTradingPairs(String type) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "?type=" + type, GET_METHOD);
-    }
-
-    /** Request to get all trading pairs
-     * @param type: type of trading pairs to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
-     * @return all trading pairs as {@link JSONArray}
-     * **/
-    public JSONArray getAllTradingPairsJSON(String type) throws Exception {
-        return new JSONArray(getAllTradingPairs(type));
-    }
-
-    /** Request to get all trading pairs
-     * @param type: type of trading pairs to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
-     * @return all trading pairs as {@link ArrayList} of {@link TradingPair}
-     * **/
-    public ArrayList<TradingPair> getAllTradingPairsList(String type) throws Exception {
-        return assembleTradingPairsList(new JSONArray(getAllTradingPairs(type)));
-    }
-
-    /** Method to assemble a trading pairs list
-     * @param jsonTradings: jsonArray obtained by response request
-     * @return trading pairs list as {@link ArrayList} of {@link TradingPair}
-     * **/
-    private ArrayList<TradingPair> assembleTradingPairsList(JSONArray jsonTradings){
-        ArrayList<TradingPair> tradingPairs = new ArrayList<>();
-            for (int j = 0; j < jsonTradings.length(); j++)
-                tradingPairs.add(new TradingPair(jsonTradings.getJSONObject(j)));
-        return tradingPairs;
-    }
-
-    /** Request to get single trading pair
-     * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1</a>
-     * @return single trading pair as {@link String}
-     * **/
-    public String getSingleTradingPair(String productId) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId, GET_METHOD);
-    }
-
-    /** Request to get single trading pair
-     * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangere stapi_getproduct-1</a>
-     * @return single trading pair as {@link JSONObject}
-     * **/
-    public JSONObject getSingleTradingPairJSON(String productId) throws Exception {
-        return new JSONObject(getSingleTradingPair(productId));
-    }
-
-    /** Request to get single trading pair
-     * @param productId: identifier of trading pair es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1</a>
-     * @return single trading pair as {@link TradingPair} custom object
-     * **/
-    public TradingPair getSingleTradingPairObject(String productId) throws Exception {
-        return new TradingPair(new JSONObject(getSingleTradingPair(productId)));
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link String}
-     * **/
-    public String getProductBook(String productId) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT, GET_METHOD);
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link JSONObject}
-     * **/
-    public JSONObject getProductBookJSON(String productId) throws Exception {
-        return new JSONObject(getProductBook(productId));
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link Book} custom object
-     * **/
-    public Book getProductBookObject(String productId) throws Exception {
-        return new Book(new JSONObject(getProductBook(productId)).put("productId", productId));
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link String}
-     * **/
-    public String getProductBook(String productId, int level) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT + "?level=" + level,
-                GET_METHOD);
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link JSONObject}
-     * **/
-    public JSONObject getProductBookJSON(String productId, int level) throws Exception {
-        return new JSONObject(getProductBook(productId, level));
-    }
-
-    /** Request to get book details
-     * @param productId: identifier of book es. BTC-USD
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return book details as {@link Book} custom object
-     * **/
-    public Book getProductBookObject(String productId, int level) throws Exception {
-        return new Book(new JSONObject(getProductBook(productId, level)).put("productId", productId));
-    }
-
-    /** Custom request to get all products book details <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details as {@link String}
-     * **/
-    public String getAllProductsBook() throws Exception {
-        return getAllProductsBookJSON().toString();
-    }
-
-    /** Custom request to get all products book details <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details as {@link JSONArray}
-     * **/
-    public JSONArray getAllProductsBookJSON() throws Exception {
-        JSONArray jsonPairs = getAllTradingPairsJSON();
-        JSONArray books = new JSONArray();
-        for (int j = 0; j < jsonPairs.length(); j++){
-            String productId = jsonPairs.getJSONObject(j).getString("id");
-            books.put(getProductBookJSON(productId).put("productId", productId));
-        }
-        return books;
-    }
-
-    /** Custom request to get all products book details <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details {@link ArrayList} of {@link Book}
-     * **/
-    public ArrayList<Book> getAllProductsBookList() throws Exception {
-        return assembleBooksList(getAllProductsBookJSON());
-    }
-
-    /** Custom request to get all products book details <br>
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details as {@link String}
-     * **/
-    public String getAllProductsBook(int level) throws Exception {
-        return getAllProductsBookJSON(level).toString();
-    }
-
-    /** Custom request to get all products book details <br>
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details as {@link JSONArray}
-     * **/
-    public JSONArray getAllProductsBookJSON(int level) throws Exception {
-        JSONArray jsonPairs = getAllTradingPairsJSON();
-        JSONArray books = new JSONArray();
-        for (int j = 0; j < jsonPairs.length(); j++){
-            String productId = jsonPairs.getJSONObject(j).getString("id");
-            books.put(getProductBookJSON(productId, level).put("productId", productId));
-        }
-        return books;
-    }
-
-    /** Custom request to get all products book details <br>
-     * @param level: type of format for result
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1</a>
-     * @return all products book details {@link ArrayList} of {@link Book}
-     * **/
-    public ArrayList<Book> getAllProductsBookList(int level) throws Exception {
-        return assembleBooksList(getAllProductsBookJSON(level));
-    }
-
-    /** Method to assemble a books list
-     * @param jsonBooks: jsonArray obtained by response request
-     * @return books list as {@link ArrayList} of {@link Book}
-     * **/
-    private ArrayList<Book> assembleBooksList(JSONArray jsonBooks){
-        ArrayList<Book> books = new ArrayList<>();
-        for (int j = 0; j < jsonBooks.length(); j++) {
-            JSONObject jsonBook = jsonBooks.getJSONObject(j);
-            books.add(new Book(jsonBook));
-        }
-        return books;
-    }
-
-    /** Request to get candles
-     * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles as {@link String}
-     * **/
-    public String getProductCandles(String productId) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT, GET_METHOD);
-    }
-
-    /** Request to get candles
-     * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles as {@link JSONArray}
-     * **/
-    public JSONArray getProductCandlesJSON(String productId) throws Exception {
-        return new JSONArray(getProductCandles(productId));
-    }
-
-    /** Request to get candles list
-     * @param productId: identifier of candle es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles list as {@link ArrayList} of {@link Candle}
-     * **/
-    public ArrayList<Candle> getProductCandlesList(String productId) throws Exception {
-        return assembleCandlesList(new JSONArray(getProductCandles(productId)));
-    }
-
-    /** Request to get candles
-     * @param productId: identifier of candle es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity, start, end)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles as {@link String}
-     * **/
-    public String getProductCandles(String productId, Params queryParams) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT +
-                        queryParams.createQueryString(), GET_METHOD);
-    }
-
-    /** Request to get candles
-     * @param productId: identifier of candle es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity, start, end)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles as {@link JSONArray}
-     * **/
-    public JSONArray getProductCandlesJSON(String productId, Params queryParams) throws Exception {
-        return new JSONArray(getProductCandles(productId, queryParams));
-    }
-
-    /** Request to get candles list
-     * @param productId: identifier of candle es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are granularity, start, end)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1</a>
-     * @return candles list as {@link ArrayList} of {@link Candle}
-     * **/
-    public ArrayList<Candle> getProductCandlesList(String productId, Params queryParams) throws Exception {
-        return assembleCandlesList(new JSONArray(getProductCandles(productId, queryParams)));
-    }
-
-    /** Method to assemble a candle list
-     * @param jsonCandles: jsonArray obtained by response request
-     * @return candle list as {@link ArrayList} of {@link Candle}
-     * **/
-    private ArrayList<Candle> assembleCandlesList(JSONArray jsonCandles){
-        ArrayList<Candle> candles = new ArrayList<>();
-        for (int j = 0; j < jsonCandles.length(); j++)
-            candles.add(new Candle(jsonCandles.getJSONArray(j)));
-        return candles;
-    }
-
-    /** Request to get product stats
-     * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return product stats as {@link String}
-     * **/
-    public String getProductStats(String productId) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_STAT_ENDPOINT, GET_METHOD);
-    }
-
-    /** Request to get product stats
-     * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return product stats as {@link JSONObject}
-     * **/
-    public JSONObject getProductStatsJSON(String productId) throws Exception {
-        return new JSONObject(getProductStats(productId));
-    }
-
-    /** Request to get product stats
-     * @param productId: identifier of product stats es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return product stats as {@link Stat} custom object
-     * **/
-    public Stat getProductStatsObject(String productId) throws Exception {
-        return new Stat(new JSONObject(getProductStats(productId)).put("productId", productId));
-    }
-
-    /** Custom request to get all products stats <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return all products stats as {@link String}
-     * **/
-    public String getAllProductsStats() throws Exception {
-        return getAllProductsStatsJSON().toString();
-    }
-
-    /** Custom request to get all products stats <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return all products stats as {@link JSONObject}
-     * **/
-    public JSONArray getAllProductsStatsJSON() throws Exception {
-        JSONArray jsonPairs = getAllTradingPairsJSON();
-        JSONArray stats = new JSONArray();
-        for (int j = 0; j < jsonPairs.length(); j++){
-            String productId = jsonPairs.getJSONObject(j).getString("id");
-            stats.put(getProductStatsJSON(productId).put("productId", productId));
-        }
-        return stats;
-    }
-
-    /** Custom request to get all products stats list <br>
-     * Any params required
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1</a>
-     * @return all products stats as {@link ArrayList} of {@link Stat}
-     * **/
-    public ArrayList<Stat> getAllProductsStatsList() throws Exception {
-        ArrayList<Stat> stats = new ArrayList<>();
-        JSONArray jsonStats = getAllProductsStatsJSON();
-        for (int j = 0; j < jsonStats.length(); j++){
-            JSONObject jsonStat = jsonStats.getJSONObject(j);
-            Stat stat = assembleStatObject(jsonStat.getString("productId"), jsonStat);
-            if(stat != null)
-                stats.add(stat);
-        }
-        return stats;
-    }
-
-    /** Method to assemble a stat object
-     * @param productId: ticker identifier value
-     * @param jsonStat: jsonObject obtained by response request
-     * @return stat as {@link Stat} or null if not exists
-     * **/
-    private Stat assembleStatObject(String productId, JSONObject jsonStat) {
-        try {
-            return new Stat(productId,
-                    jsonStat.getDouble("open"),
-                    jsonStat.getDouble("high"),
-                    jsonStat.getDouble("low"),
-                    jsonStat.getDouble("volume"),
-                    jsonStat.getDouble("last"),
-                    jsonStat.getDouble("volume_30day")
-            );
-        } catch (JSONException e) {
-            return null;
-        }
-    }
-
-    /** Request to get product ticker
-     * @param productId: identifier of product ticker es. BTC-USD
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return product stats as {@link String}
-     * **/
-    public String getProductTicker(String productId) throws Exception {
-        return getProductTickerJSON(productId).toString();
-    }
-
-    /** Request to get product ticker
-     * @param productId: identifier of product ticker es. BTC-USD
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return product stats as {@link JSONObject}
-     * **/
-    public JSONObject getProductTickerJSON(String productId) throws Exception {
-        try {
-            JSONObject ticker = new JSONObject(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TICKER_ENDPOINT,
-                    GET_METHOD));
-            ticker.put("productId", productId);
-            String[] details = productId.split("-");
-            ticker.put("baseAsset", details[0]);
-            ticker.put("quoteAsset", details[1]);
-            ticker.put("priceChangePercent", getPriceChangePercent(productId, ticker.getDouble("price")));
-            return ticker;
-        } catch (JSONException e) {
-            return null;
-        }
-    }
-
-    /** Request to get product ticker
-     * @param productId: identifier of product ticker es. BTC-USD
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return product stats as {@link Ticker} custom object
-     * **/
-    public Ticker getProductTickerObject(String productId) throws Exception {
-        return assembleTickerObject(getProductTickerJSON(productId));
-    }
-
-    /** Custom request to get product all tickers list
-     * Any params required
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return all tickers list as {@link String}
-     * **/
-    public String getAllTickers() throws Exception {
-        return getAllTickersJSON().toString();
-    }
-
-    /** Custom request to get product all tickers list
-     * Any params required
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return all tickers list as {@link JSONArray}
-     * **/
-    public JSONArray getAllTickersJSON() throws Exception {
-        JSONArray jsonPairs = getAllTradingPairsJSON();
-        JSONArray tickersList = new JSONArray();
-        for (int j = 0; j < jsonPairs.length(); j++) {
-            JSONObject ticker = getProductTickerJSON(jsonPairs.getJSONObject(j).getString("id"));
-            if(ticker != null)
-                tickersList.put(ticker);
-        }
-        return tickersList;
-    }
-
-    /** Custom request to get product all tickers list <br>
-     * Any params required
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1</a>
-     * @return all tickers list as {@link ArrayList} of {@link Ticker}
-     * **/
-    public ArrayList<Ticker> getAllTickersList() throws Exception {
-        ArrayList<Ticker> tickers = new ArrayList<>();
-        JSONArray jsonTickers = getAllTickersJSON();
-        for (int j = 0; j < jsonTickers.length(); j++) {
-            Ticker ticker = assembleTickerObject(jsonTickers.getJSONObject(j));
-            if(ticker != null)
-                tickers.add(ticker);
-        }
-        return tickers;
+    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    public ArrayList<TradingPair> getAllTradingPairs() throws Exception {
+        return getAllTradingPairs(LIBRARY_OBJECT);
     }
 
     /**
-     * Method to assemble a ticker object
+     * Request to get all trading pairs
      *
-     * @param jsonTicker: jsonArray obtained by response request
-     * @return ticker as {@link Ticker}
-     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, baseAsset,
-     * quote asset and price change percent value.
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all trading pairs list as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * Get all known trading pairs</a>
      **/
-    private Ticker assembleTickerObject(JSONObject jsonTicker) {
-        try {
-            String productId = jsonTicker.getString("productId");
-            return new Ticker(jsonTicker.put("productId", productId).put("priceChangePercent",
-                    getPriceChangePercent(productId, jsonTicker.getDouble("price"))));
-        } catch (Exception e) {
-            return null;
+    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    public <T> T getAllTradingPairs(ReturnFormat format) throws Exception {
+        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT, GET_METHOD), format);
+    }
+
+    /**
+     * Request to get all trading pairs
+     *
+     * @param type: type of trading pairs to fetch details
+     * @return all trading pairs as {@link ArrayList} of {@link TradingPair}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    public ArrayList<TradingPair> getAllTradingPairs(String type) throws Exception {
+        return getAllTradingPairs(type, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get all trading pairs
+     *
+     * @param type:   type of trading pairs to fetch details
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all trading pairs as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    public <T> T getAllTradingPairs(String type, ReturnFormat format) throws Exception {
+        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT + "?type=" + type, GET_METHOD), format);
+    }
+
+    /**
+     * MethodId to assemble a trading pairs list
+     *
+     * @param tradingPairsResponse: trading pairs list response to format
+     * @param format:               return type formatter -> {@link ReturnFormat}
+     * @return trading pairs response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnTradingPairsList(String tradingPairsResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(tradingPairsResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<TradingPair> tradingPairs = new ArrayList<>();
+                JSONArray jTradings = new JSONArray(tradingPairsResponse);
+                for (int j = 0; j < jTradings.length(); j++)
+                    tradingPairs.add(new TradingPair(jTradings.getJSONObject(j)));
+                return (T) tradingPairs;
+            default:
+                return (T) tradingPairsResponse;
         }
     }
 
-    /** Method to get price change percent
+    /**
+     * Request to get single trading pair
+     *
+     * @param productId: identifier of trading pair es. BTC-USD
+     * @return single trading pair as {@link TradingPair} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     * Get single product</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}")
+    public TradingPair getSingleTradingPair(String productId) throws Exception {
+        return getSingleTradingPair(productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get single trading pair
+     *
+     * @param productId: identifier of trading pair es. BTC-USD
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return single trading pair as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     * Get single product</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}")
+    public <T> T getSingleTradingPair(String productId, ReturnFormat format) throws Exception {
+        String tradingPairResponse = sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId, GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(tradingPairResponse);
+            case LIBRARY_OBJECT:
+                return (T) new TradingPair(new JSONObject(tradingPairResponse));
+            default:
+                return (T) tradingPairResponse;
+        }
+    }
+
+    /**
+     * Request to get book details
+     *
+     * @param productId: identifier of book es. BTC-USD
+     * @return book details as {@link Book} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    public Book getProductBook(String productId) throws Exception {
+        return getProductBook(productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get book details
+     *
+     * @param productId: identifier of book es. BTC-USD
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return book details as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    public <T> T getProductBook(String productId, ReturnFormat format) throws Exception {
+        return returnBook(productId, sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT,
+                GET_METHOD), format);
+    }
+
+    /**
+     * Request to get book details
+     *
+     * @param productId: identifier of book es. BTC-USD
+     * @param level:     type of format for result
+     * @return book details as {@link Book} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    public Book getProductBook(String productId, int level) throws Exception {
+        return getProductBook(productId, level, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get book details
+     *
+     * @param productId: identifier of book es. BTC-USD
+     * @param level:     type of format for result
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return book details as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    public <T> T getProductBook(String productId, int level, ReturnFormat format) throws Exception {
+        return returnBook(productId, sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT
+                + "?level=" + level, GET_METHOD), format);
+    }
+
+    /**
+     * MethodId to assemble a book object
+     *
+     * @param productId:    identifier of book es. BTC-USD
+     * @param bookResponse: book response to format
+     * @param format:       return type formatter -> {@link ReturnFormat}
+     * @return book response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnBook(String productId, String bookResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(bookResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Book(new JSONObject(bookResponse).put("productId", productId));
+            default:
+                return (T) bookResponse;
+        }
+    }
+
+    /**
+     * Custom request to get all products book details <br>
+     * Any params required
+     *
+     * @return all products book details as {@link ArrayList} of {@link Book}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @WrappedRequest
+    public ArrayList<Book> getAllProductsBooks() throws Exception {
+        return returnAllBooks(-1, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Custom request to get all products book details
+     *
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all products book details as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @WrappedRequest
+    public <T> T getAllProductsBooks(ReturnFormat format) throws Exception {
+        return returnAllBooks(-1, format);
+    }
+
+    /**
+     * Custom request to get all products book details <br>
+     *
+     * @param level: type of format for result
+     * @return all products book details as {@link ArrayList} of {@link Book}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @WrappedRequest
+    public ArrayList<Book> getAllProductsBooks(int level) throws Exception {
+        return returnAllBooks(level, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Custom request to get all products book details <br>
+     *
+     * @param level:  type of format for result
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all products book details as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * Get product book</a>
+     **/
+    @WrappedRequest
+    public <T> T getAllProductsBooks(int level, ReturnFormat format) throws Exception {
+        return returnAllBooks(level, format);
+    }
+
+    /**
+     * MethodId to assemble a books list
+     *
+     * @param level:  type of format for result
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return books list response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnAllBooks(int level, ReturnFormat format) throws Exception {
+        JSONArray tradingPairs = getAllTradingPairs(JSON);
+        JSONArray jBooks = new JSONArray();
+        boolean insertLevel = level != -1;
+        for (int j = 0; j < tradingPairs.length(); j++) {
+            String productId = tradingPairs.getJSONObject(j).getString("id");
+            try {
+                if (insertLevel)
+                    jBooks.put(getProductBook(productId, level));
+                else
+                    jBooks.put(getProductBook(productId));
+            } catch (IOException ignore) {
+            }
+        }
+        switch (format) {
+            case JSON:
+                return (T) jBooks;
+            case LIBRARY_OBJECT:
+                ArrayList<Book> books = new ArrayList<>();
+                for (int j = 0; j < jBooks.length(); j++)
+                    books.add(new Book(jBooks.getJSONObject(j)));
+                return (T) books;
+            default:
+                return (T) jBooks.toString();
+        }
+    }
+
+    /**
+     * Request to get candles list
+     *
+     * @param productId: identifier of candle es. BTC-USD
+     * @return candles list as {@link ArrayList} of {@link Candle}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * Get product candles</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    public ArrayList<Candle> getProductCandles(String productId) throws Exception {
+        return getProductCandles(productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get candles list
+     *
+     * @param productId: identifier of candle es. BTC-USD
+     * @return candles list as {@link ArrayList} of {@link Candle}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * Get product candles</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    public <T> T getProductCandles(String productId, ReturnFormat format) throws Exception {
+        return returnCandlesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT,
+                GET_METHOD), format);
+    }
+
+    /**
+     * Request to get candles list
+     *
+     * @param productId:   identifier of candle es. BTC-USD
+     * @param queryParams: extra query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "granularity"} -> granularity value, constant available: {@link Granularity} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "start"} -> timestamp for starting range of aggregations - [long]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end"} -> timestamp for ending range of aggregations - [long]
+     *                          </li>
+     *                     </ul>
+     * @return candles list as {@link ArrayList} of {@link Candle}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * Get product candles</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    public ArrayList<Candle> getProductCandles(String productId, Params queryParams) throws Exception {
+        return getProductCandles(productId, queryParams, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get candles list
+     *
+     * @param productId:   identifier of candle es. BTC-USD
+     * @param queryParams: extra query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "granularity"} -> granularity value, constant available: {@link Granularity} - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "start"} -> timestamp for starting range of aggregations - [long]
+     *                          </li>
+     *                          <li>
+     *                              {@code "end"} -> timestamp for ending range of aggregations - [long]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return candles list as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * Get product candles</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    public <T> T getProductCandles(String productId, Params queryParams, ReturnFormat format) throws Exception {
+        return returnCandlesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT +
+                queryParams.createQueryString(), GET_METHOD), format);
+    }
+
+    /**
+     * MethodId to assemble a candles list
+     *
+     * @param candlesListResponse: candles list response to format
+     * @param format:              return type formatter -> {@link ReturnFormat}
+     * @return candles response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnCandlesList(String candlesListResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(candlesListResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Candle> candles = new ArrayList<>();
+                JSONArray jCandles = new JSONArray(candlesListResponse);
+                for (int j = 0; j < jCandles.length(); j++)
+                    candles.add(new Candle(jCandles.getJSONArray(j)));
+                return (T) candles;
+            default:
+                return (T) candlesListResponse;
+        }
+    }
+
+    /**
+     * Request to get product stats
+     *
+     * @param productId: identifier of product stats es. BTC-USD
+     * @return product stats as {@link Stat} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * Get product stats</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
+    public Stat getProductStats(String productId) throws Exception {
+        return getProductStats(productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get product stats
+     *
+     * @param productId: identifier of product stats es. BTC-USD
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return product stats as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * Get product stats</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
+    public <T> T getProductStats(String productId, ReturnFormat format) throws Exception {
+        String productResponse = sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_STAT_ENDPOINT,
+                GET_METHOD);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(productResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Stat(new JSONObject(productResponse).put("productId", productId));
+            default:
+                return (T) productResponse;
+        }
+    }
+
+    /**
+     * Custom request to get all products stats list <br>
+     * Any params required
+     *
+     * @return all products stats as {@link ArrayList} of {@link Stat}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * Get product stats</a>
+     **/
+    @WrappedRequest
+    public ArrayList<Stat> getAllProductsStats() throws Exception {
+        return getAllProductsStats(LIBRARY_OBJECT);
+    }
+
+    /**
+     * Custom request to get all products stats list
+     *
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all products stats as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * Get product stats</a>
+     **/
+    @Returner
+    @WrappedRequest
+    public <T> T getAllProductsStats(ReturnFormat format) throws Exception {
+        JSONArray tradingPairs = getAllTradingPairs(JSON);
+        JSONArray jStats = new JSONArray();
+        for (int j = 0; j < tradingPairs.length(); j++) {
+            try {
+                jStats.put(getProductStats(tradingPairs.getJSONObject(j).getString("id")));
+            } catch (IOException ignore) {
+            }
+        }
+        switch (format) {
+            case JSON:
+                return (T) jStats;
+            case LIBRARY_OBJECT:
+                ArrayList<Stat> stats = new ArrayList<>();
+                for (int j = 0; j < jStats.length(); j++)
+                    stats.add(new Stat(jStats.getJSONObject(j)));
+                return (T) stats;
+            default:
+                return (T) jStats.toString();
+        }
+    }
+
+    /**
+     * Request to get product ticker
+     *
+     * @param productId: identifier of product ticker es. BTC-USD
+     * @return product stats as {@link Ticker} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, base asset,
+     * quote asset and price change percent value.
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * Get product ticker</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
+    public Ticker getProductTicker(String productId) throws Exception {
+        return getProductTicker(productId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get product ticker
+     *
+     * @param productId: identifier of product ticker es. BTC-USD
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return product stats as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, base asset,
+     * quote asset and price change percent value.
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * Get product ticker</a>
+     **/
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
+    public <T> T getProductTicker(String productId, ReturnFormat format) throws Exception {
+        JSONObject ticker = new JSONObject(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId +
+                GET_PRODUCT_TICKER_ENDPOINT, GET_METHOD));
+        ticker.put("productId", productId);
+        String[] details = productId.split("-");
+        ticker.put("baseAsset", details[0]);
+        ticker.put("quoteAsset", details[1]);
+        ticker.put("priceChangePercent", getPriceChangePercent(productId, ticker.getDouble("price")));
+        switch (format) {
+            case JSON:
+                return (T) ticker;
+            case LIBRARY_OBJECT:
+                return (T) new Ticker(ticker);
+            default:
+                return (T) ticker.toString();
+        }
+    }
+
+    /**
+     * MethodId to get price change percent
+     *
      * @param productId: product identifier value
-     * @param price: price value for product
+     * @param price:     price value for product
      * @return price change percent as double
-     * **/
+     **/
     private double getPriceChangePercent(String productId, double price) throws Exception {
-        JSONArray candles = getProductCandlesJSON(productId);
+        JSONArray candles = getProductCandles(productId, JSON);
         return getTrendPercent(new Candle(candles.getJSONArray(candles.length() - 1)).getClose(), price);
     }
 
-    /** Request to get product trades
-     * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
-     * @return product trades as {@link String}
-     * **/
-    public String getProductTrades(String productId) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT, GET_METHOD);
+    /**
+     * Custom request to get all products stats list <br>
+     * Any params required
+     *
+     * @return all products stats as {@link ArrayList} of {@link Stat}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * Get product ticker</a>
+     **/
+    @WrappedRequest
+    public ArrayList<Stat> getAllTickers() throws Exception {
+        return getAllTickers(LIBRARY_OBJECT);
     }
 
-    /** Request to get product trades
-     * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
-     * @return product trades as {@link JSONArray}
-     * **/
-    public JSONArray getProductTradesJSON(String productId) throws Exception {
-        return new JSONArray(getProductTrades(productId));
+    /**
+     * Custom request to get all products tickers list
+     *
+     * @param format: return type formatter -> {@link ReturnFormat}
+     * @return all products tickers as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * Get product ticker</a>
+     **/
+    @Returner
+    @WrappedRequest
+    public <T> T getAllTickers(ReturnFormat format) throws Exception {
+        JSONArray tradingPairs = getAllTradingPairs(JSON);
+        JSONArray jTickers = new JSONArray();
+        for (int j = 0; j < tradingPairs.length(); j++) {
+            try {
+                jTickers.put(getProductTicker(tradingPairs.getJSONObject(j).getString("id")));
+            } catch (IOException ignored) {
+            }
+        }
+        switch (format) {
+            case JSON:
+                return (T) jTickers;
+            case LIBRARY_OBJECT:
+                ArrayList<Ticker> tickers = new ArrayList<>();
+                for (int j = 0; j < jTickers.length(); j++)
+                    tickers.add(new Ticker(jTickers.getJSONObject(j)));
+                return (T) tickers;
+            default:
+                return (T) jTickers.toString();
+        }
     }
 
-    /** Request to get product trades
+    /**
+     * Request to get product trades
+     *
      * @param productId: identifier of product trades es. BTC-USD
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
      * @return product trades list as {@link ArrayList} of {@link Trade}
-     * **/
-    public ArrayList<Trade> getProductTradesList(String productId) throws Exception {
-        return assembleTradesList(new JSONArray(getProductTrades(productId)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * Get product trades</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    public ArrayList<Trade> getProductTrades(String productId) throws Exception {
+        return getProductTrades(productId, LIBRARY_OBJECT);
     }
 
-    /** Request to get product trades
+    /**
+     * Request to get product trades
+     *
      * @param productId: identifier of product trades es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit, before, after)
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return product trades list as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
-     * @return product trades as {@link String}
-     * **/
-    public String getProductTrades(String productId, Params queryParams) throws Exception {
-        return sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT + 
-                        queryParams.createQueryString(), GET_METHOD);
+     * Get product trades</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    public <T> T getProductTrades(String productId, ReturnFormat format) throws Exception {
+        return returnTradesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT,
+                GET_METHOD), format);
     }
 
-    /** Request to get product trades
-     * @param productId: identifier of product trades es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit, before, after)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
-     * @return product trades as {@link JSONArray}
-     * **/
-    public JSONArray getProductTradesJSON(String productId, Params queryParams) throws Exception {
-        return new JSONArray(getProductTrades(productId, queryParams));
-    }
-
-    /** Request to get product trades
-     * @param productId: identifier of product trades es. BTC-USD
-     * @param queryParams: extra query params of request
-     * @implSpec (keys accepted are limit, before, after)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1</a>
+    /**
+     * Request to get product trades
+     *
+     * @param productId:   identifier of product trades es. BTC-USD
+     * @param queryParams: extra query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
      * @return product trades as {@link ArrayList} of {@link Trade}
-     * **/
-    public ArrayList<Trade> getProductTradesList(String productId, Params queryParams) throws Exception {
-        return assembleTradesList(new JSONArray(getProductTrades(productId, queryParams)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * Get product trades</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    public ArrayList<Trade> getProductTrades(String productId, Params queryParams) throws Exception {
+        return getProductTrades(productId, queryParams, LIBRARY_OBJECT);
     }
 
-    /** Method to assemble a trades list
-     * @param jsonTrades: jsonArray obtained by response request
-     * @return trades list as {@link ArrayList} of {@link Trade}
-     * **/
-    private ArrayList<Trade> assembleTradesList(JSONArray jsonTrades){
-        ArrayList<Trade> trades = new ArrayList<>();
-        for (int j = 0; j < jsonTrades.length(); j++)
-            trades.add(new Trade(jsonTrades.getJSONObject(j)));
-        return trades;
+    /**
+     * Request to get product trades
+     *
+     * @param productId:   identifier of product trades es. BTC-USD
+     * @param queryParams: extra query params of request, keys accepted are:
+     *                     <ul>
+     *                          <li>
+     *                              {@code "limit"} -> limit on number of results to return - [integer]
+     *                          </li>
+     *                          <li>
+     *                              {@code "before"} -> used for pagination. Sets start cursor to before date - [string]
+     *                          </li>
+     *                          <li>
+     *                              {@code "after"} -> used for pagination. Sets end cursor to after date - [string]
+     *                          </li>
+     *                     </ul>
+     * @param format:      return type formatter -> {@link ReturnFormat}
+     * @return product trades as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * Get product trades</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    public <T> T getProductTrades(String productId, Params queryParams, ReturnFormat format) throws Exception {
+        return returnTradesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT +
+                queryParams.createQueryString(), GET_METHOD), format);
     }
 
-    /** Method to get forecast of a cryptocurrency in base of days's gap inserted
-     * @param productId: productId to calculate forecast es. BTC-USD
-     * @param intervalDays: days gap for the prevision range
-     * @param granularity: interval for candles
+    /**
+     * MethodId to assemble a trades list
+     *
+     * @param tradesResponse: trades list response to format
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return trades response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnTradesList(String tradesResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(tradesResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Trade> trades = new ArrayList<>();
+                JSONArray jTrades = new JSONArray(tradesResponse);
+                for (int j = 0; j < jTrades.length(); j++)
+                    trades.add(new Trade(jTrades.getJSONObject(j)));
+                return (T) trades;
+            default:
+                return (T) tradesResponse;
+        }
+    }
+
+    /**
+     * MethodId to get forecast of a cryptocurrency in base of days's gap inserted
+     *
+     * @param productId:      productId to calculate forecast es. BTC-USD
+     * @param intervalDays:   days gap for the prevision range
+     * @param granularity:    interval for candles
+     * @param toleranceValue: tolerance for select similar value compared to lastValue inserted
+     * @param decimalDigits:  number of digits to round final forecast value
+     * @return forecast value as a double es. 8 or -8
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     **/
+    @WrappedRequest
+    public double getSymbolForecast(String productId, int intervalDays, Granularity granularity, double toleranceValue,
+                                    int decimalDigits) throws Exception {
+        return roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
+    }
+
+    /**
+     * MethodId to get forecast of a cryptocurrency in base of days's gap inserted
+     *
+     * @param productId:      productId to calculate forecast es. BTC-USD
+     * @param intervalDays:   days gap for the prevision range
+     * @param granularity:    interval for candles
      * @param toleranceValue: tolerance for select similar value compared to lastValue inserted
      * @return forecast value as a double es. 8 or -8
-     * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
-     * **/
-    public double getSymbolForecast(String productId, int intervalDays, int granularity, double toleranceValue) throws Exception {
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     **/
+    @WrappedRequest
+    public double getSymbolForecast(String productId, int intervalDays, Granularity granularity,
+                                    double toleranceValue) throws Exception {
         ArrayList<Double> historicalValues = new ArrayList<>();
         Params intervalMap = new Params();
         intervalMap.addParam("granularity", granularity);
-        for (Candle candle : getProductCandlesList(productId, intervalMap))
+        for (Candle candle : getProductCandles(productId, intervalMap))
             historicalValues.add(candle.getHigh());
-        return computeTPTOPIndex(historicalValues, getProductStatsObject(productId).getLast(), intervalDays, toleranceValue);
-    }
-
-    /** Method to get forecast of a cryptocurrency in base of days's gap inserted
-     * @param productId: productId to calculate forecast es. BTC-USD
-     * @param intervalDays: days gap for the prevision range
-     * @param granularity: interval for candles
-     * @param toleranceValue: tolerance for select similar value compared to lastValue inserted
-     * @param decimalDigits: number of digits to round final forecast value
-     * @return forecast value as a double es. 8 or -8
-     * @throws IllegalArgumentException if lastValue is negative or intervalDays are less or equal to 0
-     * **/
-    public double getSymbolForecast(String productId, int intervalDays, int granularity, double toleranceValue,
-                                    int decimalDigits) throws Exception {
-        return roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
+        return computeTPTOPIndex(historicalValues, getProductStats(productId).getLast(), intervalDays, toleranceValue);
     }
 
 }

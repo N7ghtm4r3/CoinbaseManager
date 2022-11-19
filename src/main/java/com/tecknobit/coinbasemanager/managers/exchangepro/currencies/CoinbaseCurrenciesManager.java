@@ -119,7 +119,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * Request to get list of all currencies
      *
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return list of all currencies as {"format"} defines
+     * @return list of all currencies as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -181,7 +181,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param format:            return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
      *     Get a currency</a>
-     * @return currency as {"format"} defines
+     * @return currency as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>

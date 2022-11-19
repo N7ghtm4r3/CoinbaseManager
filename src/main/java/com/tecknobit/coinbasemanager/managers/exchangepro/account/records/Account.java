@@ -96,7 +96,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -106,7 +106,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #currency} instance <br>
+     * MethodId to get {@link #currency} instance <br>
      * Any params required
      *
      * @return {@link #currency} instance as {@link String}
@@ -116,7 +116,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #currency}
+     * MethodId to set {@link #currency}
      *
      * @param currency: currency value
      * @throws IllegalArgumentException when currency value is null or empty
@@ -128,7 +128,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #balance} instance <br>
+     * MethodId to get {@link #balance} instance <br>
      * Any params required
      *
      * @return {@link #balance} instance as double
@@ -138,7 +138,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #balance}
+     * MethodId to set {@link #balance}
      *
      * @param balance: balance value
      * @throws IllegalArgumentException when balance value is less than 0
@@ -150,7 +150,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #balance} instance
+     * MethodId to get {@link #balance} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #balance} instance rounded with decimal digits inserted
@@ -161,7 +161,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #available} instance <br>
+     * MethodId to get {@link #available} instance <br>
      * Any params required
      *
      * @return {@link #available} instance as double
@@ -171,7 +171,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #available}
+     * MethodId to set {@link #available}
      *
      * @param available: available value
      * @throws IllegalArgumentException when available value is less than 0
@@ -183,7 +183,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #available} instance
+     * MethodId to get {@link #available} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #available} instance rounded with decimal digits inserted
@@ -194,7 +194,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #hold} instance <br>
+     * MethodId to get {@link #hold} instance <br>
      * Any params required
      *
      * @return {@link #hold} instance as double
@@ -204,18 +204,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #hold} instance
-     *
-     * @param decimals: number of digits to round final value
-     * @return {@link #hold} instance rounded with decimal digits inserted
-     * @throws IllegalArgumentException if decimalDigits is negative
-     **/
-    public double getHold(int decimals) {
-        return roundValue(hold, decimals);
-    }
-
-    /**
-     * Method to set {@link #hold}
+     * MethodId to set {@link #hold}
      *
      * @param hold: hold value
      * @throws IllegalArgumentException when hold value is less than 0
@@ -227,7 +216,18 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #profileId} instance <br>
+     * MethodId to get {@link #hold} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #hold} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getHold(int decimals) {
+        return roundValue(hold, decimals);
+    }
+
+    /**
+     * MethodId to get {@link #profileId} instance <br>
      * Any params required
      *
      * @return {@link #profileId} instance as {@link String}
@@ -237,7 +237,7 @@ public class Account {
     }
 
     /**
-     * Method to get {@link #tradingEnable} instance <br>
+     * MethodId to get {@link #tradingEnable} instance <br>
      * Any params required
      *
      * @return {@link #tradingEnable} instance as boolean
@@ -247,7 +247,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #tradingEnable} instance
+     * MethodId to set {@link #tradingEnable} instance
      *
      * @param tradingEnable: is flag that checks if trading is enabled
      **/
@@ -256,7 +256,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #tradingEnable} instance on {@code "true"} <br>
+     * MethodId to set {@link #tradingEnable} instance on {@code "true"} <br>
      * Any params required
      **/
     public void enableTrading() {
@@ -264,7 +264,7 @@ public class Account {
     }
 
     /**
-     * Method to set {@link #tradingEnable} instance on {@code "false"} <br>
+     * MethodId to set {@link #tradingEnable} instance on {@code "false"} <br>
      * Any params required
      **/
     public void disableTrading() {

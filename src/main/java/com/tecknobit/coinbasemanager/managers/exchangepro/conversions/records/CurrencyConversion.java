@@ -82,7 +82,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -92,7 +92,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #amount} instance <br>
+     * MethodId to get {@link #amount} instance <br>
      * Any params required
      *
      * @return {@link #amount} instance as double
@@ -102,7 +102,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #amount} instance
+     * MethodId to get {@link #amount} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
@@ -113,7 +113,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #fromAccountId} instance <br>
+     * MethodId to get {@link #fromAccountId} instance <br>
      * Any params required
      *
      * @return {@link #fromAccountId} instance as {@link String}
@@ -123,7 +123,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #toAccountId} instance <br>
+     * MethodId to get {@link #toAccountId} instance <br>
      * Any params required
      *
      * @return {@link #toAccountId} instance as {@link String}
@@ -133,7 +133,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #from} instance <br>
+     * MethodId to get {@link #from} instance <br>
      * Any params required
      *
      * @return {@link #from} instance as {@link String}
@@ -143,7 +143,7 @@ public class CurrencyConversion {
     }
 
     /**
-     * Method to get {@link #to} instance <br>
+     * MethodId to get {@link #to} instance <br>
      * Any params required
      *
      * @return {@link #to} instance as {@link String}

@@ -57,7 +57,7 @@ public class Ledger extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #balance} instance <br>
+     * MethodId to get {@link #balance} instance <br>
      * Any params required
      *
      * @return {@link #balance} instance as double
@@ -67,7 +67,7 @@ public class Ledger extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #balance} instance
+     * MethodId to get {@link #balance} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #balance} instance rounded with decimal digits inserted
@@ -78,7 +78,7 @@ public class Ledger extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #details} instance <br>
+     * MethodId to get {@link #details} instance <br>
      * Any params required
      *
      * @return {@link #details} instance as {@link Details}
@@ -133,7 +133,7 @@ public class Ledger extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #to} instance <br>
+         * MethodId to get {@link #to} instance <br>
          * Any params required
          *
          * @return {@link #to} instance as {@link String}
@@ -143,7 +143,7 @@ public class Ledger extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #from} instance <br>
+         * MethodId to get {@link #from} instance <br>
          * Any params required
          *
          * @return {@link #from} instance as {@link String}
@@ -153,7 +153,7 @@ public class Ledger extends AccountDetails {
         }
 
         /**
-         * Method to get {@link #profileTransferId} instance <br>
+         * MethodId to get {@link #profileTransferId} instance <br>
          * Any params required
          *
          * @return {@link #profileTransferId} instance as {@link String}

@@ -123,7 +123,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param to:     final currency to convert
      * @param amount: amount value to convert
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return result of conversion as {"format"} defines
+     * @return result of conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -151,7 +151,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param from:        currency to convert
      * @param to:          final currency to convert
      * @param amount:      amount value to convert
-     * @param extraParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -187,7 +187,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param from:        currency to convert
      * @param to:          final currency to convert
      * @param amount:      amount value to convert
-     * @param extraParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -197,7 +197,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:            return type formatter -> {@link ReturnFormat}
-     * @return result of conversion as {"format"} defines
+     * @return result of conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -220,12 +220,14 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
         return returnCurrencyConversion(sendPayloadedRequest(CONVERSIONS_ENDPOINT, POST_METHOD, extraParams), format);
     }
 
-    /** Method to assemble map of body params
-     * @param from: currency to convert
-     * @param to: final currency to convert
+    /**
+     * MethodId to assemble a payload
+     *
+     * @param from:   currency to convert
+     * @param to:     final currency to convert
      * @param amount: amount value to convert
-     * @return map of body params as {@link Params}
-     * **/
+     * @return a payload as {@link Params}
+     **/
     private Params getConversionPayload(String from, String to, double amount) {
         Params payload = new Params();
         payload.addParam("from", from);
@@ -262,7 +264,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param format:            return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
      *     Get a conversion</a>
-     * @return information about one conversion as {"format"} defines
+     * @return information about one conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -312,7 +314,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param format:            return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
      *     Get a conversion</a>
-     * @return information about one conversion as {"format"} defines
+     * @return information about one conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -333,11 +335,11 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     }
 
     /**
-     * Method to assemble a conversion
+     * MethodId to assemble a conversion
      *
      * @param conversionResponse: conversion response to format
      * @param format:             return type formatter -> {@link ReturnFormat}
-     * @return conversion response as {"format"} defines
+     * @return conversion response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnCurrencyConversion(String conversionResponse, ReturnFormat format) {

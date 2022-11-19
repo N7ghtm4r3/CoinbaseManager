@@ -176,7 +176,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to store some properties
+     * MethodId to store some properties
      *
      * @param apiKey:              {@code "Coinbase"} api key
      * @param apiSecret:           {@code "Coinbase"} api secret
@@ -197,7 +197,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to execute and get response of a request
+     * MethodId to execute and get response of a request
      *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
      * @param method:   method HTTP for the request
@@ -209,12 +209,14 @@ public class CoinbaseManager {
         return apiRequest.getResponse();
     }
 
-    /** Method to set {@code "Coinbase"} request headers
+    /**
+     * MethodId to set {@code "Coinbase"} request headers
+     *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param method: method HTTP for the request
-     * @param body: only if request has a body params (generally POST request)
-     * any return
-     * **/
+     * @param method:   method HTTP for the request
+     * @param body:     only if request has a body params (generally POST request)
+     *                  any return
+     **/
     private void setRequestHeaders(String method, String endpoint, String body) throws Exception {
         String timestamp = "" + System.currentTimeMillis() / 1000;
         String stringToSign = timestamp + method + endpoint;
@@ -230,7 +232,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to execute and get response of a POST http request
+     * MethodId to execute and get response of a POST http request
      *
      * @param endpoint:   endpoint for the request and its query params es endpoint?param=paramValue
      * @param bodyParams: params to insert in the http body post request
@@ -246,7 +248,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to assemble query params for a {@code "Coinbase"} request
+     * MethodId to assemble query params for a {@code "Coinbase"} request
      *
      * @param queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
@@ -256,7 +258,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to get percent between two values and textualize it
+     * MethodId to get percent between two values and textualize it
      *
      * @param startValue:    first value to make compare
      * @param finalValue:    last value to compare and get percent by first value
@@ -268,7 +270,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to get error response of request <br>
+     * MethodId to get error response of request <br>
      * Any params required
      *
      * @return error of the response as {@link String}
@@ -278,7 +280,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to get error response of request <br>
+     * MethodId to get error response of request <br>
      * Any params required
      *
      * @return error response of the request formatted as {@code "JSON"} or as {@link String}
@@ -288,7 +290,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to print error response of request <br>
+     * MethodId to print error response of request <br>
      * Any params required
      **/
     public void printErrorResponse() {
@@ -296,7 +298,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to get status code of request response <br>
+     * MethodId to get status code of request response <br>
      * Any params required
      *
      * @return status code of request response
@@ -305,27 +307,31 @@ public class CoinbaseManager {
         return apiRequest.getResponseStatusCode();
     }
 
-    /** Method to round a value
-     * @param value: value to round
+    /**
+     * MethodId to round a value
+     *
+     * @param value:         value to round
      * @param decimalDigits: number of digits to round final value
      * @return value rounded with decimalDigits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     * **/
-    public double roundValue(double value, int decimalDigits){
+     **/
+    public double roundValue(double value, int decimalDigits) {
         return TradingTools.roundValue(value, decimalDigits);
     }
 
-    /** Method to get percent between two values
+    /**
+     * MethodId to get percent between two values
+     *
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
-     * **/
+     **/
     public double getTrendPercent(double startValue, double finalValue){
         return computeAssetPercent(startValue, finalValue);
     }
 
-    /** Method to get percent between two values and round it
+    /** MethodId to get percent between two values and round it
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
      * @param decimalDigits: number of digits to round final percent value
@@ -336,7 +342,7 @@ public class CoinbaseManager {
         return computeAssetPercent(startValue, finalValue, decimalDigits);
     }
 
-    /** Method to format percent between two values and textualize it
+    /** MethodId to format percent between two values and textualize it
      * @param percent: value to format
      * @return percent value formatted es. +8% or -8% as {@link String}
      * **/
@@ -344,7 +350,7 @@ public class CoinbaseManager {
         return textualizeAssetPercent(percent);
     }
 
-    /** Method to get percent between two values and textualize it
+    /** MethodId to get percent between two values and textualize it
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
      * @return percent value es. +8% or -8% as {@link String}
@@ -353,7 +359,7 @@ public class CoinbaseManager {
         return textualizeAssetPercent(startValue, finalValue);
     }
 
-    /** Method to get {@code "Coinbase"} api key
+    /** MethodId to get {@code "Coinbase"} api key
      * Any params required
      * @return api key as {@link String}
      * **/
@@ -361,7 +367,7 @@ public class CoinbaseManager {
         return apiKey;
     }
 
-    /** Method to get {@code "Coinbase"} api secret
+    /** MethodId to get {@code "Coinbase"} api secret
      * Any params required
      * @return api secret as {@link String}
      * **/
@@ -370,7 +376,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * Method to get {@code "Coinbase"} api passphrase
+     * MethodId to get {@code "Coinbase"} api passphrase
      * Any params required
      *
      * @return api passphrase as {@link String}

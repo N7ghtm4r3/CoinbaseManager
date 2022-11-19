@@ -85,7 +85,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #createdAt} instance <br>
+     * MethodId to get {@link #createdAt} instance <br>
      * Any params required
      *
      * @return {@link #createdAt} instance as {@link String}
@@ -95,7 +95,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #createdAt} timestamp <br>
+     * MethodId to get {@link #createdAt} timestamp <br>
      * Any params required
      *
      * @return {@link #createdAt} timestamp as long
@@ -105,7 +105,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -115,7 +115,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #amount} instance <br>
+     * MethodId to get {@link #amount} instance <br>
      * Any params required
      *
      * @return {@link #amount} instance as long
@@ -125,7 +125,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to set {@link #amount}
+     * MethodId to set {@link #amount}
      *
      * @param amount: amount value
      * @throws IllegalArgumentException when amount value is less than 0
@@ -137,7 +137,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #amount} instance
+     * MethodId to get {@link #amount} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
@@ -148,7 +148,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
+     * MethodId to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
@@ -158,7 +158,7 @@ public class AccountDetails {
     }
 
     /**
-     * Method to set {@link #type}
+     * MethodId to set {@link #type}
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value null or is empty

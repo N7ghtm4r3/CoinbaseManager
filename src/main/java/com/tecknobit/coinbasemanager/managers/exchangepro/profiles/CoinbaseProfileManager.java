@@ -1,5 +1,8 @@
 package com.tecknobit.coinbasemanager.managers.exchangepro.profiles;
 
+import com.tecknobit.apimanager.annotations.RequestPath;
+import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.profiles.records.Profile;
 import org.json.JSONArray;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 
 import static com.tecknobit.apimanager.apis.APIRequest.*;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
 /**
  * The {@code CoinbaseProfileManager} class is useful to manage all {@code "Coinbase"} profiles endpoints
@@ -89,112 +93,187 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get profiles of a {@code "Coinbase"}'s account
+     * Request to get profiles of a {@code "Coinbase"}'s account <br>
      * Any params required
      *
-     * @return profiles of a {@code "Coinbase"}'s account as {@link String}
+     * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     * Get profiles</a>
      **/
-    public String getProfiles() throws Exception {
-        return sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD);
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public ArrayList<Profile> getProfiles() throws Exception {
+        return getProfiles(LIBRARY_OBJECT);
     }
 
     /**
      * Request to get profiles of a {@code "Coinbase"}'s account
-     * Any params required
      *
-     * @return profiles of a {@code "Coinbase"}'s account as {@link JSONArray}
+     * @param format :                 return type formatter -> {@link ReturnFormat}
+     * @return profiles of a {@code "Coinbase"}'s account list as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     * Get profiles</a>
      **/
-    public JSONArray getProfilesJSON() throws Exception {
-        return new JSONArray(getProfiles());
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public <T> T getProfiles(ReturnFormat format) throws Exception {
+        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD), format);
     }
 
     /**
      * Request to get profiles of a {@code "Coinbase"}'s account
-     * Any params required
      *
+     * @param active: flag if profile is active or not
      * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
+     * Get profiles</a>
      **/
-    public ArrayList<Profile> getProfilesList() throws Exception {
-        return assembleProfilesList(new JSONArray(getProfiles()));
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public ArrayList<Profile> getProfiles(boolean active) throws Exception {
+        return getProfiles(active, LIBRARY_OBJECT);
     }
 
-    /** Request to get profiles of a {@code "Coinbase"}'s account
+    /**
+     * Request to get profiles of a {@code "Coinbase"}'s account
+     *
      * @param active: flag if profile is active or not
+     * @param format  :                 return type formatter -> {@link ReturnFormat}
+     * @return profiles of a {@code "Coinbase"}'s account list as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a {@code "Coinbase"}'s account as {@link String}
-     * **/
-    public String getProfiles(boolean active) throws Exception {
-        return sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET_METHOD);
+     * Get profiles</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public <T> T getProfiles(boolean active, ReturnFormat format) throws Exception {
+        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET_METHOD), format);
     }
 
-    /** Request to get profiles of a {@code "Coinbase"}'s account
-     * @param active: flag if profile is active or not
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a {@code "Coinbase"}'s account as {@link JSONArray}
-     * **/
-    public JSONArray getProfilesJSON(boolean active) throws Exception {
-        return new JSONArray(getProfiles(active));
+    /**
+     * MethodId to assemble a profiles list
+     *
+     * @param profilesResponse : profiles list response to format
+     * @param format           :                 return type formatter -> {@link ReturnFormat}
+     * @return profiles list response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnProfilesList(String profilesResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONArray(profilesResponse);
+            case LIBRARY_OBJECT:
+                ArrayList<Profile> profiles = new ArrayList<>();
+                JSONArray jProfiles = new JSONArray(profilesResponse);
+                for (int j = 0; j < jProfiles.length(); j++)
+                    profiles.add(new Profile(jProfiles.getJSONObject(j)));
+                return (T) profiles;
+            default:
+                return (T) profilesResponse;
+        }
     }
 
-    /** Request to get profiles of a {@code "Coinbase"}'s account
-     * @param active: flag if profile is active or not
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1</a>
-     * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
-     * **/
-    public ArrayList<Profile> getProfilesList(boolean active) throws Exception {
-        return assembleProfilesList(new JSONArray(getProfiles(active)));
-    }
-
-    /** Method to assemble a profile list
-     * @param jsonProfiles: jsonArray obtained by response request
-     * @return profile list as {@link ArrayList} of {@link Profile}
-     * **/
-    private ArrayList<Profile> assembleProfilesList(JSONArray jsonProfiles){
-        ArrayList<Profile> profiles = new ArrayList<>();
-        for (int j=0; j < jsonProfiles.length(); j++)
-            profiles.add(new Profile(jsonProfiles.getJSONObject(j)));
-        return profiles;
+    /**
+     * Request to create a profile
+     *
+     * @param name: name of profile to create
+     * @return result of creation profile as {@link Profile} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
+     * Create a profile</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public Profile createProfile(String name) throws Exception {
+        return createProfile(name, LIBRARY_OBJECT);
     }
 
     /** Request to create a profile
      * @param name: name of profile to create
+     * @param format           :                 return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
-     *     ttps://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1</a>
-     * @return result of creation profile as {@link String}
+     *     Create a profile</a>
+     * @return result of creation profile as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public String createProfile(String name) throws Exception {
+    @Returner
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    public <T> T createProfile(String name, ReturnFormat format) throws Exception {
         Params bodyParams = new Params();
         bodyParams.addParam("name", name);
-        return sendPayloadedRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
-    }
-
-    /** Request to create a profile
-     * @param name: name of profile to create
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1</a>
-     * @return result of creation profile as {@link JSONObject}
-     * **/
-    public JSONObject createProfileJSON(String name) throws Exception {
-        return new JSONObject(createProfile(name));
-    }
-
-    /** Request to create a profile
-     * @param name: name of profile to create
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1</a>
-     * @return result of creation profile as {@link Profile} custom object
-     * **/
-    public Profile createProfileObject(String name) throws Exception {
-        return new Profile(new JSONObject(createProfile(name)));
+        String profileResponse = sendPayloadedRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(profileResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Profile(new JSONObject(profileResponse));
+            default:
+                return (T) profileResponse;
+        }
     }
 
     /** Request to transfer funds between profiles
@@ -203,130 +282,312 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param currency: currency to be transferred
      * @param amount: amount to be transferred
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1</a>
+     *     Transfer funds between profiles</a>
      * @return result of successful transfer or not as boolean
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/transfer")
     public boolean transferFundsBetweenProfiles(String from, String to, String currency, double amount) throws Exception {
-        Params bodyParams = new Params();
-        bodyParams.addParam("from", from);
-        bodyParams.addParam("to", to);
-        bodyParams.addParam("currency", currency);
-        bodyParams.addParam("amount", amount);
-        return sendPayloadedRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, bodyParams).equals("{}");
+        Params payload = new Params();
+        payload.addParam("from", from);
+        payload.addParam("to", to);
+        payload.addParam("currency", currency);
+        payload.addParam("amount", amount);
+        return sendPayloadedRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, payload).equals("{}");
     }
 
     /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link String}
-     * **/
-    public String getProfileById(String profileId) throws Exception {
-        return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET_METHOD);
-    }
-
-    /** Request to get a single {@code "Coinbase"}'s profile
-     * @param profileId: identifier of profile from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link JSONObject}
-     * **/
-    public JSONObject getProfileByIdJSON(String profileId) throws Exception {
-        return new JSONObject(getProfileById(profileId));
-    }
-
-    /** Request to get a single {@code "Coinbase"}'s profile
-     * @param profileId: identifier of profile from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
+     *     Get profile by id</a>
      * @return single profile as {@link Profile} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public Profile getProfileByIdObject(String profileId) throws Exception {
-        return new Profile(new JSONObject(getProfileById(profileId)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public Profile getProfileById(String profileId) throws Exception {
+        return getProfileById(profileId, LIBRARY_OBJECT);
+    }
+
+    /** Request to get a single {@code "Coinbase"}'s profile
+     * @param profileId: identifier of profile from fetch details
+     * @param format           :                 return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     *     Get profile by id</a>
+     * @return single profile as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public <T> T getProfileById(String profileId, ReturnFormat format) throws Exception {
+        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET_METHOD), format);
     }
 
     /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link String}
-     * **/
-    public String getProfileById(String profileId, boolean active) throws Exception {
-        return sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET_METHOD);
-    }
-
-    /** Request to get a single {@code "Coinbase"}'s profile
-     * @param profileId: identifier of profile from fetch details
-     * @param active: flag if profile is active or not
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
-     * @return single profile as {@link JSONObject}
-     * **/
-    public JSONObject getProfileByIdJSON(String profileId, boolean active) throws Exception {
-        return new JSONObject(getProfileById(profileId, active));
-    }
-
-    /** Request to get a single {@code "Coinbase"}'s profile
-     * @param profileId: identifier of profile from fetch details
-     * @param active: flag if profile is active or not
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1</a>
+     *     Get profile by id</a>
      * @return single profile as {@link Profile} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public Profile getProfileByIdObject(String profileId, boolean active) throws Exception {
-        return new Profile(new JSONObject(getProfileById(profileId, active)));
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public Profile getProfileById(String profileId, boolean active) throws Exception {
+        return getProfileById(profileId, active, LIBRARY_OBJECT);
     }
 
-    /** Request to rename a profile
-     * @param profileId: identifier of profile to change
-     * @param name: name to assign at profile to change
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1</a>
-     * @return result of renaming as {@link String}
+    /** Request to get a single {@code "Coinbase"}'s profile
+     * @param profileId: identifier of profile from fetch details
+     * @param active: flag if profile is active or not
+     * @param format           :                 return type formatter -> {@link ReturnFormat}
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     *     Get profile by id</a>
+     * @return single profile as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    public String renameProfile(String profileId, String name) throws Exception {
-        Params bodyParams = new Params();
-        bodyParams.addParam("profileId", profileId);
-        bodyParams.addParam("name", name);
-        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, bodyParams);
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public <T> T getProfileById(String profileId, boolean active, ReturnFormat format) throws Exception {
+        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET_METHOD),
+                format);
     }
 
-    /** Request to rename a profile
-     * @param profileId: identifier of profile to change
-     * @param name: name to assign at profile to change
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1</a>
-     * @return result of renaming as {@link JSONObject}
-     * **/
-    public JSONObject renameProfileJSON(String profileId, String name) throws Exception {
-        return new JSONObject(renameProfile(profileId, name));
-    }
-
-    /** Request to rename a profile
-     * @param profileId: identifier of profile to change
-     * @param name: name to assign at profile to change
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1</a>
+    /**
+     * Request to rename a profile
+     *
+     * @param profile: profile to change the name
+     * @param name:    name to assign at profile to change
      * @return result of renaming as {@link Profile} custom object
-     * **/
-    public Profile renameProfileObject(String profileId, String name) throws Exception {
-        return new Profile(new JSONObject(renameProfile(profileId, name)));
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * Rename a profile</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public Profile renameProfile(Profile profile, String name) throws Exception {
+        return renameProfile(profile.getId(), name, LIBRARY_OBJECT);
     }
 
-    /** Request to delete a profile
-     * @param profileId: identifier of buck profile to delete
-     * @param to: identifier of profile do delete
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
-     *     https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1</a>
-     * @return result of deletion or not as boolean
+    /**
+     * Request to rename a profile
+     *
+     * @param profile: profile to change the name
+     * @param name:    name to assign at profile to change
+     * @param format:  return type formatter -> {@link ReturnFormat}
+     * @return result of renaming as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * Rename a profile</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public <T> T renameProfile(Profile profile, String name, ReturnFormat format) throws Exception {
+        return renameProfile(profile.getId(), name, format);
+    }
+
+    /** Request to rename a profile
+     * @param profileId: identifier of profile to change
+     * @param name: name to assign at profile to change
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     *     Rename a profile</a>
+     * @return result of renaming as {@link Profile} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public Profile renameProfile(String profileId, String name) throws Exception {
+        return renameProfile(profileId, name, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to rename a profile
+     *
+     * @param profileId: identifier of profile to change
+     * @param name:      name to assign at profile to change
+     * @param format:    return type formatter -> {@link ReturnFormat}
+     * @return result of renaming as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * Rename a profile</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    public <T> T renameProfile(String profileId, String name, ReturnFormat format) throws Exception {
+        Params payload = new Params();
+        payload.addParam("profileId", profileId);
+        payload.addParam("name", name);
+        return returnProfile(sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, payload),
+                format);
+    }
+
+    /**
+     * MethodId to create a profile object
+     *
+     * @param profileResponse: profile to format
+     * @param format:          return type formatter -> {@link ReturnFormat}
+     * @return profile response as {@code "format"} defines
+     **/
+    @Returner
+    private <T> T returnProfile(String profileResponse, ReturnFormat format) {
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(profileResponse);
+            case LIBRARY_OBJECT:
+                return (T) new Profile(new JSONObject(profileResponse));
+            default:
+                return (T) profileResponse;
+        }
+    }
+
+    /**
+     * Request to delete a profile
+     *
+     * @param profile: buck profile to delete
+     * @param to:      identifier of profile do delete
+     * @return result of deletion or not as boolean
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+     * Delete a profile</a>
+     **/
+    @WrappedRequest
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
+    public boolean deleteProfile(Profile profile, String to) throws Exception {
+        return deleteProfile(profile.getId(), to);
+    }
+
+    /**
+     * Request to delete a profile
+     *
+     * @param profileId: identifier of buck profile to delete
+     * @param to:        identifier of profile do delete
+     * @return result of deletion or not as boolean
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+     * Delete a profile</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
     public boolean deleteProfile(String profileId, String to) throws Exception {
-        Params bodyParams = new Params();
-        bodyParams.addParam("profileId", profileId);
-        bodyParams.addParam("to", to);
-        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT
-                , PUT_METHOD, bodyParams).equals("{}");
+        Params payload = new Params();
+        payload.addParam("profileId", profileId);
+        payload.addParam("to", to);
+        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT, PUT_METHOD,
+                payload).equals("{}");
     }
 
 }

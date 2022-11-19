@@ -32,29 +32,14 @@ import org.json.JSONObject;
 public class PayMethod {
 
     /**
-     * {@code PAYPAL_TYPE} is constant for PayPal's pay method type
-     * **/
-    public static final String PAYPAL_TYPE = "paypal";
-
-    /**
-     * {@code BANK_TYPE} is constant for bank's pay method type
-     * **/
-    public static final String BANK_TYPE = "bank";
-
-    /**
-     * {@code FIAT_ACCOUNT_TYPE} is constant for fiat account's pay method type
-     * **/
-    public static final String FIAT_ACCOUNT_TYPE = "fiat_account";
+     * {@code type} is instance that memorizes type value
+     **/
+    protected PayMethodType type;
 
     /**
      * {@code name} is instance that memorizes name value
      **/
     protected String name;
-
-    /**
-     * {@code type} is instance that memorizes type value
-     **/
-    protected String type;
 
     /**
      * Constructor to init a {@link PayMethod} custom object
@@ -63,15 +48,12 @@ public class PayMethod {
      * @param type: pay method type
      * @throws IllegalArgumentException if parameters range is not respected
      **/
-    public PayMethod(String name, String type) {
+    public PayMethod(String name, PayMethodType type) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
         else
             this.name = name;
-        if (!isTypeValid(type))
-            throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
-        else
-            this.type = type;
+        this.type = type;
     }
 
     /**
@@ -80,11 +62,11 @@ public class PayMethod {
      * @param payment: payment details as {@link JSONObject}
      **/
     public PayMethod(JSONObject payment) {
-        this(payment.getString("name"), payment.getString("type"));
+        this(payment.getString("name"), PayMethodType.valueOf(payment.getString("type")));
     }
 
     /**
-     * Method to get {@link #name} instance <br>
+     * MethodId to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -94,7 +76,7 @@ public class PayMethod {
     }
 
     /**
-     * Method to set {@link #name}
+     * MethodId to set {@link #name}
      *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
@@ -106,35 +88,45 @@ public class PayMethod {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
+     * MethodId to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
-    public String getType() {
+    public PayMethodType getType() {
         return type;
     }
 
     /**
-     * Method to set {@link #type}
+     * MethodId to set {@link #type}
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value is null or empty
      **/
-    public void setType(String type) {
-        if (!isTypeValid(type))
-            throw new IllegalArgumentException("Type value cannot be null and must be fiat_account, bank or paypal type");
+    public void setType(PayMethodType type) {
         this.type = type;
     }
 
     /**
-     * Method to check validity of {@link #type}
-     *
-     * @param type: type value
-     * @return validity of type as boolean
+     * {@code PayMethodType} list of available pay methods types
      **/
-    private boolean isTypeValid(String type) {
-        return type != null && (type.equals(FIAT_ACCOUNT_TYPE) || type.equals(PAYPAL_TYPE) || type.equals(BANK_TYPE));
+    public enum PayMethodType {
+
+        /**
+         * {@code "paypal"} pay methods type
+         **/
+        paypal,
+
+        /**
+         * {@code "bank"} pay methods type
+         **/
+        bank,
+
+        /**
+         * {@code "fiat_account"} pay methods type
+         **/
+        fiat_account
+
     }
 
     /**
@@ -170,7 +162,7 @@ public class PayMethod {
         }
 
         /**
-         * Method to get {@link #symbol} instance <br>
+         * MethodId to get {@link #symbol} instance <br>
          * Any params required
          *
          * @return {@link #symbol} instance as {@link String}

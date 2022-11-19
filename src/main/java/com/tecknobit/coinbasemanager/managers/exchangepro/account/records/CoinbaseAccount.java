@@ -132,7 +132,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #balance} instance <br>
+     * MethodId to get {@link #balance} instance <br>
      * Any params required
      *
      * @return {@link #balance} instance as double
@@ -142,7 +142,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #balance}
+     * MethodId to set {@link #balance}
      *
      * @param balance: balance value
      * @throws IllegalArgumentException when balance value is less than 0
@@ -154,7 +154,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #availableOnConsumer} instance <br>
+     * MethodId to get {@link #availableOnConsumer} instance <br>
      * Any params required
      *
      * @return {@link #availableOnConsumer} instance as boolean
@@ -164,7 +164,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #active}
+     * MethodId to set {@link #active}
      *
      * @param availableOnConsumer: flag that checks available on consumer
      **/
@@ -173,7 +173,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #name} instance <br>
+     * MethodId to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -183,7 +183,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #active} instance <br>
+     * MethodId to get {@link #active} instance <br>
      * Any params required
      *
      * @return {@link #active} instance as boolean
@@ -193,7 +193,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #active}
+     * MethodId to set {@link #active}
      *
      * @param active: flag that checks if the account is active
      **/
@@ -202,7 +202,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #currency} instance <br>
+     * MethodId to get {@link #currency} instance <br>
      * Any params required
      *
      * @return {@link #currency} instance as {@link String}
@@ -212,7 +212,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #currency}
+     * MethodId to set {@link #currency}
      *
      * @param currency: currency value
      * @throws IllegalArgumentException when currency value is null or empty
@@ -224,7 +224,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -234,7 +234,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
+     * MethodId to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
@@ -244,7 +244,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #type}
+     * MethodId to set {@link #type}
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value is null or empty
@@ -256,7 +256,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #primary} instance <br>
+     * MethodId to get {@link #primary} instance <br>
      * Any params required
      *
      * @return {@link #primary} instance as boolean
@@ -266,7 +266,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #primary}
+     * MethodId to set {@link #primary}
      *
      * @param primary: flag that checks if the account is the primary
      **/
@@ -275,7 +275,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #holdBalance} instance <br>
+     * MethodId to get {@link #holdBalance} instance <br>
      * Any params required
      *
      * @return {@link #holdBalance} instance as double
@@ -285,7 +285,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #holdBalance}
+     * MethodId to set {@link #holdBalance}
      *
      * @param holdBalance: hold balance value
      * @throws IllegalArgumentException when hold balance value is less than 0
@@ -297,7 +297,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #holdBalance} instance
+     * MethodId to get {@link #holdBalance} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #holdBalance} instance rounded with decimal digits inserted
@@ -308,7 +308,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #holdCurrency} instance <br>
+     * MethodId to get {@link #holdCurrency} instance <br>
      * Any params required
      *
      * @return {@link #holdCurrency} instance as {@link String}
@@ -318,7 +318,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #holdCurrency}
+     * MethodId to set {@link #holdCurrency}
      *
      * @param holdCurrency: hold currency value
      * @throws IllegalArgumentException when hold currency value is null or empty
@@ -330,7 +330,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to get {@link #depositInformation} instance <br>
+     * MethodId to get {@link #depositInformation} instance <br>
      * Any params required
      *
      * @return {@link #depositInformation} instance as {@link DepositInformation}
@@ -340,7 +340,7 @@ public class CoinbaseAccount {
     }
 
     /**
-     * Method to set {@link #depositInformation}
+     * MethodId to set {@link #depositInformation}
      *
      * @param depositInformation: deposit information value
      **/
@@ -483,7 +483,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #reference} instance <br>
+         * MethodId to get {@link #reference} instance <br>
          * Any params required
          *
          * @return {@link #reference} instance as {@link String}
@@ -493,7 +493,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #reference}
+         * MethodId to set {@link #reference}
          *
          * @param reference: reference value
          * @throws IllegalArgumentException when reference value is null or empty
@@ -505,7 +505,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #iban} instance <br>
+         * MethodId to get {@link #iban} instance <br>
          * Any params required
          *
          * @return {@link #iban} instance as {@link String}
@@ -515,7 +515,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #iban}
+         * MethodId to set {@link #iban}
          *
          * @param iban: iban value
          * @throws IllegalArgumentException when iban value is null or empty
@@ -527,7 +527,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #accountName} instance <br>
+         * MethodId to get {@link #accountName} instance <br>
          * Any params required
          *
          * @return {@link #accountName} instance as {@link String}
@@ -537,7 +537,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #accountName}
+         * MethodId to set {@link #accountName}
          *
          * @param accountName: account name value
          * @throws IllegalArgumentException when account name value is null or empty
@@ -549,7 +549,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #bankName} instance <br>
+         * MethodId to get {@link #bankName} instance <br>
          * Any params required
          *
          * @return {@link #bankName} instance as {@link String}
@@ -559,7 +559,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #bankName}
+         * MethodId to set {@link #bankName}
          *
          * @param bankName: bank name value
          * @throws IllegalArgumentException when bank name value is null or empty
@@ -571,7 +571,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #bankAddress} instance <br>
+         * MethodId to get {@link #bankAddress} instance <br>
          * Any params required
          *
          * @return {@link #bankAddress} instance as {@link String}
@@ -581,7 +581,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #bankAddress}
+         * MethodId to set {@link #bankAddress}
          *
          * @param bankAddress: bank address value
          * @throws IllegalArgumentException when bank address value is null or empty
@@ -593,7 +593,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #accountAddress} instance <br>
+         * MethodId to get {@link #accountAddress} instance <br>
          * Any params required
          *
          * @return {@link #accountAddress} instance as {@link String}
@@ -603,7 +603,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #accountAddress}
+         * MethodId to set {@link #accountAddress}
          *
          * @param accountAddress: account address value
          * @throws IllegalArgumentException when account address value is null or empty
@@ -615,7 +615,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #swift} instance <br>
+         * MethodId to get {@link #swift} instance <br>
          * Any params required
          *
          * @return {@link #swift} instance as {@link String}
@@ -625,7 +625,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #swift}
+         * MethodId to set {@link #swift}
          *
          * @param swift: swift value
          * @throws IllegalArgumentException when swift is null, empty or invalid value
@@ -640,7 +640,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #bankCountryCode} instance <br>
+         * MethodId to get {@link #bankCountryCode} instance <br>
          * Any params required
          *
          * @return {@link #bankCountryCode} instance as {@link String}
@@ -650,7 +650,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #bankCountryCode}
+         * MethodId to set {@link #bankCountryCode}
          *
          * @param bankCountryCode: bank country code value
          * @throws IllegalArgumentException when bank country code value is null or empty
@@ -662,7 +662,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to get {@link #bankCountryName} instance <br>
+         * MethodId to get {@link #bankCountryName} instance <br>
          * Any params required
          *
          * @return {@link #bankCountryName} instance as {@link String}
@@ -672,7 +672,7 @@ public class CoinbaseAccount {
         }
 
         /**
-         * Method to set {@link #bankCountryName}
+         * MethodId to set {@link #bankCountryName}
          *
          * @param bankCountryName: bank country name value
          * @throws IllegalArgumentException when bank country name value is null or empty

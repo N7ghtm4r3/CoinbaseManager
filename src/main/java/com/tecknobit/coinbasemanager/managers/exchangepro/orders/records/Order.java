@@ -112,7 +112,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
+     * MethodId to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
@@ -122,7 +122,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #timeInForce} instance <br>
+     * MethodId to get {@link #timeInForce} instance <br>
      * Any params required
      *
      * @return {@link #timeInForce} instance as {@link String}
@@ -132,7 +132,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #status} instance <br>
+     * MethodId to get {@link #status} instance <br>
      * Any params required
      *
      * @return {@link #status} instance as {@link Status}
@@ -142,7 +142,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -341,7 +341,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #postOnly} instance <br>
+     * MethodId to get {@link #postOnly} instance <br>
      * Any params required
      *
      * @return {@link #postOnly} instance as boolean
@@ -351,7 +351,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #fillFees} instance <br>
+     * MethodId to get {@link #fillFees} instance <br>
      * Any params required
      *
      * @return {@link #fillFees} instance as double
@@ -361,7 +361,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #fillFees} instance
+     * MethodId to get {@link #fillFees} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #fillFees} instance rounded with decimal digits inserted
@@ -372,7 +372,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #filledSize} instance <br>
+     * MethodId to get {@link #filledSize} instance <br>
      * Any params required
      *
      * @return {@link #filledSize} instance as double
@@ -382,7 +382,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #filledSize} instance
+     * MethodId to get {@link #filledSize} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #filledSize} instance rounded with decimal digits inserted
@@ -393,7 +393,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #executedValue} instance <br>
+     * MethodId to get {@link #executedValue} instance <br>
      * Any params required
      *
      * @return {@link #executedValue} instance as double
@@ -403,7 +403,7 @@ public class Order extends OrderDetails {
     }
 
     /**
-     * Method to get {@link #executedValue} instance
+     * MethodId to get {@link #executedValue} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #executedValue} instance rounded with decimal digits inserted

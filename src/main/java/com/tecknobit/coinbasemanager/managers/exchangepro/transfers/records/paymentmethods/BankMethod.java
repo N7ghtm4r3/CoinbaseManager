@@ -18,7 +18,7 @@ public class BankMethod extends PayMethod {
      * @param name: pay method name
      **/
     public BankMethod(String name) {
-        super(name, BANK_TYPE);
+        super(name, PayMethodType.bank);
     }
 
     /**
@@ -84,7 +84,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to get {@link #iban} instance <br>
+         * MethodId to get {@link #iban} instance <br>
          * Any params required
          *
          * @return {@link #iban} instance as {@link String}
@@ -94,7 +94,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to set {@link #iban}
+         * MethodId to set {@link #iban}
          *
          * @param iban: iban value
          * @throws IllegalArgumentException when iban value is null or empty
@@ -106,7 +106,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to get {@link #institutionName} instance <br>
+         * MethodId to get {@link #institutionName} instance <br>
          * Any params required
          *
          * @return {@link #institutionName} instance as {@link String}
@@ -116,7 +116,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to set {@link #institutionName}
+         * MethodId to set {@link #institutionName}
          *
          * @param institutionName: institution name value
          * @throws IllegalArgumentException when institution name value is null or empty
@@ -128,7 +128,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to get {@link #swift} instance <br>
+         * MethodId to get {@link #swift} instance <br>
          * Any params required
          *
          * @return {@link #swift} instance as {@link String}
@@ -138,7 +138,7 @@ public class BankMethod extends PayMethod {
         }
 
         /**
-         * Method to set {@link #swift}
+         * MethodId to set {@link #swift}
          *
          * @param swift: swift value
          * @throws IllegalArgumentException when swift is null, empty or invalid value

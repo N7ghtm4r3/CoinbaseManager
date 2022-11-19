@@ -132,7 +132,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *
      * @param order:  order from get fill details
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -184,7 +184,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *
      * @param orderId: identifier of order from get fill details
      * @param format:  return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -273,7 +273,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -361,7 +361,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -379,8 +379,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      **/
     @RequestPath(path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByOrderId(String orderId, Params queryParams, ReturnFormat format) throws Exception {
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?order_id="
-                + orderId, queryParams), GET_METHOD), format);
+        queryParams.addParam("order_id", orderId);
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString(), GET_METHOD),
+                format);
     }
 
     /**
@@ -413,7 +414,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *
      * @param productId: identifier of product to get details
      * @param format:    return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -501,7 +502,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all filled orders list as {"format"} defines
+     * @return all filled orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -519,16 +520,17 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      **/
     @RequestPath(path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByProductId(String productId, Params queryParams, ReturnFormat format) throws Exception {
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + assembleQueryParams("?product_id="
-                + productId, queryParams), GET_METHOD), format);
+        queryParams.addParam("product_id", productId);
+        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString(), GET_METHOD),
+                format);
     }
 
     /**
-     * Method to assemble a fills list
+     * MethodId to assemble a fills list
      *
      * @param fillsResponse: fills list response to format
      * @param format:        return type formatter -> {@link ReturnFormat}
-     * @return fills list response as {"format"} defines
+     * @return fills list response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnFillsList(String fillsResponse, ReturnFormat format) {
@@ -584,7 +586,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting:  ascending or descending order criteria (asc or desc)
      * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status[]}
      * @param format:   return type formatter -> {@link ReturnFormat}
-     * @return all orders list as {"format"} defines
+     * @return all orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -645,7 +647,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting:  ascending or descending order criteria (asc or desc)
      * @param statuses: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Collection}
      * @param format:   return type formatter -> {@link ReturnFormat}
-     * @return all orders list as {"format"} defines
+     * @return all orders list as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -751,7 +753,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -855,7 +857,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -918,7 +920,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting:  ascending or descending order criteria (asc or desc)
      * @param status:   orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link Status}
      * @param format:   return type formatter -> {@link ReturnFormat}
-     * @return all orders as as {"format"} defines
+     * @return all orders as as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -969,7 +971,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              {@code "product_id"} -> product identifier - [string]
      *                          </li>
      *                     </ul>
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1021,7 +1023,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1084,7 +1086,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param statuses:  orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @param productId: identifier of product from fetch details es. BTC-ETH
      * @param format:    return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1185,7 +1187,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1249,7 +1251,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:        return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
      *     Get all orders</a>
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1348,7 +1350,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return all orders as {"format"} defines
+     * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1375,7 +1377,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     /**
-     * Method to assemble map of sorting criteria
+     * MethodId to assemble map of sorting criteria
      *
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param sorting:  ascending or descending order criteria (asc or desc)
@@ -1389,11 +1391,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     /**
-     * Method to assemble an orders list
+     * MethodId to assemble an orders list
      *
      * @param ordersResponse: orders list response to format
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @return orders list response as {"format"} defines
+     * @return orders list response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnOrdersList(String ordersResponse, ReturnFormat format) {
@@ -1441,7 +1443,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
      *     Cancel all orders</a>
-     * @return result list of cancelled id orders as {"format"} defines
+     * @return result list of cancelled id orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1505,7 +1507,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
      *     Cancel all orders</a>
-     * @return result list of cancelled id orders as {"format"} defines
+     * @return result list of cancelled id orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1526,11 +1528,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     /**
-     * Method to assemble a canceled orders list
+     * MethodId to assemble a canceled orders list
      *
      * @param ordersResponse: canceled orders list response to format
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @return canceled orders list response as {"format"} defines
+     * @return canceled orders list response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnCanceledOrdersList(String ordersResponse, ReturnFormat format) {
@@ -1584,7 +1586,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new limit order as {"format"} defines
+     * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1610,7 +1612,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -1654,8 +1656,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
     public Order createNewLimitOrder(Side side, String productId, double price, double size,
-                                     Params extraBodyParams) throws Exception {
-        return createNewLimitOrder(side, productId, price, size, extraBodyParams, LIBRARY_OBJECT);
+                                     Params extraParams) throws Exception {
+        return createNewLimitOrder(side, productId, price, size, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new limit order
@@ -1663,7 +1665,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -1692,7 +1694,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new limit order as {"format"} defines
+     * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1708,9 +1710,9 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
     public <T> T createNewLimitOrder(Side side, String productId, double price, double size,
-                                     Params extraBodyParams, ReturnFormat format) throws Exception {
+                                     Params extraParams, ReturnFormat format) throws Exception {
         Params payload = createOrderPayload(side, productId, price, size, limit);
-        payload.mergeParams(extraBodyParams);
+        payload.mergeParams(extraParams);
         return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
     }
 
@@ -1746,7 +1748,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new market order as {"format"} defines
+     * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1770,7 +1772,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -1813,15 +1815,15 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
-    public Order createMarketOrderSize(Side side, String productId, double size, Params extraBodyParams) throws Exception {
-        return createMarketOrderSize(side, productId, size, extraBodyParams, LIBRARY_OBJECT);
+    public Order createMarketOrderSize(Side side, String productId, double size, Params extraParams) throws Exception {
+        return createMarketOrderSize(side, productId, size, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param size: amount of base currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -1850,7 +1852,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new market order as {"format"} defines
+     * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1865,10 +1867,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
-    public <T> T createMarketOrderSize(Side side, String productId, double size, Params extraBodyParams,
+    public <T> T createMarketOrderSize(Side side, String productId, double size, Params extraParams,
                                        ReturnFormat format) throws Exception {
         Params payload = createMarketOrderPayload(side, productId, "size", size);
-        payload.mergeParams(extraBodyParams);
+        payload.mergeParams(extraParams);
         return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
     }
 
@@ -1904,7 +1906,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new market order as {"format"} defines
+     * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -1928,7 +1930,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param founds: amount of quote currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -1971,15 +1973,15 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
-    public Order createMarketOrderFounds(Side side, String productId, double founds, Params extraBodyParams) throws Exception {
-        return createMarketOrderFounds(side, productId, founds, extraBodyParams, LIBRARY_OBJECT);
+    public Order createMarketOrderFounds(Side side, String productId, double founds, Params extraParams) throws Exception {
+        return createMarketOrderFounds(side, productId, founds, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param founds: amount of quote currency used in the order
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -2008,7 +2010,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new market order as {"format"} defines
+     * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -2023,20 +2025,22 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
-    public <T> T createMarketOrderFounds(Side side, String productId, double founds, Params extraBodyParams,
+    public <T> T createMarketOrderFounds(Side side, String productId, double founds, Params extraParams,
                                          ReturnFormat format) throws Exception {
         Params payload = createMarketOrderPayload(side, productId, "founds", founds);
-        payload.mergeParams(extraBodyParams);
+        payload.mergeParams(extraParams);
         return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
     }
 
-    /** Method to assemble a payload for market order
-     * @param side: side of the order (buy or sell)
+    /**
+     * MethodId to assemble a payload for market order
+     *
+     * @param side:      side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param key: size of funds parameter
-     * @param keyValue: value of key
+     * @param key:       size of funds parameter
+     * @param keyValue:  value of key
      * @return payload for a new market order as {@link Params}
-     * **/
+     **/
     private Params createMarketOrderPayload(Side side, String productId, String key, double keyValue) {
         Params payload = new Params();
         payload.addParam("side", side);
@@ -2082,7 +2086,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new limit order as {"format"} defines
+     * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -2110,7 +2114,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
      * @param stopPrice: price when stop order will be placed on the book
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -2154,8 +2158,8 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
     public Order createStopOrder(Side side, String productId, double price, double size, double stopPrice,
-                                 Params extraBodyParams) throws Exception {
-        return createStopOrder(side, productId, price, size, stopPrice, extraBodyParams, LIBRARY_OBJECT);
+                                 Params extraParams) throws Exception {
+        return createStopOrder(side, productId, price, size, stopPrice, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new stop order
@@ -2164,7 +2168,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
      * @param stopPrice: price when stop order will be placed on the book
-     * @param extraBodyParams: extra body params of request, keys accepted are:
+     * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
      *                          <li>
      *                              {@code "profile_id"} -> profile identifier - [string]
@@ -2193,7 +2197,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
      *     Create a new order</a>
-     * @return result of creation a new limit order as {"format"} defines
+     * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -2209,21 +2213,23 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * **/
     @RequestPath(path = "https://api.exchange.coinbase.com/orders")
     public <T> T createStopOrder(Side side, String productId, double price, double size, double stopPrice,
-                                 Params extraBodyParams, ReturnFormat format) throws Exception {
+                                 Params extraParams, ReturnFormat format) throws Exception {
         Params payload = createOrderPayload(side, productId, price, size, stop);
         payload.addParam("stop_price", stopPrice);
-        payload.mergeParams(extraBodyParams);
+        payload.mergeParams(extraParams);
         return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST_METHOD, payload), format);
     }
 
-    /** Method to assemble a payload for limit and stop order
-     * @param side: side of the order (buy or sell)
+    /**
+     * MethodId to assemble a payload for limit and stop order
+     *
+     * @param side:      side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
-     * @param price: price per unit of product es. price for one unit of BTC in USD base
-     * @param size: amount of base currency used in the order
-     * @param type: type of the order (limit or stop)
+     * @param price:     price per unit of product es. price for one unit of BTC in USD base
+     * @param size:      amount of base currency used in the order
+     * @param type:      type of the order (limit or stop)
      * @return payload for a new order as {@link Params}
-     * **/
+     **/
     private Params createOrderPayload(Side side, String productId, double price, double size, OrderType type) {
         Params payload = new Params();
         payload.addParam("side", side);
@@ -2262,7 +2268,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
      *     Get single order</a>
-     * @return result of single order information as {"format"} defines
+     * @return result of single order information as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -2282,11 +2288,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     }
 
     /**
-     * Method to assemble an order object
+     * MethodId to assemble an order object
      *
      * @param orderResponse: order response to format
      * @param format:        return type formatter -> {@link ReturnFormat}
-     * @return order response as {"format"} defines
+     * @return order response as {@code "format"} defines
      **/
     @Returner
     private <T> T returnOrder(String orderResponse, ReturnFormat format) {

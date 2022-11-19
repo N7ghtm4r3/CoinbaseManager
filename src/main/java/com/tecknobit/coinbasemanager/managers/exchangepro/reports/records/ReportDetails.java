@@ -24,15 +24,14 @@ import org.json.JSONObject;
 public class ReportDetails {
 
     /**
-     * {@code id} is instance that memorizes identifier value
-     * **/
-    protected final String id;
-
-    /**
      * {@code type} is instance that memorizes type value
      **/
-    protected final String type;
+    protected final ReportType type;
 
+    /**
+     * {@code id} is instance that memorizes identifier value
+     **/
+    protected final String id;
     /**
      * {@code status} is instance that memorizes status value
      **/
@@ -45,7 +44,7 @@ public class ReportDetails {
      * @param type:   type value
      * @param status: status value
      **/
-    public ReportDetails(String id, String type, String status) {
+    public ReportDetails(String id, ReportType type, String status) {
         this.id = id;
         this.type = type;
         this.status = status;
@@ -57,11 +56,11 @@ public class ReportDetails {
      * @param report: report details as {@link JSONObject}
      **/
     public ReportDetails(JSONObject report) {
-        this(report.getString("id"), report.getString("type"), report.getString("status"));
+        this(report.getString("id"), ReportType.valueOf(report.getString("type")), report.getString("status"));
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -71,23 +70,55 @@ public class ReportDetails {
     }
 
     /**
-     * Method to get {@link #type} instance <br>
+     * MethodId to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
-    public String getType() {
+    public ReportType getType() {
         return type;
     }
 
     /**
-     * Method to get {@link #status} instance <br>
+     * MethodId to get {@link #status} instance <br>
      * Any params required
      *
      * @return {@link #status} instance as {@link String}
      **/
     public String getStatus() {
         return status;
+    }
+
+    /**
+     * {@code ReportType} list of report types available
+     **/
+    public enum ReportType {
+
+        /**
+         * {@code "fills"} report type
+         **/
+        fills,
+
+        /**
+         * {@code "account"} report type
+         **/
+        account,
+
+        /**
+         * {@code "otc_fills"} report type
+         **/
+        otc_fills,
+
+        /**
+         * {@code "type_1099k_transaction_history"} report type
+         **/
+        type_1099k_transaction_history,
+
+        /**
+         * {@code "tax_invoice"} report type
+         **/
+        tax_invoice
+
     }
 
     /**
@@ -212,7 +243,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #createdAt} instance <br>
+         * MethodId to get {@link #createdAt} instance <br>
          * Any params required
          *
          * @return {@link #createdAt} instance as {@link String}
@@ -222,7 +253,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #createdAt} timestamp <br>
+         * MethodId to get {@link #createdAt} timestamp <br>
          * Any params required
          *
          * @return {@link #createdAt} timestamp as long
@@ -232,7 +263,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #activeAt} instance <br>
+         * MethodId to get {@link #activeAt} instance <br>
          * Any params required
          *
          * @return {@link #activeAt} instance as {@link String}
@@ -242,7 +273,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #activeAt} timestamp <br>
+         * MethodId to get {@link #activeAt} timestamp <br>
          * Any params required
          *
          * @return {@link #activeAt} timestamp as long
@@ -252,7 +283,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #id} instance <br>
+         * MethodId to get {@link #id} instance <br>
          * Any params required
          *
          * @return {@link #id} instance as {@link String}
@@ -262,7 +293,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #name} instance <br>
+         * MethodId to get {@link #name} instance <br>
          * Any params required
          *
          * @return {@link #name} instance as {@link String}
@@ -272,7 +303,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #email} instance <br>
+         * MethodId to get {@link #email} instance <br>
          * Any params required
          *
          * @return {@link #email} instance as {@link String}
@@ -282,7 +313,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #isBanned} instance <br>
+         * MethodId to get {@link #isBanned} instance <br>
          * Any params required
          *
          * @return {@link #isBanned} instance as boolean
@@ -292,7 +323,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #userType} instance <br>
+         * MethodId to get {@link #userType} instance <br>
          * Any params required
          *
          * @return {@link #userType} instance as {@link String}
@@ -302,7 +333,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #fullFillsNewRequirements} instance <br>
+         * MethodId to get {@link #fullFillsNewRequirements} instance <br>
          * Any params required
          *
          * @return {@link #fullFillsNewRequirements} instance as boolean
@@ -312,7 +343,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get {@link #hasDefault} instance <br>
+         * MethodId to get {@link #hasDefault} instance <br>
          * Any params required
          *
          * @return {@link #hasDefault} instance as boolean
@@ -322,7 +353,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get tax domain <br>
+         * MethodId to get tax domain <br>
          * Any params required
          *
          * @return tax domain as {@link String}
@@ -332,7 +363,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get permissions <br>
+         * MethodId to get permissions <br>
          * Any params required
          *
          * @return permissions as {@link JSONObject}
@@ -342,7 +373,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get permissions <br>
+         * MethodId to get permissions <br>
          * Any params required
          *
          * @return permissions as {@link String}
@@ -353,7 +384,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get flags <br>
+         * MethodId to get flags <br>
          * Any params required
          *
          * @return flags as {@link JSONObject}
@@ -363,7 +394,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get flags <br>
+         * MethodId to get flags <br>
          * Any params required
          *
          * @return flags as {@link String}
@@ -374,7 +405,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get preferences <br>
+         * MethodId to get preferences <br>
          * Any params required
          *
          * @return preferences as {@link JSONObject}
@@ -384,7 +415,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get preferences <br>
+         * MethodId to get preferences <br>
          * Any params required
          *
          * @return preferences as {@link String}
@@ -395,7 +426,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get a custom snippet
+         * MethodId to get a custom snippet
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link JSONObject}
@@ -405,7 +436,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get a custom snippet
+         * MethodId to get a custom snippet
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link String}
@@ -416,7 +447,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get a custom list
+         * MethodId to get a custom list
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link JSONArray}
@@ -426,7 +457,7 @@ public class ReportDetails {
         }
 
         /**
-         * Method to get a custom list
+         * MethodId to get a custom list
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link String}

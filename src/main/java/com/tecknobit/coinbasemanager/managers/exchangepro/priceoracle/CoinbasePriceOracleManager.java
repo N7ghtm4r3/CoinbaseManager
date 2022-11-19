@@ -117,7 +117,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * Request to get signed prices
      *
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return signed prices as {"format"} defines
+     * @return signed prices as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>

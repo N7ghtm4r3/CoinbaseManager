@@ -42,7 +42,7 @@ public class Trade extends StatDetails {
     }
 
     /**
-     * Method to get {@link #side} instance <br>
+     * MethodId to get {@link #side} instance <br>
      * Any params required
      *
      * @return {@link #side} instance as {@link String}

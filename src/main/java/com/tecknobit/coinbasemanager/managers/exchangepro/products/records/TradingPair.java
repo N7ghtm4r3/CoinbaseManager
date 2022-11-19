@@ -158,7 +158,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #id} timestamp <br>
+     * MethodId to get {@link #id} timestamp <br>
      * Any params required
      *
      * @return {@link #id} timestamp as {@link String}
@@ -168,7 +168,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #baseCurrency} timestamp <br>
+     * MethodId to get {@link #baseCurrency} timestamp <br>
      * Any params required
      *
      * @return {@link #baseCurrency} timestamp as {@link String}
@@ -178,7 +178,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #quoteCurrency} timestamp <br>
+     * MethodId to get {@link #quoteCurrency} timestamp <br>
      * Any params required
      *
      * @return {@link #quoteCurrency} timestamp as {@link String}
@@ -188,7 +188,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #quoteIncrement} timestamp <br>
+     * MethodId to get {@link #quoteIncrement} timestamp <br>
      * Any params required
      *
      * @return {@link #quoteIncrement} timestamp as double
@@ -198,7 +198,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #quoteIncrement} instance
+     * MethodId to get {@link #quoteIncrement} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #quoteIncrement} instance rounded with decimal digits inserted
@@ -209,7 +209,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #baseIncrement} timestamp <br>
+     * MethodId to get {@link #baseIncrement} timestamp <br>
      * Any params required
      *
      * @return {@link #baseIncrement} timestamp as double
@@ -219,7 +219,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #baseIncrement} instance
+     * MethodId to get {@link #baseIncrement} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #baseIncrement} instance rounded with decimal digits inserted
@@ -230,7 +230,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #displayName} timestamp <br>
+     * MethodId to get {@link #displayName} timestamp <br>
      * Any params required
      *
      * @return {@link #displayName} timestamp as {@link String}
@@ -240,7 +240,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #minMarketFunds} timestamp <br>
+     * MethodId to get {@link #minMarketFunds} timestamp <br>
      * Any params required
      *
      * @return {@link #minMarketFunds} timestamp as double
@@ -250,7 +250,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #minMarketFunds} instance
+     * MethodId to get {@link #minMarketFunds} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #minMarketFunds} instance rounded with decimal digits inserted
@@ -261,7 +261,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #marginEnabled} timestamp <br>
+     * MethodId to get {@link #marginEnabled} timestamp <br>
      * Any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
@@ -271,7 +271,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #marginEnabled} timestamp <br>
+     * MethodId to get {@link #marginEnabled} timestamp <br>
      * Any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
@@ -281,7 +281,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #marginEnabled} timestamp <br>
+     * MethodId to get {@link #marginEnabled} timestamp <br>
      * Any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
@@ -291,7 +291,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #marginEnabled} timestamp <br>
+     * MethodId to get {@link #marginEnabled} timestamp <br>
      * Any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
@@ -301,7 +301,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #status} timestamp <br>
+     * MethodId to get {@link #status} timestamp <br>
      * Any params required
      *
      * @return {@link #status} timestamp as {@link String}
@@ -311,7 +311,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #statusMessage} timestamp <br>
+     * MethodId to get {@link #statusMessage} timestamp <br>
      * Any params required
      *
      * @return {@link #statusMessage} timestamp as {@link String}
@@ -321,7 +321,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #auctionMode} timestamp <br>
+     * MethodId to get {@link #auctionMode} timestamp <br>
      * Any params required
      *
      * @return {@link #auctionMode} timestamp as boolean
@@ -331,7 +331,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #tradingDisabled} timestamp <br>
+     * MethodId to get {@link #tradingDisabled} timestamp <br>
      * Any params required
      *
      * @return {@link #tradingDisabled} timestamp as boolean
@@ -341,7 +341,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #fxStablecoin} timestamp <br>
+     * MethodId to get {@link #fxStablecoin} timestamp <br>
      * Any params required
      *
      * @return {@link #fxStablecoin} timestamp as boolean
@@ -351,7 +351,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #maxSlippagePercentage} timestamp <br>
+     * MethodId to get {@link #maxSlippagePercentage} timestamp <br>
      * Any params required
      *
      * @return {@link #maxSlippagePercentage} timestamp as double
@@ -361,7 +361,7 @@ public class TradingPair {
     }
 
     /**
-     * Method to get {@link #maxSlippagePercentage} instance
+     * MethodId to get {@link #maxSlippagePercentage} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #maxSlippagePercentage} instance rounded with decimal digits inserted

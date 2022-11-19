@@ -138,7 +138,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to assemble an address info list
+     * MethodId to assemble an address info list
      *
      * @param jsonAddressInfo: jsonObject obtained by response request
      * @return address info list as {@link ArrayList} of {@link AddressInfo}
@@ -152,7 +152,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to assemble a warningsList list
+     * MethodId to assemble a warningsList list
      *
      * @param jsonWarnings: jsonObject obtained by response request
      * @return warningsList list as {@link ArrayList} of {@link Warning}
@@ -167,7 +167,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #id} instance <br>
+     * MethodId to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -177,7 +177,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #address} instance <br>
+     * MethodId to get {@link #address} instance <br>
      * Any params required
      *
      * @return {@link #address} instance as {@link String}
@@ -187,7 +187,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #addressInfoList} instance <br>
+     * MethodId to get {@link #addressInfoList} instance <br>
      * Any params required
      *
      * @return {@link #addressInfoList} instance as {@link ArrayList} of {@link AddressInfo}
@@ -197,7 +197,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to set {@link #addressInfoList} instance <br>
+     * MethodId to set {@link #addressInfoList} instance <br>
      *
      * @param addressInfoList: address info list to set
      **/
@@ -206,7 +206,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to add an address info to {@link #addressInfoList}
+     * MethodId to add an address info to {@link #addressInfoList}
      *
      * @param addressInfo: address info to insert
      * @apiNote the {@code "addressInfo"} will be inserted only if is not already presents in the list
@@ -217,7 +217,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to remove a warning from {@link #addressInfoList}
+     * MethodId to remove a warning from {@link #addressInfoList}
      *
      * @param addressInfo: address info to remove
      * @return whether the {@code "addressInfo"} has been removed
@@ -227,7 +227,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get an address info from {@link #addressInfoList}
+     * MethodId to get an address info from {@link #addressInfoList}
      *
      * @param index: index of the address info to get
      * @return address info as {@link AddressInfo}
@@ -237,7 +237,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #name} instance <br>
+     * MethodId to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -247,7 +247,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #createdAt} instance <br>
+     * MethodId to get {@link #createdAt} instance <br>
      * Any params required
      *
      * @return {@link #createdAt} instance as {@link String}
@@ -257,7 +257,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #createdAt} timestamp <br>
+     * MethodId to get {@link #createdAt} timestamp <br>
      * Any params required
      *
      * @return {@link #createdAt} timestamp as long
@@ -267,7 +267,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #updatedAt} instance <br>
+     * MethodId to get {@link #updatedAt} instance <br>
      * Any params required
      *
      * @return {@link #updatedAt} instance as {@link String}
@@ -277,7 +277,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #updatedAt} timestamp <br>
+     * MethodId to get {@link #updatedAt} timestamp <br>
      * Any params required
      *
      * @return {@link #updatedAt} timestamp as long
@@ -287,7 +287,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #network} instance <br>
+     * MethodId to get {@link #network} instance <br>
      * Any params required
      *
      * @return {@link #network} instance as {@link String}
@@ -297,7 +297,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #uriScheme} instance <br>
+     * MethodId to get {@link #uriScheme} instance <br>
      * Any params required
      *
      * @return {@link #uriScheme} instance as {@link String}
@@ -307,7 +307,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #resource} instance <br>
+     * MethodId to get {@link #resource} instance <br>
      * Any params required
      *
      * @return {@link #resource} instance as {@link String}
@@ -317,7 +317,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #resourcePath} instance <br>
+     * MethodId to get {@link #resourcePath} instance <br>
      * Any params required
      *
      * @return {@link #resourcePath} instance as {@link String}
@@ -327,7 +327,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #depositUri} instance <br>
+     * MethodId to get {@link #depositUri} instance <br>
      * Any params required
      *
      * @return {@link #depositUri} instance as {@link String}
@@ -337,7 +337,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #exchangeDepositAddress} instance <br>
+     * MethodId to get {@link #exchangeDepositAddress} instance <br>
      * Any params required
      *
      * @return {@link #exchangeDepositAddress} instance as boolean
@@ -347,7 +347,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get {@link #warningsList} instance <br>
+     * MethodId to get {@link #warningsList} instance <br>
      * Any params required
      *
      * @return {@link #warningsList} instance as {@link ArrayList} of {@link Warning}
@@ -357,7 +357,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to set {@link #warningsList} instance <br>
+     * MethodId to set {@link #warningsList} instance <br>
      *
      * @param warningsList: warnings list to set
      **/
@@ -366,7 +366,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to add a warning to {@link #warningsList}
+     * MethodId to add a warning to {@link #warningsList}
      *
      * @param warning: warning to insert
      * @apiNote the {@code "warning"} will be inserted only if is not already presents in the list
@@ -377,7 +377,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to remove a warning from {@link #warningsList}
+     * MethodId to remove a warning from {@link #warningsList}
      *
      * @param warning: warning to remove
      * @return whether the {@code "warning"} has been removed
@@ -387,7 +387,7 @@ public class CryptoAddress {
     }
 
     /**
-     * Method to get a warning from {@link #warningsList}
+     * MethodId to get a warning from {@link #warningsList}
      *
      * @param index: index of the warning to get
      * @return warning as {@link Warning}
@@ -436,7 +436,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Method to get {@link #titleInfo} instance <br>
+         * MethodId to get {@link #titleInfo} instance <br>
          * Any params required
          *
          * @return {@link #titleInfo} instance as {@link String}
@@ -446,7 +446,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Method to get {@link #valueInfo} instance <br>
+         * MethodId to get {@link #valueInfo} instance <br>
          * Any params required
          *
          * @return {@link #valueInfo} instance as {@link String}
@@ -513,7 +513,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Method to get {@link #title} instance <br>
+         * MethodId to get {@link #title} instance <br>
          * Any params required
          *
          * @return {@link #title} instance as {@link String}
@@ -523,7 +523,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Method to get {@link #details} instance <br>
+         * MethodId to get {@link #details} instance <br>
          * Any params required
          *
          * @return {@link #details} instance as {@link String}
@@ -533,7 +533,7 @@ public class CryptoAddress {
         }
 
         /**
-         * Method to get {@link #imageUrl} instance <br>
+         * MethodId to get {@link #imageUrl} instance <br>
          * Any params required
          *
          * @return {@link #imageUrl} instance as {@link String}

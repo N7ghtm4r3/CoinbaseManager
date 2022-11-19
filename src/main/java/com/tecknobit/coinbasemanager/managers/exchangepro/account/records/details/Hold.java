@@ -44,7 +44,7 @@ public class Hold extends AccountDetails {
     }
 
     /**
-     * Method to get {@link #ref} instance <br>
+     * MethodId to get {@link #ref} instance <br>
      * Any params required
      *
      * @return {@link #ref} instance as {@link String}
