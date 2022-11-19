@@ -234,14 +234,41 @@ public class CoinbaseManager {
     /**
      * MethodId to execute and get response of a POST http request
      *
-     * @param endpoint:   endpoint for the request and its query params es endpoint?param=paramValue
-     * @param bodyParams: params to insert in the http body post request
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload:  params to insert in the http body post request
      * @return response as {@link String}
      **/
-    public String sendPayloadedRequest(String endpoint, String method, Params bodyParams) throws Exception {
-        if (method.equals(POST_METHOD) || method.equals(APIRequest.PUT_METHOD)) {
-            setRequestHeaders(method, endpoint, apiRequest.encodeBodyParams(bodyParams));
-            apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, bodyParams);
+    public String sendPayloadedRequest(String endpoint, String method, Params payload) throws Exception {
+        return sendPayloadedRequest(endpoint, method, payload, false);
+    }
+
+    /**
+     * MethodId to execute and get response of a POST http request
+     *
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload:  params to insert in the http body post request
+     * @return response as {@link String}
+     **/
+    public String sendJSONPayloadedRequest(String endpoint, String method, Params payload) throws Exception {
+        return sendPayloadedRequest(endpoint, method, payload, true);
+    }
+
+    /**
+     * MethodId to execute and get response of a POST http request
+     *
+     * @param endpoint:      endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload:       params to insert in the http body post request
+     * @param isJSONPayload: whether the payload is in {@code "JSON"}
+     * @return response as {@link String}
+     **/
+    private String sendPayloadedRequest(String endpoint, String method, Params payload,
+                                        boolean isJSONPayload) throws Exception {
+        if (method.equals(POST_METHOD) || method.equals(PUT_METHOD)) {
+            setRequestHeaders(method, endpoint, apiRequest.encodeBodyParams(payload));
+            if (isJSONPayload)
+                apiRequest.sendJSONPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, payload);
+            else
+                apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, payload);
             return apiRequest.getResponse();
         } else
             throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");

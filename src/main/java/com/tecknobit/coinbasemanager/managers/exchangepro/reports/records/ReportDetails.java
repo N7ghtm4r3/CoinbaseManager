@@ -90,38 +90,6 @@ public class ReportDetails {
     }
 
     /**
-     * {@code ReportType} list of report types available
-     **/
-    public enum ReportType {
-
-        /**
-         * {@code "fills"} report type
-         **/
-        fills,
-
-        /**
-         * {@code "account"} report type
-         **/
-        account,
-
-        /**
-         * {@code "otc_fills"} report type
-         **/
-        otc_fills,
-
-        /**
-         * {@code "type_1099k_transaction_history"} report type
-         **/
-        type_1099k_transaction_history,
-
-        /**
-         * {@code "tax_invoice"} report type
-         **/
-        tax_invoice
-
-    }
-
-    /**
      * Returns a string representation of the object <br>
      * Any params required
      *
@@ -130,6 +98,85 @@ public class ReportDetails {
     @Override
     public String toString() {
         return new JSONObject(this).toString();
+    }
+
+    /**
+     * {@code ReportType} list of report types available
+     **/
+    public enum ReportType {
+
+        /**
+         * {@code "fills"} report type
+         **/
+        fills("fills"),
+
+        /**
+         * {@code "account"} report type
+         **/
+        account("account"),
+
+        /**
+         * {@code "otc_fills"} report type
+         **/
+        otc_fills("otc-fills"),
+
+        /**
+         * {@code "_1099k_transaction_history"} report type
+         **/
+        _1099k_transaction_history("1099k-transaction-history"),
+
+        /**
+         * {@code "tax_invoice"} report type
+         **/
+        tax_invoice("tax-invoice"),
+
+        /**
+         * {@code "balance"} report type
+         **/
+        balance("balance");
+
+        /**
+         * {@code type} report type
+         **/
+        private final String type;
+
+        /**
+         * Constructor to init a {@link ReportType}
+         *
+         * @param type: type of the report
+         **/
+        ReportType(String type) {
+            this.type = type;
+        }
+
+        /**
+         * MethodId to get {@link #type} instance <br>
+         * Any params required
+         *
+         * @return {@link #type} instance as {@link String}
+         **/
+        @Override
+        public String toString() {
+            return type;
+        }
+
+    }
+
+    /**
+     * {@code Format} list of formats types available
+     **/
+    public enum Format {
+
+        /**
+         * {@code "pdf"} format type
+         **/
+        pdf,
+
+        /**
+         * {@code "csv"} format type
+         **/
+        csv
+
     }
 
     /**

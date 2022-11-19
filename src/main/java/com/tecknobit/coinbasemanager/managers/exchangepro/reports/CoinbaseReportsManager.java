@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import static com.tecknobit.apimanager.apis.APIRequest.*;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.REPORTS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
+import static com.tecknobit.coinbasemanager.managers.exchangepro.reports.records.ReportDetails.Format;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.reports.records.ReportDetails.ReportType.*;
 
 /**
@@ -302,7 +303,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public <T> T createGeneralReport(ReportType type, ReturnFormat format) throws Exception {
         Params payload = new Params();
         payload.addParam("type", type);
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
     }
 
     /**
@@ -318,7 +319,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -362,7 +363,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -394,14 +395,14 @@ public class CoinbaseReportsManager extends CoinbaseManager {
         Params payload = new Params();
         payload.addParam("type", type);
         payload.mergeParams(extraParams);
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
     }
 
     /**
-     * Request to create a {@link ReportType#type_1099k_transaction_history} report
+     * Request to create a {@link ReportType#_1099k_transaction_history} report
      *
      * @param year: year to create report
-     * @return result of creation of {@link ReportType#type_1099k_transaction_history} report as {@link ReportDetails} custom object
+     * @return result of creation of {@link ReportType#_1099k_transaction_history} report as {@link ReportDetails} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -424,11 +425,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     }
 
     /**
-     * Request to create a {@link ReportType#type_1099k_transaction_history} report
+     * Request to create a {@link ReportType#_1099k_transaction_history} report
      *
      * @param year:   year to create report
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return result of creation of {@link ReportType#type_1099k_transaction_history} report as {@code "format"} defines
+     * @return result of creation of {@link ReportType#_1099k_transaction_history} report as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -447,11 +448,12 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     @WrappedRequest
     @RequestPath(path = "https://api.exchange.coinbase.com/reports")
     public <T> T create1099KReport(int year, ReturnFormat format) throws Exception {
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, assemble1099KPayload(year)), format);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, assemble1099KPayload(year)),
+                format);
     }
 
     /**
-     * Request to create a {@link ReportType#type_1099k_transaction_history} report
+     * Request to create a {@link ReportType#_1099k_transaction_history} report
      *
      * @param year:        year to create report
      * @param extraParams: extra params of the request, keys accepted are:
@@ -463,7 +465,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -473,7 +475,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              is linked to the API key - [string]
      *                          </li>
      *                     </ul>
-     * @return result of creation of {@link ReportType#type_1099k_transaction_history} report as {@link ReportDetails} custom object
+     * @return result of creation of {@link ReportType#_1099k_transaction_history} report as {@link ReportDetails} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -496,7 +498,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     }
 
     /**
-     * Request to create a {@link ReportType#type_1099k_transaction_history} report
+     * Request to create a {@link ReportType#_1099k_transaction_history} report
      *
      * @param year:        year to create report
      * @param extraParams: extra params of the request, keys accepted are:
@@ -508,7 +510,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -519,7 +521,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
-     * @return result of creation of {@link ReportType#type_1099k_transaction_history} report as {@code "format"} defines
+     * @return result of creation of {@link ReportType#_1099k_transaction_history} report as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -540,7 +542,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     public <T> T create1099KReport(int year, Params extraParams, ReturnFormat format) throws Exception {
         Params payload = assemble1099KPayload(year);
         payload.mergeParams(extraParams);
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, PUT_METHOD, payload), format);
     }
 
     /**
@@ -550,10 +552,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return a payload as {@link Params}
      **/
     private Params assemble1099KPayload(int year) {
-        Params bodyParams = new Params();
-        bodyParams.addParam("type", type_1099k_transaction_history);
-        bodyParams.addParam("year", year);
-        return bodyParams;
+        Params payload = new Params();
+        payload.addParam("type", _1099k_transaction_history);
+        payload.addParam(_1099k_transaction_history.toString(), new JSONObject().put("year", year));
+        return payload;
     }
 
     /**
@@ -623,7 +625,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -668,7 +670,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -710,10 +712,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return a payload as {@link Params}
      **/
     private Params assembleFillsPayload(String productId) {
-        Params bodyParams = new Params();
-        bodyParams.addParam("type", fills);
-        bodyParams.addParam("product_id", productId);
-        return bodyParams;
+        Params params = new Params();
+        params.addParam("type", fills);
+        params.addParam(fills.toString(), new JSONObject().put("product_id", productId));
+        return params;
     }
 
     /**
@@ -783,7 +785,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -828,7 +830,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "end_date"} -> end date for items to be included in report - [string]
      *                          </li>
      *                          <li>
-     *                              {@code "format"} -> format value - [string]
+     *                              {@code "format"} -> format value, constants available at {@link Format} - [string]
      *                          </li>
      *                          <li>
      *                              {@code "email"} -> email to send generated report notification to - [string]
@@ -858,9 +860,165 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     @WrappedRequest
     @RequestPath(path = "https://api.exchange.coinbase.com/reports")
     public ReportDetails createAccountReport(String accountId, Params extraParams, ReturnFormat format) throws Exception {
-        Params bodyParams = assembleAccountPayload(accountId);
-        bodyParams.mergeParams(extraParams);
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, bodyParams), format);
+        Params params = assembleAccountPayload(accountId);
+        params.mergeParams(extraParams);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST_METHOD, params), format);
+    }
+
+    /**
+     * Request to create a general report
+     *
+     * @param dateTime:       designated date and time of the balance statement. Timezone is always UTC. If this field is empty,
+     *                        a report of the user’s current balance will be generated
+     * @param groupByProfile: not applicable if generating report through an API key; only available through report generation
+     *                        via the Exchange user interface (UI)
+     * @return result of creation of the general report as {@link ReportDetails} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * Create a report</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/reports")
+    public ReportDetails createBalanceReport(String dateTime, boolean groupByProfile) throws Exception {
+        return createBalanceReport(dateTime, groupByProfile, new Params(), LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to create a general report
+     *
+     * @param dateTime:       designated date and time of the balance statement. Timezone is always UTC. If this field is empty,
+     *                        a report of the user’s current balance will be generated
+     * @param groupByProfile: not applicable if generating report through an API key; only available through report generation
+     *                        via the Exchange user interface (UI)
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return result of creation of the general report as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * Create a report</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/reports")
+    public <T> T createBalanceReport(String dateTime, boolean groupByProfile, ReturnFormat format) throws Exception {
+        return createBalanceReport(dateTime, groupByProfile, new Params(), format);
+    }
+
+    /**
+     * Request to create a general report
+     *
+     * @param dateTime:       designated date and time of the balance statement. Timezone is always UTC. If this field is empty,
+     *                        a report of the user’s current balance will be generated
+     * @param groupByProfile: not applicable if generating report through an API key; only available through report generation
+     *                        via the Exchange user interface (UI)
+     * @param extraParams:    extra params of the request, keys accepted are:
+     *                        <ul>
+     *                             <li>
+     *                                 {@code "start_date"} -> start date for items to be included in report - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "end_date"} -> end date for items to be included in report - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "format"} -> format value, constants available at {@link Format} - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "email"} -> email to send generated report notification to - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "profile_id"} -> if this field is specified, it must be the profile_id that
+     *                                 is linked to the API key - [string]
+     *                             </li>
+     *                        </ul>
+     * @return result of creation of the general report as {@link ReportDetails} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * Create a report</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/reports")
+    public ReportDetails createBalanceReport(String dateTime, boolean groupByProfile, Params extraParams) throws Exception {
+        return createBalanceReport(dateTime, groupByProfile, extraParams, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to create a general report
+     *
+     * @param dateTime:       designated date and time of the balance statement. Timezone is always UTC. If this field is empty,
+     *                        a report of the user’s current balance will be generated
+     * @param groupByProfile: not applicable if generating report through an API key; only available through report generation
+     *                        via the Exchange user interface (UI)
+     * @param extraParams:    extra params of the request, keys accepted are:
+     *                        <ul>
+     *                             <li>
+     *                                 {@code "start_date"} -> start date for items to be included in report - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "end_date"} -> end date for items to be included in report - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "format"} -> format value, constants available at {@link Format} - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "email"} -> email to send generated report notification to - [string]
+     *                             </li>
+     *                             <li>
+     *                                 {@code "profile_id"} -> if this field is specified, it must be the profile_id that
+     *                                 is linked to the API key - [string]
+     *                             </li>
+     *                        </ul>
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return result of creation of the general report as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * Create a report</a>
+     **/
+    @RequestPath(path = "https://api.exchange.coinbase.com/reports")
+    public <T> T createBalanceReport(String dateTime, boolean groupByProfile, Params extraParams,
+                                     ReturnFormat format) throws Exception {
+        extraParams.addParam(balance.toString(), new JSONObject()
+                .put("datetime", dateTime)
+                .put("group_by_profile", groupByProfile));
+        return createGeneralReport(balance, extraParams, format);
     }
 
     /**
@@ -870,10 +1028,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @return a payload as {@link Params}
      **/
     private Params assembleAccountPayload(String accountId) {
-        Params bodyParams = new Params();
-        bodyParams.addParam("type", account);
-        bodyParams.addParam("account_id", accountId);
-        return bodyParams;
+        Params params = new Params();
+        params.addParam("type", account);
+        params.addParam(account.toString(), new JSONObject().put("account_id", accountId));
+        return params;
     }
 
     /**

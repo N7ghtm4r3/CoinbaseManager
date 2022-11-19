@@ -1,5 +1,5 @@
 # CoinbaseManager
-**v1.0.9**
+**v1.1.0**
 
 This is a Java Based library useful to work with Coinbase's API service.
 
@@ -23,7 +23,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.0.9'
+	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.1.0'
 }
 ```
 
@@ -45,7 +45,7 @@ dependencies {
 <dependency>
     <groupId>com.github.N7ghtm4r3</groupId>
     <artifactId>CoinbaseManager</artifactId>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -54,70 +54,58 @@ dependencies {
 
 ## Endpoints managers available
 
-- {@code "Coinbase"} Pro Exchange
+- Coinbase Pro/Exchange
 
 The other endpoints managers will be gradually released
 
 ## Usage/Examples
 
-```java
+### Execution
 
-// init a {@code "Coinbase"} manager
+```java
+// init a Coinbase manager
 try{
-    CoinbaseProductsManager coinbaseProductsManager = new CoinbaseProductsManager("yourApiKey", "yourSecretKey", "yourPassphrase");
-} catch (Exception e) {
-    e.printStackTrace();
-}
+        CoinbaseManager coinbaseManager=new CoinbaseManager("yourApiKey","yourSecretKey","yourPassphrase");
+        }catch(Exception e){
+        e.printStackTrace();
+        }
+```
+
+To avoid re-entering credentials for each manager, you can instantiate managers like this with the **ARCS**:
+
+```java
+// choose the manager for example: CoinbaseProductsManager, CoinbaseUsersManager, etc 
+CoinbaseManager firstManager=new CoinbaseManager( /* params of the constructor chosen */,"apiKey","apiSign","yourPassphrase");
+// and then use it 
+        firstManager.makeSomething();
+// you don't need to insert all credentials to make manager work
+        CoinbaseManager secondManager=new CoinbaseManager(); // same credentials used
+// and then use it
+        secondManager.makeSomething();
 ```
 
 ### Responses
 
-- String: will return response formatted as String object
+Library give to you the opportunity to customize the return object after a request, the possibilities are:
+
+- **JSON:** return response formatted as **JSON** (**org.json.JSONObject** or **org.json.JSONArray**)
+- **STRING:** return response formatted as **String**
+- **LIBRARY_OBJECT:** return response formatted as custom object offered by the library
 
 ```java
-try {
-    System.out.println(coinbaseProductsManager.getProductStats("BTC-USD"));
-} catch (Exception e) {
-    e.printStackTrace();
-}
-```
-
-- JSON: will return response formatted as JSON (JSONObject or JSONArray)
-
-```java
-try {
-    System.out.println(coinbaseProductsManager.getProductStatsJSON("BTC-USD"));
-} catch (Exception e) {
-    e.printStackTrace();
-}
-```
-
-- Custom-object: will return response formatted as custom object provided by library
-
-```java
-try {
-    System.out.println(coinbaseProductsManager.getProductStatsObject("BTC-USD"));
-} catch (Exception e) {
-    e.printStackTrace();
-}
-```
-
-- Primitives: some requests will return primitive types like boolean, long, double
-
-```java
-// it return double type es. 1.544
-try {
-    System.out.println(CoinbaseManager.roundValue(1.544242, 3));
-} catch (Exception e) {
-    e.printStackTrace();
-}
+// choose the manager for example: Gmail, etc 
+CoinbaseManager manager=new CoinbaseManager(/* params of the constructor chosen */);
+// method to return directly a library given by library
+        manager.someRequest(); // in this case will be returned directly a LIBRARY_OBJECT
+// method to customize the format of the return 
+        manager.someRequest(ReturnFormat.JSON); // in this case will be returned response in JSON format
 ```
 
 ### Errors handling
 
 ```java
 try {
-    System.out.println(coinbaseProductsManager.getProductStatsJSON("BTC-USD"));
+    System.out.println(coinbaseProductsManager.getProductStats("BTC-USD"));
 } catch (Exception e) {
     System.out.println(coinbaseProductsManager.getErrorResponse());
     //or
