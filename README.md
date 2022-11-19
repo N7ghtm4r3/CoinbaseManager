@@ -56,7 +56,7 @@ dependencies {
 
 - Coinbase Pro/Exchange
 
-The other endpoints managers will be gradually released
+The other managers will be gradually released
 
 ## Usage/Examples
 
