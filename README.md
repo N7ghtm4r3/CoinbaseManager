@@ -64,24 +64,24 @@ The other endpoints managers will be gradually released
 
 ```java
 // init a Coinbase manager
-try{
-        CoinbaseManager coinbaseManager=new CoinbaseManager("yourApiKey","yourSecretKey","yourPassphrase");
-        }catch(Exception e){
-        e.printStackTrace();
-        }
+try {  
+   CoinbaseManager coinbaseManager = new CoinbaseManager("yourApiKey", "yourSecretKey", "yourPassphrase");
+} catch(Exception e){
+   e.printStackTrace();
+}
 ```
 
 To avoid re-entering credentials for each manager, you can instantiate managers like this with the **ARCS**:
 
 ```java
 // choose the manager for example: CoinbaseProductsManager, CoinbaseUsersManager, etc 
-CoinbaseManager firstManager=new CoinbaseManager( /* params of the constructor chosen */,"apiKey","apiSign","yourPassphrase");
+CoinbaseManager firstManager = new CoinbaseManager(/* params of the constructor chosen */, "apiKey", "apiSign", "yourPassphrase");
 // and then use it 
-        firstManager.makeSomething();
+firstManager.makeSomething();
 // you don't need to insert all credentials to make manager work
-        CoinbaseManager secondManager=new CoinbaseManager(); // same credentials used
+CoinbaseManager secondManager = new CoinbaseManager(); // same credentials used
 // and then use it
-        secondManager.makeSomething();
+secondManager.makeSomething();
 ```
 
 ### Responses
@@ -96,9 +96,9 @@ Library give to you the opportunity to customize the return object after a reque
 // choose the manager for example: Gmail, etc 
 CoinbaseManager manager=new CoinbaseManager(/* params of the constructor chosen */);
 // method to return directly a library given by library
-        manager.someRequest(); // in this case will be returned directly a LIBRARY_OBJECT
+manager.someRequest(); // in this case will be returned directly a LIBRARY_OBJECT
 // method to customize the format of the return 
-        manager.someRequest(ReturnFormat.JSON); // in this case will be returned response in JSON format
+manager.someRequest(ReturnFormat.JSON); // in this case will be returned response in JSON format
 ```
 
 ### Errors handling
