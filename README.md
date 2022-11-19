@@ -52,7 +52,7 @@ dependencies {
 ## 🛠 Skills
 - Java
 
-## Endpoints managers available
+## Managers available
 
 - Coinbase Pro/Exchange
 
