@@ -93,7 +93,7 @@ Library give to you the opportunity to customize the return object after a reque
 - **LIBRARY_OBJECT:** return response formatted as custom object offered by the library
 
 ```java
-// choose the manager for example: Gmail, etc 
+// choose the manager for example: CoinbaseProductsManager, CoinbaseUsersManager, etc 
 CoinbaseManager manager = new CoinbaseManager(/* params of the constructor chosen */);
 // method to return directly a library given by library
 manager.someRequest(); // in this case will be returned directly a LIBRARY_OBJECT
