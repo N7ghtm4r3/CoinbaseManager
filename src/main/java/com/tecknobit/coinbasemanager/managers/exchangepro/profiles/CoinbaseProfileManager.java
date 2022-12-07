@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.profiles;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.WrappedRequest;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.profiles.records.Profile;
 import org.json.JSONArray;
@@ -10,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.tecknobit.apimanager.apis.APIRequest.*;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.*;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
@@ -112,7 +113,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      * Get profiles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
     public ArrayList<Profile> getProfiles() throws Exception {
         return getProfiles(LIBRARY_OBJECT);
     }
@@ -137,9 +139,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      * Get profiles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
     public <T> T getProfiles(ReturnFormat format) throws Exception {
-        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT, GET_METHOD), format);
+        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT, GET), format);
     }
 
     /**
@@ -162,7 +164,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      * Get profiles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
     public ArrayList<Profile> getProfiles(boolean active) throws Exception {
         return getProfiles(active, LIBRARY_OBJECT);
     }
@@ -188,13 +191,13 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
      * Get profiles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
     public <T> T getProfiles(boolean active, ReturnFormat format) throws Exception {
-        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET_METHOD), format);
+        return returnProfilesList(sendAPIRequest(PROFILES_ENDPOINT + "?active=" + active, GET), format);
     }
 
     /**
-     * MethodId to assemble a profiles list
+     * Method to assemble a profiles list
      *
      * @param profilesResponse : profiles list response to format
      * @param format           :                 return type formatter -> {@link ReturnFormat}
@@ -236,7 +239,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
      * Create a profile</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @Wrapper
+    @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/profiles")
     public Profile createProfile(String name) throws Exception {
         return createProfile(name, LIBRARY_OBJECT);
     }
@@ -260,20 +264,11 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles")
+    @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/profiles")
     public <T> T createProfile(String name, ReturnFormat format) throws Exception {
         Params bodyParams = new Params();
         bodyParams.addParam("name", name);
-        String profileResponse = sendPayloadedRequest(PROFILES_ENDPOINT, POST_METHOD, bodyParams);
-        switch (format) {
-            case JSON:
-                return (T) new JSONObject(profileResponse);
-            case LIBRARY_OBJECT:
-                return (T) new Profile(new JSONObject(profileResponse));
-            default:
-                return (T) profileResponse;
-        }
+        return returnProfile(sendPayloadedRequest(PROFILES_ENDPOINT, POST, bodyParams), format);
     }
 
     /** Request to transfer funds between profiles
@@ -297,14 +292,14 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/transfer")
+    @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/profiles/transfer")
     public boolean transferFundsBetweenProfiles(String from, String to, String currency, double amount) throws Exception {
         Params payload = new Params();
         payload.addParam("from", from);
         payload.addParam("to", to);
         payload.addParam("currency", currency);
         payload.addParam("amount", amount);
-        return sendPayloadedRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST_METHOD, payload).equals("{}");
+        return sendPayloadedRequest(TRANSFER_BETWEEN_PROFILES_ENDPOINT, POST, payload).equals("{}");
     }
 
     /** Request to get a single {@code "Coinbase"}'s profile
@@ -325,7 +320,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public Profile getProfileById(String profileId) throws Exception {
         return getProfileById(profileId, LIBRARY_OBJECT);
     }
@@ -349,9 +345,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public <T> T getProfileById(String profileId, ReturnFormat format) throws Exception {
-        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET_METHOD), format);
+        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId, GET), format);
     }
 
     /** Request to get a single {@code "Coinbase"}'s profile
@@ -373,7 +369,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public Profile getProfileById(String profileId, boolean active) throws Exception {
         return getProfileById(profileId, active, LIBRARY_OBJECT);
     }
@@ -398,9 +395,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public <T> T getProfileById(String profileId, boolean active, ReturnFormat format) throws Exception {
-        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET_METHOD),
+        return returnProfile(sendAPIRequest(PROFILES_ENDPOINT + "/" + profileId + "?active=" + active, GET),
                 format);
     }
 
@@ -425,8 +422,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
      * Rename a profile</a>
      **/
+    @Wrapper
     @WrappedRequest
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public Profile renameProfile(Profile profile, String name) throws Exception {
         return renameProfile(profile.getId(), name, LIBRARY_OBJECT);
     }
@@ -454,7 +452,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * Rename a profile</a>
      **/
     @WrappedRequest
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public <T> T renameProfile(Profile profile, String name, ReturnFormat format) throws Exception {
         return renameProfile(profile.getId(), name, format);
     }
@@ -478,7 +476,8 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @Wrapper
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public Profile renameProfile(String profileId, String name) throws Exception {
         return renameProfile(profileId, name, LIBRARY_OBJECT);
     }
@@ -505,17 +504,17 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
      * Rename a profile</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
     public <T> T renameProfile(String profileId, String name, ReturnFormat format) throws Exception {
         Params payload = new Params();
         payload.addParam("profileId", profileId);
         payload.addParam("name", name);
-        return returnProfile(sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId, PUT_METHOD, payload),
+        return returnProfile(sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId, PUT, payload),
                 format);
     }
 
     /**
-     * MethodId to create a profile object
+     * Method to create a profile object
      *
      * @param profileResponse: profile to format
      * @param format:          return type formatter -> {@link ReturnFormat}
@@ -554,8 +553,9 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
      * Delete a profile</a>
      **/
+    @Wrapper
     @WrappedRequest
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
     public boolean deleteProfile(Profile profile, String to) throws Exception {
         return deleteProfile(profile.getId(), to);
     }
@@ -581,12 +581,12 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
      * Delete a profile</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
+    @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")
     public boolean deleteProfile(String profileId, String to) throws Exception {
         Params payload = new Params();
         payload.addParam("profileId", profileId);
         payload.addParam("to", to);
-        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT, PUT_METHOD,
+        return sendPayloadedRequest(PROFILES_ENDPOINT + "/" + profileId + DELETE_PROFILE_ENDPOINT, PUT,
                 payload).equals("{}");
     }
 

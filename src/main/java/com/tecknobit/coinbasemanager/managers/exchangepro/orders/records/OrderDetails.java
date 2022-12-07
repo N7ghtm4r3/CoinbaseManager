@@ -113,7 +113,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #side} instance <br>
+     * Method to get {@link #side} instance <br>
      * Any params required
      *
      * @return {@link #side} instance as {@link String}
@@ -123,7 +123,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #createdAt} instance <br>
+     * Method to get {@link #createdAt} instance <br>
      * Any params required
      *
      * @return {@link #createdAt} instance as {@link String}
@@ -133,7 +133,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #createdAt} timestamp <br>
+     * Method to get {@link #createdAt} timestamp <br>
      * Any params required
      *
      * @return {@link #createdAt} timestamp as long
@@ -143,7 +143,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #productId} instance <br>
+     * Method to get {@link #productId} instance <br>
      * Any params required
      *
      * @return {@link #productId} instance as {@link String}
@@ -153,7 +153,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #profileId} instance <br>
+     * Method to get {@link #profileId} instance <br>
      * Any params required
      *
      * @return {@link #profileId} instance as {@link String}
@@ -163,7 +163,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #price} instance <br>
+     * Method to get {@link #price} instance <br>
      * Any params required
      *
      * @return {@link #price} instance as double
@@ -173,7 +173,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #price} instance
+     * Method to get {@link #price} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
@@ -184,7 +184,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #size} instance <br>
+     * Method to get {@link #size} instance <br>
      * Any params required
      *
      * @return {@link #size} instance as double
@@ -194,7 +194,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #size} instance
+     * Method to get {@link #size} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
@@ -222,7 +222,7 @@ public abstract class OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #settled} instance <br>
+     * Method to get {@link #settled} instance <br>
      * Any params required
      *
      * @return {@link #settled} instance as boolean

@@ -59,7 +59,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #takerFeeRate} instance <br>
+     * Method to get {@link #takerFeeRate} instance <br>
      * Any params required
      *
      * @return {@link #takerFeeRate} instance as double
@@ -69,7 +69,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #takerFeeRate} instance
+     * Method to get {@link #takerFeeRate} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #takerFeeRate} instance rounded with decimal digits inserted
@@ -80,7 +80,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #makerFeeRate} instance <br>
+     * Method to get {@link #makerFeeRate} instance <br>
      * Any params required
      *
      * @return {@link #makerFeeRate} instance as double
@@ -90,7 +90,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #makerFeeRate} instance
+     * Method to get {@link #makerFeeRate} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #makerFeeRate} instance rounded with decimal digits inserted
@@ -101,7 +101,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #usdVolume} instance <br>
+     * Method to get {@link #usdVolume} instance <br>
      * Any params required
      *
      * @return {@link #usdVolume} instance as double
@@ -111,7 +111,7 @@ public class Fee {
     }
 
     /**
-     * MethodId to get {@link #usdVolume} instance
+     * Method to get {@link #usdVolume} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #usdVolume} instance rounded with decimal digits inserted

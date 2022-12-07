@@ -6,7 +6,7 @@ import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.priceoracle.records.PriceOracle;
 import org.json.JSONObject;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.PRICE_ORACLE_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
@@ -108,7 +108,8 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
      * Get signed prices</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/oracle")
+    @Returner
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/oracle")
     public PriceOracle getSignedPrices() throws Exception {
         return getSignedPrices(LIBRARY_OBJECT);
     }
@@ -134,9 +135,9 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * Get signed prices</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/oracle")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/oracle")
     public <T> T getSignedPrices(ReturnFormat format) throws Exception {
-        String signedPricesResponse = sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET_METHOD);
+        String signedPricesResponse = sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(signedPricesResponse);

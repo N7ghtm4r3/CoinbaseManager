@@ -2,11 +2,12 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.fees;
 
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.fees.records.Fee;
 import org.json.JSONObject;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.FEES_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
@@ -108,7 +109,8 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
      * Get fees</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/fees")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fees")
     public Fee getFees() throws Exception {
         return getFees(LIBRARY_OBJECT);
     }
@@ -134,9 +136,9 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * Get fees</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/fees")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fees")
     public <T> T getFees(ReturnFormat format) throws Exception {
-        String feeResponse = sendAPIRequest(FEES_ENDPOINT, GET_METHOD);
+        String feeResponse = sendAPIRequest(FEES_ENDPOINT, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(feeResponse);

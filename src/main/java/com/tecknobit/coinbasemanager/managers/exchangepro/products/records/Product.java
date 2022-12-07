@@ -67,7 +67,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #open} instance <br>
+     * Method to get {@link #open} instance <br>
      * Any params required
      *
      * @return {@link #open} instance as double
@@ -77,7 +77,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #open} instance
+     * Method to get {@link #open} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #open} instance rounded with decimal digits inserted
@@ -88,7 +88,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #high} instance <br>
+     * Method to get {@link #high} instance <br>
      * Any params required
      *
      * @return {@link #high} instance as double
@@ -98,7 +98,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #high} instance
+     * Method to get {@link #high} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #high} instance rounded with decimal digits inserted
@@ -109,7 +109,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #low} instance <br>
+     * Method to get {@link #low} instance <br>
      * Any params required
      *
      * @return {@link #low} instance as double
@@ -119,7 +119,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #low} instance
+     * Method to get {@link #low} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #low} instance rounded with decimal digits inserted
@@ -130,7 +130,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #volume} instance <br>
+     * Method to get {@link #volume} instance <br>
      * Any params required
      *
      * @return {@link #volume} instance as double
@@ -140,7 +140,7 @@ public abstract class Product {
     }
 
     /**
-     * MethodId to get {@link #volume} instance
+     * Method to get {@link #volume} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted

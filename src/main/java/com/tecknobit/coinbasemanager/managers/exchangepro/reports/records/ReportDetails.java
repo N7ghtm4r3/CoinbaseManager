@@ -60,7 +60,7 @@ public class ReportDetails {
     }
 
     /**
-     * MethodId to get {@link #id} instance <br>
+     * Method to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -70,7 +70,7 @@ public class ReportDetails {
     }
 
     /**
-     * MethodId to get {@link #type} instance <br>
+     * Method to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
@@ -80,7 +80,7 @@ public class ReportDetails {
     }
 
     /**
-     * MethodId to get {@link #status} instance <br>
+     * Method to get {@link #status} instance <br>
      * Any params required
      *
      * @return {@link #status} instance as {@link String}
@@ -150,7 +150,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #type} instance <br>
+         * Method to get {@link #type} instance <br>
          * Any params required
          *
          * @return {@link #type} instance as {@link String}
@@ -290,7 +290,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #createdAt} instance <br>
+         * Method to get {@link #createdAt} instance <br>
          * Any params required
          *
          * @return {@link #createdAt} instance as {@link String}
@@ -300,7 +300,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #createdAt} timestamp <br>
+         * Method to get {@link #createdAt} timestamp <br>
          * Any params required
          *
          * @return {@link #createdAt} timestamp as long
@@ -310,7 +310,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #activeAt} instance <br>
+         * Method to get {@link #activeAt} instance <br>
          * Any params required
          *
          * @return {@link #activeAt} instance as {@link String}
@@ -320,7 +320,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #activeAt} timestamp <br>
+         * Method to get {@link #activeAt} timestamp <br>
          * Any params required
          *
          * @return {@link #activeAt} timestamp as long
@@ -330,7 +330,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #id} instance <br>
+         * Method to get {@link #id} instance <br>
          * Any params required
          *
          * @return {@link #id} instance as {@link String}
@@ -340,7 +340,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #name} instance <br>
+         * Method to get {@link #name} instance <br>
          * Any params required
          *
          * @return {@link #name} instance as {@link String}
@@ -350,7 +350,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #email} instance <br>
+         * Method to get {@link #email} instance <br>
          * Any params required
          *
          * @return {@link #email} instance as {@link String}
@@ -360,7 +360,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #isBanned} instance <br>
+         * Method to get {@link #isBanned} instance <br>
          * Any params required
          *
          * @return {@link #isBanned} instance as boolean
@@ -370,7 +370,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #userType} instance <br>
+         * Method to get {@link #userType} instance <br>
          * Any params required
          *
          * @return {@link #userType} instance as {@link String}
@@ -380,7 +380,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #fullFillsNewRequirements} instance <br>
+         * Method to get {@link #fullFillsNewRequirements} instance <br>
          * Any params required
          *
          * @return {@link #fullFillsNewRequirements} instance as boolean
@@ -390,7 +390,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get {@link #hasDefault} instance <br>
+         * Method to get {@link #hasDefault} instance <br>
          * Any params required
          *
          * @return {@link #hasDefault} instance as boolean
@@ -400,7 +400,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get tax domain <br>
+         * Method to get tax domain <br>
          * Any params required
          *
          * @return tax domain as {@link String}
@@ -410,7 +410,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get permissions <br>
+         * Method to get permissions <br>
          * Any params required
          *
          * @return permissions as {@link JSONObject}
@@ -420,7 +420,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get permissions <br>
+         * Method to get permissions <br>
          * Any params required
          *
          * @return permissions as {@link String}
@@ -431,7 +431,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get flags <br>
+         * Method to get flags <br>
          * Any params required
          *
          * @return flags as {@link JSONObject}
@@ -441,7 +441,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get flags <br>
+         * Method to get flags <br>
          * Any params required
          *
          * @return flags as {@link String}
@@ -452,7 +452,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get preferences <br>
+         * Method to get preferences <br>
          * Any params required
          *
          * @return preferences as {@link JSONObject}
@@ -462,7 +462,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get preferences <br>
+         * Method to get preferences <br>
          * Any params required
          *
          * @return preferences as {@link String}
@@ -473,7 +473,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get a custom snippet
+         * Method to get a custom snippet
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link JSONObject}
@@ -483,7 +483,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get a custom snippet
+         * Method to get a custom snippet
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link String}
@@ -494,7 +494,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get a custom list
+         * Method to get a custom list
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link JSONArray}
@@ -504,7 +504,7 @@ public class ReportDetails {
         }
 
         /**
-         * MethodId to get a custom list
+         * Method to get a custom list
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link String}

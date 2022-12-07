@@ -36,14 +36,14 @@ public class EndpointsList {
     public static final String DEPOSIT_FROM_COINBASE_ENDPOINT = "/deposits" + COINBASE_ACCOUNT_ENDPOINT;
 
     /**
-     * {@code DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT} is constant for DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT's endpoint
-     * **/
-    public static final String DEPOSIT_FROM_PAYMENT_METHOD_ENDPOINT = "/deposits/payment-method";
+     * {@code DEPOSIT_FROM_PAYMENT_ENDPOINT} is constant for DEPOSIT_FROM_PAYMENT_ENDPOINT's endpoint
+     **/
+    public static final String DEPOSIT_FROM_PAYMENT_ENDPOINT = "/deposits/payment-method";
 
     /**
-     * {@code PAYMENTS_METHOD_ENDPOINT} is constant for PAYMENTS_METHOD_ENDPOINT's endpoint
+     * {@code PAYMENTS_ENDPOINT} is constant for PAYMENTS_ENDPOINT's endpoint
      * **/
-    public static final String PAYMENTS_METHOD_ENDPOINT = "/payment-methods";
+    public static final String PAYMENTS_ENDPOINT = "/payment-methods";
 
     /**
      * {@code TRANSFERS_ENDPOINT} is constant for TRANSFERS_ENDPOINT's endpoint
@@ -66,9 +66,9 @@ public class EndpointsList {
     public static final String FEE_WITHDRAW_TO_CRYPTO_ENDPOINT = "/withdrawals/fee-estimate";
 
     /**
-     * {@code WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT} is constant for WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT's endpoint
+     * {@code WITHDRAW_TO_PAYMENT_ENDPOINT} is constant for WITHDRAW_TO_PAYMENT_ENDPOINT's endpoint
      * **/
-    public static final String WITHDRAW_TO_PAYMENT_METHOD_ENDPOINT = "/withdrawals/payment-method";
+    public static final String WITHDRAW_TO_PAYMENT_ENDPOINT = "/withdrawals/payment-method";
 
     /**
      * {@code FEES_ENDPOINT} is constant for FEES_ENDPOINT's endpoint

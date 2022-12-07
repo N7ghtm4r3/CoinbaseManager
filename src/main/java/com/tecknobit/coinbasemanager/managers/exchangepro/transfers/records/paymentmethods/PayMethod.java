@@ -66,7 +66,7 @@ public class PayMethod {
     }
 
     /**
-     * MethodId to get {@link #name} instance <br>
+     * Method to get {@link #name} instance <br>
      * Any params required
      *
      * @return {@link #name} instance as {@link String}
@@ -76,7 +76,7 @@ public class PayMethod {
     }
 
     /**
-     * MethodId to set {@link #name}
+     * Method to set {@link #name}
      *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
@@ -88,7 +88,7 @@ public class PayMethod {
     }
 
     /**
-     * MethodId to get {@link #type} instance <br>
+     * Method to get {@link #type} instance <br>
      * Any params required
      *
      * @return {@link #type} instance as {@link String}
@@ -98,7 +98,7 @@ public class PayMethod {
     }
 
     /**
-     * MethodId to set {@link #type}
+     * Method to set {@link #type}
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value is null or empty
@@ -162,7 +162,7 @@ public class PayMethod {
         }
 
         /**
-         * MethodId to get {@link #symbol} instance <br>
+         * Method to get {@link #symbol} instance <br>
          * Any params required
          *
          * @return {@link #symbol} instance as {@link String}

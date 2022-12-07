@@ -52,7 +52,7 @@ public class Transfer extends AccountDetails {
         this.completedAt = completedAt;
         transferDetails = new TransferDetails(details.getString("coinbase_account_id"),
                 details.getString("coinbase_transaction_id"),
-                details.getString("coinbase_payment_method_id")
+                details.getString("coinbase_payment_id")
         );
     }
 
@@ -69,7 +69,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * MethodId to assemble a transfers list
+     * Method to assemble a transfers list
      *
      * @param transfersResponse : transfers list response to format
      * @param format            :                 return type formatter -> {@link ReturnFormat}
@@ -92,7 +92,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * MethodId to get {@link #completedAt} instance <br>
+     * Method to get {@link #completedAt} instance <br>
      * Any params required
      *
      * @return {@link #completedAt} instance as {@link String}
@@ -102,7 +102,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * MethodId to get {@link #completedAt} timestamp <br>
+     * Method to get {@link #completedAt} timestamp <br>
      * Any params required
      *
      * @return {@link #completedAt} timestamp as long
@@ -112,7 +112,7 @@ public class Transfer extends AccountDetails {
     }
 
     /**
-     * MethodId to get {@link #transferDetails} instance <br>
+     * Method to get {@link #transferDetails} instance <br>
      * Any params required
      *
      * @return {@link #transferDetails} instance as {@link TransferDetails}
@@ -180,11 +180,11 @@ public class Transfer extends AccountDetails {
          **/
         public TransferDetails(JSONObject transferDetails) {
             this(transferDetails.getString("coinbase_account_id"), transferDetails.getString("coinbase_transaction_id"),
-                    transferDetails.getString("coinbase_payment_method_id"));
+                    transferDetails.getString("coinbase_payment_id"));
         }
 
         /**
-         * MethodId to get {@link #coinbaseAccountId} instance <br>
+         * Method to get {@link #coinbaseAccountId} instance <br>
          * Any params required
          *
          * @return {@link #coinbaseAccountId} instance as {@link String}
@@ -194,7 +194,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * MethodId to get {@link #coinbaseTransactionId} instance <br>
+         * Method to get {@link #coinbaseTransactionId} instance <br>
          * Any params required
          *
          * @return {@link #coinbaseTransactionId} instance as {@link String}
@@ -204,7 +204,7 @@ public class Transfer extends AccountDetails {
         }
 
         /**
-         * MethodId to get {@link #coinbasePaymentMethodId} instance <br>
+         * Method to get {@link #coinbasePaymentMethodId} instance <br>
          * Any params required
          *
          * @return {@link #coinbasePaymentMethodId} instance as {@link String}

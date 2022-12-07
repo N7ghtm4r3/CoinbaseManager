@@ -2,11 +2,12 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.users;
 
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.users.records.ExchangeLimits;
 import org.json.JSONObject;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.EXCHANGE_LIMITS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.USERS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
@@ -109,7 +110,8 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
      * Get user exchange limits</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
     public ExchangeLimits getUserExchangeLimits(String userId) throws Exception {
         return getUserExchangeLimits(userId, LIBRARY_OBJECT);
     }
@@ -136,10 +138,10 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * Get user exchange limits</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
     public <T> T getUserExchangeLimits(String userId, ReturnFormat format) throws Exception {
         String exchangeLimitsResponse = sendAPIRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT,
-                GET_METHOD);
+                GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(exchangeLimitsResponse);

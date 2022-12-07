@@ -92,7 +92,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #productId} instance <br>
+     * Method to get {@link #productId} instance <br>
      * Any params required
      *
      * @return {@link #productId} instance as {@link String}
@@ -102,7 +102,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #baseAsset} instance <br>
+     * Method to get {@link #baseAsset} instance <br>
      * Any params required
      *
      * @return {@link #baseAsset} instance as {@link String}
@@ -112,7 +112,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #quoteAsset} instance <br>
+     * Method to get {@link #quoteAsset} instance <br>
      * Any params required
      *
      * @return {@link #quoteAsset} instance as {@link String}
@@ -122,7 +122,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #bid} instance <br>
+     * Method to get {@link #bid} instance <br>
      * Any params required
      *
      * @return {@link #bid} instance as double
@@ -132,7 +132,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #bid} instance
+     * Method to get {@link #bid} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #bid} instance rounded with decimal digits inserted
@@ -143,7 +143,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #ask} instance <br>
+     * Method to get {@link #ask} instance <br>
      * Any params required
      *
      * @return {@link #ask} instance as double
@@ -153,7 +153,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #ask} instance
+     * Method to get {@link #ask} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #ask} instance rounded with decimal digits inserted
@@ -164,7 +164,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #volume} instance <br>
+     * Method to get {@link #volume} instance <br>
      * Any params required
      *
      * @return {@link #volume} instance as double
@@ -174,7 +174,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #volume} instance
+     * Method to get {@link #volume} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
@@ -185,7 +185,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #priceChangePercent} instance <br>
+     * Method to get {@link #priceChangePercent} instance <br>
      * Any params required
      *
      * @return {@link #priceChangePercent} instance as double
@@ -195,7 +195,7 @@ public class Ticker extends StatDetails {
     }
 
     /**
-     * MethodId to get {@link #priceChangePercent} instance
+     * Method to get {@link #priceChangePercent} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #priceChangePercent} instance rounded with decimal digits inserted

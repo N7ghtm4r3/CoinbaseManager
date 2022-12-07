@@ -2,13 +2,14 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.wrappedassets;
 
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CONVERSION_RATE_ENDPOINT;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.WRAPPED_ASSETS_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
@@ -111,7 +112,8 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
      * Get all wrapped assets</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets")
     public ArrayList<String> getAllWrappedAssets() throws Exception {
         return getAllWrappedAssets(LIBRARY_OBJECT);
     }
@@ -137,9 +139,9 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * Get all wrapped assets</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets")
     public <T> T getAllWrappedAssets(ReturnFormat format) throws Exception {
-        String wrappedAssetsResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET_METHOD);
+        String wrappedAssetsResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(wrappedAssetsResponse);
@@ -174,7 +176,8 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
      * Get conversion rate of wrapped asset</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public double getWrappedConversionRate(String wrappedAssetId) throws Exception {
         return Double.parseDouble(getWrappedConversionRate(wrappedAssetId, LIBRARY_OBJECT));
     }
@@ -200,7 +203,8 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
      * Get conversion rate of wrapped asset</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public double getWrappedConversionRate(String wrappedAssetId, int decimals) throws Exception {
         return roundValue(Double.parseDouble(getWrappedConversionRate(wrappedAssetId, LIBRARY_OBJECT)), decimals);
     }
@@ -228,10 +232,10 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public <T> T getWrappedConversionRate(String wrappedAssetId, ReturnFormat format) throws Exception {
         String conversionRateResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId + "/"
-                + CONVERSION_RATE_ENDPOINT, GET_METHOD);
+                + CONVERSION_RATE_ENDPOINT, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(conversionRateResponse);

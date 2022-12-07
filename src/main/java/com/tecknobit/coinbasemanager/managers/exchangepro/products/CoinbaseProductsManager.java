@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.products;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.WrappedRequest;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.products.records.*;
 import com.tecknobit.coinbasemanager.managers.exchangepro.products.records.Candle.Granularity;
@@ -12,7 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.apimanager.trading.TradingTools.computeTPTOPIndex;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.*;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.JSON;
@@ -115,7 +116,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
      * Get all known trading pairs</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
     public ArrayList<TradingPair> getAllTradingPairs() throws Exception {
         return getAllTradingPairs(LIBRARY_OBJECT);
     }
@@ -140,9 +142,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
      * Get all known trading pairs</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
     public <T> T getAllTradingPairs(ReturnFormat format) throws Exception {
-        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT, GET_METHOD), format);
+        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT, GET), format);
     }
 
     /**
@@ -165,7 +167,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
     public ArrayList<TradingPair> getAllTradingPairs(String type) throws Exception {
         return getAllTradingPairs(type, LIBRARY_OBJECT);
     }
@@ -191,13 +194,13 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
     public <T> T getAllTradingPairs(String type, ReturnFormat format) throws Exception {
-        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT + "?type=" + type, GET_METHOD), format);
+        return returnTradingPairsList(sendAPIRequest(PRODUCTS_ENDPOINT + "?type=" + type, GET), format);
     }
 
     /**
-     * MethodId to assemble a trading pairs list
+     * Method to assemble a trading pairs list
      *
      * @param tradingPairsResponse: trading pairs list response to format
      * @param format:               return type formatter -> {@link ReturnFormat}
@@ -239,7 +242,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
      * Get single product</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}")
     public TradingPair getSingleTradingPair(String productId) throws Exception {
         return getSingleTradingPair(productId, LIBRARY_OBJECT);
     }
@@ -266,9 +270,9 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * Get single product</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}")
     public <T> T getSingleTradingPair(String productId, ReturnFormat format) throws Exception {
-        String tradingPairResponse = sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId, GET_METHOD);
+        String tradingPairResponse = sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(tradingPairResponse);
@@ -299,7 +303,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      * Get product book</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
     public Book getProductBook(String productId) throws Exception {
         return getProductBook(productId, LIBRARY_OBJECT);
     }
@@ -325,10 +330,10 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      * Get product book</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
     public <T> T getProductBook(String productId, ReturnFormat format) throws Exception {
         return returnBook(productId, sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT,
-                GET_METHOD), format);
+                GET), format);
     }
 
     /**
@@ -352,7 +357,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      * Get product book</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
     public Book getProductBook(String productId, int level) throws Exception {
         return getProductBook(productId, level, LIBRARY_OBJECT);
     }
@@ -379,14 +385,14 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
      * Get product book</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/book")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
     public <T> T getProductBook(String productId, int level, ReturnFormat format) throws Exception {
         return returnBook(productId, sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_BOOK_ENDPOINT
-                + "?level=" + level, GET_METHOD), format);
+                + "?level=" + level, GET), format);
     }
 
     /**
-     * MethodId to assemble a book object
+     * Method to assemble a book object
      *
      * @param productId:    identifier of book es. BTC-USD
      * @param bookResponse: book response to format
@@ -507,7 +513,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     }
 
     /**
-     * MethodId to assemble a books list
+     * Method to assemble a books list
      *
      * @param level:  type of format for result
      * @param format: return type formatter -> {@link ReturnFormat}
@@ -561,7 +567,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
      * Get product candles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
     public ArrayList<Candle> getProductCandles(String productId) throws Exception {
         return getProductCandles(productId, LIBRARY_OBJECT);
     }
@@ -586,10 +593,10 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
      * Get product candles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
     public <T> T getProductCandles(String productId, ReturnFormat format) throws Exception {
         return returnCandlesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT,
-                GET_METHOD), format);
+                GET), format);
     }
 
     /**
@@ -624,7 +631,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
      * Get product candles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
     public ArrayList<Candle> getProductCandles(String productId, Params queryParams) throws Exception {
         return getProductCandles(productId, queryParams, LIBRARY_OBJECT);
     }
@@ -662,14 +670,14 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
      * Get product candles</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
     public <T> T getProductCandles(String productId, Params queryParams, ReturnFormat format) throws Exception {
         return returnCandlesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_CANDLE_ENDPOINT +
-                queryParams.createQueryString(), GET_METHOD), format);
+                queryParams.createQueryString(), GET), format);
     }
 
     /**
-     * MethodId to assemble a candles list
+     * Method to assemble a candles list
      *
      * @param candlesListResponse: candles list response to format
      * @param format:              return type formatter -> {@link ReturnFormat}
@@ -711,7 +719,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
      * Get product stats</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
     public Stat getProductStats(String productId) throws Exception {
         return getProductStats(productId, LIBRARY_OBJECT);
     }
@@ -738,10 +747,10 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * Get product stats</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/stats")
     public <T> T getProductStats(String productId, ReturnFormat format) throws Exception {
         String productResponse = sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_STAT_ENDPOINT,
-                GET_METHOD);
+                GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(productResponse);
@@ -843,7 +852,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
      * Get product ticker</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
     public Ticker getProductTicker(String productId) throws Exception {
         return getProductTicker(productId, LIBRARY_OBJECT);
     }
@@ -872,10 +882,10 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * Get product ticker</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/ticker")
     public <T> T getProductTicker(String productId, ReturnFormat format) throws Exception {
         JSONObject ticker = new JSONObject(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId +
-                GET_PRODUCT_TICKER_ENDPOINT, GET_METHOD));
+                GET_PRODUCT_TICKER_ENDPOINT, GET));
         ticker.put("productId", productId);
         String[] details = productId.split("-");
         ticker.put("baseAsset", details[0]);
@@ -892,7 +902,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     }
 
     /**
-     * MethodId to get price change percent
+     * Method to get price change percent
      *
      * @param productId: product identifier value
      * @param price:     price value for product
@@ -924,7 +934,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * Get product ticker</a>
      **/
     @WrappedRequest
-    public ArrayList<Stat> getAllTickers() throws Exception {
+    public ArrayList<Ticker> getAllTickers() throws Exception {
         return getAllTickers(LIBRARY_OBJECT);
     }
 
@@ -992,7 +1002,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
      * Get product trades</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
     public ArrayList<Trade> getProductTrades(String productId) throws Exception {
         return getProductTrades(productId, LIBRARY_OBJECT);
     }
@@ -1018,10 +1029,10 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
      * Get product trades</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
     public <T> T getProductTrades(String productId, ReturnFormat format) throws Exception {
         return returnTradesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT,
-                GET_METHOD), format);
+                GET), format);
     }
 
     /**
@@ -1056,7 +1067,8 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
      * Get product trades</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
     public ArrayList<Trade> getProductTrades(String productId, Params queryParams) throws Exception {
         return getProductTrades(productId, queryParams, LIBRARY_OBJECT);
     }
@@ -1094,14 +1106,14 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
      * Get product trades</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
     public <T> T getProductTrades(String productId, Params queryParams, ReturnFormat format) throws Exception {
         return returnTradesList(sendAPIRequest(PRODUCTS_ENDPOINT + "/" + productId + GET_PRODUCT_TRADE_ENDPOINT +
-                queryParams.createQueryString(), GET_METHOD), format);
+                queryParams.createQueryString(), GET), format);
     }
 
     /**
-     * MethodId to assemble a trades list
+     * Method to assemble a trades list
      *
      * @param tradesResponse: trades list response to format
      * @param format:         return type formatter -> {@link ReturnFormat}
@@ -1124,7 +1136,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
     }
 
     /**
-     * MethodId to get forecast of a cryptocurrency in base of days's gap inserted
+     * Method to get forecast of a cryptocurrency in base of days's gap inserted
      *
      * @param productId:      productId to calculate forecast es. BTC-USD
      * @param intervalDays:   days gap for the prevision range
@@ -1145,14 +1157,14 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      **/
-    @WrappedRequest
+    @Wrapper
     public double getSymbolForecast(String productId, int intervalDays, Granularity granularity, double toleranceValue,
                                     int decimalDigits) throws Exception {
         return roundValue(getSymbolForecast(productId, intervalDays, granularity, toleranceValue), decimalDigits);
     }
 
     /**
-     * MethodId to get forecast of a cryptocurrency in base of days's gap inserted
+     * Method to get forecast of a cryptocurrency in base of days's gap inserted
      *
      * @param productId:      productId to calculate forecast es. BTC-USD
      * @param intervalDays:   days gap for the prevision range
@@ -1172,7 +1184,6 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      **/
-    @WrappedRequest
     public double getSymbolForecast(String productId, int intervalDays, Granularity granularity,
                                     double toleranceValue) throws Exception {
         ArrayList<Double> historicalValues = new ArrayList<>();

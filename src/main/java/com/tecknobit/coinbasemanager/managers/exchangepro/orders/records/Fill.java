@@ -87,7 +87,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #tradeId} instance <br>
+     * Method to get {@link #tradeId} instance <br>
      * Any params required
      *
      * @return {@link #tradeId} instance as long
@@ -97,7 +97,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #orderId} instance <br>
+     * Method to get {@link #orderId} instance <br>
      * Any params required
      *
      * @return {@link #orderId} instance as {@link String}
@@ -107,7 +107,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #userId} instance <br>
+     * Method to get {@link #userId} instance <br>
      * Any params required
      *
      * @return {@link #userId} instance as {@link String}
@@ -117,7 +117,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #liquidity} instance <br>
+     * Method to get {@link #liquidity} instance <br>
      * Any params required
      *
      * @return {@link #liquidity} instance as {@link String}
@@ -127,7 +127,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #fee} instance <br>
+     * Method to get {@link #fee} instance <br>
      * Any params required
      *
      * @return {@link #fee} instance as double
@@ -137,7 +137,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #fee} instance
+     * Method to get {@link #fee} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #fee} instance rounded with decimal digits inserted
@@ -148,7 +148,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #usdVolume} instance <br>
+     * Method to get {@link #usdVolume} instance <br>
      * Any params required
      *
      * @return {@link #usdVolume} instance as double
@@ -158,7 +158,7 @@ public class Fill extends OrderDetails {
     }
 
     /**
-     * MethodId to get {@link #usdVolume} instance
+     * Method to get {@link #usdVolume} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #usdVolume} instance rounded with decimal digits inserted

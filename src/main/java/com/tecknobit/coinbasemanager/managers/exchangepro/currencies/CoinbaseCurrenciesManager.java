@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.managers.exchangepro.currencies;
 
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.managers.exchangepro.currencies.records.Currency;
 import org.json.JSONArray;
@@ -9,7 +10,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.tecknobit.apimanager.apis.APIRequest.GET_METHOD;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
 import static com.tecknobit.coinbasemanager.constants.EndpointsList.CURRENCIES_ENDPOINT;
 import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 
@@ -110,7 +111,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
      * Get all known currencies</a>
      **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/currencies")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies")
     public ArrayList<Currency> getAllKnownCurrencies() throws Exception {
         return getAllKnownCurrencies(LIBRARY_OBJECT);
     }
@@ -136,9 +138,9 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * Get all known currencies</a>
      **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/currencies")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies")
     public <T> T getAllKnownCurrencies(ReturnFormat format) throws Exception {
-        String currenciesResponse = sendAPIRequest(CURRENCIES_ENDPOINT, GET_METHOD);
+        String currenciesResponse = sendAPIRequest(CURRENCIES_ENDPOINT, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONArray(currenciesResponse);
@@ -171,7 +173,8 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
-    @RequestPath(path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
     public Currency getCurrency(String currencyId) throws Exception {
         return getCurrency(currencyId, LIBRARY_OBJECT);
     }
@@ -196,9 +199,9 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * **/
     @Returner
-    @RequestPath(path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
     public <T> T getCurrency(String currencyId, ReturnFormat format) throws Exception {
-        String currencyResponse = sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET_METHOD);
+        String currencyResponse = sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(currencyResponse);

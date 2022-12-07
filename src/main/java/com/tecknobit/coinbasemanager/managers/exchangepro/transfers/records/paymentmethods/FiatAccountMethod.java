@@ -71,7 +71,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #id} instance <br>
+         * Method to get {@link #id} instance <br>
          * Any params required
          *
          * @return {@link #id} instance as {@link String}
@@ -81,7 +81,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #resource} instance <br>
+         * Method to get {@link #resource} instance <br>
          * Any params required
          *
          * @return {@link #resource} instance as {@link String}
@@ -91,7 +91,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #resourcePath} instance <br>
+         * Method to get {@link #resourcePath} instance <br>
          * Any params required
          *
          * @return {@link #resourcePath} instance as {@link String}
@@ -162,7 +162,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #amount} instance <br>
+         * Method to get {@link #amount} instance <br>
          * Any params required
          *
          * @return {@link #amount} instance as double
@@ -172,7 +172,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #amount}
+         * Method to set {@link #amount}
          *
          * @param amount: amount value
          * @throws IllegalArgumentException when amount value is less than 0
@@ -184,7 +184,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #amount} instance
+         * Method to get {@link #amount} instance
          *
          * @param decimals: number of digits to round final value
          * @return {@link #amount} instance rounded with decimal digits inserted
@@ -195,7 +195,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #currency} instance <br>
+         * Method to get {@link #currency} instance <br>
          * Any params required
          *
          * @return {@link #currency} instance as {@link String}
@@ -205,7 +205,7 @@ public class FiatAccountMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #currency}
+         * Method to set {@link #currency}
          *
          * @param currency: currency value
          * @throws IllegalArgumentException when currency value is null or empty

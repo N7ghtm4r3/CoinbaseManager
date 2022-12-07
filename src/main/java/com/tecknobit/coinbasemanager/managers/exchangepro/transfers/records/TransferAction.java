@@ -87,7 +87,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #id} instance <br>
+     * Method to get {@link #id} instance <br>
      * Any params required
      *
      * @return {@link #id} instance as {@link String}
@@ -97,7 +97,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #payoutAt} instance <br>
+     * Method to get {@link #payoutAt} instance <br>
      * Any params required
      *
      * @return {@link #payoutAt} instance as {@link String}
@@ -107,7 +107,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #fee} instance <br>
+     * Method to get {@link #fee} instance <br>
      * Any params required
      *
      * @return {@link #fee} instance as double
@@ -117,7 +117,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #fee} instance
+     * Method to get {@link #fee} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
@@ -128,7 +128,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #subTotal} instance <br>
+     * Method to get {@link #subTotal} instance <br>
      * Any params required
      *
      * @return {@link #subTotal} instance as double
@@ -138,7 +138,7 @@ public class TransferAction extends Amount {
     }
 
     /**
-     * MethodId to get {@link #subTotal} instance
+     * Method to get {@link #subTotal} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #subTotal} instance rounded with decimal digits inserted

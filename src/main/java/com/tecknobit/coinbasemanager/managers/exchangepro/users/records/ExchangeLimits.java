@@ -178,7 +178,7 @@ public class ExchangeLimits extends UserDetails {
         if (stateCode == null || stateCode.isEmpty())
             throw new IllegalArgumentException("State code value cannot be empty or null");
         accessPrivacyRights = hUser.getBoolean("access_privacy_rights");
-        twoFactorMethod = hUser.getString("two_factor_method");
+        twoFactorMethod = hUser.getString("two_factor");
         analyticsProcessingEnabled = hUser.getBoolean("analytics_processing_enabled");
         isPrime = hUser.getBoolean("is_prime");
         hasProWbl = hUser.getBoolean("has_pro_wbl");
@@ -201,7 +201,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to assemble a test list
+     * Method to assemble a test list
      *
      * @param jsonTests: jsonArray obtained by response request
      *                   any return
@@ -213,7 +213,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #termsAccepted} instance <br>
+     * Method to get {@link #termsAccepted} instance <br>
      * Any params required
      *
      * @return {@link #termsAccepted} instance as {@link String}
@@ -223,7 +223,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #testGroupsList} instance <br>
+     * Method to get {@link #testGroupsList} instance <br>
      * Any params required
      *
      * @return {@link #testGroupsList} instance as {@link ArrayList} of {@link Test}
@@ -233,7 +233,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to set {@link #testGroupsList} instance <br>
+     * Method to set {@link #testGroupsList} instance <br>
      *
      * @param testGroupsList: test groups list to set
      **/
@@ -242,7 +242,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to add a test group to {@link #testGroupsList}
+     * Method to add a test group to {@link #testGroupsList}
      *
      * @param testGroup: test group to insert
      * @apiNote the {@code "testGroup"} will be inserted only if is not already presents in the list
@@ -253,7 +253,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to remove a deposit from {@link #testGroupsList}
+     * Method to remove a deposit from {@link #testGroupsList}
      *
      * @param testGroup: deposit to remove
      * @return whether the {@code "testGroup"} has been removed
@@ -263,7 +263,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get a test from {@link #testGroupsList}
+     * Method to get a test from {@link #testGroupsList}
      *
      * @param index: index of the test to get
      * @return test as {@link Test}
@@ -273,7 +273,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #country} instance <br>
+     * Method to get {@link #country} instance <br>
      * Any params required
      *
      * @return {@link #country} instance as {@link Country}
@@ -283,7 +283,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #stateCode} instance <br>
+     * Method to get {@link #stateCode} instance <br>
      * Any params required
      *
      * @return {@link #stateCode} instance as {@link String}
@@ -293,7 +293,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #accessPrivacyRights} instance <br>
+     * Method to get {@link #accessPrivacyRights} instance <br>
      * Any params required
      *
      * @return {@link #accessPrivacyRights} instance as boolean
@@ -303,7 +303,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #twoFactorMethod} instance <br>
+     * Method to get {@link #twoFactorMethod} instance <br>
      * Any params required
      *
      * @return {@link #twoFactorMethod} instance as {@link String}
@@ -313,7 +313,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #analyticsProcessingEnabled} instance <br>
+     * Method to get {@link #analyticsProcessingEnabled} instance <br>
      * Any params required
      *
      * @return {@link #analyticsProcessingEnabled} instance as boolean
@@ -323,7 +323,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #isPrime} instance <br>
+     * Method to get {@link #isPrime} instance <br>
      * Any params required
      *
      * @return {@link #isPrime} instance as boolean
@@ -333,7 +333,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #hasProWbl} instance <br>
+     * Method to get {@link #hasProWbl} instance <br>
      * Any params required
      *
      * @return {@link #hasProWbl} instance as boolean
@@ -343,7 +343,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #hasClawBack} instance <br>
+     * Method to get {@link #hasClawBack} instance <br>
      * Any params required
      *
      * @return {@link #hasClawBack} instance as boolean
@@ -353,7 +353,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #hasClawBackPaymentPending} instance <br>
+     * Method to get {@link #hasClawBackPaymentPending} instance <br>
      * Any params required
      *
      * @return {@link #hasClawBackPaymentPending} instance as boolean
@@ -363,7 +363,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #hasRestrictedAssets} instance <br>
+     * Method to get {@link #hasRestrictedAssets} instance <br>
      * Any params required
      *
      * @return {@link #hasRestrictedAssets} instance as boolean
@@ -373,7 +373,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #legalName} instance <br>
+     * Method to get {@link #legalName} instance <br>
      * Any params required
      *
      * @return {@link #legalName} instance as {@link String}
@@ -383,7 +383,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #whitelistingEnabled} instance <br>
+     * Method to get {@link #whitelistingEnabled} instance <br>
      * Any params required
      *
      * @return {@link #whitelistingEnabled} instance as boolean
@@ -393,7 +393,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #regionBankingSupport} instance <br>
+     * Method to get {@link #regionBankingSupport} instance <br>
      * Any params required
      *
      * @return {@link #regionBankingSupport} instance as boolean
@@ -403,7 +403,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #defaultPreferredMarket} instance <br>
+     * Method to get {@link #defaultPreferredMarket} instance <br>
      * Any params required
      *
      * @return {@link #defaultPreferredMarket} instance as {@link String}
@@ -413,7 +413,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #marginEligible} instance <br>
+     * Method to get {@link #marginEligible} instance <br>
      * Any params required
      *
      * @return {@link #marginEligible} instance as boolean
@@ -423,7 +423,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #marginInformation} instance <br>
+     * Method to get {@link #marginInformation} instance <br>
      * Any params required
      *
      * @return {@link #marginInformation} instance as {@link MarginInformation}
@@ -433,7 +433,7 @@ public class ExchangeLimits extends UserDetails {
     }
 
     /**
-     * MethodId to get {@link #address} instance <br>
+     * Method to get {@link #address} instance <br>
      * Any params required
      *
      * @return {@link #address} instance as {@link Address}
@@ -489,7 +489,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #test} instance <br>
+         * Method to get {@link #test} instance <br>
          * Any params required
          *
          * @return {@link #test} instance as {@link String}
@@ -499,7 +499,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #group} instance <br>
+         * Method to get {@link #group} instance <br>
          * Any params required
          *
          * @return {@link #group} instance as {@link String}
@@ -509,7 +509,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #forced} instance <br>
+         * Method to get {@link #forced} instance <br>
          * Any params required
          *
          * @return {@link #forced} instance as boolean
@@ -585,7 +585,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #code} instance <br>
+         * Method to get {@link #code} instance <br>
          * Any params required
          *
          * @return {@link #code} instance as {@link String}
@@ -595,7 +595,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #name} instance <br>
+         * Method to get {@link #name} instance <br>
          * Any params required
          *
          * @return {@link #name} instance as {@link String}
@@ -605,7 +605,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #isInEurope} instance <br>
+         * Method to get {@link #isInEurope} instance <br>
          * Any params required
          *
          * @return {@link #isInEurope} instance as boolean
@@ -700,7 +700,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #line1} instance <br>
+         * Method to get {@link #line1} instance <br>
          * Any params required
          *
          * @return {@link #line1} instance as {@link String}
@@ -710,7 +710,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #line1}
+         * Method to set {@link #line1}
          *
          * @param line1: line1 value
          * @throws IllegalArgumentException when line1 value is null or empty
@@ -722,7 +722,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #city} instance <br>
+         * Method to get {@link #city} instance <br>
          * Any params required
          *
          * @return {@link #city} instance as {@link String}
@@ -732,7 +732,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #city}
+         * Method to set {@link #city}
          *
          * @param city: city value
          * @throws IllegalArgumentException when city value is null or empty
@@ -744,7 +744,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #state} instance <br>
+         * Method to get {@link #state} instance <br>
          * Any params required
          *
          * @return {@link #state} instance as {@link String}
@@ -754,7 +754,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #state}
+         * Method to set {@link #state}
          *
          * @param state: state value
          * @throws IllegalArgumentException when state value is null or empty
@@ -766,7 +766,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #postalCode} instance <br>
+         * Method to get {@link #postalCode} instance <br>
          * Any params required
          *
          * @return {@link #postalCode} instance as {@link String}
@@ -776,7 +776,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #postalCode}
+         * Method to set {@link #postalCode}
          *
          * @param postalCode: postal code value
          * @throws IllegalArgumentException when postal code value is null or empty
@@ -788,7 +788,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #code} instance <br>
+         * Method to get {@link #code} instance <br>
          * Any params required
          *
          * @return {@link #code} instance as {@link String}
@@ -798,7 +798,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #code}
+         * Method to set {@link #code}
          *
          * @param code: code value
          * @throws IllegalArgumentException when code value is null or empty
@@ -810,7 +810,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #name} instance <br>
+         * Method to get {@link #name} instance <br>
          * Any params required
          *
          * @return {@link #name} instance as {@link String}
@@ -820,7 +820,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to set {@link #name}
+         * Method to set {@link #name}
          *
          * @param name: code value
          * @throws IllegalArgumentException when name value is null or empty
@@ -895,7 +895,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #eligible} instance <br>
+         * Method to get {@link #eligible} instance <br>
          * Any params required
          *
          * @return {@link #eligible} instance as boolean
@@ -905,7 +905,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #enabled} instance <br>
+         * Method to get {@link #enabled} instance <br>
          * Any params required
          *
          * @return {@link #enabled} instance as boolean
@@ -915,7 +915,7 @@ public class ExchangeLimits extends UserDetails {
         }
 
         /**
-         * MethodId to get {@link #tier} instance <br>
+         * Method to get {@link #tier} instance <br>
          * Any params required
          *
          * @return {@link #tier} instance as {@link String}

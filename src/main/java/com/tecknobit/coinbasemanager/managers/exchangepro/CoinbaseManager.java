@@ -8,6 +8,8 @@ import com.tecknobit.apimanager.trading.TradingTools;
 import java.util.Properties;
 
 import static com.tecknobit.apimanager.apis.APIRequest.*;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.POST;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.PUT;
 import static com.tecknobit.apimanager.trading.TradingTools.computeAssetPercent;
 import static com.tecknobit.apimanager.trading.TradingTools.textualizeAssetPercent;
 
@@ -38,15 +40,18 @@ public class CoinbaseManager {
      * {@code CB_ACCESS_SIGN} is constant for CB_ACCESS_SIGN's header
      **/
     protected static final String CB_ACCESS_SIGN = "cb-access-sign";
+
     /**
      * {@code CB_ACCESS_PASSPHRASE} is constant for CB_ACCESS_PASSPHRASE's header
      **/
     protected static final String CB_ACCESS_PASSPHRASE = "cb-access-passphrase";
+
     /**
      * {@code properties} is a local instance used to instantiate a new {@link CoinbaseManager}'s manager without
      * re-insert credentials
      **/
     protected static final Properties properties = new Properties();
+
     /**
      * {@code headers} is instance that memorizes headers values
      **/
@@ -176,7 +181,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to store some properties
+     * Method to store some properties
      *
      * @param apiKey:              {@code "Coinbase"} api key
      * @param apiSecret:           {@code "Coinbase"} api secret
@@ -197,27 +202,27 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to execute and get response of a request
+     * Method to execute and get response of a request
      *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
      * @param method:   method HTTP for the request
      * @return response as {@link String}
      **/
-    public String sendAPIRequest(String endpoint, String method) throws Exception {
+    public String sendAPIRequest(String endpoint, RequestMethod method) throws Exception {
         setRequestHeaders(method, endpoint, null);
         apiRequest.sendAPIRequest(BASE_ENDPOINT + endpoint, method, headers);
         return apiRequest.getResponse();
     }
 
     /**
-     * MethodId to set {@code "Coinbase"} request headers
+     * Method to set {@code "Coinbase"} request headers
      *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
      * @param method:   method HTTP for the request
      * @param body:     only if request has a body params (generally POST request)
      *                  any return
      **/
-    private void setRequestHeaders(String method, String endpoint, String body) throws Exception {
+    private void setRequestHeaders(RequestMethod method, String endpoint, String body) throws Exception {
         String timestamp = "" + System.currentTimeMillis() / 1000;
         String stringToSign = timestamp + method + endpoint;
         if (body != null)
@@ -232,50 +237,50 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to execute and get response of a POST http request
+     * Method to execute and get response of a POST http request
      *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
      * @param payload:  params to insert in the http body post request
      * @return response as {@link String}
      **/
-    public String sendPayloadedRequest(String endpoint, String method, Params payload) throws Exception {
+    public String sendPayloadedRequest(String endpoint, RequestMethod method, Params payload) throws Exception {
         return sendPayloadedRequest(endpoint, method, payload, false);
     }
 
     /**
-     * MethodId to execute and get response of a POST http request
+     * Method to execute and get response of a POST http request
      *
      * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
      * @param payload:  params to insert in the http body post request
      * @return response as {@link String}
      **/
-    public String sendJSONPayloadedRequest(String endpoint, String method, Params payload) throws Exception {
+    public String sendJSONPayloadedRequest(String endpoint, RequestMethod method, Params payload) throws Exception {
         return sendPayloadedRequest(endpoint, method, payload, true);
     }
 
     /**
-     * MethodId to execute and get response of a POST http request
+     * Method to execute and get response of a POST http request
      *
      * @param endpoint:      endpoint for the request and its query params es endpoint?param=paramValue
      * @param payload:       params to insert in the http body post request
      * @param isJSONPayload: whether the payload is in {@code "JSON"}
      * @return response as {@link String}
      **/
-    private String sendPayloadedRequest(String endpoint, String method, Params payload,
+    private String sendPayloadedRequest(String endpoint, RequestMethod method, Params payload,
                                         boolean isJSONPayload) throws Exception {
-        if (method.equals(POST_METHOD) || method.equals(PUT_METHOD)) {
+        if (method.equals(POST) || method.equals(PUT)) {
             setRequestHeaders(method, endpoint, apiRequest.encodeBodyParams(payload));
             if (isJSONPayload)
-                apiRequest.sendJSONPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, payload);
+                apiRequest.sendJSONPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST, headers, payload);
             else
-                apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST_METHOD, headers, payload);
+                apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST, headers, payload);
             return apiRequest.getResponse();
         } else
             throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");
     }
 
     /**
-     * MethodId to assemble query params for a {@code "Coinbase"} request
+     * Method to assemble query params for a {@code "Coinbase"} request
      *
      * @param queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
@@ -285,7 +290,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get percent between two values and textualize it
+     * Method to get percent between two values and textualize it
      *
      * @param startValue:    first value to make compare
      * @param finalValue:    last value to compare and get percent by first value
@@ -297,7 +302,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get error response of request <br>
+     * Method to get error response of request <br>
      * Any params required
      *
      * @return error of the response as {@link String}
@@ -307,7 +312,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get error response of request <br>
+     * Method to get error response of request <br>
      * Any params required
      *
      * @return error response of the request formatted as {@code "JSON"} or as {@link String}
@@ -317,7 +322,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to print error response of request <br>
+     * Method to print error response of request <br>
      * Any params required
      **/
     public void printErrorResponse() {
@@ -325,7 +330,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get status code of request response <br>
+     * Method to get status code of request response <br>
      * Any params required
      *
      * @return status code of request response
@@ -335,7 +340,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to round a value
+     * Method to round a value
      *
      * @param value:         value to round
      * @param decimalDigits: number of digits to round final value
@@ -347,7 +352,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get percent between two values
+     * Method to get percent between two values
      *
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
@@ -358,18 +363,20 @@ public class CoinbaseManager {
         return computeAssetPercent(startValue, finalValue);
     }
 
-    /** MethodId to get percent between two values and round it
-     * @param startValue: first value to make compare
-     * @param finalValue: last value to compare and get percent by first value
+    /**
+     * Method to get percent between two values and round it
+     *
+     * @param startValue:    first value to make compare
+     * @param finalValue:    last value to compare and get percent by first value
      * @param decimalDigits: number of digits to round final percent value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
-     * **/
+     **/
     public double getTrendPercent(double startValue, double finalValue, int decimalDigits){
         return computeAssetPercent(startValue, finalValue, decimalDigits);
     }
 
-    /** MethodId to format percent between two values and textualize it
+    /** Method to format percent between two values and textualize it
      * @param percent: value to format
      * @return percent value formatted es. +8% or -8% as {@link String}
      * **/
@@ -377,7 +384,7 @@ public class CoinbaseManager {
         return textualizeAssetPercent(percent);
     }
 
-    /** MethodId to get percent between two values and textualize it
+    /** Method to get percent between two values and textualize it
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
      * @return percent value es. +8% or -8% as {@link String}
@@ -386,7 +393,7 @@ public class CoinbaseManager {
         return textualizeAssetPercent(startValue, finalValue);
     }
 
-    /** MethodId to get {@code "Coinbase"} api key
+    /** Method to get {@code "Coinbase"} api key
      * Any params required
      * @return api key as {@link String}
      * **/
@@ -394,7 +401,7 @@ public class CoinbaseManager {
         return apiKey;
     }
 
-    /** MethodId to get {@code "Coinbase"} api secret
+    /** Method to get {@code "Coinbase"} api secret
      * Any params required
      * @return api secret as {@link String}
      * **/
@@ -403,7 +410,7 @@ public class CoinbaseManager {
     }
 
     /**
-     * MethodId to get {@code "Coinbase"} api passphrase
+     * Method to get {@code "Coinbase"} api passphrase
      * Any params required
      *
      * @return api passphrase as {@link String}

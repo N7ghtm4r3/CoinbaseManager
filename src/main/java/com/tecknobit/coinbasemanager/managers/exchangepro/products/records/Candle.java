@@ -43,7 +43,7 @@ public class Candle extends Product {
     }
 
     /**
-     * MethodId to get {@link #time} <b>seconds</b> format <br>
+     * Method to get {@link #time} <b>seconds</b> format <br>
      * Any params required
      *
      * @return {@link #time} instance as long
@@ -64,7 +64,7 @@ public class Candle extends Product {
     }
 
     /**
-     * MethodId to get {@link #time} instance <br>
+     * Method to get {@link #time} instance <br>
      * Any params required
      *
      * @return {@link #time} instance as {@link Date} with {@link #time} in <b>milliseconds</b> format
@@ -74,7 +74,7 @@ public class Candle extends Product {
     }
 
     /**
-     * MethodId to get {@link #close} instance <br>
+     * Method to get {@link #close} instance <br>
      * Any params required
      *
      * @return {@link #close} instance as double
@@ -84,7 +84,7 @@ public class Candle extends Product {
     }
 
     /**
-     * MethodId to get {@link #close} instance
+     * Method to get {@link #close} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #close} instance rounded with decimal digits inserted
@@ -144,7 +144,7 @@ public class Candle extends Product {
         }
 
         /**
-         * MethodId to get {@link #granularity} instance <br>
+         * Method to get {@link #granularity} instance <br>
          * Any params required
          *
          * @return {@link #granularity} instance as int

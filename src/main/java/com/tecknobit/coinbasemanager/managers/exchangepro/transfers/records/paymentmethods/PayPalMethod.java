@@ -55,7 +55,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to assemble a PayPalDetails list
+     * Method to assemble a PayPalDetails list
      *
      * @param jsonPaypal: jsonObject obtained by response request
      * @return PayPalDetails list as {@link ArrayList} of {@link PayPalDetails}
@@ -69,7 +69,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to get {@link #payPalBuysList} instance <br>
+     * Method to get {@link #payPalBuysList} instance <br>
      * Any params required
      *
      * @return {@link #payPalBuysList} instance as {@link ArrayList} of {@link PayPalDetails}
@@ -79,7 +79,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to set {@link #payPalBuysList} instance <br>
+     * Method to set {@link #payPalBuysList} instance <br>
      *
      * @param payPalBuysList: buys list to set
      **/
@@ -88,7 +88,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to add buy warning to {@link #payPalBuysList}
+     * Method to add buy warning to {@link #payPalBuysList}
      *
      * @param payPalBuy: buy to insert
      * @apiNote the {@code "payPalBuy"} will be inserted only if is not already presents in the list
@@ -99,7 +99,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to remove a buy from {@link #payPalBuysList}
+     * Method to remove a buy from {@link #payPalBuysList}
      *
      * @param payPalBuy: buy to remove
      * @return whether the {@code "payPalBuy"} has been removed
@@ -109,7 +109,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to get an buy from {@link #payPalBuysList}
+     * Method to get an buy from {@link #payPalBuysList}
      *
      * @param index: index of the buy to get
      * @return buy as {@link PayPalDetails}
@@ -119,7 +119,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to get {@link #payPalDepositsList} instance <br>
+     * Method to get {@link #payPalDepositsList} instance <br>
      * Any params required
      *
      * @return {@link #payPalDepositsList} instance as {@link ArrayList} of {@link PayPalDetails}
@@ -129,7 +129,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to set {@link #payPalDepositsList} instance <br>
+     * Method to set {@link #payPalDepositsList} instance <br>
      *
      * @param payPalDepositsList: deposits list to set
      **/
@@ -138,7 +138,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to add buy deposit to {@link #payPalDepositsList}
+     * Method to add buy deposit to {@link #payPalDepositsList}
      *
      * @param payPalDeposit: deposit insert
      * @apiNote the {@code "deposit"} will be inserted only if is not already presents in the list
@@ -149,7 +149,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to remove a deposit from {@link #payPalDepositsList}
+     * Method to remove a deposit from {@link #payPalDepositsList}
      *
      * @param payPalDeposit: deposit to remove
      * @return whether the {@code "deposit"} has been removed
@@ -159,7 +159,7 @@ public class PayPalMethod extends PayMethod {
     }
 
     /**
-     * MethodId to get a deposit from {@link #payPalDepositsList}
+     * Method to get a deposit from {@link #payPalDepositsList}
      *
      * @param index: index of the deposit to get
      * @return deposit as {@link PayPalDetails}
@@ -249,7 +249,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #periodInDays} instance <br>
+         * Method to get {@link #periodInDays} instance <br>
          * Any params required
          *
          * @return {@link #periodInDays} instance as int
@@ -259,7 +259,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #periodInDays}
+         * Method to set {@link #periodInDays}
          *
          * @param periodInDays: period in days value
          * @throws IllegalArgumentException when period in days value is less than 0
@@ -271,7 +271,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #description} instance <br>
+         * Method to get {@link #description} instance <br>
          * Any params required
          *
          * @return {@link #description} instance as {@link String}
@@ -281,7 +281,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #description}
+         * Method to set {@link #description}
          *
          * @param description: description value
          **/
@@ -290,7 +290,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #label} instance <br>
+         * Method to get {@link #label} instance <br>
          * Any params required
          *
          * @return {@link #label} instance as {@link String}
@@ -300,7 +300,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #label}
+         * Method to set {@link #label}
          *
          * @param label: label value
          * @throws IllegalArgumentException when label value is null or empty
@@ -312,7 +312,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #total} instance <br>
+         * Method to get {@link #total} instance <br>
          * Any params required
          *
          * @return {@link #total} instance as {@link Amount}
@@ -322,7 +322,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #total}
+         * Method to set {@link #total}
          *
          * @param total: total value
          **/
@@ -331,7 +331,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #remaining} instance <br>
+         * Method to get {@link #remaining} instance <br>
          * Any params required
          *
          * @return {@link #remaining} instance as {@link Amount}
@@ -341,7 +341,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #remaining}
+         * Method to set {@link #remaining}
          *
          * @param remaining: remaining value
          **/
@@ -422,7 +422,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #payoutOnly} instance <br>
+         * Method to get {@link #payoutOnly} instance <br>
          * Any params required
          *
          * @return {@link #payoutOnly} instance as boolean
@@ -432,7 +432,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #payoutOnly}
+         * Method to set {@link #payoutOnly}
          *
          * @param payoutOnly: payout only value
          **/
@@ -441,7 +441,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #payPalEmail} instance <br>
+         * Method to get {@link #payPalEmail} instance <br>
          * Any params required
          *
          * @return {@link #payPalEmail} instance as {@link String}
@@ -451,7 +451,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #payPalEmail}
+         * Method to set {@link #payPalEmail}
          *
          * @param payPalEmail: PayPal's email value
          * @throws IllegalArgumentException when PayPal's email value is null, empty or non a valid email
@@ -465,7 +465,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #payPalOwner} instance <br>
+         * Method to get {@link #payPalOwner} instance <br>
          * Any params required
          *
          * @return {@link #payPalOwner} instance as {@link String}
@@ -475,7 +475,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #payPalOwner}
+         * Method to set {@link #payPalOwner}
          *
          * @param payPalOwner: PayPal's owner value
          * @throws IllegalArgumentException when PayPal's owner value is null or empty
@@ -487,7 +487,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to get {@link #reauth} instance <br>
+         * Method to get {@link #reauth} instance <br>
          * Any params required
          *
          * @return {@link #reauth} instance as boolean
@@ -497,7 +497,7 @@ public class PayPalMethod extends PayMethod {
         }
 
         /**
-         * MethodId to set {@link #reauth}
+         * Method to set {@link #reauth}
          *
          * @param reauth: reauth value
          **/

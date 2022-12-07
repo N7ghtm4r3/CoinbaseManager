@@ -68,7 +68,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #tradeId} instance <br>
+     * Method to get {@link #tradeId} instance <br>
      * Any params required
      *
      * @return {@link #tradeId} instance as long
@@ -78,7 +78,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #price} instance <br>
+     * Method to get {@link #price} instance <br>
      * Any params required
      *
      * @return {@link #price} instance as double
@@ -88,7 +88,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #price} instance
+     * Method to get {@link #price} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
@@ -99,7 +99,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #size} instance <br>
+     * Method to get {@link #size} instance <br>
      * Any params required
      *
      * @return {@link #size} instance as double
@@ -109,7 +109,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #size} instance
+     * Method to get {@link #size} instance
      *
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
@@ -120,7 +120,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #time} instance <br>
+     * Method to get {@link #time} instance <br>
      * Any params required
      *
      * @return {@link #time} instance as {@link String}
@@ -130,7 +130,7 @@ public class StatDetails {
     }
 
     /**
-     * MethodId to get {@link #time} timestamp <br>
+     * Method to get {@link #time} timestamp <br>
      * Any params required
      *
      * @return {@link #time} timestamp as long
