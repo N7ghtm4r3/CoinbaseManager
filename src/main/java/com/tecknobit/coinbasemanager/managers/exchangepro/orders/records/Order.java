@@ -9,19 +9,19 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
  * Get all orders</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
  * Cancel all orders</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
  * Create a new order</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
  * Get single order</a>
  * </li>
  * </ul>
@@ -113,7 +113,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #type} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
@@ -123,7 +123,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #timeInForce} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #timeInForce} instance as {@link String}
      **/
@@ -133,7 +133,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #status} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #status} instance as {@link Status}
      **/
@@ -143,7 +143,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -342,7 +342,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #postOnly} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #postOnly} instance as boolean
      **/
@@ -352,7 +352,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #fillFees} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #fillFees} instance as double
      **/
@@ -373,7 +373,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #filledSize} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #filledSize} instance as double
      **/
@@ -394,7 +394,7 @@ public class Order extends OrderDetails {
 
     /**
      * Method to get {@link #executedValue} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #executedValue} instance as double
      **/

@@ -15,7 +15,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbaseFeesManager} class is useful to manage all {@code "Coinbase"} fees endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
  * Fees manager</a>
  * @see CoinbaseManager
  **/
@@ -71,7 +71,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseFeesManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -91,7 +91,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /**
      * Request to get fees rates and 30 days trailing volume <br>
-     * Any params required
+     * No-any params required
      *
      * @return fees rates and 30 days trailing volume as {@link Fee} custom objectì
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -106,7 +106,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
      * Get fees</a>
      **/
     @Wrapper
@@ -117,7 +117,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
 
     /**
      * Request to get fees rates and 30 days trailing volume
-     * Any params required
+     * No-any params required
      *
      * @return fees rates and 30 days trailing volume as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -132,7 +132,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
      * Get fees</a>
      **/
     @Returner

@@ -8,7 +8,7 @@ import org.json.JSONObject;
  * The {@code Report} class is useful to format Report object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
  * Get all reports</a>
  * @see ReportDetails
  **/
@@ -92,7 +92,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -102,7 +102,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -112,7 +112,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #completedAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #completedAt} instance as {@link String}
      **/
@@ -122,7 +122,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #completedAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #completedAt} timestamp as long
      **/
@@ -132,7 +132,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #expiresAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #expiresAt} instance as {@link String}
      **/
@@ -142,7 +142,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #expiresAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #expiresAt} timestamp as long
      **/
@@ -152,7 +152,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #userId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #userId} instance as {@link String}
      **/
@@ -162,7 +162,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #fileUrl} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #fileUrl} instance as {@link String}
      **/
@@ -172,7 +172,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get {@link #paramsReport} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #paramsReport} instance as {@link ParamsReport}
      **/
@@ -182,7 +182,7 @@ public class Report extends ReportDetails {
 
     /**
      * Method to get file count <br>
-     * Any params required
+     * No-any params required
      *
      * @return file count as {@link String}
      **/
@@ -194,7 +194,7 @@ public class Report extends ReportDetails {
      * The {@code ParamsReport} class is useful to obtain and format the params report of a {@link Report}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      **/
     public static class ParamsReport {
@@ -296,7 +296,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #startDate} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #startDate} instance as {@link String}
          **/
@@ -306,7 +306,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #startDate} timestamp <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #startDate} timestamp as long
          **/
@@ -316,7 +316,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #endDate} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #endDate} instance as {@link String}
          **/
@@ -326,7 +326,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #endDate} timestamp <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #endDate} timestamp as long
          **/
@@ -336,7 +336,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #format} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #format} instance as {@link String}
          **/
@@ -346,7 +346,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #productId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #productId} instance as {@link String}
          **/
@@ -356,7 +356,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #accountId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #accountId} instance as {@link String}
          **/
@@ -366,7 +366,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #profileId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #profileId} instance as {@link String}
          **/
@@ -376,7 +376,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #email} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #email} instance as {@link String}
          **/
@@ -386,7 +386,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #newYorkState} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #newYorkState} instance as boolean
          **/
@@ -396,7 +396,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get {@link #userReport} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #userReport} instance as {@link UserReport}
          **/
@@ -406,7 +406,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get default profile id instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return default profile id as {@link String}
          **/
@@ -416,7 +416,7 @@ public class Report extends ReportDetails {
 
         /**
          * Method to get if is brokerage <br>
-         * Any params required
+         * No-any params required
          *
          * @return is brokerage as boolean
          **/
@@ -426,7 +426,7 @@ public class Report extends ReportDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -439,7 +439,7 @@ public class Report extends ReportDetails {
          * The {@code UserReport} class is useful to obtain and format an user report for a {@link Report}
          *
          * @author N7ghtm4r3 - Tecknobit
-         * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+         * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
          * Get all reports</a>
          * @see UserDetails
          **/
@@ -480,7 +480,7 @@ public class Report extends ReportDetails {
 
             /**
              * Method to get roles <br>
-             * Any params required
+             * No-any params required
              *
              * @return roles as {@link JSONObject}
              **/
@@ -490,7 +490,7 @@ public class Report extends ReportDetails {
 
             /**
              * Method to get roles <br>
-             * Any params required
+             * No-any params required
              *
              * @return roles as {@link String}
              * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
@@ -501,7 +501,7 @@ public class Report extends ReportDetails {
 
             /**
              * Method to get details <br>
-             * Any params required
+             * No-any params required
              *
              * @return details as {@link JSONObject}
              **/
@@ -511,7 +511,7 @@ public class Report extends ReportDetails {
 
             /**
              * Method to get details <br>
-             * Any params required
+             * No-any params required
              *
              * @return details as {@link String}
              * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
@@ -522,23 +522,12 @@ public class Report extends ReportDetails {
 
             /**
              * Method to get {@link #oauthClient} instance <br>
-             * Any params required
+             * No-any params required
              *
              * @return {@link #oauthClient} instance as {@link String}
              **/
             public String getOauthClient() {
                 return oauthClient;
-            }
-
-            /**
-             * Returns a string representation of the object <br>
-             * Any params required
-             *
-             * @return a string representation of the object as {@link String}
-             */
-            @Override
-            public String toString() {
-                return new JSONObject(this).toString();
             }
 
         }

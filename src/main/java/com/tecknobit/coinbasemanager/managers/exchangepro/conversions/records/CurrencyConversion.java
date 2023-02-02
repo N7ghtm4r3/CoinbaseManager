@@ -9,11 +9,11 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  *     <li>
- *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+ *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
  *             Convert currency</a>
  *      </li>
  *      <li>
- *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+ *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">
  *             Get a conversion</a>
  *     </li>
  * </ul>
@@ -83,7 +83,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -93,7 +93,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #amount} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #amount} instance as double
      **/
@@ -114,7 +114,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #fromAccountId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #fromAccountId} instance as {@link String}
      **/
@@ -124,7 +124,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #toAccountId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #toAccountId} instance as {@link String}
      **/
@@ -134,7 +134,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #from} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #from} instance as {@link String}
      **/
@@ -144,7 +144,7 @@ public class CurrencyConversion {
 
     /**
      * Method to get {@link #to} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #to} instance as {@link String}
      **/
@@ -154,7 +154,7 @@ public class CurrencyConversion {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

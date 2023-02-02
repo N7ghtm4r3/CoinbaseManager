@@ -12,19 +12,19 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  *     <li>
- *        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds-1">
+ *        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
  *            Get a single account's holds</a>
  *     </li>
  *     <li>
- *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1">
+ *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
  *             Get a single account's ledger</a>
  *     </li>
  *      <li>
- *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
+ *          <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
  *              Get a single account's transfers</a>
  *     </li>
  *      <li>
- *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
  *               Get all transfers</a>
  *       </li>
  * </ul>
@@ -86,7 +86,7 @@ public class AccountDetails {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -96,7 +96,7 @@ public class AccountDetails {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -106,7 +106,7 @@ public class AccountDetails {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -116,7 +116,7 @@ public class AccountDetails {
 
     /**
      * Method to get {@link #amount} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #amount} instance as long
      **/
@@ -149,7 +149,7 @@ public class AccountDetails {
 
     /**
      * Method to get {@link #type} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
@@ -171,7 +171,7 @@ public class AccountDetails {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

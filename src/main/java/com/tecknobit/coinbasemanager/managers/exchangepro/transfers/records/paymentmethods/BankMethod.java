@@ -6,7 +6,7 @@ import org.json.JSONObject;
  * The {@code BankMethod} class is useful to format a bank method
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
  **/
@@ -25,7 +25,7 @@ public class BankMethod extends PayMethod {
      * The {@code BankPickerData} class is useful to obtain and format a picker data for {@link BankMethod}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      **/
     public static class BankPickerData extends PickerData {
@@ -85,7 +85,7 @@ public class BankMethod extends PayMethod {
 
         /**
          * Method to get {@link #iban} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #iban} instance as {@link String}
          **/
@@ -107,7 +107,7 @@ public class BankMethod extends PayMethod {
 
         /**
          * Method to get {@link #institutionName} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #institutionName} instance as {@link String}
          **/
@@ -129,7 +129,7 @@ public class BankMethod extends PayMethod {
 
         /**
          * Method to get {@link #swift} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #swift} instance as {@link String}
          **/

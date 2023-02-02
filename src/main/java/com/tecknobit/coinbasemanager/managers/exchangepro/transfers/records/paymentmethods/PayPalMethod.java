@@ -13,7 +13,7 @@ import static org.apache.commons.validator.routines.EmailValidator.getInstance;
  * The {@code PayPalMethod} class is useful to format a {@code "PayPal"} method
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
  **/
@@ -70,7 +70,7 @@ public class PayPalMethod extends PayMethod {
 
     /**
      * Method to get {@link #payPalBuysList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #payPalBuysList} instance as {@link ArrayList} of {@link PayPalDetails}
      **/
@@ -120,7 +120,7 @@ public class PayPalMethod extends PayMethod {
 
     /**
      * Method to get {@link #payPalDepositsList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #payPalDepositsList} instance as {@link ArrayList} of {@link PayPalDetails}
      **/
@@ -174,7 +174,7 @@ public class PayPalMethod extends PayMethod {
      * {@link PayPalMethod} method
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      **/
     public static class PayPalDetails {
@@ -250,7 +250,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #periodInDays} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #periodInDays} instance as int
          **/
@@ -272,7 +272,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #description} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #description} instance as {@link String}
          **/
@@ -291,7 +291,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #label} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #label} instance as {@link String}
          **/
@@ -313,7 +313,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #total} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #total} instance as {@link Amount}
          **/
@@ -332,7 +332,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #remaining} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #remaining} instance as {@link Amount}
          **/
@@ -351,7 +351,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -366,7 +366,7 @@ public class PayPalMethod extends PayMethod {
      * The {@code PayPalPickerData} class is useful to obtain and format a picker data for a {@link PayPalMethod}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      **/
     public static class PayPalPickerData extends PickerData {
@@ -423,7 +423,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #payoutOnly} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #payoutOnly} instance as boolean
          **/
@@ -442,7 +442,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #payPalEmail} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #payPalEmail} instance as {@link String}
          **/
@@ -466,7 +466,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #payPalOwner} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #payPalOwner} instance as {@link String}
          **/
@@ -488,7 +488,7 @@ public class PayPalMethod extends PayMethod {
 
         /**
          * Method to get {@link #reauth} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #reauth} instance as boolean
          **/

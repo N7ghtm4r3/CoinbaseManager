@@ -10,11 +10,11 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
  * Get product ticker</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
  * Get product trades</a>
  * </li>
  * </ul>
@@ -69,7 +69,7 @@ public class StatDetails {
 
     /**
      * Method to get {@link #tradeId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #tradeId} instance as long
      **/
@@ -79,7 +79,7 @@ public class StatDetails {
 
     /**
      * Method to get {@link #price} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #price} instance as double
      **/
@@ -100,7 +100,7 @@ public class StatDetails {
 
     /**
      * Method to get {@link #size} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #size} instance as double
      **/
@@ -121,7 +121,7 @@ public class StatDetails {
 
     /**
      * Method to get {@link #time} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #time} instance as {@link String}
      **/
@@ -131,7 +131,7 @@ public class StatDetails {
 
     /**
      * Method to get {@link #time} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #time} timestamp as long
      **/
@@ -141,7 +141,7 @@ public class StatDetails {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

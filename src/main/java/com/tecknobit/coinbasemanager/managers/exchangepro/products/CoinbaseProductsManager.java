@@ -23,7 +23,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbaseProductsManager} class is useful to manage all {@code "Coinbase"} products endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
  * Products manager</a>
  **/
 public class CoinbaseProductsManager extends CoinbaseManager {
@@ -78,7 +78,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseProductsManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -98,7 +98,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Request to get all trading pairs <br>
-     * Any params required
+     * No-any params required
      *
      * @return all trading pairs list as {@link ArrayList} of {@link TradingPair}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -113,7 +113,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
      * Get all known trading pairs</a>
      **/
     @Wrapper
@@ -139,7 +139,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
      * Get all known trading pairs</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
@@ -164,7 +164,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      **/
     @Wrapper
@@ -191,7 +191,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
      * https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts-1</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products")
@@ -239,7 +239,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct">
      * Get single product</a>
      **/
     @Wrapper
@@ -266,7 +266,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproduct">
      * Get single product</a>
      **/
     @Returner
@@ -300,7 +300,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @Wrapper
@@ -327,7 +327,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
@@ -354,7 +354,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @Wrapper
@@ -382,7 +382,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/book")
@@ -413,7 +413,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Custom request to get all products book details <br>
-     * Any params required
+     * No-any params required
      *
      * @return all products book details as {@link ArrayList} of {@link Book}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -428,7 +428,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @WrappedRequest
@@ -453,7 +453,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @WrappedRequest
@@ -478,7 +478,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @WrappedRequest
@@ -504,7 +504,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
      * Get product book</a>
      **/
     @WrappedRequest
@@ -564,7 +564,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
      * Get product candles</a>
      **/
     @Wrapper
@@ -590,7 +590,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
      * Get product candles</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
@@ -628,7 +628,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
      * Get product candles</a>
      **/
     @Wrapper
@@ -667,7 +667,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
      * Get product candles</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/candles")
@@ -716,7 +716,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
      * Get product stats</a>
      **/
     @Wrapper
@@ -743,7 +743,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
      * Get product stats</a>
      **/
     @Returner
@@ -763,7 +763,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Custom request to get all products stats list <br>
-     * Any params required
+     * No-any params required
      *
      * @return all products stats as {@link ArrayList} of {@link Stat}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -778,7 +778,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
      * Get product stats</a>
      **/
     @WrappedRequest
@@ -803,7 +803,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
      * Get product stats</a>
      **/
     @Returner
@@ -849,7 +849,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, base asset,
      * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
      * Get product ticker</a>
      **/
     @Wrapper
@@ -878,7 +878,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implNote this request add to the original json from {@code "Coinbase"} some custom parameters like: productId, base asset,
      * quote asset and price change percent value.
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
      * Get product ticker</a>
      **/
     @Returner
@@ -915,7 +915,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
 
     /**
      * Custom request to get all products stats list <br>
-     * Any params required
+     * No-any params required
      *
      * @return all products stats as {@link ArrayList} of {@link Stat}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -930,7 +930,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
      * Get product ticker</a>
      **/
     @WrappedRequest
@@ -955,7 +955,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
      * Get product ticker</a>
      **/
     @Returner
@@ -999,7 +999,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
      * Get product trades</a>
      **/
     @Wrapper
@@ -1026,7 +1026,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
      * Get product trades</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")
@@ -1064,7 +1064,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
      * Get product trades</a>
      **/
     @Wrapper
@@ -1103,7 +1103,7 @@ public class CoinbaseProductsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducttrades">
      * Get product trades</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/products/{product_id}/trades")

@@ -9,7 +9,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Fee} class is useful to format Fee object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
  * Get fees</a>
  **/
 public class Fee {
@@ -60,7 +60,7 @@ public class Fee {
 
     /**
      * Method to get {@link #takerFeeRate} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #takerFeeRate} instance as double
      **/
@@ -81,7 +81,7 @@ public class Fee {
 
     /**
      * Method to get {@link #makerFeeRate} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #makerFeeRate} instance as double
      **/
@@ -102,7 +102,7 @@ public class Fee {
 
     /**
      * Method to get {@link #usdVolume} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #usdVolume} instance as double
      **/
@@ -123,7 +123,7 @@ public class Fee {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

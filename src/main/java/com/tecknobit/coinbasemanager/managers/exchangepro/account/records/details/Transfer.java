@@ -13,11 +13,11 @@ import java.util.ArrayList;
  * @apiNote see the official documentation at:
  * <ul>
  *       <li>
- *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers-1">
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
  *               Get a single account's transfers</a>
  *       </li>
  *       <li>
- *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer-1">
+ *           <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
  *               Get all transfers</a>
  *       </li>
  * </ul>
@@ -93,7 +93,7 @@ public class Transfer extends AccountDetails {
 
     /**
      * Method to get {@link #completedAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #completedAt} instance as {@link String}
      **/
@@ -103,7 +103,7 @@ public class Transfer extends AccountDetails {
 
     /**
      * Method to get {@link #completedAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #completedAt} timestamp as long
      **/
@@ -113,7 +113,7 @@ public class Transfer extends AccountDetails {
 
     /**
      * Method to get {@link #transferDetails} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #transferDetails} instance as {@link TransferDetails}
      **/
@@ -185,7 +185,7 @@ public class Transfer extends AccountDetails {
 
         /**
          * Method to get {@link #coinbaseAccountId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #coinbaseAccountId} instance as {@link String}
          **/
@@ -195,7 +195,7 @@ public class Transfer extends AccountDetails {
 
         /**
          * Method to get {@link #coinbaseTransactionId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #coinbaseTransactionId} instance as {@link String}
          **/
@@ -205,7 +205,7 @@ public class Transfer extends AccountDetails {
 
         /**
          * Method to get {@link #coinbasePaymentMethodId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #coinbasePaymentMethodId} instance as {@link String}
          **/
@@ -215,7 +215,7 @@ public class Transfer extends AccountDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

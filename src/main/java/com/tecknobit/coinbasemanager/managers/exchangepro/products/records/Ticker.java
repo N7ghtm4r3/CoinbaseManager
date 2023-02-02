@@ -8,7 +8,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Ticker} class is useful to format Ticker object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
  * Get product ticker</a>
  * @see StatDetails
  **/
@@ -93,7 +93,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #productId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
      **/
@@ -103,7 +103,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #baseAsset} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #baseAsset} instance as {@link String}
      **/
@@ -113,7 +113,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #quoteAsset} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #quoteAsset} instance as {@link String}
      **/
@@ -123,7 +123,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #bid} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #bid} instance as double
      **/
@@ -144,7 +144,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #ask} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #ask} instance as double
      **/
@@ -165,7 +165,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #volume} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #volume} instance as double
      **/
@@ -186,7 +186,7 @@ public class Ticker extends StatDetails {
 
     /**
      * Method to get {@link #priceChangePercent} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #priceChangePercent} instance as double
      **/

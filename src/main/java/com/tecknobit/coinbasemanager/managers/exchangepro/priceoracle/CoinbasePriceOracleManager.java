@@ -14,7 +14,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbasePriceOracleManager} class is useful to manage all {@code "Coinbase"} price oracle endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
  * Price oracle manager</a>
  * @see CoinbaseManager
  **/
@@ -70,7 +70,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbasePriceOracleManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -90,7 +90,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /**
      * Request to get signed prices <br>
-     * Any params required
+     * No-any params required
      *
      * @return signed prices as {@link PriceOracle} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -105,7 +105,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
      * Get signed prices</a>
      **/
     @Returner
@@ -131,7 +131,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
      * Get signed prices</a>
      **/
     @Returner

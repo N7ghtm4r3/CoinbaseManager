@@ -9,11 +9,11 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
  * Get product candles</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
  * Get product stats</a>
  * </li>
  * </ul>
@@ -68,7 +68,7 @@ public abstract class Product {
 
     /**
      * Method to get {@link #open} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #open} instance as double
      **/
@@ -89,7 +89,7 @@ public abstract class Product {
 
     /**
      * Method to get {@link #high} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #high} instance as double
      **/
@@ -110,7 +110,7 @@ public abstract class Product {
 
     /**
      * Method to get {@link #low} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #low} instance as double
      **/
@@ -131,7 +131,7 @@ public abstract class Product {
 
     /**
      * Method to get {@link #volume} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #volume} instance as double
      **/
@@ -152,7 +152,7 @@ public abstract class Product {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

@@ -4,6 +4,7 @@ import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager;
+import com.tecknobit.coinbasemanager.managers.exchangepro.wrappedassets.records.WrappedAsset;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,7 +75,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseWrappedManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -93,10 +94,10 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
     }
 
     /**
-     * Request to get a list of all supported wrapped asset IDs <br>
-     * Any params required
+     * Request to get a list of all supported wrapped assets <br>
+     * No-any params required
      *
-     * @return list of all supported wrapped asset IDs as {@link ArrayList} of {@link String}
+     * @return list of all supported wrapped assets as {@link ArrayList} of {@link WrappedAsset} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -114,15 +115,15 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      **/
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets")
-    public ArrayList<String> getAllWrappedAssets() throws Exception {
+    public ArrayList<WrappedAsset> getAllWrappedAssets() throws Exception {
         return getAllWrappedAssets(LIBRARY_OBJECT);
     }
 
     /**
-     * Request to get a list of all supported wrapped asset IDs
+     * Request to get a list of all supported wrapped assets
      *
      * @param format: return type formatter -> {@link ReturnFormat}
-     * @return list of all supported wrapped asset IDs as {@code "format"} defines
+     * @return list of all supported wrapped assets as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
      *                   <ul>
      *                       <li>
@@ -144,15 +145,76 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
         String wrappedAssetsResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET);
         switch (format) {
             case JSON:
-                return (T) new JSONObject(wrappedAssetsResponse);
+                return (T) new JSONObject(wrappedAssetsResponse).getJSONArray("wrapped_assets");
             case LIBRARY_OBJECT:
-                JSONArray assetsList = new JSONObject(wrappedAssetsResponse).getJSONArray("wrapped_asset_ids");
-                ArrayList<String> wrappedAssets = new ArrayList<>();
+                JSONArray assetsList = new JSONObject(wrappedAssetsResponse).getJSONArray("wrapped_assets");
+                ArrayList<WrappedAsset> wrappedAssets = new ArrayList<>();
                 for (int j = 0; j < assetsList.length(); j++)
-                    wrappedAssets.add(assetsList.getString(j));
+                    wrappedAssets.add(new WrappedAsset(assetsList.getJSONObject(j)));
                 return (T) wrappedAssets;
             default:
                 return (T) wrappedAssetsResponse;
+        }
+    }
+
+    /**
+     * Request to get wrapped asset details
+     *
+     * @param wrappedAssetId: id of the wrapped asset to fetch
+     * @return wrapped asset details as {@link WrappedAsset} custom object
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedasset">
+     * Get wrapped asset details</a>
+     **/
+    @Wrapper
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/")
+    public WrappedAsset getWrappedAssetDetails(String wrappedAssetId) throws Exception {
+        return getWrappedAssetDetails(wrappedAssetId, LIBRARY_OBJECT);
+    }
+
+    /**
+     * Request to get wrapped asset details
+     *
+     * @param wrappedAssetId: id of the wrapped asset to fetch
+     * @param format:         return type formatter -> {@link ReturnFormat}
+     * @return wrapped asset details as {@code "format"} defines
+     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
+     *                   <ul>
+     *                       <li>
+     *                           {@link #getErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #getJSONErrorResponse()}
+     *                       </li>
+     *                       <li>
+     *                           {@link #printErrorResponse()}
+     *                       </li>
+     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedasset">
+     * Get wrapped asset details</a>
+     **/
+    @Returner
+    @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/")
+    public <T> T getWrappedAssetDetails(String wrappedAssetId, ReturnFormat format) throws Exception {
+        String wrappedAssetResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId, GET);
+        switch (format) {
+            case JSON:
+                return (T) new JSONObject(wrappedAssetResponse);
+            case LIBRARY_OBJECT:
+                return (T) new WrappedAsset(new JSONObject(wrappedAssetResponse));
+            default:
+                return (T) wrappedAssetResponse;
         }
     }
 

@@ -6,7 +6,7 @@ import org.json.JSONObject;
  * The {@code Hold} class is useful to format Hold object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
  * Get a single account's holds</a>
  * @see AccountDetails
  **/
@@ -45,7 +45,7 @@ public class Hold extends AccountDetails {
 
     /**
      * Method to get {@link #ref} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #ref} instance as {@link String}
      **/

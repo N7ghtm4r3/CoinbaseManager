@@ -14,7 +14,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code PriceOracle} class is useful to format PriceOracle object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
  * Get signed prices</a>
  **/
 public class PriceOracle {
@@ -94,7 +94,7 @@ public class PriceOracle {
 
     /**
      * Method to get {@link #timestamp} <b>seconds</b> format <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #timestamp} instance as long
      **/
@@ -104,7 +104,7 @@ public class PriceOracle {
 
     /**
      * Method to get {@link #timestamp} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #timestamp} instance as {@link Date} with {@link #timestamp} in <b>milliseconds</b> format
      **/
@@ -114,7 +114,7 @@ public class PriceOracle {
 
     /**
      * Method to get {@link #messages} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #messages} instance as {@link ArrayList} of {@link String}
      **/
@@ -124,7 +124,7 @@ public class PriceOracle {
 
     /**
      * Method to get {@link #signatures} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #signatures} instance as {@link ArrayList} of {@link String}
      **/
@@ -134,7 +134,7 @@ public class PriceOracle {
 
     /**
      * Method to get {@link #prices} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #prices} instance as {@link ArrayList} of {@link Price}
      **/
@@ -144,7 +144,7 @@ public class PriceOracle {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */
@@ -186,7 +186,7 @@ public class PriceOracle {
 
         /**
          * Method to get {@link #symbol} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #symbol} instance as {@link String}
          **/
@@ -196,7 +196,7 @@ public class PriceOracle {
 
         /**
          * Method to get {@link #price} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #price} instance as double
          **/
@@ -229,7 +229,7 @@ public class PriceOracle {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

@@ -10,7 +10,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code CoinbaseAccount} class is useful to format CoinbaseAccount object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">
  * Get all {@code "Coinbase"} wallets</a>
  **/
 public class CoinbaseAccount {
@@ -133,7 +133,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #balance} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #balance} instance as double
      **/
@@ -155,7 +155,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #availableOnConsumer} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #availableOnConsumer} instance as boolean
      **/
@@ -174,7 +174,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #name} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #name} instance as {@link String}
      **/
@@ -184,7 +184,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #active} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #active} instance as boolean
      **/
@@ -203,7 +203,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #currency} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #currency} instance as {@link String}
      **/
@@ -225,7 +225,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -235,7 +235,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #type} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
@@ -257,7 +257,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #primary} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #primary} instance as boolean
      **/
@@ -276,7 +276,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #holdBalance} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #holdBalance} instance as double
      **/
@@ -309,7 +309,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #holdCurrency} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #holdCurrency} instance as {@link String}
      **/
@@ -331,7 +331,7 @@ public class CoinbaseAccount {
 
     /**
      * Method to get {@link #depositInformation} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #depositInformation} instance as {@link DepositInformation}
      **/
@@ -350,7 +350,7 @@ public class CoinbaseAccount {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */
@@ -484,7 +484,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #reference} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #reference} instance as {@link String}
          **/
@@ -506,7 +506,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #iban} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #iban} instance as {@link String}
          **/
@@ -528,7 +528,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #accountName} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #accountName} instance as {@link String}
          **/
@@ -550,7 +550,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #bankName} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #bankName} instance as {@link String}
          **/
@@ -572,7 +572,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #bankAddress} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #bankAddress} instance as {@link String}
          **/
@@ -594,7 +594,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #accountAddress} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #accountAddress} instance as {@link String}
          **/
@@ -616,7 +616,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #swift} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #swift} instance as {@link String}
          **/
@@ -641,7 +641,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #bankCountryCode} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #bankCountryCode} instance as {@link String}
          **/
@@ -663,7 +663,7 @@ public class CoinbaseAccount {
 
         /**
          * Method to get {@link #bankCountryName} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #bankCountryName} instance as {@link String}
          **/
@@ -685,7 +685,7 @@ public class CoinbaseAccount {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

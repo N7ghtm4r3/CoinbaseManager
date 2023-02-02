@@ -19,7 +19,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbaseProfileManager} class is useful to manage all {@code "Coinbase"} profiles endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
  * Profile manager</a>
  * @see CoinbaseManager
  **/
@@ -75,7 +75,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseProfileManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -95,7 +95,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
 
     /**
      * Request to get profiles of a {@code "Coinbase"}'s account <br>
-     * Any params required
+     * No-any params required
      *
      * @return profiles of a {@code "Coinbase"}'s account list as {@link ArrayList} of {@link Profile}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -110,7 +110,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
      * Get profiles</a>
      **/
     @Wrapper
@@ -136,7 +136,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
      * Get profiles</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
@@ -161,7 +161,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
      * Get profiles</a>
      **/
     @Wrapper
@@ -188,7 +188,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
      * Get profiles</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/profiles")
@@ -236,7 +236,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile">
      * Create a profile</a>
      **/
     @Wrapper
@@ -248,7 +248,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     /** Request to create a profile
      * @param name: name of profile to create
      * @param format           :                 return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile">
      *     Create a profile</a>
      * @return result of creation profile as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -276,7 +276,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param to: identifier of profile where arrive funds
      * @param currency: currency to be transferred
      * @param amount: amount to be transferred
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer">
      *     Transfer funds between profiles</a>
      * @return result of successful transfer or not as boolean
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -304,7 +304,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
 
     /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
      *     Get profile by id</a>
      * @return single profile as {@link Profile} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -329,7 +329,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param format           :                 return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
      *     Get profile by id</a>
      * @return single profile as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -353,7 +353,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     /** Request to get a single {@code "Coinbase"}'s profile
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
      *     Get profile by id</a>
      * @return single profile as {@link Profile} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -379,7 +379,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      * @param profileId: identifier of profile from fetch details
      * @param active: flag if profile is active or not
      * @param format           :                 return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
      *     Get profile by id</a>
      * @return single profile as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -419,7 +419,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
      * Rename a profile</a>
      **/
     @Wrapper
@@ -448,7 +448,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
      * Rename a profile</a>
      **/
     @WrappedRequest
@@ -460,7 +460,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
     /** Request to rename a profile
      * @param profileId: identifier of profile to change
      * @param name: name to assign at profile to change
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
      *     Rename a profile</a>
      * @return result of renaming as {@link Profile} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -501,7 +501,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
      * Rename a profile</a>
      **/
     @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}")
@@ -550,7 +550,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate">
      * Delete a profile</a>
      **/
     @Wrapper
@@ -578,7 +578,7 @@ public class CoinbaseProfileManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate">
      * Delete a profile</a>
      **/
     @RequestPath(method = PUT, path = "https://api.exchange.coinbase.com/profiles/{profile_id}/deactivate")

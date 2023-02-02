@@ -8,7 +8,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code FiatAccountMethod} class is useful to format a fiat account method
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
  **/
@@ -27,7 +27,7 @@ public class FiatAccountMethod extends PayMethod {
      * The {@code FiatAccountDetails} class is useful to obtain and format the fiat account details for {@link FiatAccountMethod}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      **/
     public static class FiatAccountDetails {
@@ -72,7 +72,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Method to get {@link #id} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #id} instance as {@link String}
          **/
@@ -82,7 +82,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Method to get {@link #resource} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #resource} instance as {@link String}
          **/
@@ -92,7 +92,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Method to get {@link #resourcePath} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #resourcePath} instance as {@link String}
          **/
@@ -102,7 +102,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -117,7 +117,7 @@ public class FiatAccountMethod extends PayMethod {
      * The {@code FiatAccountPickerData} class is useful to obtain and format FiatAccountPickerData object for FiatAccountMethod
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      **/
     public static class FiatAccountPickerData extends PickerData {
@@ -163,7 +163,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Method to get {@link #amount} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #amount} instance as double
          **/
@@ -196,7 +196,7 @@ public class FiatAccountMethod extends PayMethod {
 
         /**
          * Method to get {@link #currency} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #currency} instance as {@link String}
          **/

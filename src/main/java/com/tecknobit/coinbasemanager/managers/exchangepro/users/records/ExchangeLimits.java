@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * The {@code ExchangeLimits} class is useful to format the exchange limits of {@code "{@code "Coinbase"}"}
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
  * Get user exchange limits</a>
  * @see UserDetails
  **/
@@ -214,7 +214,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #termsAccepted} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #termsAccepted} instance as {@link String}
      **/
@@ -224,7 +224,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #testGroupsList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #testGroupsList} instance as {@link ArrayList} of {@link Test}
      **/
@@ -274,7 +274,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #country} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #country} instance as {@link Country}
      **/
@@ -284,7 +284,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #stateCode} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #stateCode} instance as {@link String}
      **/
@@ -294,7 +294,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #accessPrivacyRights} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #accessPrivacyRights} instance as boolean
      **/
@@ -304,7 +304,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #twoFactorMethod} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #twoFactorMethod} instance as {@link String}
      **/
@@ -314,7 +314,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #analyticsProcessingEnabled} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #analyticsProcessingEnabled} instance as boolean
      **/
@@ -324,7 +324,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #isPrime} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #isPrime} instance as boolean
      **/
@@ -334,7 +334,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #hasProWbl} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hasProWbl} instance as boolean
      **/
@@ -344,7 +344,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #hasClawBack} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hasClawBack} instance as boolean
      **/
@@ -354,7 +354,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #hasClawBackPaymentPending} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hasClawBackPaymentPending} instance as boolean
      **/
@@ -364,7 +364,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #hasRestrictedAssets} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hasRestrictedAssets} instance as boolean
      **/
@@ -374,7 +374,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #legalName} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #legalName} instance as {@link String}
      **/
@@ -384,7 +384,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #whitelistingEnabled} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #whitelistingEnabled} instance as boolean
      **/
@@ -394,7 +394,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #regionBankingSupport} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #regionBankingSupport} instance as boolean
      **/
@@ -404,7 +404,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #defaultPreferredMarket} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #defaultPreferredMarket} instance as {@link String}
      **/
@@ -414,7 +414,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #marginEligible} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #marginEligible} instance as boolean
      **/
@@ -424,7 +424,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #marginInformation} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #marginInformation} instance as {@link MarginInformation}
      **/
@@ -434,7 +434,7 @@ public class ExchangeLimits extends UserDetails {
 
     /**
      * Method to get {@link #address} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #address} instance as {@link Address}
      **/
@@ -446,7 +446,7 @@ public class ExchangeLimits extends UserDetails {
      * The {@code Test} class is useful to obtain and format a test for the {@link ExchangeLimits}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
      **/
     public static class Test {
@@ -490,7 +490,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #test} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #test} instance as {@link String}
          **/
@@ -500,7 +500,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #group} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #group} instance as {@link String}
          **/
@@ -510,7 +510,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #forced} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #forced} instance as boolean
          **/
@@ -520,7 +520,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -535,7 +535,7 @@ public class ExchangeLimits extends UserDetails {
      * The {@code Country} class is useful to obtain and format the country for the {@link ExchangeLimits}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
      **/
     public static class Country {
@@ -586,7 +586,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #code} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #code} instance as {@link String}
          **/
@@ -596,7 +596,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #name} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #name} instance as {@link String}
          **/
@@ -606,7 +606,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #isInEurope} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #isInEurope} instance as boolean
          **/
@@ -616,7 +616,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -631,7 +631,7 @@ public class ExchangeLimits extends UserDetails {
      * The {@code Address} class is useful to obtain and format the address for the {@link ExchangeLimits}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
      **/
     public static class Address {
@@ -701,7 +701,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #line1} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #line1} instance as {@link String}
          **/
@@ -723,7 +723,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #city} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #city} instance as {@link String}
          **/
@@ -745,7 +745,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #state} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #state} instance as {@link String}
          **/
@@ -767,7 +767,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #postalCode} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #postalCode} instance as {@link String}
          **/
@@ -789,7 +789,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #code} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #code} instance as {@link String}
          **/
@@ -811,7 +811,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #name} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #name} instance as {@link String}
          **/
@@ -833,7 +833,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -848,7 +848,7 @@ public class ExchangeLimits extends UserDetails {
      * The {@code MarginInformation} class is useful to obtain and format a margin information for the {@link ExchangeLimits}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
      **/
     public static class MarginInformation {
@@ -896,7 +896,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #eligible} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #eligible} instance as boolean
          **/
@@ -906,7 +906,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #enabled} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #enabled} instance as boolean
          **/
@@ -916,7 +916,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Method to get {@link #tier} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #tier} instance as {@link String}
          **/
@@ -926,7 +926,7 @@ public class ExchangeLimits extends UserDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

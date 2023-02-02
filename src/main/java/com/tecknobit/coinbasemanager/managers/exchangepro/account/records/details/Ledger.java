@@ -8,7 +8,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Ledger} class is useful to format Ledger object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
  * Get a single account's ledger</a>
  * @see AccountDetails
  **/
@@ -58,7 +58,7 @@ public class Ledger extends AccountDetails {
 
     /**
      * Method to get {@link #balance} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #balance} instance as double
      **/
@@ -79,7 +79,7 @@ public class Ledger extends AccountDetails {
 
     /**
      * Method to get {@link #details} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #details} instance as {@link Details}
      **/
@@ -134,7 +134,7 @@ public class Ledger extends AccountDetails {
 
         /**
          * Method to get {@link #to} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #to} instance as {@link String}
          **/
@@ -144,7 +144,7 @@ public class Ledger extends AccountDetails {
 
         /**
          * Method to get {@link #from} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #from} instance as {@link String}
          **/
@@ -154,7 +154,7 @@ public class Ledger extends AccountDetails {
 
         /**
          * Method to get {@link #profileTransferId} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #profileTransferId} instance as {@link String}
          **/
@@ -164,7 +164,7 @@ public class Ledger extends AccountDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

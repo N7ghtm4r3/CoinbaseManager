@@ -11,23 +11,23 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
  * Deposit from {@co account</ a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
  * Deposit from payment method</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
  * Withdraw to {@code "Coinbase"} account</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
  * Withdraw to crypto address</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
  * Withdraw to payment method</a>
  * </li>
  * </ul>
@@ -88,7 +88,7 @@ public class TransferAction extends Amount {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -98,7 +98,7 @@ public class TransferAction extends Amount {
 
     /**
      * Method to get {@link #payoutAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #payoutAt} instance as {@link String}
      **/
@@ -108,7 +108,7 @@ public class TransferAction extends Amount {
 
     /**
      * Method to get {@link #fee} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #fee} instance as double
      **/
@@ -129,7 +129,7 @@ public class TransferAction extends Amount {
 
     /**
      * Method to get {@link #subTotal} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #subTotal} instance as double
      **/

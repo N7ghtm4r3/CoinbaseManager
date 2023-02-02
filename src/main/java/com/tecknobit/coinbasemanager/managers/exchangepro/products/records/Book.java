@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * The {@code Book} class is useful to format Book object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
  * Get product book</a>
  **/
 public class Book {
@@ -100,7 +100,7 @@ public class Book {
 
     /**
      * Method to get {@link #productId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
      **/
@@ -110,7 +110,7 @@ public class Book {
 
     /**
      * Method to get {@link #sequence} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #sequence} instance as long
      **/
@@ -120,7 +120,7 @@ public class Book {
 
     /**
      * Method to get {@link #auctionMode} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #auctionMode} instance as boolean
      **/
@@ -130,7 +130,7 @@ public class Book {
 
     /**
      * Method to get {@link #auction} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #auction} instance as {@link String}
      **/
@@ -140,7 +140,7 @@ public class Book {
 
     /**
      * Method to get {@link #asks} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #asks} instance as {@link ArrayList} of {@link Double}
      **/
@@ -160,7 +160,7 @@ public class Book {
 
     /**
      * Method to get {@link #bids} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #bids} instance as {@link ArrayList} of {@link Double}
      **/
@@ -180,7 +180,7 @@ public class Book {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

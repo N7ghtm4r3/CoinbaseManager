@@ -24,7 +24,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.reports.records
  * The {@code CoinbaseReportsManager} class is useful to manage all {@code "Coinbase"} reports endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
  * Reports manager</a>
  * @see CoinbaseManager
  **/
@@ -80,7 +80,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseReportsManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -115,7 +115,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
@@ -141,7 +141,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
@@ -181,7 +181,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      **/
     @Wrapper
@@ -223,7 +223,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
@@ -259,60 +259,6 @@ public class CoinbaseReportsManager extends CoinbaseManager {
     /**
      * Request to create a general report
      *
-     * @param type: type of report to create
-     * @return result of creation of the general report as {@link ReportDetails} custom object
-     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
-     *                   <ul>
-     *                       <li>
-     *                           {@link #getErrorResponse()}
-     *                       </li>
-     *                       <li>
-     *                           {@link #getJSONErrorResponse()}
-     *                       </li>
-     *                       <li>
-     *                           {@link #printErrorResponse()}
-     *                       </li>
-     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
-     * Create a report</a>
-     **/
-    @Wrapper
-    @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
-    public ReportDetails createGeneralReport(ReportType type) throws Exception {
-        return createGeneralReport(type, LIBRARY_OBJECT);
-    }
-
-    /**
-     * Request to create a general report
-     *
-     * @param type:   type of report to create
-     * @param format: return type formatter -> {@link ReturnFormat}
-     * @return result of creation of the general report as {@code "format"} defines
-     * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
-     *                   <ul>
-     *                       <li>
-     *                           {@link #getErrorResponse()}
-     *                       </li>
-     *                       <li>
-     *                           {@link #getJSONErrorResponse()}
-     *                       </li>
-     *                       <li>
-     *                           {@link #printErrorResponse()}
-     *                       </li>
-     *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
-     * Create a report</a>
-     **/
-    @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
-    public <T> T createGeneralReport(ReportType type, ReturnFormat format) throws Exception {
-        Params payload = new Params();
-        payload.addParam("type", type);
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, payload), format);
-    }
-
-    /**
-     * Request to create a general report
-     *
      * @param type:        type of report to create
      * @param extraParams: extra params of the request, keys accepted are:
      *                     <ul>
@@ -332,6 +278,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "profile_id"} -> if this field is specified, it must be the profile_id that
      *                              is linked to the API key - [string]
      *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product - Which product to generate the report for - [string]
+     *                          </li>
      *                     </ul>
      * @return result of creation of the general report as {@link ReportDetails} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -346,7 +295,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -377,6 +326,9 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                              {@code "profile_id"} -> if this field is specified, it must be the profile_id that
      *                              is linked to the API key - [string]
      *                          </li>
+     *                          <li>
+     *                              {@code "product_id"} -> product - Which product to generate the report for - [string]
+     *                          </li>
      *                     </ul>
      * @param format:      return type formatter -> {@link ReturnFormat}
      * @return result of creation of the general report as {@code "format"} defines
@@ -392,15 +344,13 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createGeneralReport(ReportType type, Params extraParams, ReturnFormat format) throws Exception {
-        Params payload = new Params();
-        payload.addParam("type", type);
-        payload.mergeParams(extraParams);
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, payload), format);
+        extraParams.addParam("type", type);
+        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, extraParams), format);
     }
 
     /**
@@ -420,7 +370,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -448,7 +398,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @WrappedRequest
@@ -494,7 +444,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -541,7 +491,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @WrappedRequest
@@ -582,7 +532,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -610,7 +560,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @WrappedRequest
@@ -656,7 +606,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -703,7 +653,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @WrappedRequest
@@ -744,7 +694,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -772,7 +722,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @WrappedRequest
@@ -818,7 +768,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -865,7 +815,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -897,7 +847,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -927,7 +877,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -974,7 +924,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @Wrapper
@@ -1023,7 +973,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
      **/
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -1084,7 +1034,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
      * Get a report</a>
      **/
     @Wrapper
@@ -1111,7 +1061,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
      * Get a report</a>
      **/
     @Returner

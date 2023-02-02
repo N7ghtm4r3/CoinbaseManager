@@ -8,7 +8,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Stat} class is useful to format Stat object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductstats">
  * Get product stats</a>
  * @see Product
  **/
@@ -61,7 +61,7 @@ public class Stat extends Product {
 
     /**
      * Method to get {@link #productId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
      **/
@@ -71,7 +71,7 @@ public class Stat extends Product {
 
     /**
      * Method to get {@link #last} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #last} instance as double
      **/
@@ -92,7 +92,7 @@ public class Stat extends Product {
 
     /**
      * Method to get {@link #volume30Day} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #volume30Day} instance as double
      **/

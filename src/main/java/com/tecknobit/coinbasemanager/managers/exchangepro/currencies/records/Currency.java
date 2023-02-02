@@ -14,11 +14,11 @@ import static com.tecknobit.apimanager.formatters.JsonHelper.getJSONArray;
  * @apiNote see the official documentation at:
  * <ul>
  *     <li>
- *        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+ *        <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
  *            Get all known currencies</a>
  *     </li>
  *     <li>
- *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
+ *         <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
  *            Get a currency</a>
  *     </li>
  * </ul>
@@ -122,7 +122,7 @@ public class Currency {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -132,7 +132,7 @@ public class Currency {
 
     /**
      * Method to get {@link #name} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #name} instance as {@link String}
      **/
@@ -142,7 +142,7 @@ public class Currency {
 
     /**
      * Method to get {@link #status} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #status} instance as {@link String}
      **/
@@ -152,7 +152,7 @@ public class Currency {
 
     /**
      * Method to get {@link #minSize} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #minSize} instance as double
      **/
@@ -162,7 +162,7 @@ public class Currency {
 
     /**
      * Method to get {@link #maxPrecision} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #maxPrecision} instance as double
      **/
@@ -172,7 +172,7 @@ public class Currency {
 
     /**
      * Method to get {@link #message} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #message} instance as {@link String}
      **/
@@ -182,7 +182,7 @@ public class Currency {
 
     /**
      * Method to get {@link #convertibleToCurrenciesList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #convertibleToCurrenciesList} instance as {@link ArrayList} of {@link String}
      **/
@@ -202,7 +202,7 @@ public class Currency {
 
     /**
      * Method to get {@link #currencyDetails} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #currencyDetails} instance as {@link CurrencyDetails}
      **/
@@ -212,7 +212,7 @@ public class Currency {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */
@@ -345,7 +345,7 @@ public class Currency {
 
         /**
          * Method to get {@link #symbol} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #symbol} instance as {@link String}
          **/
@@ -355,7 +355,7 @@ public class Currency {
 
         /**
          * Method to get {@link #minWithdrawalAmount} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #minWithdrawalAmount} instance as double
          **/
@@ -365,7 +365,7 @@ public class Currency {
 
         /**
          * Method to get {@link #networksConfirmations} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #networksConfirmations} instance as int
          **/
@@ -375,7 +375,7 @@ public class Currency {
 
         /**
          * Method to get {@link #maxWithdrawalAmount} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #maxWithdrawalAmount} instance as double
          **/
@@ -385,7 +385,7 @@ public class Currency {
 
         /**
          * Method to get {@link #cryptoAddressLink} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #cryptoAddressLink} instance as {@link String}
          **/
@@ -395,7 +395,7 @@ public class Currency {
 
         /**
          * Method to get {@link #type} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #type} instance as {@link String}
          **/
@@ -405,7 +405,7 @@ public class Currency {
 
         /**
          * Method to get {@link #sortOrder} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #sortOrder} instance as int
          **/
@@ -415,7 +415,7 @@ public class Currency {
 
         /**
          * Method to get {@link #cryptoTransactionLink} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #cryptoTransactionLink} instance as {@link String}
          **/
@@ -425,7 +425,7 @@ public class Currency {
 
         /**
          * Method to get {@link #displayName} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #displayName} instance as {@link String}
          **/
@@ -435,7 +435,7 @@ public class Currency {
 
         /**
          * Method to get {@link #processingTimeSeconds} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #processingTimeSeconds} instance as {@link String}
          **/
@@ -445,7 +445,7 @@ public class Currency {
 
         /**
          * Method to get {@link #pushPaymentMethodsList} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #pushPaymentMethodsList} instance as {@link ArrayList} of {@link String}
          **/
@@ -465,7 +465,7 @@ public class Currency {
 
         /**
          * Method to get {@link #groupTypesList} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #groupTypesList} instance as {@link ArrayList} of {@link String}
          **/
@@ -485,7 +485,7 @@ public class Currency {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

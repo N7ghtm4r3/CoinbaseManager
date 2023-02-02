@@ -1,5 +1,5 @@
 # CoinbaseManager
-**v1.1.1**
+**v1.1.2**
 
 This is a Java Based library useful to work with Coinbase's API service.
 
@@ -23,7 +23,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.1.1'
+    implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.1.2'
 }
 ```
 
@@ -45,7 +45,7 @@ dependencies {
 <dependency>
     <groupId>com.github.N7ghtm4r3</groupId>
     <artifactId>CoinbaseManager</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -148,4 +148,4 @@ If you want support project and developer with crypto: **0x5f63cc6d13b16dcf39cd8
 If you want support project and developer with <a href="https://www.paypal.com/donate/?hosted_button_id=5QMN5UQH7LDT4">PayPal</a>
 
 
-Copyright © 2022 Tecknobit
+Copyright © 2023 Tecknobit

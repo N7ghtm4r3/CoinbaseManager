@@ -11,11 +11,11 @@ import org.json.JSONObject;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
  * Get all reports</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
  * Get user exchange limits</a>
  * </li>
  * </ul>
@@ -61,7 +61,7 @@ public class ReportDetails {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -71,7 +71,7 @@ public class ReportDetails {
 
     /**
      * Method to get {@link #type} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #type} instance as {@link String}
      **/
@@ -81,7 +81,7 @@ public class ReportDetails {
 
     /**
      * Method to get {@link #status} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #status} instance as {@link String}
      **/
@@ -91,7 +91,7 @@ public class ReportDetails {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */
@@ -133,7 +133,12 @@ public class ReportDetails {
         /**
          * {@code "balance"} report type
          **/
-        balance("balance");
+        balance("balance"),
+
+        /**
+         * {@code "rfq_fills"} report type
+         **/
+        rfq_fills("rfq-fills");
 
         /**
          * {@code type} report type
@@ -151,7 +156,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #type} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #type} instance as {@link String}
          **/
@@ -187,11 +192,11 @@ public class ReportDetails {
      * @apiNote see the official documentation at:
      * <ul>
      * <li>
-     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports-1">
+     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
      * </li>
      * <li>
-     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits-1">
+     * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
      * </li>
      * </ul>
@@ -291,7 +296,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #createdAt} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #createdAt} instance as {@link String}
          **/
@@ -301,7 +306,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #createdAt} timestamp <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #createdAt} timestamp as long
          **/
@@ -311,7 +316,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #activeAt} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #activeAt} instance as {@link String}
          **/
@@ -321,7 +326,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #activeAt} timestamp <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #activeAt} timestamp as long
          **/
@@ -331,7 +336,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #id} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #id} instance as {@link String}
          **/
@@ -341,7 +346,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #name} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #name} instance as {@link String}
          **/
@@ -351,7 +356,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #email} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #email} instance as {@link String}
          **/
@@ -361,7 +366,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #isBanned} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #isBanned} instance as boolean
          **/
@@ -371,7 +376,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #userType} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #userType} instance as {@link String}
          **/
@@ -381,7 +386,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #fullFillsNewRequirements} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #fullFillsNewRequirements} instance as boolean
          **/
@@ -391,7 +396,7 @@ public class ReportDetails {
 
         /**
          * Method to get {@link #hasDefault} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #hasDefault} instance as boolean
          **/
@@ -401,7 +406,7 @@ public class ReportDetails {
 
         /**
          * Method to get tax domain <br>
-         * Any params required
+         * No-any params required
          *
          * @return tax domain as {@link String}
          **/
@@ -411,7 +416,7 @@ public class ReportDetails {
 
         /**
          * Method to get permissions <br>
-         * Any params required
+         * No-any params required
          *
          * @return permissions as {@link JSONObject}
          **/
@@ -421,7 +426,7 @@ public class ReportDetails {
 
         /**
          * Method to get permissions <br>
-         * Any params required
+         * No-any params required
          *
          * @return permissions as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
@@ -432,7 +437,7 @@ public class ReportDetails {
 
         /**
          * Method to get flags <br>
-         * Any params required
+         * No-any params required
          *
          * @return flags as {@link JSONObject}
          **/
@@ -442,7 +447,7 @@ public class ReportDetails {
 
         /**
          * Method to get flags <br>
-         * Any params required
+         * No-any params required
          *
          * @return flags as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
@@ -453,7 +458,7 @@ public class ReportDetails {
 
         /**
          * Method to get preferences <br>
-         * Any params required
+         * No-any params required
          *
          * @return preferences as {@link JSONObject}
          **/
@@ -463,7 +468,7 @@ public class ReportDetails {
 
         /**
          * Method to get preferences <br>
-         * Any params required
+         * No-any params required
          *
          * @return preferences as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
@@ -516,7 +521,7 @@ public class ReportDetails {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

@@ -18,7 +18,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbaseCurrenciesManager} class is useful to manage all {@code "Coinbase"} currencies endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
  * Currencies manager</a>
  **/
 public class CoinbaseCurrenciesManager extends CoinbaseManager {
@@ -73,7 +73,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseCurrenciesManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -93,7 +93,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /**
      * Request to get list of all currencies<br>
-     * Any params required
+     * No-any params required
      *
      * @return list of all currencies as {@link ArrayList} of {@link Currency}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -108,7 +108,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
      * Get all known currencies</a>
      **/
     @Wrapper
@@ -134,7 +134,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
      * Get all known currencies</a>
      **/
     @Returner
@@ -157,7 +157,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
      *     Get a currency</a>
      * @return currency as {@link Currency} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -182,7 +182,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
     /** Request to get one currency
      * @param currencyId: identifier of a currency es. BTC
      * @param format:            return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrency">
      *     Get a currency</a>
      * @return currency as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:

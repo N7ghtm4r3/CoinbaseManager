@@ -12,7 +12,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.transfers.recor
  * The {@code PayPalMethod} class is useful to format a payment method
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
  **/
@@ -227,7 +227,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -237,7 +237,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #currency} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #currency} instance as {@link String}
      **/
@@ -247,7 +247,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #primaryBuy} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #primaryBuy} instance as boolean
      **/
@@ -257,7 +257,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #primarySell} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #primarySell} instance as boolean
      **/
@@ -267,7 +267,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #instantBuy} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #instantBuy} instance as boolean
      **/
@@ -277,7 +277,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #instantSell} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #instantSell} instance as boolean
      **/
@@ -287,7 +287,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -297,7 +297,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -307,7 +307,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #updatedAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #updatedAt} instance as {@link String}
      **/
@@ -317,7 +317,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #updatedAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #updatedAt} timestamp as long
      **/
@@ -327,7 +327,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #resource} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #resource} instance as {@link String}
      **/
@@ -337,7 +337,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #resourcePath} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #resourcePath} instance as {@link String}
      **/
@@ -347,7 +347,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #allowBuy} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #allowBuy} instance as boolean
      **/
@@ -357,7 +357,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #allowSell} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #allowSell} instance as boolean
      **/
@@ -367,7 +367,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #allowDeposit} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #allowDeposit} instance as boolean
      **/
@@ -377,7 +377,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #allowWithdraw} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #allowWithdraw} instance as boolean
      **/
@@ -387,7 +387,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #verified} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #verified} instance as boolean
      **/
@@ -397,7 +397,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #holdBusinessDays} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #holdBusinessDays} instance as int
      **/
@@ -407,7 +407,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #holdDays} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #holdDays} instance as int
      **/
@@ -417,7 +417,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get {@link #minimumPurchaseAmount} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #minimumPurchaseAmount} instance as {@link Amount}
      **/
@@ -427,7 +427,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get PayPal limits details <br>
-     * Any params required
+     * No-any params required
      *
      * @return PayPal limits details as {@link PayPalMethod} custom object, if is not a PayPal method will return null value
      **/
@@ -441,7 +441,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get PayPal picker data details <br>
-     * Any params required
+     * No-any params required
      *
      * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} custom object, if is not a PayPal method will return null value
      **/
@@ -459,7 +459,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get Bank limits details <br>
-     * Any params required
+     * No-any params required
      *
      * @return Bank limits details as {@link BankMethod} custom object, if is not a Bank method will return null value
      **/
@@ -473,7 +473,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get Bank picker data details <br>
-     * Any params required
+     * No-any params required
      *
      * @return Bank picker data details as {@link BankMethod.BankPickerData} custom object, if is not a Bank method will return null value
      **/
@@ -491,7 +491,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get Fiat Account details <br>
-     * Any params required
+     * No-any params required
      *
      * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} custom object,
      * if is not a Fiat Account method will return null value
@@ -506,7 +506,7 @@ public class PaymentMethod extends PayMethod {
 
     /**
      * Method to get Fiat Account limits details <br>
-     * Any params required
+     * No-any params required
      *
      * @return Fiat Account limits details as {@link FiatAccountMethod} custom object,
      * if is not a Fiat Account method will return null value
@@ -519,11 +519,13 @@ public class PaymentMethod extends PayMethod {
         return null;
     }
 
-    /** Method to get Fiat Account picker data details <br>
-     * Any params required
+    /**
+     * Method to get Fiat Account picker data details <br>
+     * No-any params required
+     *
      * @return Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} custom object,
      * if is not a Fiat Account will return null value
-     * **/
+     **/
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
         if(fiatAccountPickerData == null)
             fiatAccountPickerData = hPayment.getJSONObject("picker_data");
@@ -548,7 +550,7 @@ public class PaymentMethod extends PayMethod {
      * The {@code Amount} class is useful to obtain and format an amount for a {@link PaymentMethod}
      *
      * @author N7ghtm4r3 - Tecknobit
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
      * **/
     public static class Amount {
@@ -596,7 +598,7 @@ public class PaymentMethod extends PayMethod {
 
         /**
          * Method to get {@link #amount} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #amount} instance as double
          **/
@@ -629,7 +631,7 @@ public class PaymentMethod extends PayMethod {
 
         /**
          * Method to get {@link #currency} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #currency} instance as {@link String}
          **/
@@ -651,7 +653,7 @@ public class PaymentMethod extends PayMethod {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

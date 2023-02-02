@@ -16,7 +16,7 @@ import static com.tecknobit.coinbasemanager.managers.exchangepro.CoinbaseManager
  * The {@code CoinbaseConversionsManager} class is useful to manage all {@code "Coinbase"} conversion endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
  * Conversions manager</a>
  * @see CoinbaseManager
  **/
@@ -72,7 +72,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseConversionsManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -109,7 +109,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
      **/
     @Wrapper
@@ -138,7 +138,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
      **/
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
@@ -175,7 +175,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
      **/
     @Wrapper
@@ -213,7 +213,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
      **/
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
@@ -241,7 +241,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /** Request to get information about one conversion
      * @param conversionId: identifier of conversion to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">
      *     Get a conversion</a>
      * @return information about one conversion as {@link CurrencyConversion} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -266,7 +266,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     /** Request to get information about one conversion
      * @param conversionId: identifier of conversion to fetch details
      * @param format:            return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">
      *     Get a conversion</a>
      * @return information about one conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -291,7 +291,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
     /** Request to get information about one conversion
      * @param conversionId: identifier of conversion to fetch details
      * @param profileId: identifier of account to fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">
      *     Get a conversion</a>
      * @return information about one conversion as {@link CurrencyConversion} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -317,7 +317,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param conversionId: identifier of conversion to fetch details
      * @param profileId: identifier of account to fetch details
      * @param format:            return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getconversion">
      *     Get a conversion</a>
      * @return information about one conversion as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:

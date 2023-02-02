@@ -28,7 +28,7 @@ import static java.util.Arrays.asList;
  * The {@code CoinbaseOrdersManager} class is useful to manage all {@code "Coinbase"} orders endpoints
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
  * Orders manager</a>
  * @see CoinbaseManager
  **/
@@ -84,7 +84,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseOrdersManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -119,7 +119,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -147,7 +147,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @WrappedRequest
@@ -173,7 +173,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -200,7 +200,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
@@ -244,7 +244,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -290,7 +290,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @WrappedRequest
@@ -334,7 +334,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -379,7 +379,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
@@ -406,7 +406,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -433,7 +433,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
@@ -477,7 +477,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @Wrapper
@@ -522,7 +522,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
      **/
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
@@ -575,7 +575,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -607,7 +607,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -637,7 +637,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -669,7 +669,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -723,7 +723,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -777,7 +777,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -828,7 +828,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -881,7 +881,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -914,7 +914,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -945,7 +945,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -996,7 +996,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -1049,7 +1049,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -1080,7 +1080,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -1113,7 +1113,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -1164,7 +1164,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -1215,7 +1215,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -1234,7 +1234,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sorting: ascending or descending order criteria (asc or desc)
      * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @param productId: identifier of product from fetch details es. BTC-ETH
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      *     Get all orders</a>
      * @return all orders as {@link ArrayList} of {@link Order}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1265,7 +1265,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param status: orders status to fetch (open, pending, rejected, done, active, received, or all) as {@link String}
      * @param productId: identifier of product from fetch details es. BTC-ETH
      * @param format:        return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      *     Get all orders</a>
      * @return all orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1329,7 +1329,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @Wrapper
@@ -1380,7 +1380,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
      **/
     @WrappedRequest
@@ -1432,7 +1432,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /**
      * Request to cancel all orders <br>
-     * Any params required
+     * No-any params required
      *
      * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1447,7 +1447,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
      * Cancel all orders</a>
      **/
     @Wrapper
@@ -1459,7 +1459,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     /** Request to cancel all orders
      *
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
      *     Cancel all orders</a>
      * @return result list of cancelled id orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1490,7 +1490,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              {@code "profile_id"} -> profile identifier - [string]
      *                          </li>
      *                     </ul>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
      *     Cancel all orders</a>
      * @return result list of cancelled id orders as {@link ArrayList} of {@link String}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1524,7 +1524,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
      *     Cancel all orders</a>
      * @return result list of cancelled id orders as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1589,7 +1589,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      * Create a new order</a>
      **/
     @Wrapper
@@ -1604,7 +1604,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1658,7 +1658,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              client to identify their order - [string]
      *                          </li>
      *                     </ul>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1713,7 +1713,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1741,7 +1741,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param size: amount of base currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1768,7 +1768,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param size: amount of base currency used in the order
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1820,7 +1820,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              client to identify their order - [string]
      *                          </li>
      *                     </ul>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@link Order}
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1873,7 +1873,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1901,7 +1901,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param side: side of the order (buy or sell)
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param founds: amount of quote currency used in the order
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1928,7 +1928,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param productId: identifier of product to buy or sell es. BTC-USD
      * @param founds: amount of quote currency used in the order
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -1980,7 +1980,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              client to identify their order - [string]
      *                          </li>
      *                     </ul>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2033,7 +2033,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new market order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2081,7 +2081,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param price: price per unit of product es. price for one unit of BTC in USD base
      * @param size: amount of base currency used in the order
      * @param stopPrice: price when stop order will be placed on the book
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2110,7 +2110,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param size: amount of base currency used in the order
      * @param stopPrice: price when stop order will be placed on the book
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2166,7 +2166,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                              client to identify their order - [string]
      *                          </li>
      *                     </ul>
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2222,7 +2222,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                          </li>
      *                     </ul>
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      *     Create a new order</a>
      * @return result of creation a new limit order as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2269,7 +2269,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /** Request to get single order information
      * @param orderId: identifier of order from fetch details
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
      *     Get single order</a>
      * @return result of single order information as {@link Order} custom object
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2294,7 +2294,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
     /** Request to get single order information
      * @param orderId: identifier of order from fetch details
      * @param format:         return type formatter -> {@link ReturnFormat}
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
      *     Get single order</a>
      * @return result of single order information as {@code "format"} defines
      * @throws Exception when request has been go wrong -> you can use these methods to get more details about error:
@@ -2351,7 +2351,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
      **/
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
@@ -2377,7 +2377,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
      **/
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
@@ -2403,7 +2403,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
      **/
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
@@ -2430,7 +2430,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder-1">
+     * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
      **/
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")

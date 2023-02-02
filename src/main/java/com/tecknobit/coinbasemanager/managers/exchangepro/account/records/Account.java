@@ -8,8 +8,8 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Account} class is useful to format Account object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts-1">
- *     Get all accounts for a profile</a>
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
+ * Get all accounts for a profile</a>
  **/
 public class Account {
 
@@ -97,7 +97,7 @@ public class Account {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -107,7 +107,7 @@ public class Account {
 
     /**
      * Method to get {@link #currency} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #currency} instance as {@link String}
      **/
@@ -129,7 +129,7 @@ public class Account {
 
     /**
      * Method to get {@link #balance} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #balance} instance as double
      **/
@@ -162,7 +162,7 @@ public class Account {
 
     /**
      * Method to get {@link #available} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #available} instance as double
      **/
@@ -195,7 +195,7 @@ public class Account {
 
     /**
      * Method to get {@link #hold} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hold} instance as double
      **/
@@ -228,7 +228,7 @@ public class Account {
 
     /**
      * Method to get {@link #profileId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #profileId} instance as {@link String}
      **/
@@ -238,7 +238,7 @@ public class Account {
 
     /**
      * Method to get {@link #tradingEnable} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #tradingEnable} instance as boolean
      **/
@@ -257,7 +257,7 @@ public class Account {
 
     /**
      * Method to set {@link #tradingEnable} instance on {@code "true"} <br>
-     * Any params required
+     * No-any params required
      **/
     public void enableTrading() {
         tradingEnable = true;
@@ -265,7 +265,7 @@ public class Account {
 
     /**
      * Method to set {@link #tradingEnable} instance on {@code "false"} <br>
-     * Any params required
+     * No-any params required
      **/
     public void disableTrading() {
         tradingEnable = false;
@@ -273,7 +273,7 @@ public class Account {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

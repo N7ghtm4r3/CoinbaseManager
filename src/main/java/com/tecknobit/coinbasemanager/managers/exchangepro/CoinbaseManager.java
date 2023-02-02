@@ -17,7 +17,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.textualizeAssetPerce
  * The {@code CoinbaseManager} class is useful to manage all {@code "Coinbase"} endpoints giving basics methods for others {@code "Coinbase"} managers
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs-1">Welcome</a>
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs">Welcome</a>
  **/
 public class CoinbaseManager {
 
@@ -143,7 +143,7 @@ public class CoinbaseManager {
 
     /**
      * Constructor to init a {@link CoinbaseManager} <br>
-     * Any params required
+     * No-any params required
      *
      * @throws IllegalArgumentException when a parameterized constructor has not been called before this constructor
      * @apiNote this constructor is useful to instantiate a new {@link CoinbaseManager}'s manager without re-insert
@@ -303,7 +303,7 @@ public class CoinbaseManager {
 
     /**
      * Method to get error response of request <br>
-     * Any params required
+     * No-any params required
      *
      * @return error of the response as {@link String}
      **/
@@ -313,7 +313,7 @@ public class CoinbaseManager {
 
     /**
      * Method to get error response of request <br>
-     * Any params required
+     * No-any params required
      *
      * @return error response of the request formatted as {@code "JSON"} or as {@link String}
      **/
@@ -323,7 +323,7 @@ public class CoinbaseManager {
 
     /**
      * Method to print error response of request <br>
-     * Any params required
+     * No-any params required
      **/
     public void printErrorResponse() {
         apiRequest.printErrorResponse();
@@ -331,7 +331,7 @@ public class CoinbaseManager {
 
     /**
      * Method to get status code of request response <br>
-     * Any params required
+     * No-any params required
      *
      * @return status code of request response
      **/
@@ -393,16 +393,18 @@ public class CoinbaseManager {
         return textualizeAssetPercent(startValue, finalValue);
     }
 
-    /** Method to get {@code "Coinbase"} api key
-     * Any params required
+    /**
+     * Method to get {@code "Coinbase"} api key
+     * No-any params required
+     *
      * @return api key as {@link String}
-     * **/
+     **/
     public String getApiKey() {
         return apiKey;
     }
 
     /** Method to get {@code "Coinbase"} api secret
-     * Any params required
+     * No-any params required
      * @return api secret as {@link String}
      * **/
     public String getApiSecret() {
@@ -411,7 +413,7 @@ public class CoinbaseManager {
 
     /**
      * Method to get {@code "Coinbase"} api passphrase
-     * Any params required
+     * No-any params required
      *
      * @return api passphrase as {@link String}
      **/
@@ -448,7 +450,7 @@ public class CoinbaseManager {
      * The {@code Params} class is useful to assemble params values for the request
      *
      * @implNote this class can be used to assemble body payload or query request params
-     * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager-1">here-1</a>
+     * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager">here-1</a>
      * @see APIRequest.Params
      **/
     public static class Params extends APIRequest.Params {}

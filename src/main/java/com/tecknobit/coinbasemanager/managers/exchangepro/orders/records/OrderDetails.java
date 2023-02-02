@@ -11,23 +11,23 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
  * Get all fills</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
  * Get all orders</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
  * Cancel all orders</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
  * Create a new order</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorder">
  * Get single order</a>
  * </li>
  * </ul>
@@ -114,7 +114,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #side} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #side} instance as {@link String}
      **/
@@ -124,7 +124,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -134,7 +134,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -144,7 +144,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #productId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
      **/
@@ -154,7 +154,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #profileId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #profileId} instance as {@link String}
      **/
@@ -164,7 +164,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #price} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #price} instance as double
      **/
@@ -185,7 +185,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #size} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #size} instance as double
      **/
@@ -223,7 +223,7 @@ public abstract class OrderDetails {
 
     /**
      * Method to get {@link #settled} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #settled} instance as boolean
      **/
@@ -233,7 +233,7 @@ public abstract class OrderDetails {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

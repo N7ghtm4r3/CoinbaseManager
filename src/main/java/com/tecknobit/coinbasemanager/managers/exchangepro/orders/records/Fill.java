@@ -8,7 +8,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Fill} class is useful to format Fill object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
  * Get all fills</a>
  * @see OrderDetails
  **/
@@ -88,7 +88,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #tradeId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #tradeId} instance as long
      **/
@@ -98,7 +98,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #orderId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #orderId} instance as {@link String}
      **/
@@ -108,7 +108,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #userId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #userId} instance as {@link String}
      **/
@@ -118,7 +118,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #liquidity} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #liquidity} instance as {@link String}
      **/
@@ -128,7 +128,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #fee} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #fee} instance as double
      **/
@@ -149,7 +149,7 @@ public class Fill extends OrderDetails {
 
     /**
      * Method to get {@link #usdVolume} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #usdVolume} instance as double
      **/

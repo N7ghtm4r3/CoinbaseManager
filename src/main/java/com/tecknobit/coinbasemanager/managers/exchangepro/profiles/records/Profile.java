@@ -8,27 +8,27 @@ import org.json.JSONObject;
  * @apiNote see the official documentation at:
  * <ul>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofiles">
  * Get profiles</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofile">
  * Create a profile</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postprofiletransfer">
  * Transfer funds between profiles</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getprofile">
  * Get profile by id</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofile">
  * Rename a profile</a>
  * </li>
  * <li>
- * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate-1">
+ * <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_putprofiledeactivate">
  * Delete a profile</a>
  * </li>
  * </ul>
@@ -111,7 +111,7 @@ public class Profile {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -121,7 +121,7 @@ public class Profile {
 
     /**
      * Method to get {@link #userId} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #userId} instance as {@link String}
      **/
@@ -131,7 +131,7 @@ public class Profile {
 
     /**
      * Method to get {@link #name} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #name} instance as {@link String}
      **/
@@ -153,7 +153,7 @@ public class Profile {
 
     /**
      * Method to get {@link #active} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #active} instance as boolean
      **/
@@ -172,7 +172,7 @@ public class Profile {
 
     /**
      * Method to get {@link #isDefault} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #isDefault} instance as boolean
      **/
@@ -191,7 +191,7 @@ public class Profile {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -201,7 +201,7 @@ public class Profile {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -211,7 +211,7 @@ public class Profile {
 
     /**
      * Method to get {@link #hasMargin} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #hasMargin} instance as boolean
      **/
@@ -230,7 +230,7 @@ public class Profile {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */

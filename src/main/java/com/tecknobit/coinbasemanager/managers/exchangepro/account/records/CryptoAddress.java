@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * The {@code CryptoAddress} class is useful to format CryptoAddress object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">
  * Generate crypto address</a>
  **/
 public class CryptoAddress {
@@ -168,7 +168,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #id} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #id} instance as {@link String}
      **/
@@ -178,7 +178,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #address} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #address} instance as {@link String}
      **/
@@ -188,7 +188,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #addressInfoList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #addressInfoList} instance as {@link ArrayList} of {@link AddressInfo}
      **/
@@ -238,7 +238,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #name} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #name} instance as {@link String}
      **/
@@ -248,7 +248,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #createdAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
      **/
@@ -258,7 +258,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #createdAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
      **/
@@ -268,7 +268,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #updatedAt} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #updatedAt} instance as {@link String}
      **/
@@ -278,7 +278,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #updatedAt} timestamp <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #updatedAt} timestamp as long
      **/
@@ -288,7 +288,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #network} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #network} instance as {@link String}
      **/
@@ -298,7 +298,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #uriScheme} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #uriScheme} instance as {@link String}
      **/
@@ -308,7 +308,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #resource} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #resource} instance as {@link String}
      **/
@@ -318,7 +318,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #resourcePath} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #resourcePath} instance as {@link String}
      **/
@@ -328,7 +328,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #depositUri} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #depositUri} instance as {@link String}
      **/
@@ -338,7 +338,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #exchangeDepositAddress} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #exchangeDepositAddress} instance as boolean
      **/
@@ -348,7 +348,7 @@ public class CryptoAddress {
 
     /**
      * Method to get {@link #warningsList} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #warningsList} instance as {@link ArrayList} of {@link Warning}
      **/
@@ -398,7 +398,7 @@ public class CryptoAddress {
 
     /**
      * Returns a string representation of the object <br>
-     * Any params required
+     * No-any params required
      *
      * @return a string representation of the object as {@link String}
      */
@@ -437,7 +437,7 @@ public class CryptoAddress {
 
         /**
          * Method to get {@link #titleInfo} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #titleInfo} instance as {@link String}
          **/
@@ -447,7 +447,7 @@ public class CryptoAddress {
 
         /**
          * Method to get {@link #valueInfo} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #valueInfo} instance as {@link String}
          **/
@@ -457,7 +457,7 @@ public class CryptoAddress {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */
@@ -514,7 +514,7 @@ public class CryptoAddress {
 
         /**
          * Method to get {@link #title} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #title} instance as {@link String}
          **/
@@ -524,7 +524,7 @@ public class CryptoAddress {
 
         /**
          * Method to get {@link #details} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #details} instance as {@link String}
          **/
@@ -534,7 +534,7 @@ public class CryptoAddress {
 
         /**
          * Method to get {@link #imageUrl} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #imageUrl} instance as {@link String}
          **/
@@ -544,7 +544,7 @@ public class CryptoAddress {
 
         /**
          * Returns a string representation of the object <br>
-         * Any params required
+         * No-any params required
          *
          * @return a string representation of the object as {@link String}
          */

@@ -11,7 +11,7 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * The {@code Candle} class is useful to format Candle object
  *
  * @author N7ghtm4r3 - Tecknobit
- * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles-1">
+ * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductcandles">
  * Get product candles</a>
  * @see Product
  **/
@@ -44,7 +44,7 @@ public class Candle extends Product {
 
     /**
      * Method to get {@link #time} <b>seconds</b> format <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #time} instance as long
      **/
@@ -65,7 +65,7 @@ public class Candle extends Product {
 
     /**
      * Method to get {@link #time} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #time} instance as {@link Date} with {@link #time} in <b>milliseconds</b> format
      **/
@@ -75,7 +75,7 @@ public class Candle extends Product {
 
     /**
      * Method to get {@link #close} instance <br>
-     * Any params required
+     * No-any params required
      *
      * @return {@link #close} instance as double
      **/
@@ -145,7 +145,7 @@ public class Candle extends Product {
 
         /**
          * Method to get {@link #granularity} instance <br>
-         * Any params required
+         * No-any params required
          *
          * @return {@link #granularity} instance as int
          **/
