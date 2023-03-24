@@ -45,19 +45,26 @@ public class WrappedAsset extends CoinbaseItem {
     private final double conversionRate;
 
     /**
+     * {@code apy} APY earned by the supply of the underlying asset
+     **/
+    private final double apy;
+
+    /**
      * Constructor to init a {@link WrappedAsset} object
      *
-     * @param id:                id of the wrapped asset
-     * @param circulatingSupply: circulating supply of the wrapped asset
-     * @param totalSupply:       total supply of the wrapped asset
-     * @param conversionRate:    conversion rate of the wrapped asset
+     * @param id                :                id of the wrapped asset
+     * @param circulatingSupply : circulating supply of the wrapped asset
+     * @param totalSupply       :       total supply of the wrapped asset
+     * @param conversionRate    :    conversion rate of the wrapped asset
+     * @param apy:              APY earned by the supply of the underlying asset
      **/
-    public WrappedAsset(String id, double circulatingSupply, double totalSupply, double conversionRate) {
+    public WrappedAsset(String id, double circulatingSupply, double totalSupply, double conversionRate, double apy) {
         super(null);
         this.id = id;
         this.circulatingSupply = circulatingSupply;
         this.totalSupply = totalSupply;
         this.conversionRate = conversionRate;
+        this.apy = apy;
     }
 
     /**
@@ -71,6 +78,7 @@ public class WrappedAsset extends CoinbaseItem {
         circulatingSupply = hItem.getDouble("circulating_supply", 0);
         totalSupply = hItem.getDouble("total_supply", 0);
         conversionRate = hItem.getDouble("conversion_rate", 0);
+        apy = hItem.getDouble("apy", 0);
     }
 
     /**
@@ -144,6 +152,27 @@ public class WrappedAsset extends CoinbaseItem {
      **/
     public double getConversionRate(int decimals) {
         return roundValue(conversionRate, decimals);
+    }
+
+    /**
+     * Method to get {@link #apy} instance <br>
+     * No-any params required
+     *
+     * @return {@link #apy} instance as double
+     **/
+    public double getApy() {
+        return apy;
+    }
+
+    /**
+     * Method to get {@link #apy} instance
+     *
+     * @param decimals: number of digits to round final value
+     * @return {@link #apy} instance rounded with decimal digits inserted
+     * @throws IllegalArgumentException if decimalDigits is negative
+     **/
+    public double getApy(int decimals) {
+        return roundValue(apy, decimals);
     }
 
 }
