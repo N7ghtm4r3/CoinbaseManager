@@ -4,6 +4,7 @@ import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.orders.records.Fill;
 import com.tecknobit.coinbasemanager.exchangepro.orders.records.Order;
@@ -17,6 +18,7 @@ import java.util.Collection;
 
 import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.*;
 import static com.tecknobit.apimanager.formatters.ScientificNotationParser.sNotationParse;
+import static com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager.ReturnFormat.LIBRARY_OBJECT;
 import static com.tecknobit.coinbasemanager.exchangepro.orders.records.Order.*;
 import static com.tecknobit.coinbasemanager.exchangepro.orders.records.Order.OrderType.*;
 import static java.util.Arrays.asList;
@@ -28,17 +30,18 @@ import static java.util.Arrays.asList;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
  * Orders manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseOrdersManager extends CoinbaseManager {
 
     /**
      * {@code GET_ALL_FILLS_ENDPOINT} is constant for GET_ALL_FILLS_ENDPOINT's endpoint
-     **/
+     */
     public static final String GET_ALL_FILLS_ENDPOINT = "/fills";
 
     /**
      * {@code ORDERS_ENDPOINT} is constant for ORDERS_ENDPOINT's endpoint
-     **/
+     */
     public static final String ORDERS_ENDPOINT = "/orders";
 
     /**
@@ -49,7 +52,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param passphrase          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage custom error to show when is not a request error
      * @param timeout             custom timeout for request
-     **/
+     */
     public CoinbaseOrdersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -61,7 +64,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param apiSecret  your {@code "Coinbase"} api secret
      * @param passphrase your {@code "Coinbase"} api passphrase
      * @param timeout    custom timeout for request
-     **/
+     */
     public CoinbaseOrdersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -73,7 +76,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param apiSecret           your {@code "Coinbase"} api secret
      * @param passphrase          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage custom error to show when is not a request error
-     **/
+     */
     public CoinbaseOrdersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -84,7 +87,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param apiKey     your {@code "Coinbase"} api key
      * @param apiSecret  your {@code "Coinbase"} api secret
      * @param passphrase your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseOrdersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -104,7 +107,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseOrdersManager() {
         super();
     }
@@ -128,12 +131,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByOrderId(Order order) throws Exception {
-        return getAllFillsByOrderId(order.getId(), ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByOrderId(order.getId(), LIBRARY_OBJECT);
     }
 
     /**
@@ -156,7 +159,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByOrderId(Order order, ReturnFormat format) throws Exception {
@@ -182,11 +185,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByOrderId(String orderId) throws Exception {
-        return getAllFillsByOrderId(orderId, ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByOrderId(orderId, LIBRARY_OBJECT);
     }
 
     /**
@@ -209,10 +212,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByOrderId(String orderId, ReturnFormat format) throws Exception {
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?order_id=" + orderId, GET),
+        return returnFillsList(sendGETRequest(GET_ALL_FILLS_ENDPOINT + "?order_id=" + orderId),
                 format);
     }
 
@@ -253,12 +256,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByOrderId(Order order, Params queryParams) throws Exception {
-        return getAllFillsByOrderId(order.getId(), queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByOrderId(order.getId(), queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -299,7 +302,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByOrderId(Order order, Params queryParams, ReturnFormat format) throws Exception {
@@ -343,11 +346,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByOrderId(String orderId, Params queryParams) throws Exception {
-        return getAllFillsByOrderId(orderId, queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByOrderId(orderId, queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -388,11 +391,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByOrderId(String orderId, Params queryParams, ReturnFormat format) throws Exception {
         queryParams.addParam("order_id", orderId);
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString(), GET),
+        return returnFillsList(sendGETRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString()),
                 format);
     }
 
@@ -415,11 +418,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByProductId(String productId) throws Exception {
-        return getAllFillsByProductId(productId, ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByProductId(productId, LIBRARY_OBJECT);
     }
 
     /**
@@ -442,10 +445,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByProductId(String productId, ReturnFormat format) throws Exception {
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + "?product_id=" + productId, GET),
+        return returnFillsList(sendGETRequest(GET_ALL_FILLS_ENDPOINT + "?product_id=" + productId),
                 format);
     }
 
@@ -486,11 +489,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public ArrayList<Fill> getAllFillsByProductId(String productId, Params queryParams) throws Exception {
-        return getAllFillsByProductId(productId, queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllFillsByProductId(productId, queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -531,11 +534,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfills">
      * Get all fills</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fills")
     public <T> T getAllFillsByProductId(String productId, Params queryParams, ReturnFormat format) throws Exception {
         queryParams.addParam("product_id", productId);
-        return returnFillsList(sendAPIRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString(), GET),
+        return returnFillsList(sendGETRequest(GET_ALL_FILLS_ENDPOINT + queryParams.createQueryString()),
                 format);
     }
 
@@ -545,7 +548,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param fillsResponse: fills list response to format
      * @param format:        return type formatter -> {@link ReturnFormat}
      * @return fills list response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnFillsList(String fillsResponse, ReturnFormat format) {
         switch (format) {
@@ -584,13 +587,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting,
                                          Status[] statuses) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), LIBRARY_OBJECT);
     }
 
     /**
@@ -616,7 +619,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
@@ -646,13 +649,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting,
                                          Collection<Status> statuses) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, statuses, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, statuses, LIBRARY_OBJECT);
     }
 
     /**
@@ -678,14 +681,14 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
                               ReturnFormat format) throws Exception {
         String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
         params += apiRequest.concatenateParamsList("&", "status", new ArrayList<>(statuses));
-        return returnOrdersList(sendAPIRequest(ORDERS_ENDPOINT + params, GET), format);
+        return returnOrdersList(sendGETRequest(ORDERS_ENDPOINT + params), format);
     }
 
     /**
@@ -732,13 +735,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
                                          Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -786,12 +789,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @implSpec (keys accepted are profile_id, before, after, start_date, end_date, product_id)
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status[] statuses,
                               Params queryParams, ReturnFormat format) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, Arrays.stream(statuses).toList(), queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -837,13 +840,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
                                          Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, statuses, queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -890,15 +893,15 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
                               Params queryParams, ReturnFormat format) throws Exception {
         String params = assembleQueryParams("?limit=" + limit, assembleSortCriteria(sortedBy, sorting));
         params += apiRequest.concatenateParamsList("&", "status", new ArrayList<>(statuses));
-        return returnOrdersList(sendAPIRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams),
-                GET), format);
+        return returnOrdersList(sendGETRequest(ORDERS_ENDPOINT + assembleQueryParams(params, queryParams)
+        ), format);
     }
 
     /**
@@ -923,12 +926,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), LIBRARY_OBJECT);
     }
 
     /**
@@ -954,7 +957,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
@@ -1005,13 +1008,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
                                          Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, Arrays.asList(status), queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -1058,7 +1061,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
@@ -1089,13 +1092,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
                                          String productId) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, statuses, productId, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, statuses, productId, LIBRARY_OBJECT);
     }
 
     /**
@@ -1122,7 +1125,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
@@ -1173,13 +1176,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
                                          String productId, Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, statuses, productId, queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -1224,7 +1227,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Collection<Status> statuses,
@@ -1256,13 +1259,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrder(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
                                         String productId) throws Exception {
-        return getAllOrder(limit, sortedBy, sorting, status, productId, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrder(limit, sortedBy, sorting, status, productId, LIBRARY_OBJECT);
     }
 
     /** Custom request to get all orders
@@ -1287,7 +1290,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrder(int limit, Sorter sortedBy, SortingOrder sorting, Status status,
@@ -1338,13 +1341,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<Order> getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status, String productId,
                                          Params queryParams) throws Exception {
-        return getAllOrders(limit, sortedBy, sorting, status, productId, queryParams, ReturnFormat.LIBRARY_OBJECT);
+        return getAllOrders(limit, sortedBy, sorting, status, productId, queryParams, LIBRARY_OBJECT);
     }
 
     /**
@@ -1389,7 +1392,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getorders">
      * Get all orders</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders")
     public <T> T getAllOrders(int limit, Sorter sortedBy, SortingOrder sorting, Status status, String productId,
@@ -1406,7 +1409,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param sortedBy: sort criteria for results (created_at, price, size, order_id, side or type)
      * @param sorting:  ascending or descending order criteria (asc or desc)
      * @return map of sorting criteria params as {@link Params}
-     **/
+     */
     private Params assembleSortCriteria(Sorter sortedBy, SortingOrder sorting) {
         Params criteria = new Params();
         criteria.addParam("sortedBy", sortedBy);
@@ -1420,7 +1423,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param ordersResponse: orders list response to format
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @return orders list response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnOrdersList(String ordersResponse, ReturnFormat format) {
         switch (format) {
@@ -1456,11 +1459,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorders">
      * Cancel all orders</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<String> cancelAllOpenOrders() throws Exception {
-        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT, DELETE), ReturnFormat.LIBRARY_OBJECT);
+        return returnCanceledOrdersList(sendDELETERequest(ORDERS_ENDPOINT), LIBRARY_OBJECT);
     }
 
     /** Request to cancel all orders
@@ -1481,10 +1484,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders")
     public <T> T cancelAllOpenOrders(ReturnFormat format) throws Exception {
-        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT, DELETE), format);
+        return returnCanceledOrdersList(sendDELETERequest(ORDERS_ENDPOINT), format);
     }
 
     /** Request to cancel all orders
@@ -1512,12 +1515,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders")
     public ArrayList<String> cancelAllOpenOrders(Params queryParams) throws Exception {
-        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(),
-                DELETE), ReturnFormat.LIBRARY_OBJECT);
+        return returnCanceledOrdersList(sendDELETERequest(ORDERS_ENDPOINT + queryParams.createQueryString()),
+                LIBRARY_OBJECT);
     }
 
     /** Request to cancel all orders
@@ -1546,11 +1549,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders")
     public <T> T cancelAllOpenOrders(Params queryParams, ReturnFormat format) throws Exception {
-        return returnCanceledOrdersList(sendAPIRequest(ORDERS_ENDPOINT + queryParams.createQueryString(),
-                DELETE), format);
+        return returnCanceledOrdersList(sendDELETERequest(ORDERS_ENDPOINT + queryParams.createQueryString()
+        ), format);
     }
 
     /**
@@ -1559,7 +1562,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param ordersResponse: canceled orders list response to format
      * @param format:         return type formatter -> {@link ReturnFormat}
      * @return canceled orders list response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnCanceledOrdersList(String ordersResponse, ReturnFormat format) {
         switch (format) {
@@ -1598,11 +1601,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postorders">
      * Create a new order</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createNewLimitOrder(Side side, String productId, double price, double size) throws Exception {
-        return createNewLimitOrder(side, productId, price, size, ReturnFormat.LIBRARY_OBJECT);
+        return createNewLimitOrder(side, productId, price, size, LIBRARY_OBJECT);
     }
 
     /** Request to create new limit order
@@ -1626,11 +1629,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createNewLimitOrder(Side side, String productId, double price, double size,
                                      ReturnFormat format) throws Exception {
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, createOrderPayload(side, productId,
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, createOrderPayload(side, productId,
                 price, size, OrderType.limit)), format);
     }
 
@@ -1680,12 +1683,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createNewLimitOrder(Side side, String productId, double price, double size,
                                      Params extraParams) throws Exception {
-        return createNewLimitOrder(side, productId, price, size, extraParams, ReturnFormat.LIBRARY_OBJECT);
+        return createNewLimitOrder(side, productId, price, size, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new limit order
@@ -1735,13 +1738,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createNewLimitOrder(Side side, String productId, double price, double size,
                                      Params extraParams, ReturnFormat format) throws Exception {
         Params payload = createOrderPayload(side, productId, price, size, limit);
         payload.mergeParams(extraParams);
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, payload), format);
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, payload), format);
     }
 
     /** Request to create new market order
@@ -1763,11 +1766,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createMarketOrderSize(Side side, String productId, double size) throws Exception {
-        return createMarketOrderSize(side, productId, size, ReturnFormat.LIBRARY_OBJECT);
+        return createMarketOrderSize(side, productId, size, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
@@ -1790,10 +1793,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createMarketOrderSize(Side side, String productId, double size, ReturnFormat format) throws Exception {
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, createMarketOrderPayload(side,
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, createMarketOrderPayload(side,
                 productId, "size", size)), format);
     }
 
@@ -1842,11 +1845,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createMarketOrderSize(Side side, String productId, double size, Params extraParams) throws Exception {
-        return createMarketOrderSize(side, productId, size, extraParams, ReturnFormat.LIBRARY_OBJECT);
+        return createMarketOrderSize(side, productId, size, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
@@ -1895,13 +1898,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createMarketOrderSize(Side side, String productId, double size, Params extraParams,
                                        ReturnFormat format) throws Exception {
         Params payload = createMarketOrderPayload(side, productId, "size", size);
         payload.mergeParams(extraParams);
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, payload), format);
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, payload), format);
     }
 
     /** Request to create new market order
@@ -1923,11 +1926,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createMarketOrderFounds(Side side, String productId, double founds) throws Exception {
-        return createMarketOrderFounds(side, productId, founds, ReturnFormat.LIBRARY_OBJECT);
+        return createMarketOrderFounds(side, productId, founds, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
@@ -1950,10 +1953,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createMarketOrderFounds(Side side, String productId, double founds, ReturnFormat format) throws Exception {
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, createMarketOrderPayload(side, productId,
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, createMarketOrderPayload(side, productId,
                 "founds", founds)), format);
     }
 
@@ -2002,11 +2005,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createMarketOrderFounds(Side side, String productId, double founds, Params extraParams) throws Exception {
-        return createMarketOrderFounds(side, productId, founds, extraParams, ReturnFormat.LIBRARY_OBJECT);
+        return createMarketOrderFounds(side, productId, founds, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new market order
@@ -2055,13 +2058,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createMarketOrderFounds(Side side, String productId, double founds, Params extraParams,
                                          ReturnFormat format) throws Exception {
         Params payload = createMarketOrderPayload(side, productId, "founds", founds);
         payload.mergeParams(extraParams);
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, payload), format);
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, payload), format);
     }
 
     /**
@@ -2072,7 +2075,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param key:       size of funds parameter
      * @param keyValue:  value of key
      * @return payload for a new market order as {@link Params}
-     **/
+     */
     private Params createMarketOrderPayload(Side side, String productId, String key, double keyValue) {
         Params payload = new Params();
         payload.addParam("side", side);
@@ -2103,11 +2106,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createStopOrder(Side side, String productId, double price, double size, double stopPrice) throws Exception {
-        return createStopOrder(side, productId, price, size, stopPrice, ReturnFormat.LIBRARY_OBJECT);
+        return createStopOrder(side, productId, price, size, stopPrice, LIBRARY_OBJECT);
     }
 
     /** Request to create new stop order
@@ -2132,13 +2135,13 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createStopOrder(Side side, String productId, double price, double size, double stopPrice,
                                  ReturnFormat format) throws Exception {
         Params payload = createOrderPayload(side, productId, price, size, stop);
         payload.addParam("stop_price", stopPrice);
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, payload), format);
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, payload), format);
     }
 
     /** Request to create new stop order
@@ -2188,12 +2191,12 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public Order createStopOrder(Side side, String productId, double price, double size, double stopPrice,
                                  Params extraParams) throws Exception {
-        return createStopOrder(side, productId, price, size, stopPrice, extraParams, ReturnFormat.LIBRARY_OBJECT);
+        return createStopOrder(side, productId, price, size, stopPrice, extraParams, LIBRARY_OBJECT);
     }
 
     /** Request to create new stop order
@@ -2244,14 +2247,14 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/orders")
     public <T> T createStopOrder(Side side, String productId, double price, double size, double stopPrice,
                                  Params extraParams, ReturnFormat format) throws Exception {
         Params payload = createOrderPayload(side, productId, price, size, stop);
         payload.addParam("stop_price", stopPrice);
         payload.mergeParams(extraParams);
-        return returnOrder(sendPayloadedRequest(ORDERS_ENDPOINT, POST, payload), format);
+        return returnOrder(sendPostRequest(ORDERS_ENDPOINT, payload), format);
     }
 
     /**
@@ -2263,7 +2266,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param size:      amount of base currency used in the order
      * @param type:      type of the order (limit or stop)
      * @return payload for a new order as {@link Params}
-     **/
+     */
     private Params createOrderPayload(Side side, String productId, double price, double size, OrderType type) {
         Params payload = new Params();
         payload.addParam("side", side);
@@ -2291,11 +2294,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public Order getSingleOrder(String orderId) throws Exception {
-        return getSingleOrder(orderId, ReturnFormat.LIBRARY_OBJECT);
+        return getSingleOrder(orderId, LIBRARY_OBJECT);
     }
 
     /** Request to get single order information
@@ -2316,10 +2319,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public <T> T getSingleOrder(String orderId, ReturnFormat format) throws Exception {
-        return returnOrder(sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId, GET), format);
+        return returnOrder(sendGETRequest(ORDERS_ENDPOINT + "/order_id=" + orderId), format);
     }
 
     /**
@@ -2328,7 +2331,7 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      * @param orderResponse: order response to format
      * @param format:        return type formatter -> {@link ReturnFormat}
      * @return order response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnOrder(String orderResponse, ReturnFormat format) {
         switch (format) {
@@ -2360,10 +2363,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
-     **/
+     */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public String cancelOrder(String orderId) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId, DELETE);
+        return sendDELETERequest(ORDERS_ENDPOINT + "/order_id=" + orderId);
     }
 
     /**
@@ -2386,10 +2389,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
-     **/
+     */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public String cancelOrderByProfile(String orderId, String profileId) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId, DELETE);
+        return sendDELETERequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId);
     }
 
     /**
@@ -2412,10 +2415,10 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
-     **/
+     */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public String cancelOrderByProduct(String orderId, String productId) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?product_id=" + productId, DELETE);
+        return sendDELETERequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?product_id=" + productId);
     }
 
     /**
@@ -2439,11 +2442,11 @@ public class CoinbaseOrdersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_deleteorder">
      * Cancel an order</a>
-     **/
+     */
     @RequestPath(method = DELETE, path = "https://api.exchange.coinbase.com/orders/{order_id}")
     public String cancelOrder(String orderId, String profileId, String productId) throws Exception {
-        return sendAPIRequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId +
-                "&product_id=" + productId, DELETE);
+        return sendDELETERequest(ORDERS_ENDPOINT + "/order_id=" + orderId + "?profile_id=" + profileId +
+                "&product_id=" + productId);
     }
 
 }

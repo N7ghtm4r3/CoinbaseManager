@@ -11,14 +11,14 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
- **/
+ */
 public class FiatAccountMethod extends PayMethod {
 
     /**
      * Constructor to init a {@link FiatAccountMethod} custom object
      *
      * @param name: pay method name
-     **/
+     */
     public FiatAccountMethod(String name) {
         super(name, PayMethodType.fiat_account);
     }
@@ -29,22 +29,22 @@ public class FiatAccountMethod extends PayMethod {
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     **/
+     */
     public static class FiatAccountDetails {
 
         /**
          * {@code id} is instance that memorizes identifier value
-         * **/
+         */
         private final String id;
 
         /**
          * {@code resource} is instance that memorizes resource value
-         **/
+         */
         private final String resource;
 
         /**
          * {@code resourcePath} is instance that memorizes resource path value
-         **/
+         */
         private final String resourcePath;
 
         /**
@@ -53,7 +53,7 @@ public class FiatAccountMethod extends PayMethod {
          * @param id:           identifier value
          * @param resource:     resource value
          * @param resourcePath: resource path value
-         **/
+         */
         public FiatAccountDetails(String id, String resource, String resourcePath) {
             this.id = id;
             this.resource = resource;
@@ -64,7 +64,7 @@ public class FiatAccountMethod extends PayMethod {
          * Constructor to init {@link FiatAccountDetails} custom object
          *
          * @param fiatAccount: fiat account details as {@link JSONObject}
-         **/
+         */
         public FiatAccountDetails(JSONObject fiatAccount) {
             this(fiatAccount.getString("id"), fiatAccount.getString("resource"),
                     fiatAccount.getString("resource_path"));
@@ -75,7 +75,7 @@ public class FiatAccountMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #id} instance as {@link String}
-         **/
+         */
         public String getId() {
             return id;
         }
@@ -85,7 +85,7 @@ public class FiatAccountMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #resource} instance as {@link String}
-         **/
+         */
         public String getResource() {
             return resource;
         }
@@ -95,7 +95,7 @@ public class FiatAccountMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #resourcePath} instance as {@link String}
-         **/
+         */
         public String getResourcePath() {
             return resourcePath;
         }
@@ -119,25 +119,27 @@ public class FiatAccountMethod extends PayMethod {
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     **/
+     */
     public static class FiatAccountPickerData extends PickerData {
 
         /**
          * {@code amount} is instance that memorizes amount value
-         **/
+         */
         private double amount;
 
         /**
          * {@code currency} is instance that memorizes currency value
-         **/
+         */
         private String currency;
 
-        /** Constructor to init {@link BankMethod.BankPickerData} custom object
-         * @param symbol: symbol value
-         * @param amount: amount value
+        /**
+         * Constructor to init {@link BankMethod.BankPickerData} custom object
+         *
+         * @param symbol:   symbol value
+         * @param amount:   amount value
          * @param currency: currency name value
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         */
         public FiatAccountPickerData(String symbol, double amount, String currency) {
             super(symbol);
             if (amount < 0)
@@ -155,7 +157,7 @@ public class FiatAccountMethod extends PayMethod {
          *
          * @param fiatPickerData: fiat picker details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected
-         **/
+         */
         public FiatAccountPickerData(JSONObject fiatPickerData) {
             this(fiatPickerData.getString("symbol"), fiatPickerData.getDouble("minimumPurchaseAmount"),
                     fiatPickerData.getString("currency"));
@@ -166,7 +168,7 @@ public class FiatAccountMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #amount} instance as double
-         **/
+         */
         public double getAmount() {
             return amount;
         }
@@ -176,7 +178,7 @@ public class FiatAccountMethod extends PayMethod {
          *
          * @param amount: amount value
          * @throws IllegalArgumentException when amount value is less than 0
-         **/
+         */
         public void setAmount(double amount) {
             if (amount < 0)
                 throw new IllegalArgumentException("Amount value cannot be less than 0");
@@ -189,7 +191,7 @@ public class FiatAccountMethod extends PayMethod {
          * @param decimals: number of digits to round final value
          * @return {@link #amount} instance rounded with decimal digits inserted
          * @throws IllegalArgumentException if decimalDigits is negative
-         **/
+         */
         public double getAmount(int decimals) {
             return roundValue(amount, decimals);
         }
@@ -199,7 +201,7 @@ public class FiatAccountMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #currency} instance as {@link String}
-         **/
+         */
         public String getCurrency() {
             return currency;
         }
@@ -209,7 +211,7 @@ public class FiatAccountMethod extends PayMethod {
          *
          * @param currency: currency value
          * @throws IllegalArgumentException when currency value is null or empty
-         **/
+         */
         public void setCurrency(String currency) {
             if (currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");

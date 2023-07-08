@@ -11,42 +11,42 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductticker">
  * Get product ticker</a>
  * @see StatDetails
- **/
+ */
 public class Ticker extends StatDetails {
 
     /**
      * {@code productId} is instance that memorizes product identifier value
-     * **/
+     */
     private final String productId;
 
     /**
      * {@code baseAsset} is instance that memorizes base asset value
-     * **/
+     */
     private final String baseAsset;
 
     /**
      * {@code quoteAsset} is instance that memorizes quote asset value
-     * **/
+     * */
     private final String quoteAsset;
 
     /**
      * {@code bid} is instance that memorizes bid value
-     * **/
+     * */
     private final double bid;
 
     /**
      * {@code ask} is instance that memorizes ask value
-     * **/
+     * */
     private final double ask;
 
     /**
      * {@code volume} is instance that memorizes volume value
-     * **/
+     * */
     private final double volume;
 
     /**
      * {@code priceChangePercent} is instance that memorizes price change percent value in 24 hours
-     * **/
+     * */
     private final double priceChangePercent;
 
     /**
@@ -62,7 +62,7 @@ public class Ticker extends StatDetails {
      * @param ask: ask value
      * @param volume: volume value
      * @param priceChangePercent: price change percent value in 24 hours
-     **/
+     */
     public Ticker(long tradeId, double price, double size, String time, String productId, String baseAsset, String quoteAsset,
                   double bid, double ask, double volume, double priceChangePercent) {
         super(tradeId, price, size, time);
@@ -79,7 +79,7 @@ public class Ticker extends StatDetails {
      * Constructor to init a {@link Ticker} custom object
      *
      * @param ticker: ticker details as {@link JSONObject}
-     **/
+     */
     public Ticker(JSONObject ticker) {
         super(ticker);
         productId = ticker.getString("productId");
@@ -96,7 +96,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
-     **/
+     */
     public String getProductId() {
         return productId;
     }
@@ -106,7 +106,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #baseAsset} instance as {@link String}
-     **/
+     */
     public String getBaseAsset() {
         return baseAsset;
     }
@@ -116,7 +116,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #quoteAsset} instance as {@link String}
-     **/
+     */
     public String getQuoteAsset() {
         return quoteAsset;
     }
@@ -126,7 +126,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #bid} instance as double
-     **/
+     */
     public double getBid() {
         return bid;
     }
@@ -137,7 +137,7 @@ public class Ticker extends StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #bid} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getBid(int decimals) {
         return roundValue(bid, decimals);
     }
@@ -147,7 +147,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #ask} instance as double
-     **/
+     */
     public double getAsk() {
         return ask;
     }
@@ -158,7 +158,7 @@ public class Ticker extends StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #ask} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getAsk(int decimals) {
         return roundValue(ask, decimals);
     }
@@ -168,7 +168,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #volume} instance as double
-     **/
+     */
     public double getVolume() {
         return volume;
     }
@@ -179,7 +179,7 @@ public class Ticker extends StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getVolume(int decimals) {
         return roundValue(volume, decimals);
     }
@@ -189,7 +189,7 @@ public class Ticker extends StatDetails {
      * No-any params required
      *
      * @return {@link #priceChangePercent} instance as double
-     **/
+     */
     public double getPriceChangePercent() {
         return priceChangePercent;
     }
@@ -200,7 +200,7 @@ public class Ticker extends StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #priceChangePercent} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getPriceChangePercent(int decimals) {
         return roundValue(priceChangePercent, decimals);
     }

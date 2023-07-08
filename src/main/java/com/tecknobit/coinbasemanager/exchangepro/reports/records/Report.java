@@ -11,42 +11,42 @@ import org.json.JSONObject;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
  * Get all reports</a>
  * @see ReportDetails
- **/
+ */
 public class Report extends ReportDetails {
 
     /**
      * {@code createdAt} is instance that memorizes created at value
-     * **/
+     */
     private final String createdAt;
 
     /**
      * {@code completedAt} is instance that memorizes completed at value
-     * **/
+     */
     private final String completedAt;
 
     /**
      * {@code expiresAt} is instance that memorizes expires at value
-     * **/
+     * */
     private final String expiresAt;
 
     /**
      * {@code userId} is instance that memorizes user identifier value
-     * **/
+     * */
     private final String userId;
 
     /**
      * {@code fileUrl} is instance that memorizes file url value
-     * **/
+     * */
     private final String fileUrl;
 
     /**
      * {@code paramsReport} is instance that memorizes params for report
-     **/
+     */
     private final ParamsReport paramsReport;
 
     /**
      * {@code hReport} useful to work on {@code "JSON"} data format
-     **/
+     */
     private final JsonHelper hReport;
 
     /**
@@ -61,7 +61,7 @@ public class Report extends ReportDetails {
      * @param userId:       user identifier value
      * @param fileUrl:      file url value
      * @param paramsReport: params for report
-     **/
+     */
     public Report(String id, ReportType type, String status, String createdAt, String completedAt, String expiresAt,
                   String userId, String fileUrl, ParamsReport paramsReport) {
         super(id, type, status);
@@ -78,7 +78,7 @@ public class Report extends ReportDetails {
      * Constructor to init a {@link Report} custom object
      *
      * @param report: Report details as {@link JSONObject}
-     **/
+     */
     public Report(JSONObject report) {
         super(report);
         hReport = new JsonHelper(report);
@@ -95,7 +95,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -105,7 +105,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -115,7 +115,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #completedAt} instance as {@link String}
-     **/
+     */
     public String getCompletedAt() {
         return completedAt;
     }
@@ -125,7 +125,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #completedAt} timestamp as long
-     **/
+     */
     public long getCompletedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(completedAt);
     }
@@ -135,7 +135,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #expiresAt} instance as {@link String}
-     **/
+     */
     public String getExpiresAt() {
         return expiresAt;
     }
@@ -145,7 +145,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #expiresAt} timestamp as long
-     **/
+     */
     public long getExpiresAtTimestamp() {
         return TimeFormatter.getDateTimestamp(expiresAt);
     }
@@ -155,7 +155,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #userId} instance as {@link String}
-     **/
+     */
     public String getUserId() {
         return userId;
     }
@@ -165,7 +165,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #fileUrl} instance as {@link String}
-     **/
+     */
     public String getFileUrl() {
         return fileUrl;
     }
@@ -175,7 +175,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return {@link #paramsReport} instance as {@link ParamsReport}
-     **/
+     */
     public ParamsReport getParamsReport() {
         return paramsReport;
     }
@@ -185,7 +185,7 @@ public class Report extends ReportDetails {
      * No-any params required
      *
      * @return file count as {@link String}
-     **/
+     */
     public String getFileCount() {
         return hReport.getString("file_count");
     }
@@ -196,57 +196,57 @@ public class Report extends ReportDetails {
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
-     **/
+     */
     public static class ParamsReport {
 
         /**
          * {@code startDate} is instance that memorizes start date value
-         * **/
+         * */
         private final String startDate;
 
         /**
          * {@code endDate} is instance that memorizes end date value
-         * **/
+         * */
         private final String endDate;
 
         /**
          * {@code format} is instance that memorizes format value
-         * **/
+         * */
         private final String format;
 
         /**
          * {@code productId} is instance that memorizes product identifier value
-         * **/
+         * */
         private final String productId;
 
         /**
          * {@code accountId} is instance that memorizes account identifier value
-         * **/
+         * */
         private final String accountId;
 
         /**
          * {@code profileId} is instance that memorizes profile identifier value
-         * **/
+         * */
         private final String profileId;
 
         /**
          * {@code email} is instance that memorizes email value
-         * **/
+         * */
         private final String email;
 
         /**
          * {@code newYorkState} is flag that checks if is report of New York's State
-         **/
+         */
         private final boolean newYorkState;
 
         /**
          * {@code userReport} is instance that memorizes user report value
-         **/
+         */
         private final UserReport userReport;
 
         /**
          * {@code hReport} useful to work on {@code "JSON"} data format
-         **/
+         */
         private final JsonHelper hParamsReport;
 
         /**
@@ -261,7 +261,7 @@ public class Report extends ReportDetails {
          * @param email:        email value
          * @param newYorkState: flag that checks if is report of New York's State
          * @param userReport:   user report value
-         **/
+         */
         public ParamsReport(String startDate, String endDate, String format, String productId, String accountId,
                             String profileId, String email, boolean newYorkState, UserReport userReport) {
             this.startDate = startDate;
@@ -280,7 +280,7 @@ public class Report extends ReportDetails {
          * Constructor to init a {@link ParamsReport} custom object
          *
          * @param paramsReport: params report details as {@link JSONObject}
-         **/
+         */
         public ParamsReport(JSONObject paramsReport) {
             hParamsReport = new JsonHelper(paramsReport);
             startDate = hParamsReport.getString("start_date");
@@ -299,7 +299,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #startDate} instance as {@link String}
-         **/
+         */
         public String getStartDate() {
             return startDate;
         }
@@ -309,7 +309,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #startDate} timestamp as long
-         **/
+         */
         public long getStartDateTimestamp() {
             return TimeFormatter.getDateTimestamp(startDate);
         }
@@ -319,7 +319,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #endDate} instance as {@link String}
-         **/
+         */
         public String getEndDate() {
             return endDate;
         }
@@ -329,7 +329,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #endDate} timestamp as long
-         **/
+         */
         public long getEndDateTimestamp() {
             return TimeFormatter.getDateTimestamp(endDate);
         }
@@ -339,7 +339,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #format} instance as {@link String}
-         **/
+         */
         public String getFormat() {
             return format;
         }
@@ -349,7 +349,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #productId} instance as {@link String}
-         **/
+         */
         public String getProductId() {
             return productId;
         }
@@ -359,7 +359,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #accountId} instance as {@link String}
-         **/
+         */
         public String getAccountId() {
             return accountId;
         }
@@ -369,7 +369,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #profileId} instance as {@link String}
-         **/
+         */
         public String getProfileId() {
             return profileId;
         }
@@ -379,7 +379,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #email} instance as {@link String}
-         **/
+         */
         public String getEmail() {
             return email;
         }
@@ -389,7 +389,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #newYorkState} instance as boolean
-         **/
+         */
         public boolean isInNewYorkState() {
             return newYorkState;
         }
@@ -399,7 +399,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return {@link #userReport} instance as {@link UserReport}
-         **/
+         */
         public UserReport getUserReport() {
             return userReport;
         }
@@ -409,7 +409,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return default profile id as {@link String}
-         **/
+         */
         public String getDefaultProfileId() {
             return hParamsReport.getString("default_profile_id");
         }
@@ -419,7 +419,7 @@ public class Report extends ReportDetails {
          * No-any params required
          *
          * @return is brokerage as boolean
-         **/
+         */
         public boolean isBrokerage() {
             return hParamsReport.getBoolean("is_brokerage");
         }
@@ -442,12 +442,12 @@ public class Report extends ReportDetails {
          * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
          * Get all reports</a>
          * @see UserDetails
-         **/
+         */
         public static class UserReport extends UserDetails {
 
             /**
              * {@code oauthClient} is instance that memorizes oauth client value
-             * **/
+             * */
             private final String oauthClient;
 
             /** Constructor to init {@link UserReport} custom object
@@ -461,7 +461,7 @@ public class Report extends ReportDetails {
              * @param fullFillsNewRequirements: flag for full fills new requirements
              * @param hasDefault: flag for default check
              * @param oauthClient: oauth client value
-             * **/
+             * */
             public UserReport(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
                               String userType, boolean fullFillsNewRequirements, String oauthClient, boolean hasDefault) {
                 super(createdAt, activeAt, id, name, email, isBanned, userType, fullFillsNewRequirements, hasDefault);
@@ -472,7 +472,7 @@ public class Report extends ReportDetails {
              * Constructor to init a {@link UserReport} custom object
              *
              * @param userReport: user report report details as {@link JSONObject}
-             **/
+             */
             public UserReport(JSONObject userReport) {
                 super(userReport);
                 this.oauthClient = hUser.getString("oauth_client");
@@ -483,7 +483,7 @@ public class Report extends ReportDetails {
              * No-any params required
              *
              * @return roles as {@link JSONObject}
-             **/
+             */
             public JSONObject getRoles() {
                 return hUser.getJSONObject("roles");
             }
@@ -494,7 +494,7 @@ public class Report extends ReportDetails {
              *
              * @return roles as {@link String}
              * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-             **/
+             */
             public String getRolesStringed() {
                 return hUser.getJSONObject("roles").toString();
             }
@@ -504,7 +504,7 @@ public class Report extends ReportDetails {
              * No-any params required
              *
              * @return details as {@link JSONObject}
-             **/
+             */
             public JSONObject getDetails() {
                 return hUser.getJSONObject("details");
             }
@@ -515,7 +515,7 @@ public class Report extends ReportDetails {
              *
              * @return details as {@link String}
              * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-             **/
+             */
             public String getDetailsStringed() {
                 return hUser.getJSONObject("details").toString();
             }
@@ -525,7 +525,7 @@ public class Report extends ReportDetails {
              * No-any params required
              *
              * @return {@link #oauthClient} instance as {@link String}
-             **/
+             */
             public String getOauthClient() {
                 return oauthClient;
             }

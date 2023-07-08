@@ -10,42 +10,42 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
  * Get all accounts for a profile</a>
- **/
+ */
 public class Account {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     */
     private final String id;
 
     /**
      * {@code currency} is instance that memorizes currency value
-     * **/
+     */
     private String currency;
 
     /**
      * {@code balance} is instance that memorizes balance value
-     * **/
+     */
     private double balance;
 
     /**
      * {@code available} is instance that memorizes available value
-     * **/
+     * */
     private double available;
 
     /**
      * {@code hold} is instance that memorizes hold value
-     * **/
+     * */
     private double hold;
 
     /**
      * {@code profileId} is instance that memorizes profile identifier value
-     **/
+     */
     private final String profileId;
 
     /**
      * {@code tradingEnable} is flag that checks if trading is enabled
-     **/
+     */
     private boolean tradingEnable;
 
     /**
@@ -59,7 +59,7 @@ public class Account {
      * @param profileId:     profile identifier value
      * @param tradingEnable: flag that checks if trading is enabled
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Account(String id, String currency, double balance, double available, double hold, String profileId,
                    boolean tradingEnable) {
         this.id = id;
@@ -88,7 +88,7 @@ public class Account {
      *
      * @param account: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Account(JSONObject account) {
         this(account.getString("id"), account.getString("currency"), account.getDouble("balance"),
                 account.getDouble("available"), account.getDouble("hold"), account.getString("profile_id"),
@@ -100,7 +100,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -110,7 +110,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #currency} instance as {@link String}
-     **/
+     */
     public String getCurrency() {
         return currency;
     }
@@ -120,7 +120,7 @@ public class Account {
      *
      * @param currency: currency value
      * @throws IllegalArgumentException when currency value is null or empty
-     **/
+     */
     public void setCurrency(String currency) {
         if (currency == null || currency.isEmpty())
             throw new IllegalArgumentException("Currency value cannot be empty or null");
@@ -132,7 +132,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #balance} instance as double
-     **/
+     */
     public double getBalance() {
         return balance;
     }
@@ -142,7 +142,7 @@ public class Account {
      *
      * @param balance: balance value
      * @throws IllegalArgumentException when balance value is less than 0
-     **/
+     */
     public void setBalance(double balance) {
         if (balance < 0)
             throw new IllegalArgumentException("Balance value cannot be less than 0");
@@ -155,7 +155,7 @@ public class Account {
      * @param decimals: number of digits to round final value
      * @return {@link #balance} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getBalance(int decimals) {
         return roundValue(balance, decimals);
     }
@@ -165,7 +165,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #available} instance as double
-     **/
+     */
     public double getAvailable() {
         return available;
     }
@@ -175,7 +175,7 @@ public class Account {
      *
      * @param available: available value
      * @throws IllegalArgumentException when available value is less than 0
-     **/
+     */
     public void setAvailable(double available) {
         if (available < 0)
             throw new IllegalArgumentException("Available value cannot be less than 0");
@@ -188,7 +188,7 @@ public class Account {
      * @param decimals: number of digits to round final value
      * @return {@link #available} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getAvailable(int decimals) {
         return roundValue(available, decimals);
     }
@@ -198,7 +198,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #hold} instance as double
-     **/
+     */
     public double getHold() {
         return hold;
     }
@@ -208,7 +208,7 @@ public class Account {
      *
      * @param hold: hold value
      * @throws IllegalArgumentException when hold value is less than 0
-     **/
+     */
     public void setHold(double hold) {
         if (hold < 0)
             throw new IllegalArgumentException("Hold value cannot be less than 0");
@@ -221,7 +221,7 @@ public class Account {
      * @param decimals: number of digits to round final value
      * @return {@link #hold} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getHold(int decimals) {
         return roundValue(hold, decimals);
     }
@@ -231,7 +231,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #profileId} instance as {@link String}
-     **/
+     */
     public String getProfileId() {
         return profileId;
     }
@@ -241,7 +241,7 @@ public class Account {
      * No-any params required
      *
      * @return {@link #tradingEnable} instance as boolean
-     **/
+     */
     public boolean isTradingEnable() {
         return tradingEnable;
     }
@@ -250,7 +250,7 @@ public class Account {
      * Method to set {@link #tradingEnable} instance
      *
      * @param tradingEnable: is flag that checks if trading is enabled
-     **/
+     */
     public void setTradingEnable(boolean tradingEnable) {
         this.tradingEnable = tradingEnable;
     }
@@ -258,7 +258,7 @@ public class Account {
     /**
      * Method to set {@link #tradingEnable} instance on {@code "true"} <br>
      * No-any params required
-     **/
+     */
     public void enableTrading() {
         tradingEnable = true;
     }
@@ -266,7 +266,7 @@ public class Account {
     /**
      * Method to set {@link #tradingEnable} instance on {@code "false"} <br>
      * No-any params required
-     **/
+     */
     public void disableTrading() {
         tradingEnable = false;
     }

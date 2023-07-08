@@ -11,17 +11,17 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
  * Get a single account's ledger</a>
  * @see AccountDetails
- **/
+ */
 public class Ledger extends AccountDetails {
 
     /**
      * {@code balance} is instance that memorizes balance value
-     **/
+     */
     private final double balance;
 
     /**
      * {@code details} is instance that memorizes details value
-     **/
+     */
     private final Details details;
 
     /**
@@ -34,7 +34,7 @@ public class Ledger extends AccountDetails {
      * @param balance:   ref value
      * @param details:   ledger details in JSO format
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Ledger(String createdAt, String id, double amount, String type, double balance, JSONObject details) {
         super(createdAt, id, amount, type);
         this.balance = balance;
@@ -49,7 +49,7 @@ public class Ledger extends AccountDetails {
      *
      * @param ledger: ledger details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Ledger(JSONObject ledger) {
         super(ledger);
         balance = ledger.getDouble("balance");
@@ -61,7 +61,7 @@ public class Ledger extends AccountDetails {
      * No-any params required
      *
      * @return {@link #balance} instance as double
-     **/
+     */
     public double getBalance() {
         return balance;
     }
@@ -72,7 +72,7 @@ public class Ledger extends AccountDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #balance} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getBalance(int decimals) {
         return roundValue(balance, decimals);
     }
@@ -82,7 +82,7 @@ public class Ledger extends AccountDetails {
      * No-any params required
      *
      * @return {@link #details} instance as {@link Details}
-     **/
+     */
     public Details getDetails() {
         return details;
     }
@@ -91,22 +91,22 @@ public class Ledger extends AccountDetails {
      * The {@code Details} class is useful to obtain and format Details object for ledger
      *
      * @author N7ghtm4r3 - Tecknobit
-     **/
+     */
     public static class Details {
 
         /**
          * {@code to} is instance that memorizes to value
-         * **/
+         */
         private final String to;
 
         /**
          * {@code from} is instance that memorizes from value
-         * **/
+         */
         private final String from;
 
         /**
          * {@code profileTransferId} is instance that memorizes profile transfer identifier value
-         * **/
+         */
         private final String profileTransferId;
 
         /** Constructor to init a {@link Details} custom object
@@ -114,7 +114,7 @@ public class Ledger extends AccountDetails {
          * @param from: from value
          * @param profileTransferId: profile transfer identifier value
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         * */
         public Details(String to, String from, String profileTransferId) {
             this.to = to;
             this.from = from;
@@ -126,7 +126,7 @@ public class Ledger extends AccountDetails {
          *
          * @param details: details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected
-         **/
+         */
         public Details(JSONObject details) {
             this(details.getString("to"), details.getString("from"),
                     details.getString("profile_transfer_id"));
@@ -137,7 +137,7 @@ public class Ledger extends AccountDetails {
          * No-any params required
          *
          * @return {@link #to} instance as {@link String}
-         **/
+         */
         public String getTo() {
             return to;
         }
@@ -147,7 +147,7 @@ public class Ledger extends AccountDetails {
          * No-any params required
          *
          * @return {@link #from} instance as {@link String}
-         **/
+         */
         public String getFrom() {
             return from;
         }
@@ -157,7 +157,7 @@ public class Ledger extends AccountDetails {
          * No-any params required
          *
          * @return {@link #profileTransferId} instance as {@link String}
-         **/
+         */
         public String getProfileTransferId() {
             return profileTransferId;
         }

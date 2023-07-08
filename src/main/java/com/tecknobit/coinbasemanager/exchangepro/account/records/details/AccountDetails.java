@@ -28,27 +28,27 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *               Get all transfers</a>
  *       </li>
  * </ul>
- **/
+ */
 public class AccountDetails {
 
     /**
      * {@code createdAt} is instance that memorizes created at value
-     * **/
+     */
     protected final String createdAt;
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     */
     protected final String id;
 
     /**
      * {@code amount} is instance that memorizes amount value
-     **/
+     */
     protected double amount;
 
     /**
      * {@code type} is instance that memorizes type value
-     **/
+     */
     protected String type;
 
     /**
@@ -59,7 +59,7 @@ public class AccountDetails {
      * @param amount:    amount value
      * @param type:      type value
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public AccountDetails(String createdAt, String id, double amount, String type) {
         this.createdAt = createdAt;
         this.id = id;
@@ -78,7 +78,7 @@ public class AccountDetails {
      *
      * @param accountDetails: account details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public AccountDetails(JSONObject accountDetails) {
         this(accountDetails.getString("created_at"), accountDetails.getString("id"),
                 accountDetails.getDouble("amount"), accountDetails.getString("type"));
@@ -89,7 +89,7 @@ public class AccountDetails {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -99,7 +99,7 @@ public class AccountDetails {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -109,7 +109,7 @@ public class AccountDetails {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -119,7 +119,7 @@ public class AccountDetails {
      * No-any params required
      *
      * @return {@link #amount} instance as long
-     **/
+     */
     public double getAmount() {
         return amount;
     }
@@ -129,7 +129,7 @@ public class AccountDetails {
      *
      * @param amount: amount value
      * @throws IllegalArgumentException when amount value is less than 0
-     **/
+     */
     public void setAmount(double amount) {
         if (amount < 0)
             throw new IllegalArgumentException("Amount value cannot be less than 0");
@@ -142,7 +142,7 @@ public class AccountDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getAmount(int decimals) {
         return roundValue(amount, decimals);
     }
@@ -152,7 +152,7 @@ public class AccountDetails {
      * No-any params required
      *
      * @return {@link #type} instance as {@link String}
-     **/
+     */
     public String getType() {
         return type;
     }
@@ -162,7 +162,7 @@ public class AccountDetails {
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value null or is empty
-     **/
+     */
     public void setType(String type) {
         if (type == null || type.isEmpty())
             throw new IllegalArgumentException("Type value cannot be empty or null");

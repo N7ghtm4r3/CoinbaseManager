@@ -4,6 +4,7 @@ import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.reports.records.Report;
 import com.tecknobit.coinbasemanager.exchangepro.reports.records.ReportDetails;
@@ -25,12 +26,13 @@ import static com.tecknobit.coinbasemanager.exchangepro.reports.records.ReportDe
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
  * Reports manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseReportsManager extends CoinbaseManager {
 
     /**
      * {@code REPORTS_ENDPOINT} is constant for REPORTS_ENDPOINT's endpoint
-     **/
+     */
     public static final String REPORTS_ENDPOINT = "/reports";
 
     /**
@@ -41,7 +43,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseReportsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -53,7 +55,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseReportsManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -65,7 +67,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseReportsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -76,7 +78,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseReportsManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -96,7 +98,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseReportsManager() {
         super();
     }
@@ -120,7 +122,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
     public ArrayList<Report> getAllReports(ReportType type) throws Exception {
         return getAllReports(type, ReturnFormat.LIBRARY_OBJECT);
@@ -146,10 +148,10 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
     public <T> T getAllReports(ReportType type, ReturnFormat format) throws Exception {
-        return returnReportsList(sendAPIRequest(REPORTS_ENDPOINT + "?=type" + type, GET), format);
+        return returnReportsList(sendGETRequest(REPORTS_ENDPOINT + "?=type" + type), format);
     }
 
     /**
@@ -186,7 +188,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
     public ArrayList<Report> getAllReports(ReportType type, Params queryParams) throws Exception {
@@ -228,11 +230,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreports">
      * Get all reports</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports")
     public <T> T getAllReports(ReportType type, Params queryParams, ReturnFormat format) throws Exception {
         queryParams.addParam("type", type);
-        return returnReportsList(sendAPIRequest(REPORTS_ENDPOINT + queryParams.createQueryString(), GET),
+        return returnReportsList(sendGETRequest(REPORTS_ENDPOINT + queryParams.createQueryString()),
                 format);
     }
 
@@ -242,7 +244,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param reportsResponse: reports list response to format
      * @param format:          return type formatter -> {@link ReturnFormat}
      * @return reports response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnReportsList(String reportsResponse, ReturnFormat format) {
         switch (format) {
@@ -300,7 +302,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public ReportDetails createGeneralReport(ReportType type, Params extraParams) throws Exception {
@@ -349,11 +351,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createGeneralReport(ReportType type, Params extraParams, ReturnFormat format) throws Exception {
         extraParams.addParam("type", type);
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, extraParams), format);
+        return returnReportDetails(sendJSONPostRequestRequest(REPORTS_ENDPOINT, extraParams), format);
     }
 
     /**
@@ -375,7 +377,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -403,11 +405,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T create1099KReport(int year, ReturnFormat format) throws Exception {
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, assemble1099KPayload(year)),
+        return returnReportDetails(sendJSONPostRequestRequest(REPORTS_ENDPOINT, assemble1099KPayload(year)),
                 format);
     }
 
@@ -449,7 +451,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -496,13 +498,13 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T create1099KReport(int year, Params extraParams, ReturnFormat format) throws Exception {
         Params payload = assemble1099KPayload(year);
         payload.mergeParams(extraParams);
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, payload), format);
+        return returnReportDetails(sendJSONPostRequestRequest(REPORTS_ENDPOINT, payload), format);
     }
 
     /**
@@ -510,7 +512,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *
      * @param year: year to create report
      * @return a payload as {@link Params}
-     **/
+     */
     private Params assemble1099KPayload(int year) {
         Params payload = new Params();
         payload.addParam("type", _1099k_transaction_history);
@@ -537,7 +539,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -565,11 +567,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createFillsReport(String productId, ReturnFormat format) throws Exception {
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, POST, assembleFillsPayload(productId)),
+        return returnReportDetails(sendPostRequest(REPORTS_ENDPOINT, assembleFillsPayload(productId)),
                 format);
     }
 
@@ -611,7 +613,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -658,13 +660,13 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createFillsReport(String productId, Params extraParams, ReturnFormat format) throws Exception {
         Params payload = assembleFillsPayload(productId);
         payload.mergeParams(extraParams);
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, POST, payload), format);
+        return returnReportDetails(sendPostRequest(REPORTS_ENDPOINT, payload), format);
     }
 
     /**
@@ -672,7 +674,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *
      * @param productId: product identifier to create report
      * @return a payload as {@link Params}
-     **/
+     */
     private Params assembleFillsPayload(String productId) {
         Params params = new Params();
         params.addParam("type", fills);
@@ -699,7 +701,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -727,11 +729,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createAccountReport(String accountId, ReturnFormat format) throws Exception {
-        return returnReportDetails(sendPayloadedRequest(REPORTS_ENDPOINT, POST, assembleAccountPayload(accountId)),
+        return returnReportDetails(sendPostRequest(REPORTS_ENDPOINT, assembleAccountPayload(accountId)),
                 format);
     }
 
@@ -773,7 +775,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
@@ -820,14 +822,14 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public ReportDetails createAccountReport(String accountId, Params extraParams, ReturnFormat format) throws Exception {
         Params params = assembleAccountPayload(accountId);
         params.mergeParams(extraParams);
-        return returnReportDetails(sendJSONPayloadedRequest(REPORTS_ENDPOINT, POST, params), format);
+        return returnReportDetails(sendJSONPostRequestRequest(REPORTS_ENDPOINT, params), format);
     }
 
     /**
@@ -852,7 +854,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public ReportDetails createBalanceReport(String dateTime, boolean groupByProfile) throws Exception {
@@ -882,7 +884,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createBalanceReport(String dateTime, boolean groupByProfile, ReturnFormat format) throws Exception {
         return createBalanceReport(dateTime, groupByProfile, new Params(), format);
@@ -929,7 +931,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public ReportDetails createBalanceReport(String dateTime, boolean groupByProfile, Params extraParams) throws Exception {
@@ -978,7 +980,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postreports">
      * Create a report</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/reports")
     public <T> T createBalanceReport(String dateTime, boolean groupByProfile, Params extraParams,
                                      ReturnFormat format) throws Exception {
@@ -993,7 +995,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *
      * @param accountId: account identifier to create report
      * @return a payload as {@link Params}
-     **/
+     */
     private Params assembleAccountPayload(String accountId) {
         Params params = new Params();
         params.addParam("type", account);
@@ -1007,7 +1009,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      * @param reportDetailsResponse: report details to format
      * @param format:                return type formatter -> {@link ReturnFormat}
      * @return report details response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnReportDetails(String reportDetailsResponse, ReturnFormat format) {
         switch (format) {
@@ -1039,7 +1041,7 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
      * Get a report</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports/{report_id}")
     public Report getReport(String reportId) throws Exception {
@@ -1066,11 +1068,11 @@ public class CoinbaseReportsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getreport">
      * Get a report</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/reports/{report_id}")
     public <T> T getReport(String reportId, ReturnFormat format) throws Exception {
-        String reportResponse = sendAPIRequest(REPORTS_ENDPOINT + "/" + reportId, GET);
+        String reportResponse = sendGETRequest(REPORTS_ENDPOINT + "/" + reportId);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(reportResponse);

@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.wrappedassets;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.wrappedassets.records.StakeWrap;
 import com.tecknobit.coinbasemanager.exchangepro.wrappedassets.records.WrappedAsset;
@@ -22,22 +23,23 @@ import static com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager.ReturnFo
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
  * Wrapped manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseWrappedManager extends CoinbaseManager {
 
     /**
      * {@code WRAPPED_ASSETS_ENDPOINT} is constant for WRAPPED_ASSETS_ENDPOINT's endpoint
-     **/
+     */
     public static final String WRAPPED_ASSETS_ENDPOINT = "/wrapped-assets";
 
     /**
      * {@code STAKE_WRAP_ENDPOINT} is constant for STAKE_WRAP_ENDPOINT's endpoint
-     **/
+     */
     public static final String STAKE_WRAP_ENDPOINT = WRAPPED_ASSETS_ENDPOINT + "/stake-wrap";
 
     /**
      * {@code CONVERSION_RATE_ENDPOINT} is constant for CONVERSION_RATE_ENDPOINT's endpoint
-     **/
+     */
     public static final String CONVERSION_RATE_ENDPOINT = "/conversion-rate";
 
     /**
@@ -48,7 +50,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseWrappedManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -60,7 +62,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseWrappedManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -72,7 +74,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseWrappedManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -83,7 +85,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseWrappedManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -103,7 +105,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseWrappedManager() {
         super();
     }
@@ -127,7 +129,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
      * Get all wrapped assets</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets")
     public ArrayList<WrappedAsset> getAllWrappedAssets() throws Exception {
@@ -153,11 +155,11 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassets">
      * Get all wrapped assets</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets")
     public <T> T getAllWrappedAssets(ReturnFormat format) throws Exception {
-        String wrappedAssetsResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT, GET);
+        String wrappedAssetsResponse = sendGETRequest(WRAPPED_ASSETS_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(wrappedAssetsResponse).getJSONArray("wrapped_assets");
@@ -191,7 +193,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getallwrappedassetstakewraps">
      * Get all stake-wraps</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public ArrayList<StakeWrap> getAllStakeWraps() throws Exception {
@@ -217,7 +219,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getallwrappedassetstakewraps">
      * Get all stake-wraps</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public <T> T getAllStakeWraps(ReturnFormat format) throws Exception {
         return getAllStakeWraps(null, format);
@@ -262,7 +264,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getallwrappedassetstakewraps">
      * Get all stake-wraps</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public ArrayList<StakeWrap> getAllStakeWraps(Params queryParams) throws Exception {
@@ -309,13 +311,13 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getallwrappedassetstakewraps">
      * Get all stake-wraps</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public <T> T getAllStakeWraps(Params queryParams, ReturnFormat format) throws Exception {
         if (queryParams == null)
             queryParams = new Params();
-        String wrapsResponse = sendAPIRequest(STAKE_WRAP_ENDPOINT + queryParams.createQueryString(), GET);
+        String wrapsResponse = sendGETRequest(STAKE_WRAP_ENDPOINT + queryParams.createQueryString());
         switch (format) {
             case JSON:
                 return (T) new JSONArray(wrapsResponse);
@@ -352,7 +354,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwrappedassetstakewrap">
      * Create a new stake-wrap</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public StakeWrap createNewStakeWrap(String fromCurrency, String toCurrency, double amount) throws Exception {
@@ -382,7 +384,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwrappedassetstakewrap">
      * Create a new stake-wrap</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap")
     public <T> T createNewStakeWrap(String fromCurrency, String toCurrency, double amount,
                                     ReturnFormat format) throws Exception {
@@ -390,7 +392,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
         payload.addParam("fromCurrency", fromCurrency);
         payload.addParam("toCurrency", toCurrency);
         payload.addParam("amount", amount);
-        return returnStakeWrap(sendJSONPayloadedRequest(STAKE_WRAP_ENDPOINT, POST, payload), format);
+        return returnStakeWrap(sendJSONPostRequestRequest(STAKE_WRAP_ENDPOINT, payload), format);
     }
 
     /**
@@ -412,7 +414,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetstakewrap">
      * Get a single stake-wrap</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap/{stake_wrap_id}")
     public StakeWrap getSingleStakeWrap(String stakeWrapId) throws Exception {
@@ -439,10 +441,10 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetstakewrap">
      * Get a single stake-wrap</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/stake-wrap/{stake_wrap_id}")
     public <T> T getSingleStakeWrap(String stakeWrapId, ReturnFormat format) throws Exception {
-        return returnStakeWrap(sendAPIRequest(STAKE_WRAP_ENDPOINT + "/" + stakeWrapId, GET), format);
+        return returnStakeWrap(sendGETRequest(STAKE_WRAP_ENDPOINT + "/" + stakeWrapId), format);
     }
 
     /**
@@ -451,7 +453,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * @param stakeWrapResponse: stake wrap response to format
      * @param format:            return type formatter -> {@link ReturnFormat}
      * @return stake wrap as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnStakeWrap(String stakeWrapResponse, ReturnFormat format) {
         switch (format) {
@@ -483,7 +485,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedasset">
      * Get wrapped asset details</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/")
     public WrappedAsset getWrappedAssetDetails(String wrappedAssetId) throws Exception {
@@ -510,11 +512,11 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedasset">
      * Get wrapped asset details</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/")
     public <T> T getWrappedAssetDetails(String wrappedAssetId, ReturnFormat format) throws Exception {
-        String wrappedAssetResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId, GET);
+        String wrappedAssetResponse = sendGETRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(wrappedAssetResponse);
@@ -544,7 +546,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
      * Get conversion rate of wrapped asset</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public double getWrappedConversionRate(String wrappedAssetId) throws Exception {
@@ -571,7 +573,7 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwrappedassetconversionrate">
      * Get conversion rate of wrapped asset</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public double getWrappedConversionRate(String wrappedAssetId, int decimals) throws Exception {
@@ -599,12 +601,12 @@ public class CoinbaseWrappedManager extends CoinbaseManager {
      * Get conversion rate of wrapped asset</a>
      * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the conversion rate,
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/wrapped-assets/{wrapped_asset_id}/conversion-rate")
     public <T> T getWrappedConversionRate(String wrappedAssetId, ReturnFormat format) throws Exception {
-        String conversionRateResponse = sendAPIRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId + "/"
-                + CONVERSION_RATE_ENDPOINT, GET);
+        String conversionRateResponse = sendGETRequest(WRAPPED_ASSETS_ENDPOINT + "/" + wrappedAssetId + "/"
+                + CONVERSION_RATE_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(conversionRateResponse);

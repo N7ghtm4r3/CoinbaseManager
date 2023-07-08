@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.conversions;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.conversions.records.CurrencyConversion;
 import org.json.JSONObject;
@@ -17,12 +18,13 @@ import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.POST;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
  * Conversions manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseConversionsManager extends CoinbaseManager {
 
     /**
      * {@code CONVERSIONS_ENDPOINT} is constant for CONVERSIONS_ENDPOINT's endpoint
-     **/
+     */
     public static final String CONVERSIONS_ENDPOINT = "/conversions";
 
     /**
@@ -33,7 +35,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -45,7 +47,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -57,7 +59,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -68,7 +70,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseConversionsManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -88,7 +90,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseConversionsManager() {
         super();
     }
@@ -114,7 +116,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
     public CurrencyConversion convertCurrency(String from, String to, double amount) throws Exception {
@@ -143,10 +145,10 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
     public <T> T convertCurrency(String from, String to, double amount, ReturnFormat format) throws Exception {
-        return returnCurrencyConversion(sendPayloadedRequest(CONVERSIONS_ENDPOINT, POST,
+        return returnCurrencyConversion(sendPostRequest(CONVERSIONS_ENDPOINT,
                 getConversionPayload(from, to, amount)), format);
     }
 
@@ -180,7 +182,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
     public CurrencyConversion convertCurrency(String from, String to, double amount, Params extraParams) throws Exception {
@@ -218,12 +220,12 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postconversion">
      * Convert currency</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/conversions")
     public <T> T convertCurrency(String from, String to, double amount, Params extraParams,
                                  ReturnFormat format) throws Exception {
         extraParams.mergeParams(getConversionPayload(from, to, amount));
-        return returnCurrencyConversion(sendPayloadedRequest(CONVERSIONS_ENDPOINT, POST, extraParams), format);
+        return returnCurrencyConversion(sendPostRequest(CONVERSIONS_ENDPOINT, extraParams), format);
     }
 
     /**
@@ -233,7 +235,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param to:     final currency to convert
      * @param amount: amount value to convert
      * @return a payload as {@link Params}
-     **/
+     */
     private Params getConversionPayload(String from, String to, double amount) {
         Params payload = new Params();
         payload.addParam("from", from);
@@ -259,7 +261,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
     public CurrencyConversion getCurrencyConversion(String conversionId) throws Exception {
@@ -284,10 +286,10 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
     public <T> T getCurrencyConversion(String conversionId, ReturnFormat format) throws Exception {
-        return returnCurrencyConversion(sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId, GET),
+        return returnCurrencyConversion(sendGETRequest(CONVERSIONS_ENDPOINT + "/" + conversionId),
                 format);
     }
 
@@ -309,7 +311,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
     public CurrencyConversion getCurrencyConversion(String conversionId, String profileId) throws Exception {
@@ -335,11 +337,11 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/conversions/{conversion_id}")
     public <T> T getCurrencyConversion(String conversionId, String profileId, ReturnFormat format) throws Exception {
-        return returnCurrencyConversion(sendAPIRequest(CONVERSIONS_ENDPOINT + "/" + conversionId + "?profile_id="
-                + profileId, GET), format);
+        return returnCurrencyConversion(sendGETRequest(CONVERSIONS_ENDPOINT + "/" + conversionId + "?profile_id="
+                + profileId), format);
     }
 
     /**
@@ -348,7 +350,7 @@ public class CoinbaseConversionsManager extends CoinbaseManager {
      * @param conversionResponse: conversion response to format
      * @param format:             return type formatter -> {@link ReturnFormat}
      * @return conversion response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnCurrencyConversion(String conversionResponse, ReturnFormat format) {
         switch (format) {

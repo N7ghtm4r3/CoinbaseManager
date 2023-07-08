@@ -32,62 +32,62 @@ public class StakeWrap extends CoinbaseItem {
 
     /**
      * {@code id} of the stake wrap
-     **/
+     */
     private final String id;
 
     /**
      * {@code fromAmount} from amount of the stake wrap
-     **/
+     */
     private final double fromAmount;
 
     /**
      * {@code toAmount} to amount of the stake wrap
-     **/
+     */
     private final double toAmount;
 
     /**
      * {@code fromAccountId} from account id of the stake wrap
-     **/
+     */
     private final String fromAccountId;
 
     /**
      * {@code toAccountId} to account id of the stake wrap
-     **/
+     */
     private final String toAccountId;
 
     /**
      * {@code fromCurrency} from currency of the stake wrap
-     **/
+     */
     private final String fromCurrency;
 
     /**
      * {@code toCurrency} to currency of the stake wrap
-     **/
+     */
     private final String toCurrency;
 
     /**
      * {@code status} of the stake wrap
-     **/
+     */
     private final Status status;
 
     /**
      * {@code conversionRate} conversion rate of the stake wrap
-     **/
+     */
     private final double conversionRate;
 
     /**
      * {@code createdAt} creation time of the stake wrap
-     **/
+     */
     private final String createdAt;
 
     /**
      * {@code completedAt} completion time of the stake wrap
-     **/
+     */
     private final String completedAt;
 
     /**
      * {@code canceledAt} cancellation time of the stake wrap
-     **/
+     */
     private final String canceledAt;
 
     /**
@@ -151,7 +151,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -161,7 +161,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #fromAmount} instance as double
-     **/
+     */
     public double getFromAmount() {
         return fromAmount;
     }
@@ -172,7 +172,7 @@ public class StakeWrap extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #fromAmount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getFromAmount(int decimals) {
         return roundValue(fromAmount, decimals);
     }
@@ -182,7 +182,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #toAmount} instance as double
-     **/
+     */
     public double getToAmount() {
         return toAmount;
     }
@@ -193,7 +193,7 @@ public class StakeWrap extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #toAmount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getToAmount(int decimals) {
         return roundValue(toAmount, decimals);
     }
@@ -203,7 +203,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #fromAccountId} instance as {@link String}
-     **/
+     */
     public String getFromAccountId() {
         return fromAccountId;
     }
@@ -213,7 +213,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #toAccountId} instance as {@link String}
-     **/
+     */
     public String getToAccountId() {
         return toAccountId;
     }
@@ -223,7 +223,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #fromCurrency} instance as {@link String}
-     **/
+     */
     public String getFromCurrency() {
         return fromCurrency;
     }
@@ -233,7 +233,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #toCurrency} instance as {@link String}
-     **/
+     */
     public String getToCurrency() {
         return toCurrency;
     }
@@ -243,7 +243,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #status} instance as {@link Status}
-     **/
+     */
     public Status getStatus() {
         return status;
     }
@@ -253,7 +253,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #conversionRate} instance as double
-     **/
+     */
     public double getConversionRate() {
         return conversionRate;
     }
@@ -264,7 +264,7 @@ public class StakeWrap extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #conversionRate} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getConversionRate(int decimals) {
         return roundValue(conversionRate, decimals);
     }
@@ -274,7 +274,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -284,7 +284,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -294,7 +294,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #completedAt} instance as {@link String}
-     **/
+     */
     public String getCompletedAt() {
         return completedAt;
     }
@@ -304,7 +304,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #completedAt} timestamp as long
-     **/
+     */
     public long getCompletedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(completedAt);
     }
@@ -314,7 +314,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #canceledAt} instance as {@link String}
-     **/
+     */
     public String getCanceledAt() {
         return canceledAt;
     }
@@ -324,7 +324,7 @@ public class StakeWrap extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #canceledAt} timestamp as long
-     **/
+     */
     public long getCanceledAtTimestamp() {
         return TimeFormatter.getDateTimestamp(canceledAt);
     }

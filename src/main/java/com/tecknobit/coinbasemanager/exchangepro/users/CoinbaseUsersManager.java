@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.users;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.users.records.ExchangeLimits;
 import org.json.JSONObject;
@@ -18,47 +19,48 @@ import static com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager.ReturnFo
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
  * Users manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseUsersManager extends CoinbaseManager {
 
     /**
      * {@code USERS_ENDPOINT} is constant for USERS_ENDPOINT's endpoint
-     **/
+     */
     public static final String USERS_ENDPOINT = "/users";
 
     /**
      * {@code EXCHANGE_LIMITS_ENDPOINT} is constant for EXCHANGE_LIMITS_ENDPOINT's endpoint
-     **/
+     */
     public static final String EXCHANGE_LIMITS_ENDPOINT = "/exchange-limits";
 
     /**
      * {@code SETTLEMENT_PREFERENCES_ENDPOINT} is constant for SETTLEMENT_PREFERENCES_ENDPOINT's endpoint
-     **/
+     */
     public static final String SETTLEMENT_PREFERENCES_ENDPOINT = "/settlement-preferences";
 
     /**
      * {@code SettlementPreference} list of available settlement preferences
-     **/
+     */
     public enum SettlementPreference {
 
         /**
          * {@code USD} settlement preference
-         **/
+         */
         USD("USD"),
 
         /**
          * {@code USDC} settlement preference
-         **/
+         */
         USDC("USDC"),
 
         /**
          * {@code OPT_OUT} settlement preference
-         **/
+         */
         OPT_OUT("opt-out");
 
         /**
          * {@code preference} value
-         **/
+         */
         private final String preference;
 
         /**
@@ -75,7 +77,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
          * No-any params required
          *
          * @return {@link #preference} instance as {@link String}
-         **/
+         */
         public String getPreference() {
             return preference;
         }
@@ -90,7 +92,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -102,7 +104,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -114,7 +116,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -125,7 +127,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseUsersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -145,7 +147,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseUsersManager() {
         super();
     }
@@ -169,7 +171,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
     public ExchangeLimits getUserExchangeLimits(String userId) throws Exception {
@@ -196,12 +198,12 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getuserexchangelimits">
      * Get user exchange limits</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/users/{user_id}/exchange-limits")
     public <T> T getUserExchangeLimits(String userId, ReturnFormat format) throws Exception {
-        String exchangeLimitsResponse = sendAPIRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT,
-                GET);
+        String exchangeLimitsResponse = sendGETRequest(USERS_ENDPOINT + "/" + userId + EXCHANGE_LIMITS_ENDPOINT
+        );
         switch (format) {
             case JSON:
                 return (T) new JSONObject(exchangeLimitsResponse);
@@ -232,7 +234,7 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postuserlevelsettlementpreferences">
      * Update settlement preference</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/users/{user_id}/settlement-preferences")
     public String updateSettlementPreference(String userId, SettlementPreference preference) throws Exception {
@@ -260,15 +262,15 @@ public class CoinbaseUsersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postuserlevelsettlementpreferences">
      * Update settlement preference</a>
-     **/
+     */
     @Returner
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/users/{user_id}/settlement-preferences")
     public <T> T updateSettlementPreference(String userId, SettlementPreference preference,
                                             ReturnFormat format) throws Exception {
         Params payload = new Params();
         payload.addParam("settlement_preference", preference.getPreference());
-        String preferenceResponse = sendJSONPayloadedRequest(USERS_ENDPOINT + "/" + userId
-                + SETTLEMENT_PREFERENCES_ENDPOINT, POST, payload);
+        String preferenceResponse = sendJSONPostRequestRequest(USERS_ENDPOINT + "/" + userId
+                + SETTLEMENT_PREFERENCES_ENDPOINT, payload);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(preferenceResponse);

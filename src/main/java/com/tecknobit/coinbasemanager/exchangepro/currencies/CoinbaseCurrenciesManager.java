@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.currencies;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.currencies.records.Currency;
 import org.json.JSONArray;
@@ -18,12 +19,14 @@ import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
  * Currencies manager</a>
- **/
+ * @see CoinbaseManager
+ * @see Manager
+ */
 public class CoinbaseCurrenciesManager extends CoinbaseManager {
 
     /**
      * {@code CURRENCIES_ENDPOINT} is constant for CURRENCIES_ENDPOINT's endpoint
-     **/
+     */
     public static final String CURRENCIES_ENDPOINT = "/currencies";
 
     /**
@@ -34,7 +37,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -46,7 +49,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -58,7 +61,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -69,7 +72,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseCurrenciesManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -89,7 +92,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseCurrenciesManager() {
         super();
     }
@@ -113,7 +116,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
      * Get all known currencies</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies")
     public ArrayList<Currency> getAllKnownCurrencies() throws Exception {
@@ -139,11 +142,11 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcurrencies">
      * Get all known currencies</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies")
     public <T> T getAllKnownCurrencies(ReturnFormat format) throws Exception {
-        String currenciesResponse = sendAPIRequest(CURRENCIES_ENDPOINT, GET);
+        String currenciesResponse = sendGETRequest(CURRENCIES_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONArray(currenciesResponse);
@@ -175,7 +178,7 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
     public Currency getCurrency(String currencyId) throws Exception {
@@ -200,11 +203,11 @@ public class CoinbaseCurrenciesManager extends CoinbaseManager {
      *                           {@link #printErrorResponse()}
      *                       </li>
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
-     * **/
+     * */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/currencies/{currency_id}")
     public <T> T getCurrency(String currencyId, ReturnFormat format) throws Exception {
-        String currencyResponse = sendAPIRequest(CURRENCIES_ENDPOINT + "/" + currencyId, GET);
+        String currencyResponse = sendGETRequest(CURRENCIES_ENDPOINT + "/" + currencyId);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(currencyResponse);

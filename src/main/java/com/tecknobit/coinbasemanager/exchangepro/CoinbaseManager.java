@@ -1,15 +1,16 @@
 package com.tecknobit.coinbasemanager.exchangepro;
 
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.annotations.Wrapper;
 import com.tecknobit.apimanager.apis.APIRequest;
 import com.tecknobit.apimanager.formatters.TimeFormatter;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.apimanager.trading.TradingTools;
 
 import java.util.Properties;
 
 import static com.tecknobit.apimanager.apis.APIRequest.*;
-import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.POST;
-import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.PUT;
+import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.*;
 import static com.tecknobit.apimanager.trading.TradingTools.computeAssetPercent;
 import static com.tecknobit.apimanager.trading.TradingTools.textualizeAssetPercent;
 
@@ -18,67 +19,68 @@ import static com.tecknobit.apimanager.trading.TradingTools.textualizeAssetPerce
  *
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/docs">Welcome</a>
- **/
-public class CoinbaseManager {
+ * @see Manager
+ */
+public class CoinbaseManager implements Manager {
 
     /**
      * {@code CB_ACCESS_TIMESTAMP} is constant for CB_ACCESS_TIMESTAMP's header
-     **/
+     */
     protected static final String CB_ACCESS_TIMESTAMP = "cb-access-timestamp";
 
     /**
      * {@code BASE_ENDPOINT} is constant for base endpoint for url api requests
-     **/
+     */
     public static final String BASE_ENDPOINT = "https://api.exchange.coinbase.com";
 
     /**
      * {@code CB_ACCESS_KEY} is constant for CB_ACCESS_KEY's header
-     **/
+     */
     protected static final String CB_ACCESS_KEY = "cb-access-key";
 
     /**
      * {@code CB_ACCESS_SIGN} is constant for CB_ACCESS_SIGN's header
-     **/
+     */
     protected static final String CB_ACCESS_SIGN = "cb-access-sign";
 
     /**
      * {@code CB_ACCESS_PASSPHRASE} is constant for CB_ACCESS_PASSPHRASE's header
-     **/
+     */
     protected static final String CB_ACCESS_PASSPHRASE = "cb-access-passphrase";
 
     /**
      * {@code properties} is a local instance used to instantiate a new {@link CoinbaseManager}'s manager without
      * re-insert credentials
-     **/
+     */
     protected static final Properties properties = new Properties();
 
     /**
      * {@code headers} is instance that memorizes headers values
-     **/
+     */
     protected static final Headers headers = new Headers();
 
     static {
-        TimeFormatter.changeDefaultPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        TimeFormatter.changeDefaultPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     }
 
     /**
      * {@code apiRequest} is instance to use to make API requests
-     **/
+     */
     protected final APIRequest apiRequest;
 
     /**
      * {@code apiSecret} is instance that memorizes api secret user value
-     **/
+     */
     protected final String apiSecret;
 
     /**
      * {@code passphrase} is instance that memorizes pass phrase user value
-     * **/
+     */
     protected final String passphrase;
 
     /**
      * {@code apiKey} is instance that memorizes api key user value
-     **/
+     */
     protected final String apiKey;
 
     /**
@@ -89,7 +91,7 @@ public class CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         apiRequest = new APIRequest(defaultErrorMessage, timeout);
         this.apiKey = apiKey;
@@ -98,12 +100,14 @@ public class CoinbaseManager {
         storeProperties(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseManager}
-     * @param apiKey: your {@code "Coinbase"} api key
-     * @param apiSecret: your {@code "Coinbase"} api secret
+    /**
+     * Constructor to init a {@link CoinbaseManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:    custom timeout for request
+     */
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         apiRequest = new APIRequest(timeout);
         this.apiKey = apiKey;
@@ -117,7 +121,7 @@ public class CoinbaseManager {
      * @param apiSecret: your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     * **/
+     * */
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         apiRequest = new APIRequest(defaultErrorMessage);
         this.apiKey = apiKey;
@@ -132,7 +136,7 @@ public class CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseManager(String apiKey, String apiSecret, String passphrase) {
         apiRequest = new APIRequest();
         this.apiKey = apiKey;
@@ -156,7 +160,7 @@ public class CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseManager() {
         apiKey = properties.getProperty("apiKey");
         if (apiKey == null)
@@ -188,7 +192,7 @@ public class CoinbaseManager {
      * @param passphrase:          {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     private void storeProperties(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage,
                                  int timeout) {
         properties.clear();
@@ -202,15 +206,111 @@ public class CoinbaseManager {
     }
 
     /**
+     * Method to execute and get response of a GET request
+     *
+     * @param endpoint : endpoint for the request and its query params es endpoint?param=paramValue
+     * @return response as {@link String}
+     */
+    @Wrapper
+    public String sendGETRequest(String endpoint) throws Exception {
+        return sendGETRequest(endpoint, null);
+    }
+
+    /**
+     * Method to execute and get response of a GET request
+     *
+     * @param endpoint : endpoint for the request
+     * @param query:   query of the request
+     * @return response as {@link String}
+     */
+    public String sendGETRequest(String endpoint, Params query) throws Exception {
+        return sendRequest(endpoint, query, GET);
+    }
+
+    /**
+     * Method to execute and get response of a DELETE request
+     *
+     * @param endpoint : endpoint for the request and its query params es endpoint?param=paramValue
+     * @return response as {@link String}
+     */
+    @Wrapper
+    public String sendDELETERequest(String endpoint) throws Exception {
+        return sendDELETERequest(endpoint, null);
+    }
+
+    /**
+     * Method to execute and get response of a DELETE request
+     *
+     * @param endpoint : endpoint for the request
+     * @param query:   query of the request
+     * @return response as {@link String}
+     */
+    public String sendDELETERequest(String endpoint, Params query) throws Exception {
+        return sendRequest(endpoint, query, DELETE);
+    }
+
+    /**
      * Method to execute and get response of a request
      *
-     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param method:   method HTTP for the request
+     * @param endpoint : endpoint for the request
+     * @param query:   query of the request
      * @return response as {@link String}
-     **/
-    public String sendAPIRequest(String endpoint, RequestMethod method) throws Exception {
+     */
+    private String sendRequest(String endpoint, Params query, RequestMethod method) throws Exception {
         setRequestHeaders(method, endpoint, null);
-        apiRequest.sendAPIRequest(BASE_ENDPOINT + endpoint, method, headers);
+        if (query == null)
+            query = new Params();
+        apiRequest.sendAPIRequest(BASE_ENDPOINT + endpoint + query.createQueryString(), method, headers);
+        return apiRequest.getResponse();
+    }
+
+    /**
+     * Method to execute and get response of a POST http request
+     *
+     * @param endpoint : endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload  :  params to insert in the http body post request
+     * @return response as {@link String}
+     */
+    public String sendPostRequest(String endpoint, Params payload) throws Exception {
+        return sendRequest(endpoint, POST, payload, false);
+    }
+
+    /**
+     * Method to execute and get response of a POST http request
+     *
+     * @param endpoint : endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload  :  params to insert in the http body post request
+     * @return response as {@link String}
+     */
+    public String sendJSONPostRequestRequest(String endpoint, Params payload) throws Exception {
+        return sendRequest(endpoint, POST, payload, true);
+    }
+
+    /**
+     * Method to execute and get response of a PUT http request
+     *
+     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload:  params to insert in the http body post request
+     * @return response as {@link String}
+     */
+    public String sendPutRequest(String endpoint, Params payload) throws Exception {
+        return sendRequest(endpoint, PUT, payload, false);
+    }
+
+    /**
+     * Method to execute and get response of a POST http request
+     *
+     * @param endpoint:      endpoint for the request and its query params es endpoint?param=paramValue
+     * @param payload:       params to insert in the http body post request
+     * @param isJSONPayload: whether the payload is in {@code "JSON"}
+     * @return response as {@link String}
+     */
+    private String sendRequest(String endpoint, RequestMethod method, Params payload, boolean isJSONPayload) throws Exception {
+        setRequestHeaders(method, endpoint, payload);
+        if (isJSONPayload)
+            apiRequest.sendJSONPayloadedAPIRequest(BASE_ENDPOINT + endpoint, method, headers, payload);
+        else
+            apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, method, headers, payload);
         return apiRequest.getResponse();
     }
 
@@ -221,62 +321,19 @@ public class CoinbaseManager {
      * @param method:   method HTTP for the request
      * @param body:     only if request has a body params (generally POST request)
      *                  any return
-     **/
-    private void setRequestHeaders(RequestMethod method, String endpoint, String body) throws Exception {
-        String timestamp = "" + System.currentTimeMillis() / 1000;
-        String stringToSign = timestamp + method + endpoint;
-        if (body != null)
-            stringToSign += body;
-        if (headers.getAllHeaders().size() == 0) {
+     */
+    private void setRequestHeaders(RequestMethod method, String endpoint, Params body) throws Exception {
+        if (headers.getAllHeaders().isEmpty()) {
             headers.addHeader("Accept", "application/json");
             headers.addHeader(CB_ACCESS_KEY, apiKey);
             headers.addHeader(CB_ACCESS_PASSPHRASE, passphrase);
         }
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String stringToSign = timestamp + method + endpoint;
+        if (body != null)
+            stringToSign += body.createJSONPayload();
         headers.addHeader(CB_ACCESS_SIGN, getBase64Signature(apiSecret, stringToSign, HMAC_SHA256_ALGORITHM));
         headers.addHeader(CB_ACCESS_TIMESTAMP, timestamp);
-    }
-
-    /**
-     * Method to execute and get response of a POST http request
-     *
-     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param payload:  params to insert in the http body post request
-     * @return response as {@link String}
-     **/
-    public String sendPayloadedRequest(String endpoint, RequestMethod method, Params payload) throws Exception {
-        return sendPayloadedRequest(endpoint, method, payload, false);
-    }
-
-    /**
-     * Method to execute and get response of a POST http request
-     *
-     * @param endpoint: endpoint for the request and its query params es endpoint?param=paramValue
-     * @param payload:  params to insert in the http body post request
-     * @return response as {@link String}
-     **/
-    public String sendJSONPayloadedRequest(String endpoint, RequestMethod method, Params payload) throws Exception {
-        return sendPayloadedRequest(endpoint, method, payload, true);
-    }
-
-    /**
-     * Method to execute and get response of a POST http request
-     *
-     * @param endpoint:      endpoint for the request and its query params es endpoint?param=paramValue
-     * @param payload:       params to insert in the http body post request
-     * @param isJSONPayload: whether the payload is in {@code "JSON"}
-     * @return response as {@link String}
-     **/
-    private String sendPayloadedRequest(String endpoint, RequestMethod method, Params payload,
-                                        boolean isJSONPayload) throws Exception {
-        if (method.equals(POST) || method.equals(PUT)) {
-            setRequestHeaders(method, endpoint, payload.createJSONPayload().toString());
-            if (isJSONPayload)
-                apiRequest.sendJSONPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST, headers, payload);
-            else
-                apiRequest.sendPayloadedAPIRequest(BASE_ENDPOINT + endpoint, POST, headers, payload);
-            return apiRequest.getResponse();
-        } else
-            throw new IllegalArgumentException("Methods allowed for this request are POST and PUT method");
     }
 
     /**
@@ -284,7 +341,7 @@ public class CoinbaseManager {
      *
      * @param queryParams: value and key of query params to assemble
      * @return query params as {@link String} es. ?param=paramValue&param2=param2Value
-     **/
+     */
     protected String assembleQueryParams(String defParams, Params queryParams) {
         return apiRequest.encodeAdditionalParams(defParams, queryParams);
     }
@@ -296,47 +353,9 @@ public class CoinbaseManager {
      * @param finalValue:    last value to compare and get percent by first value
      * @param decimalDigits: number of digits to round final percent value
      * @return percent value es. +8% or -8% as {@link String}
-     **/
+     */
     public String getTextTrendPercent(double startValue, double finalValue, int decimalDigits) {
         return textualizeAssetPercent(startValue, finalValue, decimalDigits);
-    }
-
-    /**
-     * Method to get error response of request <br>
-     * No-any params required
-     *
-     * @return error of the response as {@link String}
-     **/
-    public String getErrorResponse() {
-        return apiRequest.getErrorResponse();
-    }
-
-    /**
-     * Method to get error response of request <br>
-     * No-any params required
-     *
-     * @return error response of the request formatted as {@code "JSON"} or as {@link String}
-     **/
-    public <T> T getJSONErrorResponse() {
-        return apiRequest.getJSONErrorResponse();
-    }
-
-    /**
-     * Method to print error response of request <br>
-     * No-any params required
-     **/
-    public void printErrorResponse() {
-        apiRequest.printErrorResponse();
-    }
-
-    /**
-     * Method to get status code of request response <br>
-     * No-any params required
-     *
-     * @return status code of request response
-     **/
-    public int getStatusResponse() {
-        return apiRequest.getResponseStatusCode();
     }
 
     /**
@@ -346,7 +365,7 @@ public class CoinbaseManager {
      * @param decimalDigits: number of digits to round final value
      * @return value rounded with decimalDigits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double roundValue(double value, int decimalDigits) {
         return TradingTools.roundValue(value, decimalDigits);
     }
@@ -358,7 +377,7 @@ public class CoinbaseManager {
      * @param finalValue: last value to compare and get percent by first value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
-     **/
+     */
     public double getTrendPercent(double startValue, double finalValue){
         return computeAssetPercent(startValue, finalValue);
     }
@@ -371,7 +390,7 @@ public class CoinbaseManager {
      * @param decimalDigits: number of digits to round final percent value
      * @return percent value as double es. 8 or -8
      * @throws IllegalArgumentException if startValue or lastValue are negative
-     **/
+     */
     public double getTrendPercent(double startValue, double finalValue, int decimalDigits){
         return computeAssetPercent(startValue, finalValue, decimalDigits);
     }
@@ -379,7 +398,7 @@ public class CoinbaseManager {
     /** Method to format percent between two values and textualize it
      * @param percent: value to format
      * @return percent value formatted es. +8% or -8% as {@link String}
-     * **/
+     * */
     public String getTextTrendPercent(double percent){
         return textualizeAssetPercent(percent);
     }
@@ -388,7 +407,7 @@ public class CoinbaseManager {
      * @param startValue: first value to make compare
      * @param finalValue: last value to compare and get percent by first value
      * @return percent value es. +8% or -8% as {@link String}
-     * **/
+     * */
     public String getTextTrendPercent(double startValue, double finalValue){
         return textualizeAssetPercent(startValue, finalValue);
     }
@@ -398,7 +417,7 @@ public class CoinbaseManager {
      * No-any params required
      *
      * @return api key as {@link String}
-     **/
+     */
     public String getApiKey() {
         return apiKey;
     }
@@ -406,7 +425,7 @@ public class CoinbaseManager {
     /** Method to get {@code "Coinbase"} api secret
      * No-any params required
      * @return api secret as {@link String}
-     * **/
+     * */
     public String getApiSecret() {
         return apiSecret;
     }
@@ -416,9 +435,62 @@ public class CoinbaseManager {
      * No-any params required
      *
      * @return api passphrase as {@link String}
-     **/
+     */
     public String getPassphrase() {
         return passphrase;
+    }
+
+    /**
+     * Method to get the status code of a request <br>
+     * No-any params required
+     *
+     * @return status code of a request as int
+     */
+    @Override
+    public int getStatusResponse() {
+        return apiRequest.getResponseStatusCode();
+    }
+
+    /**
+     * Method to get the response af a request <br>
+     * No-any params required
+     *
+     * @return response of a request as {@link String}
+     */
+    @Override
+    public String getResponse() {
+        return apiRequest.getResponse();
+    }
+
+    /**
+     * Method to get the error response af a request <br>
+     * No-any params required
+     *
+     * @return error response of a request as {@link String}
+     */
+    @Override
+    public String getErrorResponse() {
+        return apiRequest.getErrorResponse();
+    }
+
+    /**
+     * Method to get the error response of a request formatted in JSON <br>
+     * No-any params required
+     *
+     * @return error response of a request formatted in JSON as {@link T}
+     */
+    @Override
+    public <T> T getJSONErrorResponse() {
+        return apiRequest.getJSONErrorResponse();
+    }
+
+    /**
+     * Method to print the error response of a request <br>
+     * No-any params required
+     */
+    @Override
+    public void printErrorResponse() {
+        apiRequest.printErrorResponse();
     }
 
     /**
@@ -437,7 +509,7 @@ public class CoinbaseManager {
      * {@link Returner.ReturnFormat#LIBRARY_OBJECT} -> returns the response formatted as custom object offered by library that uses this list
      * </li>
      * </ul>
-     **/
+     */
     public enum ReturnFormat {
 
         STRING,
@@ -452,7 +524,7 @@ public class CoinbaseManager {
      * @implNote this class can be used to assemble body payload or query request params
      * @implSpec look this library <a href="https://github.com/N7ghtm4r3/APIManager">here-1</a>
      * @see APIRequest.Params
-     **/
+     */
     public static class Params extends APIRequest.Params {}
 
 }

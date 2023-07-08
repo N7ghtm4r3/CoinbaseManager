@@ -33,27 +33,27 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * @see Amount
- * **/
+ * */
 public class TransferAction extends Amount {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     **/
+     */
     private final String id;
 
     /**
      * {@code payoutAt} is instance that memorizes payout at value
-     **/
+     */
     private final String payoutAt;
 
     /**
      * {@code fee} is instance that memorizes fee value
-     **/
+     */
     private final double fee;
 
     /**
      * {@code subTotal} is instance that memorizes subtotal value
-     **/
+     */
     private final double subTotal;
 
     /**
@@ -66,7 +66,7 @@ public class TransferAction extends Amount {
      * @param fee:      fee value
      * @param subTotal: subtotal value
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public TransferAction(String id, double amount, String currency, String payoutAt, double fee, double subTotal) {
         super(amount, currency);
         this.id = id;
@@ -75,9 +75,11 @@ public class TransferAction extends Amount {
         this.subTotal = subTotal;
     }
 
-    /** Constructor to init a {@link TransferAction} custom object
+    /**
+     * Constructor to init a {@link TransferAction} custom object
+     *
      * @param transfer: transfer details as {@link JSONArray}
-     * **/
+     */
     public TransferAction(JSONObject transfer) {
         super(transfer);
         id = transfer.getString("id");
@@ -91,7 +93,7 @@ public class TransferAction extends Amount {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -101,7 +103,7 @@ public class TransferAction extends Amount {
      * No-any params required
      *
      * @return {@link #payoutAt} instance as {@link String}
-     **/
+     */
     public String getPayoutAt() {
         return payoutAt;
     }
@@ -111,7 +113,7 @@ public class TransferAction extends Amount {
      * No-any params required
      *
      * @return {@link #fee} instance as double
-     **/
+     */
     public double getFee() {
         return fee;
     }
@@ -122,7 +124,7 @@ public class TransferAction extends Amount {
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getFee(int decimals) {
         return roundValue(fee, decimals);
     }
@@ -132,7 +134,7 @@ public class TransferAction extends Amount {
      * No-any params required
      *
      * @return {@link #subTotal} instance as double
-     **/
+     */
     public double getSubTotal() {
         return subTotal;
     }
@@ -143,7 +145,7 @@ public class TransferAction extends Amount {
      * @param decimals: number of digits to round final value
      * @return {@link #subTotal} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getSubTotal(int decimals) {
         return roundValue(subTotal, decimals);
     }

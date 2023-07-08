@@ -20,21 +20,21 @@ import org.json.JSONObject;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class ReportDetails {
 
     /**
      * {@code type} is instance that memorizes type value
-     **/
+     */
     protected final ReportType type;
 
     /**
      * {@code id} is instance that memorizes identifier value
-     **/
+     */
     protected final String id;
     /**
      * {@code status} is instance that memorizes status value
-     **/
+     */
     protected final String status;
 
     /**
@@ -43,7 +43,7 @@ public class ReportDetails {
      * @param id:     identifier value
      * @param type:   type value
      * @param status: status value
-     **/
+     */
     public ReportDetails(String id, ReportType type, String status) {
         this.id = id;
         this.type = type;
@@ -54,7 +54,7 @@ public class ReportDetails {
      * Constructor to init a {@link ReportDetails} custom object
      *
      * @param report: report details as {@link JSONObject}
-     **/
+     */
     public ReportDetails(JSONObject report) {
         this(report.getString("id"), ReportType.valueOf(report.getString("type")), report.getString("status"));
     }
@@ -64,7 +64,7 @@ public class ReportDetails {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -74,7 +74,7 @@ public class ReportDetails {
      * No-any params required
      *
      * @return {@link #type} instance as {@link String}
-     **/
+     */
     public ReportType getType() {
         return type;
     }
@@ -84,7 +84,7 @@ public class ReportDetails {
      * No-any params required
      *
      * @return {@link #status} instance as {@link String}
-     **/
+     */
     public String getStatus() {
         return status;
     }
@@ -102,54 +102,54 @@ public class ReportDetails {
 
     /**
      * {@code ReportType} list of report types available
-     **/
+     */
     public enum ReportType {
 
         /**
          * {@code "fills"} report type
-         **/
+         */
         fills("fills"),
 
         /**
          * {@code "account"} report type
-         **/
+         */
         account("account"),
 
         /**
          * {@code "otc_fills"} report type
-         **/
+         */
         otc_fills("otc-fills"),
 
         /**
          * {@code "_1099k_transaction_history"} report type
-         **/
+         */
         _1099k_transaction_history("1099k-transaction-history"),
 
         /**
          * {@code "tax_invoice"} report type
-         **/
+         */
         tax_invoice("tax-invoice"),
 
         /**
          * {@code "balance"} report type
-         **/
+         */
         balance("balance"),
 
         /**
          * {@code "rfq_fills"} report type
-         **/
+         */
         rfq_fills("rfq-fills");
 
         /**
          * {@code type} report type
-         **/
+         */
         private final String type;
 
         /**
          * Constructor to init a {@link ReportType}
          *
          * @param type: type of the report
-         **/
+         */
         ReportType(String type) {
             this.type = type;
         }
@@ -159,7 +159,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #type} instance as {@link String}
-         **/
+         */
         @Override
         public String toString() {
             return type;
@@ -169,17 +169,17 @@ public class ReportDetails {
 
     /**
      * {@code Format} list of formats types available
-     **/
+     */
     public enum Format {
 
         /**
          * {@code "pdf"} format type
-         **/
+         */
         pdf,
 
         /**
          * {@code "csv"} format type
-         **/
+         */
         csv
 
     }
@@ -200,57 +200,57 @@ public class ReportDetails {
      * Get user exchange limits</a>
      * </li>
      * </ul>
-     **/
+     */
     public static class UserDetails {
 
         /**
          * {@code createdAt} is instance that memorizes created at value
-         * **/
+         */
         protected final String createdAt;
 
         /**
          * {@code activeAt} is instance that memorizes active at value
-         * **/
+         */
         protected final String activeAt;
 
         /**
          * {@code id} is instance that memorizes identifier value
-         * **/
+         * */
         protected final String id;
 
         /**
          * {@code name} is instance that memorizes name value
-         * **/
+         * */
         protected final String name;
 
         /**
          * {@code email} is instance that memorizes email value
-         * **/
+         * */
         protected final String email;
 
         /**
          * {@code email} is flag that checks if is banned or not
-         * **/
+         * */
         protected final boolean isBanned;
 
         /**
          * {@code userType} is instance that memorizes user type value
-         * **/
+         * */
         protected final String userType;
 
         /**
          * {@code fullFillsNewRequirements} is flag for full fills new requirements
-         * **/
+         * */
         protected final boolean fullFillsNewRequirements;
 
         /**
          * {@code fullFillsNewRequirements} is flag for default check
-         * **/
+         * */
         protected final boolean hasDefault;
 
         /**
          * {@code fullFillsNewRequirements} is useful to help to format JSON
-         * **/
+         * */
         protected final JsonHelper hUser;
 
         /** Constructor to init {@link UserDetails} custom object
@@ -263,7 +263,7 @@ public class ReportDetails {
          * @param userType: user type value
          * @param fullFillsNewRequirements: flag for full fills new requirements
          * @param hasDefault: flag for default check
-         * **/
+         * */
         public UserDetails(String createdAt, String activeAt, String id, String name, String email, boolean isBanned,
                            String userType, boolean fullFillsNewRequirements, boolean hasDefault) {
             this.createdAt = createdAt;
@@ -280,7 +280,7 @@ public class ReportDetails {
 
         /** Constructor to init a {@link UserDetails} custom object
          * @param userDetails: user details as {@link JSONObject}
-         * **/
+         * */
         public UserDetails(JSONObject userDetails) {
             hUser = new JsonHelper(userDetails);
             createdAt = hUser.getString("created_at");
@@ -299,7 +299,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #createdAt} instance as {@link String}
-         **/
+         */
         public String getCreatedAt() {
             return createdAt;
         }
@@ -309,7 +309,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #createdAt} timestamp as long
-         **/
+         */
         public long getCreatedAtTimestamp() {
             return TimeFormatter.getDateTimestamp(createdAt);
         }
@@ -319,7 +319,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #activeAt} instance as {@link String}
-         **/
+         */
         public String getActiveAt() {
             return activeAt;
         }
@@ -329,7 +329,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #activeAt} timestamp as long
-         **/
+         */
         public long getActiveAtTimestamp() {
             return TimeFormatter.getDateTimestamp(activeAt);
         }
@@ -339,7 +339,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #id} instance as {@link String}
-         **/
+         */
         public String getId() {
             return id;
         }
@@ -349,7 +349,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #name} instance as {@link String}
-         **/
+         */
         public String getName() {
             return name;
         }
@@ -359,7 +359,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #email} instance as {@link String}
-         **/
+         */
         public String getEmail() {
             return email;
         }
@@ -369,7 +369,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #isBanned} instance as boolean
-         **/
+         */
         public boolean isBanned() {
             return isBanned;
         }
@@ -379,7 +379,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #userType} instance as {@link String}
-         **/
+         */
         public String getUserType() {
             return userType;
         }
@@ -389,7 +389,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #fullFillsNewRequirements} instance as boolean
-         **/
+         */
         public boolean areFullFillsNewRequirements() {
             return fullFillsNewRequirements;
         }
@@ -399,7 +399,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return {@link #hasDefault} instance as boolean
-         **/
+         */
         public boolean hasDefault() {
             return hasDefault;
         }
@@ -409,7 +409,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return tax domain as {@link String}
-         **/
+         */
         public String getTaxDomain() {
             return hUser.getString("tax_domain");
         }
@@ -419,7 +419,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return permissions as {@link JSONObject}
-         **/
+         */
         public JSONObject getPermissions() {
             return hUser.getJSONObject("permissions");
         }
@@ -430,7 +430,7 @@ public class ReportDetails {
          *
          * @return permissions as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-         **/
+         */
         public String getPermissionsStringed() {
             return hUser.getJSONObject("permissions").toString();
         }
@@ -440,7 +440,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return flags as {@link JSONObject}
-         **/
+         */
         public JSONObject getFlags() {
             return hUser.getJSONObject("flags");
         }
@@ -451,7 +451,7 @@ public class ReportDetails {
          *
          * @return flags as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-         **/
+         */
         public String getFlagsStringed() {
             return hUser.getJSONObject("flags").toString();
         }
@@ -461,7 +461,7 @@ public class ReportDetails {
          * No-any params required
          *
          * @return preferences as {@link JSONObject}
-         **/
+         */
         public JSONObject getPreferences() {
             return hUser.getJSONObject("preferences");
         }
@@ -472,7 +472,7 @@ public class ReportDetails {
          *
          * @return preferences as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-         **/
+         */
         public String getPreferencesStringed() {
             return hUser.getJSONObject("preferences").toString();
         }
@@ -482,7 +482,7 @@ public class ReportDetails {
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link JSONObject}
-         **/
+         */
         public JSONObject getCustomSnippet(String key) {
             return hUser.getJSONObject(key);
         }
@@ -493,7 +493,7 @@ public class ReportDetails {
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom snippet as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-         **/
+         */
         public String getCustomSnippetStringed(String key) {
             return hUser.getJSONObject(key).toString();
         }
@@ -503,7 +503,7 @@ public class ReportDetails {
          *
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link JSONArray}
-         **/
+         */
         public JSONArray getCustomList(String key) {
             return hUser.getJSONArray(key);
         }
@@ -514,7 +514,7 @@ public class ReportDetails {
          * @param key: key of the {@code "JSON"} snippet to fetch
          * @return custom list as {@link String}
          * @apiNote this method is useful to format the return {@link String} with a custom {@link "JSON"} parser
-         **/
+         */
         public String getCustomListStringed(String key) {
             return hUser.getJSONArray(key).toString();
         }

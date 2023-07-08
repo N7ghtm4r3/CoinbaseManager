@@ -15,137 +15,137 @@ import static com.tecknobit.coinbasemanager.exchangepro.transfers.records.paymen
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
- **/
+ */
 public class PaymentMethod extends PayMethod {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     **/
+     */
     private final String id;
 
     /**
      * {@code currency} is instance that memorizes currency value
-     **/
+     */
     private final String currency;
 
     /**
      * {@code primaryBuy} is flag that checks if this is primary buy
-     * **/
+     */
     private final boolean primaryBuy;
 
     /**
      * {@code primarySell} is flag that checks if this is primary sell
-     * **/
+     */
     private final boolean primarySell;
 
     /**
      * {@code instantBuy} is flag that checks if this is instant buy
-     * **/
+     * */
     private final boolean instantBuy;
 
     /**
      * {@code instantSell} is flag that checks if this is instant sell
-     * **/
+     * */
     private final boolean instantSell;
 
     /**
      * {@code createdAt} is instance that memorizes created at value
-     * **/
+     * */
     private final String createdAt;
 
     /**
      * {@code updatedAt} is instance that memorizes updated at value
-     * **/
+     * */
     private final String updatedAt;
 
     /**
      * {@code resource} is instance that memorizes resource value
-     * **/
+     * */
     private final String resource;
 
     /**
      * {@code resourcePath} is instance that memorizes resource path value
-     * **/
+     * */
     private final String resourcePath;
 
     /**
      * {@code allowBuy} is flag that checks if buy is allowed
-     * **/
+     * */
     private final boolean allowBuy;
 
     /**
      * {@code allowSell} is flag that checks if sell is allowed
-     * **/
+     * */
     private final boolean allowSell;
 
     /**
      * {@code allowDeposit} is flag that checks if deposit is allowed
-     * **/
+     * */
     private final boolean allowDeposit;
 
     /**
      * {@code allowWithdraw} is flag that checks if withdraw is allowed
-     * **/
+     * */
     private final boolean allowWithdraw;
 
     /**
      * {@code verified} is flag that checks if this method is verified
-     * **/
+     * */
     private final boolean verified;
 
     /**
      * {@code holdBusinessDays} is instance that memorizes hold business days value
-     * **/
+     * */
     private final int holdBusinessDays;
 
     /**
      * {@code holdBusinessDays} is instance that memorizes hold days value
-     * **/
+     * */
     private final int holdDays;
 
     /**
      * {@code hPayment} is instance useful to help to format JSON responses API
-     **/
+     */
     private final JsonHelper hPayment;
 
     /**
      * {@code minimumPurchaseAmount} is instance that memorizes minimum purchase amount value
-     * **/
+     * */
     private final Amount minimumPurchaseAmount;
 
     /**
      * {@code payPalLimits} is instance that memorizes PayPal's limits in JSON format
-     * **/
+     * */
     private JSONObject payPalLimits;
 
     /**
      * {@code bankLimits} is instance that memorizes bank's limits in JSON format
-     * **/
+     * */
     private JSONObject bankLimits;
 
     /**
      * {@code payPalPickerData} is instance that memorizes PayPal's picker data in JSON format
-     * **/
+     * */
     private JSONObject payPalPickerData;
 
     /**
      * {@code bankPickerData} is instance that memorizes bank's picker data in JSON format
-     * **/
+     * */
     private JSONObject bankPickerData;
 
     /**
      * {@code fiatAccountLimit} is instance that memorizes fiat account's limits in JSON format
-     * **/
+     * */
     private JSONObject fiatAccountLimit;
 
     /**
      * {@code fiatAccountDetails} is instance that memorizes fiat account's details in JSON format
-     * **/
+     * */
     private JSONObject fiatAccountDetails;
 
     /**
      * {@code fiatAccountDetails} is instance that memorizes fiat account's picker data in JSON format
-     * **/
+     * */
     private JSONObject fiatAccountPickerData;
 
     /** Constructor to init a {@link PaymentMethod} custom object
@@ -170,7 +170,7 @@ public class PaymentMethod extends PayMethod {
      * @param holdDays: hold days values
      * @param minimumPurchaseAmount: minimum purchase amount value
      * @throws IllegalArgumentException if parameters range is not respected
-     * **/
+     * */
     public PaymentMethod(String id, PayMethodType type, String name, String currency, boolean primaryBuy,
                          boolean primarySell, boolean instantBuy, boolean instantSell, String createdAt, String updatedAt,
                          String resource, String resourcePath, boolean allowBuy, boolean allowSell, boolean allowDeposit,
@@ -201,7 +201,7 @@ public class PaymentMethod extends PayMethod {
      * Constructor to init a {@link PaymentMethod} custom object
      *
      * @param payment: payment details as {@link JSONArray}
-     **/
+     */
     public PaymentMethod(JSONObject payment) {
         super(payment);
         hPayment = new JsonHelper(payment);
@@ -230,7 +230,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -240,7 +240,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #currency} instance as {@link String}
-     **/
+     */
     public String getCurrency() {
         return currency;
     }
@@ -250,7 +250,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #primaryBuy} instance as boolean
-     **/
+     */
     public boolean isPrimaryBuy() {
         return primaryBuy;
     }
@@ -260,7 +260,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #primarySell} instance as boolean
-     **/
+     */
     public boolean isPrimarySell() {
         return primarySell;
     }
@@ -270,7 +270,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #instantBuy} instance as boolean
-     **/
+     */
     public boolean isInstantBuy() {
         return instantBuy;
     }
@@ -280,7 +280,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #instantSell} instance as boolean
-     **/
+     */
     public boolean isInstantSell() {
         return instantSell;
     }
@@ -290,7 +290,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -300,7 +300,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -310,7 +310,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #updatedAt} instance as {@link String}
-     **/
+     */
     public String getUpdatedAt() {
         return updatedAt;
     }
@@ -320,7 +320,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #updatedAt} timestamp as long
-     **/
+     */
     public long getUpdatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(updatedAt);
     }
@@ -330,7 +330,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #resource} instance as {@link String}
-     **/
+     */
     public String getResource() {
         return resource;
     }
@@ -340,7 +340,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #resourcePath} instance as {@link String}
-     **/
+     */
     public String getResourcePath() {
         return resourcePath;
     }
@@ -350,7 +350,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #allowBuy} instance as boolean
-     **/
+     */
     public boolean isAllowedBuy() {
         return allowBuy;
     }
@@ -360,7 +360,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #allowSell} instance as boolean
-     **/
+     */
     public boolean isAllowedSell() {
         return allowSell;
     }
@@ -370,7 +370,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #allowDeposit} instance as boolean
-     **/
+     */
     public boolean isAllowedDeposit() {
         return allowDeposit;
     }
@@ -380,7 +380,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #allowWithdraw} instance as boolean
-     **/
+     */
     public boolean isAllowedWithdraw() {
         return allowWithdraw;
     }
@@ -390,7 +390,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #verified} instance as boolean
-     **/
+     */
     public boolean isVerified() {
         return verified;
     }
@@ -400,7 +400,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #holdBusinessDays} instance as int
-     **/
+     */
     public int getHoldBusinessDays() {
         return holdBusinessDays;
     }
@@ -410,7 +410,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #holdDays} instance as int
-     **/
+     */
     public int getHoldDays() {
         return holdDays;
     }
@@ -420,7 +420,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return {@link #minimumPurchaseAmount} instance as {@link Amount}
-     **/
+     */
     public Amount getMinimumPurchaseAmount() {
         return minimumPurchaseAmount;
     }
@@ -430,7 +430,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return PayPal limits details as {@link PayPalMethod} custom object, if is not a PayPal method will return null value
-     **/
+     */
     public PayPalMethod getPayPalLimits() {
         if (payPalLimits == null)
             payPalLimits = hPayment.getJSONObject("limits");
@@ -444,7 +444,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return PayPal picker data details as {@link PayPalMethod.PayPalPickerData} custom object, if is not a PayPal method will return null value
-     **/
+     */
     public PayPalMethod.PayPalPickerData getPayPalPickerData(){
         if (payPalPickerData == null)
             payPalPickerData = hPayment.getJSONObject("picker_data");
@@ -462,7 +462,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return Bank limits details as {@link BankMethod} custom object, if is not a Bank method will return null value
-     **/
+     */
     public BankMethod getBankLimits() {
         if (bankLimits == null)
             bankLimits = hPayment.getJSONObject("limits");
@@ -476,7 +476,7 @@ public class PaymentMethod extends PayMethod {
      * No-any params required
      *
      * @return Bank picker data details as {@link BankMethod.BankPickerData} custom object, if is not a Bank method will return null value
-     **/
+     */
     public BankMethod.BankPickerData getBankPickerData() {
         if (bankPickerData == null)
             bankPickerData = hPayment.getJSONObject("picker_data");
@@ -495,7 +495,7 @@ public class PaymentMethod extends PayMethod {
      *
      * @return PayPal picker data details as {@link FiatAccountMethod.FiatAccountDetails} custom object,
      * if is not a Fiat Account method will return null value
-     **/
+     */
     public FiatAccountMethod.FiatAccountDetails getFiatAccountDetails(){
         if(fiatAccountDetails == null)
             fiatAccountDetails = hPayment.getJSONObject(fiat_account.name());
@@ -510,7 +510,7 @@ public class PaymentMethod extends PayMethod {
      *
      * @return Fiat Account limits details as {@link FiatAccountMethod} custom object,
      * if is not a Fiat Account method will return null value
-     **/
+     */
     public FiatAccountMethod getFiatAccountLimit() {
         if (fiatAccountLimit == null)
             fiatAccountLimit = hPayment.getJSONObject("limits");
@@ -525,7 +525,7 @@ public class PaymentMethod extends PayMethod {
      *
      * @return Fiat Account data details as {@link FiatAccountMethod.FiatAccountPickerData} custom object,
      * if is not a Fiat Account will return null value
-     **/
+     */
     public FiatAccountMethod.FiatAccountPickerData getFiatAccountPickerData(){
         if(fiatAccountPickerData == null)
             fiatAccountPickerData = hPayment.getJSONObject("picker_data");
@@ -541,7 +541,7 @@ public class PaymentMethod extends PayMethod {
     /** Method to get custom snippet of payment method details
      * @param key: key to get snippet of details
      * @return snippet of details as {@link JSONObject}
-     * **/
+     * */
     public JSONObject getSnippetDetail(String key){
         return hPayment.getJSONObject(key);
     }
@@ -552,24 +552,24 @@ public class PaymentMethod extends PayMethod {
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     * **/
+     * */
     public static class Amount {
 
         /**
          * {@code amount} is instance that memorizes amount value
-         * **/
+         * */
         protected double amount;
 
         /**
          * {@code currency} is instance that memorizes currency value
-         * **/
+         * */
         protected String currency;
 
         /** Constructor to init a {@link Amount} custom object
          * @param amount: amount value
          * @param currency: currency value
          * @throws IllegalArgumentException if parameters range is not respected
-         * **/
+         * */
         public Amount(double amount, String currency) {
             if (amount < 0)
                 throw new IllegalArgumentException("Amount value cannot be less than 0");
@@ -585,7 +585,7 @@ public class PaymentMethod extends PayMethod {
          * Constructor to init a {@link Amount} custom object
          *
          * @param jAmount: amount details as {@link JSONObject}
-         **/
+         */
         public Amount(JSONObject jAmount) {
             if (jAmount != null) {
                 amount = jAmount.getDouble("minimumPurchaseAmount");
@@ -601,7 +601,7 @@ public class PaymentMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #amount} instance as double
-         **/
+         */
         public double getAmount() {
             return amount;
         }
@@ -611,7 +611,7 @@ public class PaymentMethod extends PayMethod {
          *
          * @param amount: amount value
          * @throws IllegalArgumentException when amount value is less than 0
-         **/
+         */
         public void setAmount(double amount) {
             if (amount < 0)
                 throw new IllegalArgumentException("Amount value cannot be less than 0");
@@ -624,7 +624,7 @@ public class PaymentMethod extends PayMethod {
          * @param decimals: number of digits to round final value
          * @return {@link #amount} instance rounded with decimal digits inserted
          * @throws IllegalArgumentException if decimalDigits is negative
-         **/
+         */
         public double getAmount(int decimals) {
             return roundValue(amount, decimals);
         }
@@ -634,7 +634,7 @@ public class PaymentMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #currency} instance as {@link String}
-         **/
+         */
         public String getCurrency() {
             return currency;
         }
@@ -644,7 +644,7 @@ public class PaymentMethod extends PayMethod {
          *
          * @param currency: currency value
          * @throws IllegalArgumentException when currency value is null or empty
-         **/
+         */
         public void setCurrency(String currency) {
             if (currency == null || currency.isEmpty())
                 throw new IllegalArgumentException("Currency value cannot be empty or null");

@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.fees;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.fees.records.Fee;
 import org.json.JSONObject;
@@ -17,12 +18,13 @@ import static com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager.ReturnFo
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
  * Fees manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseFeesManager extends CoinbaseManager {
 
     /**
      * {@code FEES_ENDPOINT} is constant for FEES_ENDPOINT's endpoint
-     **/
+     */
     public static final String FEES_ENDPOINT = "/fees";
 
     /**
@@ -33,7 +35,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseFeesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -45,7 +47,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseFeesManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -57,7 +59,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseFeesManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -68,7 +70,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseFeesManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -88,7 +90,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseFeesManager() {
         super();
     }
@@ -112,7 +114,7 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
      * Get fees</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fees")
     public Fee getFees() throws Exception {
@@ -138,11 +140,11 @@ public class CoinbaseFeesManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getfees">
      * Get fees</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/fees")
     public <T> T getFees(ReturnFormat format) throws Exception {
-        String feeResponse = sendAPIRequest(FEES_ENDPOINT, GET);
+        String feeResponse = sendGETRequest(FEES_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(feeResponse);

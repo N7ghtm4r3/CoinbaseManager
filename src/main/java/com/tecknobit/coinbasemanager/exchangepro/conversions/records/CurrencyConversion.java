@@ -18,37 +18,37 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *     </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class CurrencyConversion {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     */
     private final String id;
 
     /**
      * {@code amount} is instance that memorizes amount value
-     * **/
+     */
     private final double amount;
 
     /**
      * {@code fromAccountId} is instance that memorizes from account identifier value
-     * **/
+     */
     private final String fromAccountId;
 
     /**
      * {@code toAccountId} is instance that memorizes to account identifier value
-     * **/
+     * */
     private final String toAccountId;
 
     /**
      * {@code from} is instance that memorizes from value
-     **/
+     */
     private final String from;
 
     /**
      * {@code to} is instance that memorizes to value
-     **/
+     */
     private final String to;
 
     /**
@@ -60,7 +60,7 @@ public class CurrencyConversion {
      * @param toAccountId:   to account identifier value
      * @param from:          from value
      * @param to:            to value
-     **/
+     */
     public CurrencyConversion(String id, double amount, String fromAccountId, String toAccountId, String from, String to) {
         this.id = id;
         this.amount = amount;
@@ -74,7 +74,7 @@ public class CurrencyConversion {
      * Constructor to init a {@link CurrencyConversion} custom object
      *
      * @param currencyConversion: currency conversion details as {@link JSONObject}
-     **/
+     */
     public CurrencyConversion(JSONObject currencyConversion) {
         this(currencyConversion.getString("id"), currencyConversion.getDouble("amount"),
                 currencyConversion.getString("from_account_id"), currencyConversion.getString("to_account_id"),
@@ -86,7 +86,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -96,7 +96,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #amount} instance as double
-     **/
+     */
     public double getAmount() {
         return amount;
     }
@@ -107,7 +107,7 @@ public class CurrencyConversion {
      * @param decimals: number of digits to round final value
      * @return {@link #amount} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getAmount(int decimals) {
         return roundValue(amount, decimals);
     }
@@ -117,7 +117,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #fromAccountId} instance as {@link String}
-     **/
+     */
     public String getFromAccountId() {
         return fromAccountId;
     }
@@ -127,7 +127,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #toAccountId} instance as {@link String}
-     **/
+     */
     public String getToAccountId() {
         return toAccountId;
     }
@@ -137,7 +137,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #from} instance as {@link String}
-     **/
+     */
     public String getFrom() {
         return from;
     }
@@ -147,7 +147,7 @@ public class CurrencyConversion {
      * No-any params required
      *
      * @return {@link #to} instance as {@link String}
-     **/
+     */
     public String getTo() {
         return to;
     }

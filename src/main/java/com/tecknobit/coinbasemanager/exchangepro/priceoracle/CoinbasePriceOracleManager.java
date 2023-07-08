@@ -2,6 +2,7 @@ package com.tecknobit.coinbasemanager.exchangepro.priceoracle;
 
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.priceoracle.records.PriceOracle;
 import org.json.JSONObject;
@@ -15,12 +16,13 @@ import static com.tecknobit.apimanager.apis.APIRequest.RequestMethod.GET;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
  * Price oracle manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbasePriceOracleManager extends CoinbaseManager {
 
     /**
      * {@code PRICE_ORACLE_ENDPOINT} is constant for PRICE_ORACLE_ENDPOINT's endpoint
-     **/
+     */
     public static final String PRICE_ORACLE_ENDPOINT = "/oracle";
 
     /**
@@ -31,7 +33,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbasePriceOracleManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -43,7 +45,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbasePriceOracleManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -55,7 +57,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbasePriceOracleManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -66,7 +68,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbasePriceOracleManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -86,7 +88,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbasePriceOracleManager() {
         super();
     }
@@ -110,7 +112,7 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
      * Get signed prices</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/oracle")
     public PriceOracle getSignedPrices() throws Exception {
@@ -136,11 +138,11 @@ public class CoinbasePriceOracleManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbasepriceoracle">
      * Get signed prices</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/oracle")
     public <T> T getSignedPrices(ReturnFormat format) throws Exception {
-        String signedPricesResponse = sendAPIRequest(PRICE_ORACLE_ENDPOINT, GET);
+        String signedPricesResponse = sendGETRequest(PRICE_ORACLE_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(signedPricesResponse);

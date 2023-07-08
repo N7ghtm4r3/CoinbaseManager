@@ -33,42 +33,42 @@ import org.json.JSONObject;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class Profile {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     */
     private final String id;
 
     /**
      * {@code userId} is instance that memorizes user identifier value
-     * **/
+     */
     private final String userId;
 
     /**
      * {@code name} is instance that memorizes name value
-     * **/
+     * */
     private String name;
 
     /**
      * {@code active} is flag that checks if profile is active
-     * **/
+     * */
     private boolean active;
 
     /**
      * {@code isDefault} is flag that checks if profile is default
-     * **/
+     * */
     private boolean isDefault;
 
     /**
      * {@code createdAt} is instance that memorizes profile created at value
-     **/
+     */
     private final String createdAt;
 
     /**
      * {@code hasMargin} is flag that checks if profile has margin
-     **/
+     */
     private boolean hasMargin;
 
     /**
@@ -82,7 +82,7 @@ public class Profile {
      * @param createdAt: created at value
      * @param hasMargin: has margin
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Profile(String id, String userId, String name, boolean active, boolean isDefault, String createdAt,
                    boolean hasMargin) {
         this.id = id;
@@ -102,7 +102,7 @@ public class Profile {
      *
      * @param profile: profile details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Profile(JSONObject profile) {
         this(profile.getString("id"), profile.getString("user_id"), profile.getString("name"),
                 profile.getBoolean("active"), profile.getBoolean("is_default"),
@@ -114,7 +114,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -124,7 +124,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #userId} instance as {@link String}
-     **/
+     */
     public String getUserId() {
         return userId;
     }
@@ -134,7 +134,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #name} instance as {@link String}
-     **/
+     */
     public String getName() {
         return name;
     }
@@ -144,7 +144,7 @@ public class Profile {
      *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
-     **/
+     */
     public void setName(String name) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -156,7 +156,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #active} instance as boolean
-     **/
+     */
     public boolean isActive() {
         return active;
     }
@@ -165,7 +165,7 @@ public class Profile {
      * Method to set {@link #active}
      *
      * @param active: flag that checks if profile is active
-     **/
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -175,7 +175,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #isDefault} instance as boolean
-     **/
+     */
     public boolean isDefault() {
         return isDefault;
     }
@@ -184,7 +184,7 @@ public class Profile {
      * Method to set {@link #isDefault}
      *
      * @param isDefault: flag that checks if profile is default
-     **/
+     */
     public void setDefault(boolean isDefault) {
         this.isDefault = isDefault;
     }
@@ -194,7 +194,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -204,7 +204,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -214,7 +214,7 @@ public class Profile {
      * No-any params required
      *
      * @return {@link #hasMargin} instance as boolean
-     **/
+     */
     public boolean isHasMargin() {
         return hasMargin;
     }
@@ -223,7 +223,7 @@ public class Profile {
      * Method to set {@link #hasMargin}
      *
      * @param hasMargin: flag that checks if profile has margin
-     **/
+     */
     public void setHasMargin(boolean hasMargin) {
         this.hasMargin = hasMargin;
     }

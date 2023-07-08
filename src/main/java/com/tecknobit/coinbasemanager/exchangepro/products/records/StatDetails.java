@@ -19,27 +19,27 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class StatDetails {
 
     /**
      * {@code tradeId} is instance that memorizes trade identifier value
-     * **/
+     */
     protected final long tradeId;
 
     /**
      * {@code price} is instance that memorizes price value
-     * **/
+     */
     protected final double price;
 
     /**
      * {@code size} is instance that memorizes size value
-     **/
+     */
     protected final double size;
 
     /**
      * {@code time} is instance that memorizes time value
-     **/
+     */
     protected final String time;
 
     /**
@@ -49,7 +49,7 @@ public class StatDetails {
      * @param price:   price value
      * @param size:    size value
      * @param time:    time value
-     **/
+     */
     public StatDetails(long tradeId, double price, double size, String time) {
         this.tradeId = tradeId;
         this.price = price;
@@ -61,7 +61,7 @@ public class StatDetails {
      * Constructor to init a {@link StatDetails} custom object
      *
      * @param stat: stat details as {@link JSONObject}
-     **/
+     */
     public StatDetails(JSONObject stat) {
         this(stat.getLong("trade_id"), stat.getDouble("price"), stat.getDouble("size"),
                 stat.getString("time"));
@@ -72,7 +72,7 @@ public class StatDetails {
      * No-any params required
      *
      * @return {@link #tradeId} instance as long
-     **/
+     */
     public long getTradeId() {
         return tradeId;
     }
@@ -82,7 +82,7 @@ public class StatDetails {
      * No-any params required
      *
      * @return {@link #price} instance as double
-     **/
+     */
     public double getPrice() {
         return price;
     }
@@ -93,7 +93,7 @@ public class StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getPrice(int decimals) {
         return roundValue(price, decimals);
     }
@@ -103,7 +103,7 @@ public class StatDetails {
      * No-any params required
      *
      * @return {@link #size} instance as double
-     **/
+     */
     public double getSize() {
         return size;
     }
@@ -114,7 +114,7 @@ public class StatDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getSize(int decimals) {
         return roundValue(size, decimals);
     }
@@ -124,7 +124,7 @@ public class StatDetails {
      * No-any params required
      *
      * @return {@link #time} instance as {@link String}
-     **/
+     */
     public String getTime() {
         return time;
     }
@@ -134,7 +134,7 @@ public class StatDetails {
      * No-any params required
      *
      * @return {@link #time} timestamp as long
-     **/
+     */
     public long getTimestamp() {
         return TimeFormatter.getDateTimestamp(time);
     }

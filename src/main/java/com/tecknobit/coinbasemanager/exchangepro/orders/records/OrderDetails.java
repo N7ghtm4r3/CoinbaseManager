@@ -32,45 +32,45 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public abstract class OrderDetails {
 
     /**
      * {@code orderHelper} is instance that help to work with {@link OrderDetails}
-     **/
+     */
     protected final JsonHelper orderHelper;
 
     /**
      * {@code createdAt} is instance that memorizes created at value
-     **/
+     */
     private final String createdAt;
 
     /**
      * {@code productId} is instance that memorizes product identifier value
-     **/
+     */
     private final String productId;
 
     /**
      * {@code profileId} is instance that memorizes profile identifier value
-     * **/
+     */
     private final String profileId;
 
     /**
      * {@code price} is instance that memorizes price value
-     * **/
+     */
     private final double price;
 
     /**
      * {@code size} is instance that memorizes size value
-     **/
+     */
     private final double size;
     /**
      * {@code side} is instance that memorizes side value (buy or sell)
-     **/
+     */
     private final Side side;
     /**
      * {@code settled} is flag that checks if order is settled
-     **/
+     */
     private final boolean settled;
 
     /**
@@ -83,7 +83,7 @@ public abstract class OrderDetails {
      * @param size:      size value
      * @param side:      side value (buy or sell)
      * @param settled:   flag that checks if order is settled
-     **/
+     */
     public OrderDetails(String createdAt, String productId, String profileId, double price, double size, Side side,
                         boolean settled) {
         this.createdAt = createdAt;
@@ -100,7 +100,7 @@ public abstract class OrderDetails {
      * Constructor to init a {@link OrderDetails} custom object
      *
      * @param orderDetails: orderDetails details as {@link JSONObject}
-     **/
+     */
     public OrderDetails(JSONObject orderDetails) {
         orderHelper = new JsonHelper(orderDetails);
         createdAt = orderHelper.getString("created_at");
@@ -117,7 +117,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #side} instance as {@link String}
-     **/
+     */
     public Side getSide() {
         return side;
     }
@@ -127,7 +127,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #createdAt} instance as {@link String}
-     **/
+     */
     public String getCreatedAt() {
         return createdAt;
     }
@@ -137,7 +137,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #createdAt} timestamp as long
-     **/
+     */
     public long getCreatedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(createdAt);
     }
@@ -147,7 +147,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
-     **/
+     */
     public String getProductId() {
         return productId;
     }
@@ -157,7 +157,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #profileId} instance as {@link String}
-     **/
+     */
     public String getProfileId() {
         return profileId;
     }
@@ -167,7 +167,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #price} instance as double
-     **/
+     */
     public double getPrice() {
         return price;
     }
@@ -178,7 +178,7 @@ public abstract class OrderDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #price} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getPrice(int decimals) {
         return roundValue(price, decimals);
     }
@@ -188,7 +188,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #size} instance as double
-     **/
+     */
     public double getSize() {
         return size;
     }
@@ -199,24 +199,24 @@ public abstract class OrderDetails {
      * @param decimals: number of digits to round final value
      * @return {@link #size} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getSize(int decimals) {
         return roundValue(size, decimals);
     }
 
     /**
      * {@code Side} list of sides available for an order
-     **/
+     */
     public enum Side {
 
         /**
          * {@code "buy"} side
-         **/
+         */
         buy,
 
         /**
          * {@code "sell"} side
-         **/
+         */
         sell
 
     }
@@ -226,7 +226,7 @@ public abstract class OrderDetails {
      * No-any params required
      *
      * @return {@link #settled} instance as boolean
-     **/
+     */
     public boolean isSettled() {
         return settled;
     }

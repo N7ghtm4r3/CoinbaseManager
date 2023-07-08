@@ -28,17 +28,17 @@ import org.json.JSONObject;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class PayMethod {
 
     /**
      * {@code type} is instance that memorizes type value
-     **/
+     */
     protected PayMethodType type;
 
     /**
      * {@code name} is instance that memorizes name value
-     **/
+     */
     protected String name;
 
     /**
@@ -47,7 +47,7 @@ public class PayMethod {
      * @param name: pay method name
      * @param type: pay method type
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public PayMethod(String name, PayMethodType type) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -60,7 +60,7 @@ public class PayMethod {
      * Constructor to init a {@link PayMethod} custom object
      *
      * @param payment: payment details as {@link JSONObject}
-     **/
+     */
     public PayMethod(JSONObject payment) {
         this(payment.getString("name"), PayMethodType.valueOf(payment.getString("type")));
     }
@@ -70,7 +70,7 @@ public class PayMethod {
      * No-any params required
      *
      * @return {@link #name} instance as {@link String}
-     **/
+     */
     public String getName() {
         return name;
     }
@@ -80,7 +80,7 @@ public class PayMethod {
      *
      * @param name: name value
      * @throws IllegalArgumentException when name value is null or empty
-     **/
+     */
     public void setName(String name) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Name value cannot be empty or null");
@@ -92,7 +92,7 @@ public class PayMethod {
      * No-any params required
      *
      * @return {@link #type} instance as {@link String}
-     **/
+     */
     public PayMethodType getType() {
         return type;
     }
@@ -102,29 +102,29 @@ public class PayMethod {
      *
      * @param type: type value
      * @throws IllegalArgumentException when type value is null or empty
-     **/
+     */
     public void setType(PayMethodType type) {
         this.type = type;
     }
 
     /**
      * {@code PayMethodType} list of available pay methods types
-     **/
+     */
     public enum PayMethodType {
 
         /**
          * {@code "paypal"} pay methods type
-         **/
+         */
         paypal,
 
         /**
          * {@code "bank"} pay methods type
-         **/
+         */
         bank,
 
         /**
          * {@code "fiat_account"} pay methods type
-         **/
+         */
         fiat_account
 
     }
@@ -144,19 +144,19 @@ public class PayMethod {
      * The {@code PickerData} class is useful to obtain and format a picker data
      *
      * @author N7ghtm4r3 - Tecknobit
-     **/
+     */
     public static class PickerData {
 
         /**
          * {@code symbol} is instance that memorizes symbol value
-         **/
+         */
         protected final String symbol;
 
         /**
          * Constructor to init {@link PickerData} custom object
          *
          * @param symbol: symbol value
-         **/
+         */
         public PickerData(String symbol) {
             this.symbol = symbol;
         }
@@ -166,7 +166,7 @@ public class PayMethod {
          * No-any params required
          *
          * @return {@link #symbol} instance as {@link String}
-         **/
+         */
         public String getSymbol() {
             return symbol;
         }

@@ -9,20 +9,20 @@ import org.json.JSONObject;
  *
  * @author N7ghtm4r3 - Tecknobit
  * @since 1.1.2
- **/
+ */
 @Structure
 public abstract class CoinbaseItem {
 
     /**
      * {@code hItem} useful to manage the JSON data for an item
-     **/
+     */
     protected final JsonHelper hItem;
 
     /**
      * Constructor to init a {@link CoinbaseItem} custom object
      *
      * @param jItem: item details as {@link JSONObject}
-     **/
+     */
     public CoinbaseItem(JSONObject jItem) {
         if (jItem != null)
             hItem = new JsonHelper(jItem);

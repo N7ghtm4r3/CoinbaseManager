@@ -9,14 +9,14 @@ import org.json.JSONObject;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
  * Get all payment methods</a>
  * @see PayMethod
- **/
+ */
 public class BankMethod extends PayMethod {
 
     /**
      * Constructor to init a {@link BankMethod} custom object
      *
      * @param name: pay method name
-     **/
+     */
     public BankMethod(String name) {
         super(name, PayMethodType.bank);
     }
@@ -27,22 +27,22 @@ public class BankMethod extends PayMethod {
      * @author N7ghtm4r3 - Tecknobit
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     **/
+     */
     public static class BankPickerData extends PickerData {
 
         /**
          * {@code iban} is instance that memorizes iban value
-         **/
+         */
         private String iban;
 
         /**
          * {@code institutionName} is instance that memorizes institution name value
-         **/
+         */
         private String institutionName;
 
         /**
          * {@code swift} is instance that memorizes swift name value
-         **/
+         */
         private String swift;
 
         /**
@@ -53,7 +53,7 @@ public class BankMethod extends PayMethod {
          * @param institutionName: institution name value
          * @param swift:           swift value
          * @throws IllegalArgumentException if parameters range is not respected
-         **/
+         */
         public BankPickerData(String symbol, String iban, String institutionName, String swift) {
             super(symbol);
             if (iban == null || iban.isEmpty())
@@ -77,7 +77,7 @@ public class BankMethod extends PayMethod {
          *
          * @param bankPicker: bank picker details as {@link JSONObject}
          * @throws IllegalArgumentException if parameters range is not respected
-         **/
+         */
         public BankPickerData(JSONObject bankPicker) {
             this(bankPicker.getString("symbol"), bankPicker.getString("iban"),
                     bankPicker.getString("institution_name"), bankPicker.getString("swift"));
@@ -88,7 +88,7 @@ public class BankMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #iban} instance as {@link String}
-         **/
+         */
         public String getIban() {
             return iban;
         }
@@ -98,7 +98,7 @@ public class BankMethod extends PayMethod {
          *
          * @param iban: iban value
          * @throws IllegalArgumentException when iban value is null or empty
-         **/
+         */
         public void setIban(String iban) {
             if (iban == null || iban.isEmpty())
                 throw new IllegalArgumentException("Iban value cannot be empty or null");
@@ -110,7 +110,7 @@ public class BankMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #institutionName} instance as {@link String}
-         **/
+         */
         public String getInstitutionName() {
             return institutionName;
         }
@@ -120,7 +120,7 @@ public class BankMethod extends PayMethod {
          *
          * @param institutionName: institution name value
          * @throws IllegalArgumentException when institution name value is null or empty
-         **/
+         */
         public void setInstitutionName(String institutionName) {
             if (institutionName == null || institutionName.isEmpty())
                 throw new IllegalArgumentException("Institution name value cannot be empty or null");
@@ -132,7 +132,7 @@ public class BankMethod extends PayMethod {
          * No-any params required
          *
          * @return {@link #swift} instance as {@link String}
-         **/
+         */
         public String getSwift() {
             return swift;
         }
@@ -142,7 +142,7 @@ public class BankMethod extends PayMethod {
          *
          * @param swift: swift value
          * @throws IllegalArgumentException when swift is null, empty or invalid value
-         **/
+         */
         public void setSwift(String swift) {
             if (swift == null || swift.isEmpty())
                 throw new IllegalArgumentException("Swift value cannot be empty or null");

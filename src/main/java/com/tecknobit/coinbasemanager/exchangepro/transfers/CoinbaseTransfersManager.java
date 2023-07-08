@@ -4,6 +4,7 @@ import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.WrappedRequest;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.account.CoinbaseAccountManager;
 import com.tecknobit.coinbasemanager.exchangepro.account.records.CoinbaseAccount;
@@ -31,47 +32,48 @@ import static com.tecknobit.coinbasemanager.exchangepro.transfers.CoinbaseTransf
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
  * Transfers manager</a>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /**
      * {@code DEPOSIT_FROM_COINBASE_ENDPOINT} is constant for DEPOSIT_FROM_COINBASE_ENDPOINT's endpoint
-     **/
+     */
     public static final String DEPOSIT_FROM_COINBASE_ENDPOINT = "/deposits" + CoinbaseAccountManager.COINBASE_ACCOUNT_ENDPOINT;
 
     /**
      * {@code DEPOSIT_FROM_PAYMENT_ENDPOINT} is constant for DEPOSIT_FROM_PAYMENT_ENDPOINT's endpoint
-     **/
+     */
     public static final String DEPOSIT_FROM_PAYMENT_ENDPOINT = "/deposits/payment-method";
 
     /**
      * {@code PAYMENTS_ENDPOINT} is constant for PAYMENTS_ENDPOINT's endpoint
-     **/
+     */
     public static final String PAYMENTS_ENDPOINT = "/payment-methods";
 
     /**
      * {@code TRANSFERS_ENDPOINT} is constant for TRANSFERS_ENDPOINT's endpoint
-     **/
+     */
     public static final String TRANSFERS_ENDPOINT = "/transfers";
 
     /**
      * {@code WITHDRAW_TO_COINBASE_ENDPOINT} is constant for WITHDRAW_TO_COINBASE_ENDPOINT's endpoint
-     **/
+     */
     public static final String WITHDRAW_TO_COINBASE_ENDPOINT = "/withdrawals" + CoinbaseAccountManager.COINBASE_ACCOUNT_ENDPOINT;
 
     /**
      * {@code WITHDRAW_TO_CRYPTO_ENDPOINT} is constant for WITHDRAW_TO_CRYPTO_ENDPOINT's endpoint
-     **/
+     */
     public static final String WITHDRAW_TO_CRYPTO_ENDPOINT = "/withdrawals/crypto";
 
     /**
      * {@code FEE_WITHDRAW_TO_CRYPTO_ENDPOINT} is constant for FEE_WITHDRAW_TO_CRYPTO_ENDPOINT's endpoint
-     **/
+     */
     public static final String FEE_WITHDRAW_TO_CRYPTO_ENDPOINT = "/withdrawals/fee-estimate";
 
     /**
      * {@code WITHDRAW_TO_PAYMENT_ENDPOINT} is constant for WITHDRAW_TO_PAYMENT_ENDPOINT's endpoint
-     **/
+     */
     public static final String WITHDRAW_TO_PAYMENT_ENDPOINT = "/withdrawals/payment-method";
 
     /**
@@ -82,7 +84,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
@@ -94,7 +96,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
      * @param timeout:    custom timeout for request
-     **/
+     */
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -106,7 +108,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -117,7 +119,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseTransfersManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -137,7 +139,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseTransfersManager() {
         super();
     }
@@ -163,7 +165,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
@@ -194,7 +196,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -223,7 +225,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public TransferAction depositFromCoinbaseAccount(double amount, String coinbaseAccountId,
@@ -253,11 +255,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                             ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(DEPOSIT_FROM_COINBASE_ENDPOINT,
                         createTransferPayload(amount, coinbase_account_id, coinbaseAccountId, currencyId, null)),
                 format);
     }
@@ -284,7 +286,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
@@ -316,7 +318,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -346,7 +348,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
@@ -378,7 +380,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -408,7 +410,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
@@ -440,7 +442,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -470,7 +472,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public TransferAction depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -501,11 +503,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositcoinbaseaccount">
      * Deposit from Coinbase account</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/coinbase-account")
     public <T> T depositFromCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                             String profileId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(DEPOSIT_FROM_COINBASE_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(DEPOSIT_FROM_COINBASE_ENDPOINT,
                         createTransferPayload(amount, coinbase_account_id, coinbaseAccountId, currencyId, profileId)),
                 format);
     }
@@ -531,7 +533,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -562,7 +564,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -591,7 +593,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -621,7 +623,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -650,7 +652,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public TransferAction depositFromPaymentMethod(double amount, PaymentMethod paymentMethod,
@@ -680,7 +682,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, PaymentMethod paymentMethod, String currencyId,
                                           ReturnFormat format) throws Exception {
@@ -708,7 +710,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public TransferAction depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -737,11 +739,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                           ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(DEPOSIT_FROM_PAYMENT_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(DEPOSIT_FROM_PAYMENT_ENDPOINT,
                         createTransferPayload(amount, payment_id, paymentMethodId, currencyId, null)),
                 format);
     }
@@ -768,7 +770,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -800,7 +802,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -830,7 +832,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -862,7 +864,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -892,7 +894,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -924,7 +926,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -954,7 +956,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -986,7 +988,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -1016,7 +1018,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -1048,7 +1050,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, PaymentMethod paymentMethod, String currencyId,
@@ -1078,7 +1080,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
@@ -1110,7 +1112,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
@@ -1140,7 +1142,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public TransferAction depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
@@ -1171,11 +1173,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postdepositpaymentmethod">
      * Deposit from payment method</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/deposits/payment-method")
     public <T> T depositFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                           String profileId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(DEPOSIT_FROM_PAYMENT_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(DEPOSIT_FROM_PAYMENT_ENDPOINT,
                 createTransferPayload(amount, payment_id, paymentMethodId, currencyId, profileId)), format);
     }
 
@@ -1198,7 +1200,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/payment-methods")
     public ArrayList<PaymentMethod> getAllPaymentMethods() throws Exception {
@@ -1224,11 +1226,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getpaymentmethods">
      * Get all payment methods</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/payment-methods")
     public <T> T getAllPaymentMethods(ReturnFormat format) throws Exception {
-        String paymentResponse = sendAPIRequest(PAYMENTS_ENDPOINT, GET);
+        String paymentResponse = sendGETRequest(PAYMENTS_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONArray(paymentResponse);
@@ -1262,11 +1264,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
      * Get all transfers</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers")
     public ArrayList<Transfer> getAllTransfers() throws Exception {
-        return returnTransfersList(sendAPIRequest(TRANSFERS_ENDPOINT, GET), ReturnFormat.LIBRARY_OBJECT);
+        return returnTransfersList(sendGETRequest(TRANSFERS_ENDPOINT), ReturnFormat.LIBRARY_OBJECT);
     }
 
     /**
@@ -1288,10 +1290,10 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
      * Get all transfers</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers")
     public <T> T getAllTransfers(ReturnFormat format) throws Exception {
-        return returnTransfersList(sendAPIRequest(TRANSFERS_ENDPOINT, GET), format);
+        return returnTransfersList(sendGETRequest(TRANSFERS_ENDPOINT), format);
     }
 
     /**
@@ -1331,11 +1333,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
      * Get all transfers</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers")
     public ArrayList<Transfer> getAllTransfers(Params queryParams) throws Exception {
-        return returnTransfersList(sendAPIRequest(TRANSFERS_ENDPOINT + queryParams.createQueryString(), GET),
+        return returnTransfersList(sendGETRequest(TRANSFERS_ENDPOINT + queryParams.createQueryString()),
                 ReturnFormat.LIBRARY_OBJECT);
     }
 
@@ -1377,11 +1379,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfers">
      * Get all transfers</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers")
     public <T> T getAllTransfers(Params queryParams, ReturnFormat format) throws Exception {
-        return returnTransfersList(sendAPIRequest(TRANSFERS_ENDPOINT + queryParams.createQueryString(),
-                GET), format);
+        return returnTransfersList(sendGETRequest(TRANSFERS_ENDPOINT + queryParams.createQueryString()
+        ), format);
     }
 
     /**
@@ -1403,7 +1405,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
      * Get a single transfer</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers/{transfer_id}")
     public Transfer getSingleTransfer(String transferId) throws Exception {
@@ -1430,10 +1432,10 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_gettransfer">
      * Get a single transfer</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/transfers/{transfer_id}")
     public <T> T getSingleTransfer(String transferId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendAPIRequest(TRANSFERS_ENDPOINT + "/" + transferId, GET), format);
+        return returnTransferAction(sendGETRequest(TRANSFERS_ENDPOINT + "/" + transferId), format);
     }
 
     /**
@@ -1457,7 +1459,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1488,7 +1490,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount, Currency currency,
@@ -1517,7 +1519,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1548,7 +1550,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -1577,7 +1579,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1608,7 +1610,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount,
@@ -1637,7 +1639,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public TransferAction withdrawToCoinbaseAccount(double amount, String coinbaseAccountId,
@@ -1667,11 +1669,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId,
                                            String currencyId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_COINBASE_ENDPOINT,
                 createTransferPayload(amount, coinbase_account_id, coinbaseAccountId, currencyId,
                         null)), format);
     }
@@ -1698,7 +1700,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1731,7 +1733,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount, Currency currency,
@@ -1761,7 +1763,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1793,7 +1795,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount, String currencyId,
@@ -1823,7 +1825,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1855,7 +1857,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount, Currency currency,
@@ -1885,7 +1887,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1917,7 +1919,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -1947,7 +1949,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -1979,7 +1981,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, CoinbaseAccount coinbaseAccount, String currencyId,
@@ -2009,7 +2011,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -2041,7 +2043,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, Currency currency,
@@ -2071,7 +2073,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
@@ -2103,7 +2105,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -2133,7 +2135,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public TransferAction withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
@@ -2164,11 +2166,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcoinbaseaccount">
      * Withdraw to Coinbase account</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/coinbase-account")
     public <T> T withdrawToCoinbaseAccount(double amount, String coinbaseAccountId, String currencyId,
                                            String profileId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_COINBASE_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_COINBASE_ENDPOINT,
                         createTransferPayload(amount, coinbase_account_id, coinbaseAccountId, currencyId, profileId)),
                 format);
     }
@@ -2194,7 +2196,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2224,7 +2226,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, CryptoAddress crypto, Currency currency, ReturnFormat format) throws Exception {
@@ -2252,7 +2254,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2282,7 +2284,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, String cryptoAddress, Currency currency, ReturnFormat format) throws Exception {
@@ -2310,7 +2312,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2340,7 +2342,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, CryptoAddress crypto, String currencyId, ReturnFormat format) throws Exception {
@@ -2368,7 +2370,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public TransferAction withdrawToCrypto(double amount, String cryptoAddress, String currencyId) throws Exception {
@@ -2397,11 +2399,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
                                   ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_CRYPTO_ENDPOINT,
                 createTransferPayload(amount, crypto_address, cryptoAddress, currencyId, null)), format);
     }
 
@@ -2450,7 +2452,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2505,7 +2507,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, CryptoAddress crypto, Currency currency, Params extraParams,
@@ -2558,7 +2560,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2613,7 +2615,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, String cryptoAddress, Currency currency, Params extraParams,
@@ -2666,7 +2668,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
@@ -2721,7 +2723,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, CryptoAddress crypto, String currencyId,
@@ -2774,7 +2776,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public TransferAction withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
@@ -2828,13 +2830,13 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawcrypto">
      * Withdraw to crypto address</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/crypto")
     public <T> T withdrawToCrypto(double amount, String cryptoAddress, String currencyId,
                                   Params extraParams, ReturnFormat format) throws Exception {
         Params payload = createTransferPayload(amount, crypto_address, cryptoAddress, currencyId, null);
         payload.mergeParams(extraParams);
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, POST, payload),
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_CRYPTO_ENDPOINT, payload),
                 format);
     }
 
@@ -2847,7 +2849,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param currencyId:    identifier of currency used in a transfer action
      * @param profileId:     identifier of profile used in a transfer action
      * @return a payload as {@link Params}
-     **/
+     */
     private Params createTransferPayload(double amount, MethodId keyMethodId, String valueMethodId,
                                          String currencyId, String profileId) {
         Params payload = new Params();
@@ -2881,7 +2883,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -2909,7 +2911,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -2939,7 +2941,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * Get fee estimate for crypto withdrawal</a>
      * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the fee,
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public <T> T getFeeForCryptoWithdrawal(CryptoAddress crypto, Currency currency, ReturnFormat format) throws Exception {
@@ -2968,7 +2970,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -2996,7 +2998,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -3026,7 +3028,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * Get fee estimate for crypto withdrawal</a>
      * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the fee,
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public <T> T getFeeForCryptoWithdrawal(String cryptoAddress, Currency currency, ReturnFormat format) throws Exception {
@@ -3055,7 +3057,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -3083,7 +3085,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
@@ -3113,7 +3115,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * Get fee estimate for crypto withdrawal</a>
      * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the fee,
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public <T> T getFeeForCryptoWithdrawal(CryptoAddress crypto, String currency, ReturnFormat format) throws Exception {
@@ -3142,7 +3144,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public double getFeeForCryptoWithdrawal(String cryptoAddress, String currency, int decimals) throws Exception {
@@ -3169,7 +3171,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getwithdrawfeeestimate">
      * Get fee estimate for crypto withdrawal</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public double getFeeForCryptoWithdrawal(String cryptoAddress, String currency) throws Exception {
@@ -3198,12 +3200,12 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * Get fee estimate for crypto withdrawal</a>
      * @implNote in this case {@link ReturnFormat#LIBRARY_OBJECT} will return the {@link String} value of the fee,
      * with the wrappers methods it will be parsed as double, if you directly access to this method you will need to parse as well
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/withdrawals/fee-estimate")
     public <T> T getFeeForCryptoWithdrawal(String cryptoAddress, String currency, ReturnFormat format) throws Exception {
         String queryParams = "?currency=" + currency + "&crypto_address=" + cryptoAddress;
-        String feeResponse = sendAPIRequest(FEE_WITHDRAW_TO_CRYPTO_ENDPOINT + queryParams, GET);
+        String feeResponse = sendGETRequest(FEE_WITHDRAW_TO_CRYPTO_ENDPOINT + queryParams);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(feeResponse);
@@ -3235,7 +3237,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3264,7 +3266,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -3293,7 +3295,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3322,7 +3324,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -3351,7 +3353,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3381,7 +3383,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, String currencyId,
@@ -3410,7 +3412,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public TransferAction withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId) throws Exception {
@@ -3438,11 +3440,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                            ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_PAYMENT_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_PAYMENT_ENDPOINT,
                 createTransferPayload(amount, payment_id, paymentMethodId, currencyId, null)), format);
     }
 
@@ -3468,7 +3470,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3500,7 +3502,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -3530,7 +3532,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3562,7 +3564,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, String currencyId,
@@ -3592,7 +3594,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3624,7 +3626,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, String currencyId,
@@ -3654,7 +3656,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3686,7 +3688,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, PaymentMethod paymentMethod, Currency currency,
@@ -3716,7 +3718,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3748,7 +3750,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -3778,7 +3780,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3810,7 +3812,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, Currency currency,
@@ -3840,7 +3842,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
@@ -3872,7 +3874,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @WrappedRequest
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
@@ -3902,7 +3904,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public TransferAction withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
@@ -3933,11 +3935,11 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postwithdrawpaymentmethod">
      * Withdraw to payment method</a>
-     **/
+     */
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/withdrawals/payment-method")
     public <T> T withdrawFromPaymentMethod(double amount, String paymentMethodId, String currencyId,
                                            String profileId, ReturnFormat format) throws Exception {
-        return returnTransferAction(sendPayloadedRequest(WITHDRAW_TO_PAYMENT_ENDPOINT, POST,
+        return returnTransferAction(sendPostRequest(WITHDRAW_TO_PAYMENT_ENDPOINT,
                 createTransferPayload(amount, payment_id, paymentMethodId, currencyId, profileId)), format);
     }
 
@@ -3947,7 +3949,7 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
      * @param transferActionResponse: transfer action to format
      * @param format:                 return type formatter -> {@link ReturnFormat}
      * @return transfer action response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnTransferAction(String transferActionResponse, ReturnFormat format) {
         switch (format) {
@@ -3962,22 +3964,22 @@ public class CoinbaseTransfersManager extends CoinbaseManager {
 
     /**
      * {@code MethodId} list of available methods
-     **/
+     */
     public enum MethodId {
 
         /**
          * {@code "coinbase_account_id"} {@code "Coinbase"} account method type
-         **/
+         */
         coinbase_account_id,
 
         /**
          * {@code "payment_id"} payment method type
-         **/
+         */
         payment_id,
 
         /**
          * {@code "crypto_address"} crypto address method type
-         **/
+         */
         crypto_address
 
     }

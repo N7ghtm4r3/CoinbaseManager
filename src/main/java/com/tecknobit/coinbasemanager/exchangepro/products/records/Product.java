@@ -18,27 +18,27 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public abstract class Product {
 
     /**
      * {@code open} is instance that memorizes open value
-     **/
+     */
     protected final double open;
 
     /**
      * {@code high} is instance that memorizes high value
-     **/
+     */
     protected final double high;
 
     /**
      * {@code low} is instance that memorizes low value
-     **/
+     */
     protected final double low;
 
     /**
      * {@code volume} is instance that memorizes volume value
-     **/
+     */
     protected final double volume;
 
     /**
@@ -48,7 +48,7 @@ public abstract class Product {
      * @param high:   high value
      * @param low:    low value
      * @param volume: volume value
-     **/
+     */
     public Product(double open, double high, double low, double volume) {
         this.open = open;
         this.high = high;
@@ -60,7 +60,7 @@ public abstract class Product {
      * Constructor to init a {@link Product} custom object
      *
      * @param product: product details as {@link JSONObject}
-     **/
+     */
     public Product(JSONObject product) {
         this(product.getDouble("open"), product.getDouble("high"), product.getDouble("low"),
                 product.getDouble("volume"));
@@ -71,7 +71,7 @@ public abstract class Product {
      * No-any params required
      *
      * @return {@link #open} instance as double
-     **/
+     */
     public double getOpen() {
         return open;
     }
@@ -82,7 +82,7 @@ public abstract class Product {
      * @param decimals: number of digits to round final value
      * @return {@link #open} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getOpen(int decimals) {
         return roundValue(open, decimals);
     }
@@ -92,7 +92,7 @@ public abstract class Product {
      * No-any params required
      *
      * @return {@link #high} instance as double
-     **/
+     */
     public double getHigh() {
         return high;
     }
@@ -103,7 +103,7 @@ public abstract class Product {
      * @param decimals: number of digits to round final value
      * @return {@link #high} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getHigh(int decimals) {
         return roundValue(high, decimals);
     }
@@ -113,7 +113,7 @@ public abstract class Product {
      * No-any params required
      *
      * @return {@link #low} instance as double
-     **/
+     */
     public double getLow() {
         return low;
     }
@@ -124,7 +124,7 @@ public abstract class Product {
      * @param decimals: number of digits to round final value
      * @return {@link #low} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getLow(int decimals) {
         return roundValue(low, decimals);
     }
@@ -134,7 +134,7 @@ public abstract class Product {
      * No-any params required
      *
      * @return {@link #volume} instance as double
-     **/
+     */
     public double getVolume() {
         return volume;
     }
@@ -145,7 +145,7 @@ public abstract class Product {
      * @param decimals: number of digits to round final value
      * @return {@link #volume} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getVolume(int decimals) {
         return roundValue(volume, decimals);
     }

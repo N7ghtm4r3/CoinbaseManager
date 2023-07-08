@@ -13,37 +13,37 @@ import java.util.ArrayList;
  * @author N7ghtm4r3 - Tecknobit
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproductbook">
  * Get product book</a>
- **/
+ */
 public class Book {
 
     /**
      * {@code productId} is instance that memorizes product identifier value
-     * **/
+     */
     private final String productId;
 
     /**
      * {@code sequence} is instance that memorizes sequence value
-     * **/
+     */
     private final long sequence;
 
     /**
      * {@code auctionMode} is flag that checks if book is in auction mode
-     * **/
+     * */
     private final boolean auctionMode;
 
     /**
      * {@code auction} is instance that memorizes auction value
-     * **/
+     * */
     private final String auction;
 
     /**
      * {@code asks} is instance that memorizes list of asks
-     * **/
+     * */
     private final ArrayList<Double> asks;
 
     /**
      * {@code bids} is instance that memorizes list of bids
-     * **/
+     * */
     private final ArrayList<Double> bids;
 
     /**
@@ -55,7 +55,7 @@ public class Book {
      * @param auction:     auction value
      * @param asks:        list of asks
      * @param bids:        list of bids
-     **/
+     */
     public Book(String productId, long sequence, boolean auctionMode, String auction, ArrayList<Double> asks,
                 ArrayList<Double> bids) {
         this.productId = productId;
@@ -70,7 +70,7 @@ public class Book {
      * Constructor to init a {@link Book} custom object
      *
      * @param book: book details as {@link JSONObject}
-     **/
+     */
     public Book(JSONObject book) {
         JsonHelper hBook = new JsonHelper(book);
         productId = hBook.getString("productId");
@@ -86,7 +86,7 @@ public class Book {
      *
      * @param jsonList: jsonArray obtained by response request
      * @return doubles list as {@link ArrayList} of {@link Double}
-     **/
+     */
     @Returner
     private ArrayList<Double> assembleMarketList(JSONArray jsonList) {
         ArrayList<Double> values = new ArrayList<>();
@@ -103,7 +103,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #productId} instance as {@link String}
-     **/
+     */
     public String getProductId() {
         return productId;
     }
@@ -113,7 +113,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #sequence} instance as long
-     **/
+     */
     public long getSequence() {
         return sequence;
     }
@@ -123,7 +123,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #auctionMode} instance as boolean
-     **/
+     */
     public boolean isAuctionMode() {
         return auctionMode;
     }
@@ -133,7 +133,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #auction} instance as {@link String}
-     **/
+     */
     public String getAuction() {
         return auction;
     }
@@ -143,7 +143,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #asks} instance as {@link ArrayList} of {@link Double}
-     **/
+     */
     public ArrayList<Double> getAsks() {
         return asks;
     }
@@ -153,7 +153,7 @@ public class Book {
      *
      * @param index: index of the ask to get
      * @return ask as double
-     **/
+     */
     public double getAsk(int index) {
         return asks.get(index);
     }
@@ -163,7 +163,7 @@ public class Book {
      * No-any params required
      *
      * @return {@link #bids} instance as {@link ArrayList} of {@link Double}
-     **/
+     */
     public ArrayList<Double> getBids() {
         return bids;
     }
@@ -173,7 +173,7 @@ public class Book {
      *
      * @param index: index of the bid to get
      * @return bid as double
-     **/
+     */
     public double getBid(int index) {
         return bids.get(index);
     }

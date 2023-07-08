@@ -23,17 +23,17 @@ import java.util.ArrayList;
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
  * @see AccountDetails
- * **/
+ * */
 public class Transfer extends AccountDetails {
 
     /**
      * {@code completedAt} is instance that memorizes completed at value
-     **/
+     */
     private final String completedAt;
 
     /**
      * {@code transferDetails} is instance that memorizes transfer details value
-     **/
+     */
     private final TransferDetails transferDetails;
 
     /**
@@ -46,7 +46,7 @@ public class Transfer extends AccountDetails {
      * @param completedAt: completed at value
      * @param details:     transfer details value in JSON format
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Transfer(String createdAt, String id, double amount, String type, String completedAt, JSONObject details) {
         super(createdAt, id, amount, type);
         this.completedAt = completedAt;
@@ -61,7 +61,7 @@ public class Transfer extends AccountDetails {
      *
      * @param transfer: transfer details as {@link JSONObject}
      * @throws IllegalArgumentException if parameters range is not respected
-     **/
+     */
     public Transfer(JSONObject transfer) {
         super(transfer);
         completedAt = transfer.getString("created_at");
@@ -74,7 +74,7 @@ public class Transfer extends AccountDetails {
      * @param transfersResponse : transfers list response to format
      * @param format            :                 return type formatter -> {@link CoinbaseManager.ReturnFormat}
      * @return transfers list response as {@code "format"} defines
-     **/
+     */
     @Returner
     public static <T> T returnTransfersList(String transfersResponse, CoinbaseManager.ReturnFormat format) {
         switch (format) {
@@ -96,7 +96,7 @@ public class Transfer extends AccountDetails {
      * No-any params required
      *
      * @return {@link #completedAt} instance as {@link String}
-     **/
+     */
     public String getCompletedAt() {
         return completedAt;
     }
@@ -106,7 +106,7 @@ public class Transfer extends AccountDetails {
      * No-any params required
      *
      * @return {@link #completedAt} timestamp as long
-     **/
+     */
     public long getCompletedAtTimestamp() {
         return TimeFormatter.getDateTimestamp(completedAt);
     }
@@ -116,24 +116,24 @@ public class Transfer extends AccountDetails {
      * No-any params required
      *
      * @return {@link #transferDetails} instance as {@link TransferDetails}
-     **/
+     */
     public TransferDetails getTransferDetails() {
         return transferDetails;
     }
 
     /**
      * {@code TransferType} list of transfer type available
-     **/
+     */
     public enum TransferType {
 
         /**
          * {@code "deposit"} transfer type
-         **/
+         */
         deposit,
 
         /**
          * {@code "withdraw"} transfer type
-         **/
+         */
         withdraw,
 
     }
@@ -142,22 +142,22 @@ public class Transfer extends AccountDetails {
      * The {@code TransferDetails} class is useful to obtain and format TransferDetails object for Transfer
      *
      * @author N7ghtm4r3 - Tecknobit
-     **/
+     */
     public static class TransferDetails {
 
         /**
          * {@code coinbaseAccountId} is instance that memorizes {@code "Coinbase"}'s account identifier value
-         * **/
+         */
         private final String coinbaseAccountId;
 
         /**
          * {@code coinbaseTransactionId} is instance that memorizes {@code "Coinbase"}'s transaction identifier value
-         * **/
+         */
         private final String coinbaseTransactionId;
 
         /**
          * {@code coinbasePaymentMethodId} is instance that memorizes {@code "Coinbase"}'s payment method identifier value
-         * **/
+         */
         private final String coinbasePaymentMethodId;
 
         /**
@@ -166,7 +166,7 @@ public class Transfer extends AccountDetails {
          * @param coinbaseAccountId:       {@code "Coinbase"}'s account identifier value
          * @param coinbaseTransactionId:   {@code "Coinbase"}'s transaction identifier value
          * @param coinbasePaymentMethodId: {@code "Coinbase"}'s payment method identifier value
-         **/
+         */
         public TransferDetails(String coinbaseAccountId, String coinbaseTransactionId, String coinbasePaymentMethodId) {
             this.coinbaseAccountId = coinbaseAccountId;
             this.coinbaseTransactionId = coinbaseTransactionId;
@@ -177,7 +177,7 @@ public class Transfer extends AccountDetails {
          * Constructor to init a {@link TransferDetails} custom object
          *
          * @param transferDetails: transfer details as {@link JSONObject}
-         **/
+         */
         public TransferDetails(JSONObject transferDetails) {
             this(transferDetails.getString("coinbase_account_id"), transferDetails.getString("coinbase_transaction_id"),
                     transferDetails.getString("coinbase_payment_id"));
@@ -188,7 +188,7 @@ public class Transfer extends AccountDetails {
          * No-any params required
          *
          * @return {@link #coinbaseAccountId} instance as {@link String}
-         **/
+         */
         public String getCoinbaseAccountId() {
             return coinbaseAccountId;
         }
@@ -198,7 +198,7 @@ public class Transfer extends AccountDetails {
          * No-any params required
          *
          * @return {@link #coinbaseTransactionId} instance as {@link String}
-         **/
+         */
         public String getCoinbaseTransactionId() {
             return coinbaseTransactionId;
         }
@@ -208,7 +208,7 @@ public class Transfer extends AccountDetails {
          * No-any params required
          *
          * @return {@link #coinbasePaymentMethodId} instance as {@link String}
-         **/
+         */
         public String getCoinbasePaymentMethodId() {
             return coinbasePaymentMethodId;
         }

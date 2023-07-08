@@ -23,47 +23,47 @@ import static com.tecknobit.apimanager.formatters.JsonHelper.getJSONArray;
  *     </li>
  * </ul>
  * @author N7ghtm4r3 - Tecknobit
- * **/
+ * */
 public class Currency {
 
     /**
      * {@code id} is instance that memorizes identifier value
-     * **/
+     */
     private final String id;
 
     /**
      * {@code name} is instance that memorizes name value
-     * **/
+     */
     private final String name;
 
     /**
      * {@code status} is instance that memorizes status value
-     * **/
+     */
     private final String status;
 
     /**
      * {@code minSize} is instance that memorizes minimum size value
-     * **/
+     * */
     private final double minSize;
 
     /**
      * {@code maxPrecision} is instance that memorizes maximum precision value
-     * **/
+     * */
     private final double maxPrecision;
 
     /**
      * {@code message} is instance that memorizes message value
-     * **/
+     * */
     private final String message;
 
     /**
      * {@code convertibleToCurrenciesList} is instance that memorizes list of convertible currencies
-     **/
+     */
     private final ArrayList<String> convertibleToCurrenciesList;
 
     /**
      * {@code currencyDetails} is instance that memorizes currency details
-     **/
+     */
     private final CurrencyDetails currencyDetails;
 
     /**
@@ -77,7 +77,7 @@ public class Currency {
      * @param message:                     message value
      * @param convertibleToCurrenciesList: list of convertible currencies
      * @param currencyDetails:             currency details
-     **/
+     */
     public Currency(String id, String name, String status, double minSize, double maxPrecision, String message,
                     ArrayList<String> convertibleToCurrenciesList, CurrencyDetails currencyDetails) {
         this.id = id;
@@ -94,7 +94,7 @@ public class Currency {
      * Constructor to init a {@link Currency} custom object
      *
      * @param currency: currency details as {@link JSONObject}
-     **/
+     */
     public Currency(JSONObject currency) {
         id = currency.getString("id");
         name = currency.getString("name");
@@ -111,7 +111,7 @@ public class Currency {
      *
      * @param jsonDetails: jsonObject obtained by response request
      * @return string values list as {@link ArrayList} of {@link String}
-     **/
+     */
     @Returner
     private static ArrayList<String> loadDetailsList(JSONArray jsonDetails) {
         ArrayList<String> details = new ArrayList<>();
@@ -125,7 +125,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -135,7 +135,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #name} instance as {@link String}
-     **/
+     */
     public String getName() {
         return name;
     }
@@ -145,7 +145,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #status} instance as {@link String}
-     **/
+     */
     public String getStatus() {
         return status;
     }
@@ -155,7 +155,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #minSize} instance as double
-     **/
+     */
     public double getMinSize() {
         return minSize;
     }
@@ -165,7 +165,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #maxPrecision} instance as double
-     **/
+     */
     public double getMaxPrecision() {
         return maxPrecision;
     }
@@ -175,7 +175,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #message} instance as {@link String}
-     **/
+     */
     public String getMessage() {
         return message;
     }
@@ -185,7 +185,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #convertibleToCurrenciesList} instance as {@link ArrayList} of {@link String}
-     **/
+     */
     public ArrayList<String> getConvertibleToCurrenciesList() {
         return convertibleToCurrenciesList;
     }
@@ -195,7 +195,7 @@ public class Currency {
      *
      * @param index: index of the convertible currency to get
      * @return convertible currency as {@link String}
-     **/
+     */
     public String getConvertibleCurrency(int index) {
         return convertibleToCurrenciesList.get(index);
     }
@@ -205,7 +205,7 @@ public class Currency {
      * No-any params required
      *
      * @return {@link #currencyDetails} instance as {@link CurrencyDetails}
-     **/
+     */
     public CurrencyDetails getCurrencyDetails() {
         return currencyDetails;
     }
@@ -226,67 +226,67 @@ public class Currency {
      *
      * @author N7ghtm4r3 - Tecknobit
      * *
-     **/
+     */
     public static class CurrencyDetails {
 
         /**
          * {@code symbol} is instance that memorizes symbol value
-         * **/
+         * */
         private final String symbol;
 
         /**
          * {@code minWithdrawalAmount} is instance that memorizes minimum withdrawal amount value
-         * **/
+         * */
         private final double minWithdrawalAmount;
 
         /**
          * {@code networksConfirmations} is instance that memorizes networks confirmations value
-         * **/
+         * */
         private final int networksConfirmations;
 
         /**
          * {@code maxWithdrawalAmount} is instance that memorizes maximum withdrawal amount value
-         * **/
+         * */
         private final double maxWithdrawalAmount;
 
         /**
          * {@code cryptoAddressLink} is instance that memorizes crypto address link value
-         * **/
+         * */
         private final String cryptoAddressLink;
 
         /**
          * {@code type} is instance that memorizes type value
-         * **/
+         * */
         private final String type;
 
         /**
          * {@code sortOrder} is instance that memorizes sort order value
-         * **/
+         * */
         private final int sortOrder;
 
         /**
          * {@code cryptoTransactionLink} is instance that memorizes crypto transaction link value
-         * **/
+         * */
         private final String cryptoTransactionLink;
 
         /**
          * {@code displayName} is instance that memorizes display name value
-         * **/
+         * */
         private final String displayName;
 
         /**
          * {@code processingTimeSeconds} is instance that memorizes processing time seconds value
-         * **/
+         * */
         private final String processingTimeSeconds;
 
         /**
          * {@code pushPaymentMethodsList} is instance that memorizes list of push payment methods
-         * **/
+         * */
         private final ArrayList<String> pushPaymentMethodsList;
 
         /**
          * {@code groupTypesList} is instance that memorizes list of group types
-         * **/
+         * */
         private final ArrayList<String> groupTypesList;
 
         /** Constructor to init a {@link CurrencyDetails} custom object
@@ -302,7 +302,7 @@ public class Currency {
          * @param processingTimeSeconds: processing time seconds value
          * @param pushPaymentMethodsList: list of push payment methods
          * @param groupTypesList: list of group types
-         * **/
+         * */
         public CurrencyDetails(String symbol, double minWithdrawalAmount, int networksConfirmations,
                                double maxWithdrawalAmount, String cryptoAddressLink, String type, int sortOrder,
                                String cryptoTransactionLink, String displayName, String processingTimeSeconds,
@@ -325,7 +325,7 @@ public class Currency {
          * Constructor to init a {@link Currency} custom object
          *
          * @param currencyDetails: currency details as {@link JSONObject}
-         **/
+         */
         public CurrencyDetails(JSONObject currencyDetails) {
             JsonHelper hCurrency = new JsonHelper(currencyDetails);
             symbol = hCurrency.getString("symbol");
@@ -347,7 +347,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #symbol} instance as {@link String}
-         **/
+         */
         public String getSymbol() {
             return symbol;
         }
@@ -357,7 +357,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #minWithdrawalAmount} instance as double
-         **/
+         */
         public double getMinWithdrawalAmount() {
             return minWithdrawalAmount;
         }
@@ -367,7 +367,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #networksConfirmations} instance as int
-         **/
+         */
         public int getNetworksConfirmations() {
             return networksConfirmations;
         }
@@ -377,7 +377,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #maxWithdrawalAmount} instance as double
-         **/
+         */
         public double getMaxWithdrawalAmount() {
             return maxWithdrawalAmount;
         }
@@ -387,7 +387,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #cryptoAddressLink} instance as {@link String}
-         **/
+         */
         public String getCryptoAddressLink() {
             return cryptoAddressLink;
         }
@@ -397,7 +397,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #type} instance as {@link String}
-         **/
+         */
         public String getType() {
             return type;
         }
@@ -407,7 +407,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #sortOrder} instance as int
-         **/
+         */
         public int getSortOrder() {
             return sortOrder;
         }
@@ -417,7 +417,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #cryptoTransactionLink} instance as {@link String}
-         **/
+         */
         public String getCryptoTransactionLink() {
             return cryptoTransactionLink;
         }
@@ -427,7 +427,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #displayName} instance as {@link String}
-         **/
+         */
         public String getDisplayName() {
             return displayName;
         }
@@ -437,7 +437,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #processingTimeSeconds} instance as {@link String}
-         **/
+         */
         public String getProcessingTimeSeconds() {
             return processingTimeSeconds;
         }
@@ -447,7 +447,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #pushPaymentMethodsList} instance as {@link ArrayList} of {@link String}
-         **/
+         */
         public ArrayList<String> getPushPaymentMethodsList() {
             return pushPaymentMethodsList;
         }
@@ -457,7 +457,7 @@ public class Currency {
          *
          * @param index: index of the push payment method to get
          * @return push payment method as {@link String}
-         **/
+         */
         public String getPushPaymentMethod(int index) {
             return pushPaymentMethodsList.get(index);
         }
@@ -467,7 +467,7 @@ public class Currency {
          * No-any params required
          *
          * @return {@link #groupTypesList} instance as {@link ArrayList} of {@link String}
-         **/
+         */
         public ArrayList<String> getGroupTypesList() {
             return groupTypesList;
         }
@@ -477,7 +477,7 @@ public class Currency {
          *
          * @param index: index of the group type to get
          * @return group type as {@link String}
-         **/
+         */
         public String getGroupType(int index) {
             return groupTypesList.get(index);
         }

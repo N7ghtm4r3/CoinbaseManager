@@ -3,6 +3,7 @@ package com.tecknobit.coinbasemanager.exchangepro.account;
 import com.tecknobit.apimanager.annotations.RequestPath;
 import com.tecknobit.apimanager.annotations.Returner;
 import com.tecknobit.apimanager.annotations.Wrapper;
+import com.tecknobit.apimanager.interfaces.Manager;
 import com.tecknobit.coinbasemanager.exchangepro.CoinbaseManager;
 import com.tecknobit.coinbasemanager.exchangepro.account.records.Account;
 import com.tecknobit.coinbasemanager.exchangepro.account.records.CoinbaseAccount;
@@ -35,17 +36,18 @@ import static com.tecknobit.coinbasemanager.exchangepro.account.records.details.
  * </li>
  * </ul>
  * @see CoinbaseManager
- **/
+ * @see Manager
+ */
 public class CoinbaseAccountManager extends CoinbaseManager {
 
     /**
      * {@code ACCOUNT_ENDPOINT} is constant for ACCOUNT_ENDPOINT's endpoint
-     **/
+     */
     public static final String ACCOUNT_ENDPOINT = "/accounts";
 
     /**
      * {@code COINBASE_ACCOUNT_ENDPOINT} is constant for COINBASE_ACCOUNT_ENDPOINT's endpoint
-     **/
+     */
     public static final String COINBASE_ACCOUNT_ENDPOINT = "/coinbase-accounts";
 
     /**
@@ -56,17 +58,19 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
      * @param timeout:             custom timeout for request
-     **/
+     */
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage, int timeout) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage, timeout);
     }
 
-    /** Constructor to init a {@link CoinbaseAccountManager}
-     * @param apiKey: your {@code "Coinbase"} api key
-     * @param apiSecret: your {@code "Coinbase"} api secret
+    /**
+     * Constructor to init a {@link CoinbaseAccountManager}
+     *
+     * @param apiKey:     your {@code "Coinbase"} api key
+     * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     * @param timeout: custom timeout for request
-     * **/
+     * @param timeout:    custom timeout for request
+     */
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, int timeout) {
         super(apiKey, apiSecret, passphrase, timeout);
     }
@@ -78,7 +82,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @param apiSecret:           your {@code "Coinbase"} api secret
      * @param passphrase:          your {@code "Coinbase"} api passphrase
      * @param defaultErrorMessage: custom error to show when is not a request error
-     **/
+     */
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase, String defaultErrorMessage) {
         super(apiKey, apiSecret, passphrase, defaultErrorMessage);
     }
@@ -89,7 +93,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @param apiKey:     your {@code "Coinbase"} api key
      * @param apiSecret:  your {@code "Coinbase"} api secret
      * @param passphrase: your {@code "Coinbase"} api passphrase
-     **/
+     */
     public CoinbaseAccountManager(String apiKey, String apiSecret, String passphrase) {
         super(apiKey, apiSecret, passphrase);
     }
@@ -109,7 +113,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *        CoinbaseManager secondManager = new CoinbaseManager(); //same credentials used
      *     }
      * </pre>
-     **/
+     */
     public CoinbaseAccountManager() {
         super();
     }
@@ -133,7 +137,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
      * Get all accounts for a profile</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts")
     public ArrayList<Account> getAccountsForProfile() throws Exception {
@@ -159,11 +163,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounts">
      * Get all accounts for a profile</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts")
     public <T> T getAccountsForProfile(ReturnFormat format) throws Exception {
-        String accountsResponse = sendAPIRequest(ACCOUNT_ENDPOINT, GET);
+        String accountsResponse = sendGETRequest(ACCOUNT_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONArray(accountsResponse);
@@ -197,7 +201,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount">
      * Get a single account by id</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}")
     public Account getAccountProfile(String accountId) throws Exception {
@@ -224,11 +228,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccount">
      * Get a single account by id</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}")
     public <T> T getAccountProfile(String accountId, ReturnFormat format) throws Exception {
-        String accountResponse = sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId, GET);
+        String accountResponse = sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId);
         switch (format) {
             case JSON:
                 return (T) new JSONObject(accountResponse);
@@ -258,7 +262,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
      * Get a single account's holds</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}/holds")
     public ArrayList<Hold> getAccountProfileHolds(String accountId) throws Exception {
@@ -285,10 +289,10 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
      * Get a single account's holds</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}/holds")
     public <T> T getAccountProfileHolds(String accountId, ReturnFormat format) throws Exception {
-        return returnHoldsList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds", GET),
+        return returnHoldsList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds"),
                 format);
     }
 
@@ -323,7 +327,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
      * Get a single account's holds</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}/holds")
     public ArrayList<Hold> getAccountProfileHolds(String accountId, Params queryParams) throws Exception {
@@ -361,11 +365,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountholds">
      * Get a single account's holds</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/{account_id}/holds")
     public <T> T getAccountProfileHolds(String accountId, Params queryParams, ReturnFormat format) throws Exception {
-        return returnHoldsList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds" +
-                queryParams.createQueryString(), GET), format);
+        return returnHoldsList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/holds" +
+                queryParams.createQueryString()), format);
     }
 
     /**
@@ -374,7 +378,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @param holdsListResponse: holds list response to format
      * @param format:            return type formatter -> {@link ReturnFormat}
      * @return holds list response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnHoldsList(String holdsListResponse, ReturnFormat format) {
         switch (format) {
@@ -410,7 +414,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
      * Get a single account's ledger</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/ledger")
     public ArrayList<Ledger> getAccountProfileLedgers(String accountId) throws Exception {
@@ -437,10 +441,10 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
      * Get a single account's ledger</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/ledger")
     public <T> T getAccountProfileLedgers(String accountId, ReturnFormat format) throws Exception {
-        return returnLedgersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger", GET),
+        return returnLedgersList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger"),
                 format);
     }
 
@@ -484,7 +488,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
      * Get a single account's ledger</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/ledger")
     public ArrayList<Ledger> getAccountProfileLedgers(String accountId, Params queryParams) throws Exception {
@@ -532,11 +536,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccountledger">
      * Get a single account's ledger</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/ledger")
     public <T> T getAccountProfileLedgers(String accountId, Params queryParams, ReturnFormat format) throws Exception {
-        return returnLedgersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger" +
-                queryParams.createQueryString(), GET), format);
+        return returnLedgersList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/ledger" +
+                queryParams.createQueryString()), format);
     }
 
     /**
@@ -545,7 +549,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      * @param holdsLedgersResponse: ledgers list response to format
      * @param format:               return type formatter -> {@link ReturnFormat}
      * @return ledgers list response as {@code "format"} defines
-     **/
+     */
     @Returner
     private <T> T returnLedgersList(String holdsLedgersResponse, ReturnFormat format) {
         switch (format) {
@@ -581,7 +585,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
      * Get a single account's transfers</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/transfers")
     public ArrayList<Transfer> getAccountProfileTransfers(String accountId) throws Exception {
@@ -608,10 +612,10 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
      * Get a single account's transfers</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/transfers")
     public <T> T getAccountProfileTransfers(String accountId, ReturnFormat format) throws Exception {
-        return returnTransfersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers", GET),
+        return returnTransfersList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers"),
                 format);
     }
 
@@ -649,7 +653,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
      * Get a single account's transfers</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/transfers")
     public ArrayList<Transfer> getAccountProfileTransfers(String accountId, Params queryParams) throws Exception {
@@ -691,11 +695,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getaccounttransfers">
      * Get a single account's transfers</a>
-     **/
+     */
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/accounts/account_id/transfers")
     public <T> T getAccountProfileTransfers(String accountId, Params queryParams, ReturnFormat format) throws Exception {
-        return returnTransfersList(sendAPIRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers" +
-                queryParams.createQueryString(), GET), format);
+        return returnTransfersList(sendGETRequest(ACCOUNT_ENDPOINT + "/" + accountId + "/transfers" +
+                queryParams.createQueryString()), format);
     }
 
     /**
@@ -717,7 +721,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">
      * Get all Coinbase wallets</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/coinbase-accounts")
     public ArrayList<CoinbaseAccount> getCoinbaseWallets() throws Exception {
@@ -743,11 +747,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getcoinbaseaccounts">
      * Get all Coinbase wallets</a>
-     **/
+     */
     @Returner
     @RequestPath(method = GET, path = "https://api.exchange.coinbase.com/coinbase-accounts")
     public <T> T getCoinbaseWallets(ReturnFormat format) throws Exception {
-        String walletsResponse = sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT, GET);
+        String walletsResponse = sendGETRequest(COINBASE_ACCOUNT_ENDPOINT);
         switch (format) {
             case JSON:
                 return (T) new JSONArray(walletsResponse);
@@ -781,7 +785,7 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">
      * Generate crypto address</a>
-     **/
+     */
     @Wrapper
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/coinbase-accounts/{account_id}/addresses")
     public CryptoAddress generateCryptoAddress(String accountId) throws Exception {
@@ -808,11 +812,11 @@ public class CoinbaseAccountManager extends CoinbaseManager {
      *                   </ul> using a {@code "try and catch statement"} during runtime, see how to do in {@code "README"} file
      * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_postcoinbaseaccountaddresses">
      * Generate crypto address</a>
-     **/
+     */
     @Returner
     @RequestPath(method = POST, path = "https://api.exchange.coinbase.com/coinbase-accounts/{account_id}/addresses")
     public <T> T generateCryptoAddress(String accountId, ReturnFormat format) throws Exception {
-        String cryptoResponse = sendAPIRequest(COINBASE_ACCOUNT_ENDPOINT + "/" + accountId + "/addresses", POST);
+        String cryptoResponse = sendGETRequest(COINBASE_ACCOUNT_ENDPOINT + "/" + accountId + "/addresses");
         switch (format) {
             case JSON:
                 return (T) new JSONObject(cryptoResponse);

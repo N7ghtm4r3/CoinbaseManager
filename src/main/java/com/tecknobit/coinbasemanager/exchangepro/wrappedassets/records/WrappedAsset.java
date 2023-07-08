@@ -21,32 +21,32 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  *     </li>
  * </ul>
  * @see CoinbaseItem
- **/
+ */
 public class WrappedAsset extends CoinbaseItem {
 
     /**
      * {@code id} of the wrapped asset
-     **/
+     */
     private final String id;
 
     /**
      * {@code circulatingSupply} circulating supply of the wrapped asset
-     **/
+     */
     private final double circulatingSupply;
 
     /**
      * {@code totalSupply} total supply of the wrapped asset
-     **/
+     */
     private final double totalSupply;
 
     /**
      * {@code conversionRate} conversion rate of the wrapped asset
-     **/
+     */
     private final double conversionRate;
 
     /**
      * {@code apy} APY earned by the supply of the underlying asset
-     **/
+     */
     private final double apy;
 
     /**
@@ -57,7 +57,7 @@ public class WrappedAsset extends CoinbaseItem {
      * @param totalSupply       :       total supply of the wrapped asset
      * @param conversionRate    :    conversion rate of the wrapped asset
      * @param apy:              APY earned by the supply of the underlying asset
-     **/
+     */
     public WrappedAsset(String id, double circulatingSupply, double totalSupply, double conversionRate, double apy) {
         super(null);
         this.id = id;
@@ -71,7 +71,7 @@ public class WrappedAsset extends CoinbaseItem {
      * Constructor to init a {@link WrappedAsset} object
      *
      * @param jWrappedAsset: wrapped asset details as {@link JSONObject}
-     **/
+     */
     public WrappedAsset(JSONObject jWrappedAsset) {
         super(jWrappedAsset);
         id = hItem.getString("id");
@@ -86,7 +86,7 @@ public class WrappedAsset extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #id} instance as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -96,7 +96,7 @@ public class WrappedAsset extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #circulatingSupply} instance as double
-     **/
+     */
     public double getCirculatingSupply() {
         return circulatingSupply;
     }
@@ -107,7 +107,7 @@ public class WrappedAsset extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #circulatingSupply} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getCirculatingSupply(int decimals) {
         return roundValue(circulatingSupply, decimals);
     }
@@ -117,7 +117,7 @@ public class WrappedAsset extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #totalSupply} instance as double
-     **/
+     */
     public double getTotalSupply() {
         return totalSupply;
     }
@@ -128,7 +128,7 @@ public class WrappedAsset extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #totalSupply} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getTotalSupply(int decimals) {
         return roundValue(totalSupply, decimals);
     }
@@ -138,7 +138,7 @@ public class WrappedAsset extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #conversionRate} instance as double
-     **/
+     */
     public double getConversionRate() {
         return conversionRate;
     }
@@ -149,7 +149,7 @@ public class WrappedAsset extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #conversionRate} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getConversionRate(int decimals) {
         return roundValue(conversionRate, decimals);
     }
@@ -159,7 +159,7 @@ public class WrappedAsset extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #apy} instance as double
-     **/
+     */
     public double getApy() {
         return apy;
     }
@@ -170,7 +170,7 @@ public class WrappedAsset extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #apy} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getApy(int decimals) {
         return roundValue(apy, decimals);
     }

@@ -12,124 +12,124 @@ import static com.tecknobit.apimanager.trading.TradingTools.roundValue;
  * @apiNote see the official documentation at: <a href="https://docs.cloud.coinbase.com/exchange/reference/exchangerestapi_getproducts">
  * Get all known trading pairs</a>
  * @see CoinbaseItem
- **/
+ */
 public class TradingPair extends CoinbaseItem {
 
     /**
      * {@code TradingPairStatus} list of available trading pair statuses
-     **/
+     */
     public enum TradingPairStatus {
 
         /**
          * {@code online} trading pair status
-         **/
+         */
         online,
 
         /**
          * {@code offline} trading pair status
-         **/
+         */
         offline,
 
         /**
          * {@code internal} trading pair status
-         **/
+         */
         internal,
 
         /**
          * {@code delisted} trading pair status
-         **/
+         */
         delisted
 
     }
 
     /**
      * {@code id} is instance that memorizes identifier value
-     **/
+     */
     private final String id;
 
     /**
      * {@code baseCurrency} is instance that memorizes base currency value
-     **/
+     */
     private final String baseCurrency;
 
     /**
      * {@code quoteCurrency} is instance that memorizes quote currency value
-     * **/
+     */
     private final String quoteCurrency;
 
     /**
      * {@code quoteIncrement} is instance that memorizes quote increment value
-     * **/
+     */
     private final double quoteIncrement;
 
     /**
      * {@code baseIncrement} is instance that memorizes base increment value
-     * **/
+     * */
     private final double baseIncrement;
 
     /**
      * {@code displayName} is instance that memorizes display name value
-     * **/
+     * */
     private final String displayName;
 
     /**
      * {@code minMarketFunds} is instance that memorizes minimum market founds value
-     * **/
+     * */
     private final double minMarketFunds;
 
     /**
      * {@code maxMarketFunds} is flag that checks if margin is enabled
-     * **/
+     * */
     private final boolean marginEnabled;
 
     /**
      * {@code postOnly} is flag that checks if is only post
-     * **/
+     * */
     private final boolean postOnly;
 
     /**
      * {@code limitOnly} is flag that checks if is only limit
-     * **/
+     * */
     private final boolean limitOnly;
 
     /**
      * {@code cancelOnly} is flag that checks if is only cancel
-     * **/
+     * */
     private final boolean cancelOnly;
 
     /**
      * {@code status} is instance that memorizes status value
-     * **/
+     * */
     private final TradingPairStatus status;
 
     /**
      * {@code statusMessage} is instance that memorizes status message value
-     * **/
+     * */
     private final String statusMessage;
 
     /**
      * {@code auctionMode} is flag that checks if is auction mode
-     * **/
+     * */
     private final boolean auctionMode;
 
     /**
      * {@code auctionMode} is flag that indicates whether trading is currently restricted on this product, this includes whether both new orders and order cancelations are restricted
-     * **/
+     * */
     private final boolean tradingDisabled;
 
     /**
      * {@code auctionMode} is flag that indicates whether the currency pair is a Stable Pair
-     * **/
+     * */
     private final boolean fxStablecoin;
 
     /**
      * {@code maxSlippagePercentage} is instance that memorizes maximum slippage percentage
-     **/
+     */
     private final double maxSlippagePercentage;
 
     /**
      * {@code highBidLimitPercentage} percentage to calculate highest price for limit buy order (Stable coin trading pair only)
-     **/
+     */
     private final double highBidLimitPercentage;
 
     /**
@@ -154,7 +154,7 @@ public class TradingPair extends CoinbaseItem {
      * @param fxStablecoin            : indicates whether the currency pair is a Stable Pair
      * @param maxSlippagePercentage   : maximum slippage percentage
      * @param highBidLimitPercentage: percentage to calculate highest price for limit buy order (Stable coin trading pair only)
-     **/
+     */
     public TradingPair(String id, String baseCurrency, String quoteCurrency, double quoteIncrement, double baseIncrement,
                        String displayName, double minMarketFunds, boolean marginEnabled, boolean postOnly, boolean limitOnly,
                        boolean cancelOnly, TradingPairStatus status, String statusMessage, boolean auctionMode,
@@ -185,7 +185,7 @@ public class TradingPair extends CoinbaseItem {
      * Constructor to init a {@link TradingPair} custom object
      *
      * @param pair: trading pair details as {@link JSONObject}
-     **/
+     */
     public TradingPair(JSONObject pair) {
         super(pair);
         id = hItem.getString("id");
@@ -216,7 +216,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #id} timestamp as {@link String}
-     **/
+     */
     public String getId() {
         return id;
     }
@@ -226,7 +226,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #baseCurrency} timestamp as {@link String}
-     **/
+     */
     public String getBaseCurrency() {
         return baseCurrency;
     }
@@ -236,7 +236,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #quoteCurrency} timestamp as {@link String}
-     **/
+     */
     public String getQuoteCurrency() {
         return quoteCurrency;
     }
@@ -246,7 +246,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #quoteIncrement} timestamp as double
-     **/
+     */
     public double getQuoteIncrement() {
         return quoteIncrement;
     }
@@ -257,7 +257,7 @@ public class TradingPair extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #quoteIncrement} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getQuoteIncrement(int decimals) {
         return roundValue(quoteIncrement, decimals);
     }
@@ -267,7 +267,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #baseIncrement} timestamp as double
-     **/
+     */
     public double getBaseIncrement() {
         return baseIncrement;
     }
@@ -278,7 +278,7 @@ public class TradingPair extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #baseIncrement} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getBaseIncrement(int decimals) {
         return roundValue(baseIncrement, decimals);
     }
@@ -288,7 +288,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #displayName} timestamp as {@link String}
-     **/
+     */
     public String getDisplayName() {
         return displayName;
     }
@@ -298,7 +298,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #minMarketFunds} timestamp as double
-     **/
+     */
     public double getMinMarketFunds() {
         return minMarketFunds;
     }
@@ -309,7 +309,7 @@ public class TradingPair extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #minMarketFunds} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getMinMarketFunds(int decimals) {
         return roundValue(minMarketFunds, decimals);
     }
@@ -319,7 +319,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
-     **/
+     */
     public boolean isMarginEnabled() {
         return marginEnabled;
     }
@@ -329,7 +329,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
-     **/
+     */
     public boolean isPostOnly() {
         return postOnly;
     }
@@ -339,7 +339,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
-     **/
+     */
     public boolean isLimitOnly() {
         return limitOnly;
     }
@@ -349,7 +349,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #marginEnabled} timestamp as boolean
-     **/
+     */
     public boolean isCancelOnly() {
         return cancelOnly;
     }
@@ -359,7 +359,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #status} timestamp as {@link String}
-     **/
+     */
     public TradingPairStatus getStatus() {
         return status;
     }
@@ -369,7 +369,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #statusMessage} timestamp as {@link String}
-     **/
+     */
     public String getStatusMessage() {
         return statusMessage;
     }
@@ -379,7 +379,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #auctionMode} timestamp as boolean
-     **/
+     */
     public boolean isAuctionMode() {
         return auctionMode;
     }
@@ -389,7 +389,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #tradingDisabled} timestamp as boolean
-     **/
+     */
     public boolean isTradingDisabled() {
         return tradingDisabled;
     }
@@ -399,7 +399,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #fxStablecoin} timestamp as boolean
-     **/
+     */
     public boolean isFxStablecoin() {
         return fxStablecoin;
     }
@@ -409,7 +409,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #maxSlippagePercentage} timestamp as double
-     **/
+     */
     public double getMaxSlippagePercentage() {
         return maxSlippagePercentage;
     }
@@ -420,7 +420,7 @@ public class TradingPair extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #maxSlippagePercentage} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getMaxSlippagePercentage(int decimals) {
         return roundValue(maxSlippagePercentage, decimals);
     }
@@ -430,7 +430,7 @@ public class TradingPair extends CoinbaseItem {
      * No-any params required
      *
      * @return {@link #highBidLimitPercentage} timestamp as double
-     **/
+     */
     public double getHighBidLimitPercentage() {
         return highBidLimitPercentage;
     }
@@ -441,7 +441,7 @@ public class TradingPair extends CoinbaseItem {
      * @param decimals: number of digits to round final value
      * @return {@link #highBidLimitPercentage} instance rounded with decimal digits inserted
      * @throws IllegalArgumentException if decimalDigits is negative
-     **/
+     */
     public double getHighBidLimitPercentage(int decimals) {
         return roundValue(highBidLimitPercentage, decimals);
     }
