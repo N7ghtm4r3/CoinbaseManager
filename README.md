@@ -11,21 +11,41 @@ Add the JitPack repository to your build file
 
 - Add it in your root build.gradle at the end of repositories
 
-```gradle
-allprojects {
+    #### Gradle (Short)
+         
+    ```gradle
     repositories {
         ...
         maven { url 'https://jitpack.io' }
     }
-}
-```
+    ```
+
+    #### Gradle (Kotlin)
+         
+    ```gradle
+    repositories {
+        ...
+        maven("https://jitpack.io")
+    }
+    ```
+    
 - Add the dependency
 
-```gradle
-dependencies {
-    implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.1.5'
-}
-```
+    #### Gradle (Short)
+         
+    ```gradle
+    dependencies {
+        implementation 'com.github.N7ghtm4r3:CoinbaseManager:1.1.5'
+    }
+    ```
+
+    #### Gradle (Kotlin)
+         
+    ```gradle
+    dependencies {
+        implementation("com.github.N7ghtm4r3:CoinbaseManager:1.1.5")
+    }
+    ```
 
 ### Maven
 
