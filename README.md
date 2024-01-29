@@ -158,12 +158,6 @@ Thank you for your help!
 
 [![](https://jitpack.io/v/N7ghtm4r3/CoinbaseManager.svg)](https://jitpack.io/#N7ghtm4r3/CoinbaseManager)
 
-## Business contact
-
-If you need to contact me for a project 
-
-[![](https://img.shields.io/badge/fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/manuel_maurizio)
-
 ## Donations
 
 If you want support project and developer
@@ -176,4 +170,4 @@ If you want support project and developer
 If you want support project and developer
 with <a href="https://www.paypal.com/donate/?hosted_button_id=5QMN5UQH7LDT4">PayPal</a>
 
-Copyright © 2023 Tecknobit
+Copyright © 2024 Tecknobit
